@@ -1,0 +1,16 @@
+C:\Users\konop\Desktop\ProgramacionDeRedes\VaporSystem\ConsoleClient\bin\Debug\net5.0\ConsoleClient.exe
+C:\Users\konop\Desktop\ProgramacionDeRedes\VaporSystem\ConsoleClient\bin\Debug\net5.0\ConsoleClient.deps.json
+C:\Users\konop\Desktop\ProgramacionDeRedes\VaporSystem\ConsoleClient\bin\Debug\net5.0\ConsoleClient.runtimeconfig.json
+C:\Users\konop\Desktop\ProgramacionDeRedes\VaporSystem\ConsoleClient\bin\Debug\net5.0\ConsoleClient.runtimeconfig.dev.json
+C:\Users\konop\Desktop\ProgramacionDeRedes\VaporSystem\ConsoleClient\bin\Debug\net5.0\ConsoleClient.dll
+C:\Users\konop\Desktop\ProgramacionDeRedes\VaporSystem\ConsoleClient\bin\Debug\net5.0\ref\ConsoleClient.dll
+C:\Users\konop\Desktop\ProgramacionDeRedes\VaporSystem\ConsoleClient\bin\Debug\net5.0\ConsoleClient.pdb
+C:\Users\konop\Desktop\ProgramacionDeRedes\VaporSystem\ConsoleClient\obj\Debug\net5.0\ConsoleClient.csproj.AssemblyReference.cache
+C:\Users\konop\Desktop\ProgramacionDeRedes\VaporSystem\ConsoleClient\obj\Debug\net5.0\ConsoleClient.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\konop\Desktop\ProgramacionDeRedes\VaporSystem\ConsoleClient\obj\Debug\net5.0\ConsoleClient.AssemblyInfoInputs.cache
+C:\Users\konop\Desktop\ProgramacionDeRedes\VaporSystem\ConsoleClient\obj\Debug\net5.0\ConsoleClient.AssemblyInfo.cs
+C:\Users\konop\Desktop\ProgramacionDeRedes\VaporSystem\ConsoleClient\obj\Debug\net5.0\ConsoleClient.csproj.CoreCompileInputs.cache
+C:\Users\konop\Desktop\ProgramacionDeRedes\VaporSystem\ConsoleClient\obj\Debug\net5.0\ConsoleClient.dll
+C:\Users\konop\Desktop\ProgramacionDeRedes\VaporSystem\ConsoleClient\obj\Debug\net5.0\ref\ConsoleClient.dll
+C:\Users\konop\Desktop\ProgramacionDeRedes\VaporSystem\ConsoleClient\obj\Debug\net5.0\ConsoleClient.pdb
+C:\Users\konop\Desktop\ProgramacionDeRedes\VaporSystem\ConsoleClient\obj\Debug\net5.0\ConsoleClient.genruntimeconfig.cache
