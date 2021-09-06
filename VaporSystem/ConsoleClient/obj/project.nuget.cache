@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "5UmzVuCpTfKqRLdGXbDiO6EZZbyAydqFXd040j8JQkTAmK8hkH0txKu2K8WM3ca62SGlb5vfEJOwEcHNXHl3xw==",
+  "dgSpecHash": "E5m7veiS/hZWNZ1jPdeFe9roqp3+OF+hBRcDiVAL+G6DvARCJ2bTr/bbzcXxqvHQ5mT2OTqSo30NL9dGR1dwKw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\konop\\Desktop\\ProgramacionDeRedes\\VaporSystem\\ConsoleClient\\ConsoleClient.csproj",
+  "projectFilePath": "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/ConsoleClient/ConsoleClient.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
