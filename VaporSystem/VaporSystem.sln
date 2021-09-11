@@ -12,6 +12,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocketLogic", "SocketLogic\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exceptions", "Exceptions\Exceptions.csproj", "{DB6A628B-0FE2-4B7E-8997-02FAC1CED2C9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleDisplay", "ConsoleDisplay\ConsoleDisplay.csproj", "{283679D0-FE3C-45A8-96BF-87EBE29F4B4A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FunctionInterface", "FunctionInterface\FunctionInterface.csproj", "{AF50DB4B-593C-4D0E-88D0-10376D2C12D4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,5 +46,13 @@ Global
 		{DB6A628B-0FE2-4B7E-8997-02FAC1CED2C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DB6A628B-0FE2-4B7E-8997-02FAC1CED2C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DB6A628B-0FE2-4B7E-8997-02FAC1CED2C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{283679D0-FE3C-45A8-96BF-87EBE29F4B4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{283679D0-FE3C-45A8-96BF-87EBE29F4B4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{283679D0-FE3C-45A8-96BF-87EBE29F4B4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{283679D0-FE3C-45A8-96BF-87EBE29F4B4A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF50DB4B-593C-4D0E-88D0-10376D2C12D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF50DB4B-593C-4D0E-88D0-10376D2C12D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF50DB4B-593C-4D0E-88D0-10376D2C12D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF50DB4B-593C-4D0E-88D0-10376D2C12D4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

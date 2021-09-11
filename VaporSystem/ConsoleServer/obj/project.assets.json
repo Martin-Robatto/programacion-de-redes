@@ -1,37 +1,153 @@
 {
   "version": 3,
   "targets": {
-    "net5.0": {}
+    "net5.0": {
+      "ConsoleDisplay/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "compile": {
+          "bin/placeholder/ConsoleDisplay.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ConsoleDisplay.dll": {}
+        }
+      },
+      "Exceptions/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "compile": {
+          "bin/placeholder/Exceptions.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Exceptions.dll": {}
+        }
+      },
+      "FunctionInterface/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "Protocol": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/FunctionInterface.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/FunctionInterface.dll": {}
+        }
+      },
+      "Print/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "compile": {
+          "bin/placeholder/Print.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Print.dll": {}
+        }
+      },
+      "Protocol/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "compile": {
+          "bin/placeholder/Protocol.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Protocol.dll": {}
+        }
+      },
+      "SocketLogic/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "Exceptions": "1.0.0",
+          "FunctionInterface": "1.0.0",
+          "Protocol": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/SocketLogic.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/SocketLogic.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "ConsoleDisplay/1.0.0": {
+      "type": "project",
+      "path": "../ConsoleDisplay/ConsoleDisplay.csproj",
+      "msbuildProject": "../ConsoleDisplay/ConsoleDisplay.csproj"
+    },
+    "Exceptions/1.0.0": {
+      "type": "project",
+      "path": "../Exceptions/Exceptions.csproj",
+      "msbuildProject": "../Exceptions/Exceptions.csproj"
+    },
+    "FunctionInterface/1.0.0": {
+      "type": "project",
+      "path": "../FunctionInterface/FunctionInterface.csproj",
+      "msbuildProject": "../FunctionInterface/FunctionInterface.csproj"
+    },
+    "Print/1.0.0": {
+      "type": "project",
+      "path": "../Print/Print.csproj",
+      "msbuildProject": "../Print/Print.csproj"
+    },
+    "Protocol/1.0.0": {
+      "type": "project",
+      "path": "../Protocol/Protocol.csproj",
+      "msbuildProject": "../Protocol/Protocol.csproj"
+    },
+    "SocketLogic/1.0.0": {
+      "type": "project",
+      "path": "../SocketLogic/SocketLogic.csproj",
+      "msbuildProject": "../SocketLogic/SocketLogic.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net5.0": []
+    "net5.0": [
+      "ConsoleDisplay >= 1.0.0",
+      "Print >= 1.0.0",
+      "SocketLogic >= 1.0.0"
+    ]
   },
   "packageFolders": {
-    "/Users/nicosmac/.nuget/packages/": {}
+    "C:\\Users\\konop\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/ConsoleServer/ConsoleServer.csproj",
+      "projectUniqueName": "C:\\Users\\konop\\Desktop\\ProgramacionDeRedes\\VaporSystem\\ConsoleServer\\ConsoleServer.csproj",
       "projectName": "ConsoleServer",
-      "projectPath": "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/ConsoleServer/ConsoleServer.csproj",
-      "packagesPath": "/Users/nicosmac/.nuget/packages/",
-      "outputPath": "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/ConsoleServer/obj/",
+      "projectPath": "C:\\Users\\konop\\Desktop\\ProgramacionDeRedes\\VaporSystem\\ConsoleServer\\ConsoleServer.csproj",
+      "packagesPath": "C:\\Users\\konop\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\konop\\Desktop\\ProgramacionDeRedes\\VaporSystem\\ConsoleServer\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/nicosmac/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\konop\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net5.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\konop\\Desktop\\ProgramacionDeRedes\\VaporSystem\\ConsoleDisplay\\ConsoleDisplay.csproj": {
+              "projectPath": "C:\\Users\\konop\\Desktop\\ProgramacionDeRedes\\VaporSystem\\ConsoleDisplay\\ConsoleDisplay.csproj"
+            },
+            "C:\\Users\\konop\\Desktop\\ProgramacionDeRedes\\VaporSystem\\Print\\Print.csproj": {
+              "projectPath": "C:\\Users\\konop\\Desktop\\ProgramacionDeRedes\\VaporSystem\\Print\\Print.csproj"
+            },
+            "C:\\Users\\konop\\Desktop\\ProgramacionDeRedes\\VaporSystem\\SocketLogic\\SocketLogic.csproj": {
+              "projectPath": "C:\\Users\\konop\\Desktop\\ProgramacionDeRedes\\VaporSystem\\SocketLogic\\SocketLogic.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
@@ -58,7 +174,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.400/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
       }
     }
   }

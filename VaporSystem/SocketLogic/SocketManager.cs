@@ -1,7 +1,9 @@
 using System;
+using System.Collections.Generic;
 using System.Net.Sockets;
 using System.Text;
 using Exceptions;
+using FunctionInterface;
 using Protocol;
 
 namespace SocketLogic
@@ -22,25 +24,25 @@ namespace SocketLogic
             var bytesMessage = Encoding.UTF8.GetBytes(message);
             while (sentBytes < bytesMessage.Length)
             {
-                sentBytes += socket.Send(bytesMessage, sentBytes, bytesMessage.Length - sentBytes,  SocketFlags.None);
+                sentBytes += socket.Send(bytesMessage, sentBytes, bytesMessage.Length - sentBytes, SocketFlags.None);
             }
         }
 
-        public static void Receive(Socket socket,  int length, byte[] buffer)
+        public static void Receive(Socket socket, int length, byte[] buffer)
         {
-            var receive = 0;
-            while (receive < length)
+            var totalReceived = 0;
+            while (totalReceived < length)
             {
                 try
                 {
-                    var localReceive = socket.Receive(buffer, receive, length - receive, SocketFlags.None);
-                    if (localReceive == 0)
+                    var receive = socket.Receive(buffer, totalReceived, length - totalReceived, SocketFlags.None);
+                    if (receive == 0)
                     {
                         socket.Shutdown(SocketShutdown.Both);
                         socket.Close();
                         throw new ConnectionClosedException();
                     }
-                    receive += localReceive;
+                    totalReceived += receive;
                 }
                 catch (SocketException socketException)
                 {

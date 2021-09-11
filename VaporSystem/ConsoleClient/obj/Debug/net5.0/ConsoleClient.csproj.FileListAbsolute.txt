@@ -14,3 +14,14 @@ C:\Users\konop\Desktop\ProgramacionDeRedes\VaporSystem\ConsoleClient\obj\Debug\n
 C:\Users\konop\Desktop\ProgramacionDeRedes\VaporSystem\ConsoleClient\obj\Debug\net5.0\ref\ConsoleClient.dll
 C:\Users\konop\Desktop\ProgramacionDeRedes\VaporSystem\ConsoleClient\obj\Debug\net5.0\ConsoleClient.pdb
 C:\Users\konop\Desktop\ProgramacionDeRedes\VaporSystem\ConsoleClient\obj\Debug\net5.0\ConsoleClient.genruntimeconfig.cache
+C:\Users\konop\Desktop\ProgramacionDeRedes\VaporSystem\ConsoleClient\bin\Debug\net5.0\ConsoleDisplay.dll
+C:\Users\konop\Desktop\ProgramacionDeRedes\VaporSystem\ConsoleClient\bin\Debug\net5.0\ConsoleDisplay.pdb
+C:\Users\konop\Desktop\ProgramacionDeRedes\VaporSystem\ConsoleClient\obj\Debug\net5.0\ConsoleClient.csproj.CopyComplete
+C:\Users\konop\Desktop\ProgramacionDeRedes\VaporSystem\ConsoleClient\bin\Debug\net5.0\Exceptions.dll
+C:\Users\konop\Desktop\ProgramacionDeRedes\VaporSystem\ConsoleClient\bin\Debug\net5.0\FunctionInterface.dll
+C:\Users\konop\Desktop\ProgramacionDeRedes\VaporSystem\ConsoleClient\bin\Debug\net5.0\Protocol.dll
+C:\Users\konop\Desktop\ProgramacionDeRedes\VaporSystem\ConsoleClient\bin\Debug\net5.0\SocketLogic.dll
+C:\Users\konop\Desktop\ProgramacionDeRedes\VaporSystem\ConsoleClient\bin\Debug\net5.0\FunctionInterface.pdb
+C:\Users\konop\Desktop\ProgramacionDeRedes\VaporSystem\ConsoleClient\bin\Debug\net5.0\SocketLogic.pdb
+C:\Users\konop\Desktop\ProgramacionDeRedes\VaporSystem\ConsoleClient\bin\Debug\net5.0\Exceptions.pdb
+C:\Users\konop\Desktop\ProgramacionDeRedes\VaporSystem\ConsoleClient\bin\Debug\net5.0\Protocol.pdb

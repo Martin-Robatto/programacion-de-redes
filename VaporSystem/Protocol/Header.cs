@@ -24,7 +24,8 @@ namespace Protocol
 
         public byte[] GetRequest()
         {
-            var header = new byte[HeaderConstants.RequestLength + HeaderConstants.CommandLength + HeaderConstants.DataLength];
+            var headerLength = HeaderConstants.RequestLength + HeaderConstants.CommandLength + HeaderConstants.DataLength;
+            var header = new byte[headerLength];
             Array.Copy(_direction, 0, header, 0, 3);
             Array.Copy(_command, 0, header, HeaderConstants.RequestLength, 2);
             Array.Copy(_dataLength, 0, header, HeaderConstants.RequestLength + HeaderConstants.CommandLength, 4);

@@ -1,19 +1,41 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Net;
+using System.Net.Sockets;
+using ConsoleClient.Function;
+using ConsoleDisplay;
+using FunctionInterface;
 
 namespace ConsoleClient
 {
     class Program
     {
+        
+        private static bool _exit = false;
+        private static Socket _socket;
+        private static Dictionary<int, IFunction> _functions;
+        
         static void Main(string[] args)
         {
             try
             {
-                string mainMenuOption = string.Empty;
-                while (!mainMenuOption.Equals("0"))
+                InitializeSocket();
+                _socket.Connect("127.0.0.1", 20000);
+                while (!_exit)
                 {
-                    PrintMainMenu();
-                    mainMenuOption = Console.ReadLine();
-                    MainMenuRedirectTo(mainMenuOption);
+                    Print.MainClientMenu();
+                    var userInput = Console.ReadLine();
+                    if (userInput.Equals("exit"))
+                    {
+                        ShutDown();
+                    }
+                    else
+                    {
+                        _functions = FunctionDictionary.Get();
+                        int commandID = Int32.Parse(userInput);
+                        var command = _functions[commandID];
+                        command.Execute(_socket);
+                    }
                 }
             }
             catch (Exception exception)
@@ -21,56 +43,18 @@ namespace ConsoleClient
                 Console.WriteLine(exception.Message);
             }
         }
-        
-        private static void PrintMainMenu()
-        {
-            ClearConsole();
-            Console.WriteLine("VAPOR");
-            Console.WriteLine("------------------------------");
-            Console.WriteLine("1) Ver catalogo");
-            Console.WriteLine("2) Adquirir un juego");
-            Console.WriteLine("3) Calificar un juego");
-            Console.WriteLine("4) Gestionar un juego");
-            Console.WriteLine("------------------------------");
-            Console.WriteLine("0) Salir");
-            Console.WriteLine("");
-        }
 
-        private static void PrintGameManagementMenu()
+        private static void InitializeSocket()
         {
-            ClearConsole();
-            Console.WriteLine("VAPOR - Gestionar un juego");
-            Console.WriteLine("------------------------------");
-            Console.WriteLine("1) Publicar");
-            Console.WriteLine("2) Modificar");
-            Console.WriteLine("3) Eliminar");
-            Console.WriteLine("------------------------------");
-            Console.WriteLine("0) Volver");
-            Console.WriteLine("");
-        }
-
-        private static void ClearConsole()
-        {
-            for (int i = 0; i < 20; i++)
-            {
-                Console.WriteLine();
-            }
+            _socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            _socket.Bind(new IPEndPoint(IPAddress.Parse("127.0.0.1"), 0));
         }
         
-        private static void MainMenuRedirectTo(string mainMenuOption)
+        private static void ShutDown()
         {
-            if (mainMenuOption.Equals("4"))
-            {
-                string gameManagementOption = string.Empty;
-                while (!gameManagementOption.Equals("0"))
-                {
-                    PrintGameManagementMenu();
-                    gameManagementOption = Console.ReadLine();
-                    GameManagementRedirectTo(gameManagementOption);
-                }
-            }
+            _exit = true;
+            _socket.Shutdown(SocketShutdown.Both);
+            _socket.Close();
         }
-        
-        private static void GameManagementRedirectTo(string gameManagementOption) { }
     }
 }
