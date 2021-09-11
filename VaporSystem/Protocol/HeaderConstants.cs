@@ -7,5 +7,6 @@
         public const int RequestLength = 3;
         public const int CommandLength = 2;
         public const int DataLength = 4;
+        public const int HeaderLength = RequestLength + CommandLength + DataLength;
     }
 }

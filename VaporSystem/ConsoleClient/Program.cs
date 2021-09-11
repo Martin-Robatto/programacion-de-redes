@@ -4,7 +4,6 @@ using System.Net;
 using System.Net.Sockets;
 using ConsoleClient.Function;
 using ConsoleDisplay;
-using FunctionInterface;
 
 namespace ConsoleClient
 {
@@ -13,7 +12,7 @@ namespace ConsoleClient
         
         private static bool _exit = false;
         private static Socket _socket;
-        private static Dictionary<int, IFunction> _functions;
+        private static Dictionary<int, FunctionTemplate> _functions;
         
         static void Main(string[] args)
         {

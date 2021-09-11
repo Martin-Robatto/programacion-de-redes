@@ -6,7 +6,6 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Exceptions\Exceptions.csproj" />
-      <ProjectReference Include="..\FunctionInterface\FunctionInterface.csproj" />
       <ProjectReference Include="..\Protocol\Protocol.csproj" />
     </ItemGroup>
 

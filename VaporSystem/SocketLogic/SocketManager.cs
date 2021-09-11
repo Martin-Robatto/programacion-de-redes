@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Net.Sockets;
 using System.Text;
 using Exceptions;
-using FunctionInterface;
 using Protocol;
 
 namespace SocketLogic

@@ -5,7 +5,6 @@ using System.Net.Sockets;
 using System.Threading;
 using ConsoleDisplay;
 using ConsoleServer.Function;
-using FunctionInterface;
 using Protocol;
 using SocketLogic;
 
@@ -17,7 +16,7 @@ namespace ConsoleServer
         private static bool _exit = false;
         private static Socket _socket;
         private static ICollection<Socket> _clients = new List<Socket>();
-        private static Dictionary<int, IFunction> _functions;
+        private static Dictionary<int, FunctionTemplate> _functions;
 
         static void Main(string[] args)
         {
@@ -34,7 +33,7 @@ namespace ConsoleServer
                             ShutDown();
                             break;
                         default:
-                            Console.WriteLine("Invalid option");
+                            Console.WriteLine("Opción inválida");
                             break;
                     }
                 }
@@ -62,7 +61,7 @@ namespace ConsoleServer
                 try
                 {
                     var clientConnected = _socket.Accept();
-                    Console.WriteLine("Accepted new connection...");
+                    Console.WriteLine("Nueva conexión aceptada");
                     _clients.Add(clientConnected);
                     var thread = new Thread(() => Handle(clientConnected));
                     thread.Start();
@@ -79,12 +78,10 @@ namespace ConsoleServer
         {
             while (!_exit)
             {
-                var headerLength = HeaderConstants.RequestLength + HeaderConstants.CommandLength +
-                                   HeaderConstants.DataLength;
-                var buffer = new byte[headerLength];
+                var buffer = new byte[HeaderConstants.HeaderLength];
                 try
                 {
-                    SocketManager.Receive(socket, headerLength, buffer);
+                    SocketManager.Receive(socket, HeaderConstants.HeaderLength, buffer);
                     var header = new Header();
                     header.DecodeData(buffer);
                     _functions = FunctionDictionary.Get();
@@ -93,7 +90,7 @@ namespace ConsoleServer
                 }
                 catch (Exception exception)
                 {
-                    Console.WriteLine($"Server is closing, will not process more data -> Message {exception.Message}");
+                    Console.WriteLine($"{exception.Message}");
                 }
             }
         }

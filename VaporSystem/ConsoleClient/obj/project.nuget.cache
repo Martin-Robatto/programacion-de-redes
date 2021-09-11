@@ -1,18 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "eLGEz/lizlIcHECTC27FuxIDLQANvJIKcn91Mm575wDiJGIocKUfraYVSKmczEjpXdS0NAcZDnkkhPtUwfLa0g==",
-  "success": false,
-  "projectFilePath": "C:\\Users\\robak\\Source\\Repos\\programacion-de-redes\\VaporSystem\\ConsoleClient\\ConsoleClient.csproj",
+  "dgSpecHash": "agvvo27Igh1hquBXAnWh0jIm26kJK3GSJFHCpvE3dLDRenBnipVJ2MZE+w/f28XYcidQiLxeuYY32AKLGm/ntw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\ConsoleClient\\ConsoleClient.csproj",
   "expectedPackageFiles": [],
-  "logs": [
-    {
-      "code": "NU1104",
-      "level": "Error",
-      "message": "Unable to find project 'C:\\Users\\robak\\Source\\Repos\\programacion-de-redes\\VaporSystem\\Print\\Print.csproj'. Check that the project reference is valid and that the project file exists.",
-      "libraryId": "C:\\Users\\robak\\Source\\Repos\\programacion-de-redes\\VaporSystem\\Print\\Print.csproj",
-      "targetGraphs": [
-        "net5.0"
-      ]
-    }
-  ]
+  "logs": []
 }

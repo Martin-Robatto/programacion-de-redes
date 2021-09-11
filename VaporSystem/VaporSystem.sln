@@ -17,8 +17,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Exceptions", "Exceptions\Ex
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleDisplay", "ConsoleDisplay\ConsoleDisplay.csproj", "{283679D0-FE3C-45A8-96BF-87EBE29F4B4A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FunctionInterface", "FunctionInterface\FunctionInterface.csproj", "{AF50DB4B-593C-4D0E-88D0-10376D2C12D4}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\DataAccess.csproj", "{466D905C-5CAD-4B21-8C6D-A3457D14E3C7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service", "Service\Service.csproj", "{67B53A1E-C40C-4E21-AF70-C36584B09A2D}"
@@ -57,10 +55,6 @@ Global
 		{283679D0-FE3C-45A8-96BF-87EBE29F4B4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{283679D0-FE3C-45A8-96BF-87EBE29F4B4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{283679D0-FE3C-45A8-96BF-87EBE29F4B4A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AF50DB4B-593C-4D0E-88D0-10376D2C12D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AF50DB4B-593C-4D0E-88D0-10376D2C12D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AF50DB4B-593C-4D0E-88D0-10376D2C12D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AF50DB4B-593C-4D0E-88D0-10376D2C12D4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{466D905C-5CAD-4B21-8C6D-A3457D14E3C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{466D905C-5CAD-4B21-8C6D-A3457D14E3C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{466D905C-5CAD-4B21-8C6D-A3457D14E3C7}.Release|Any CPU.ActiveCfg = Release|Any CPU

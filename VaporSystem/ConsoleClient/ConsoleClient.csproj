@@ -7,8 +7,6 @@
 
     <ItemGroup>
       <ProjectReference Include="..\ConsoleDisplay\ConsoleDisplay.csproj" />
-      <ProjectReference Include="..\FunctionInterface\FunctionInterface.csproj" />
-      <ProjectReference Include="..\Print\Print.csproj" />
       <ProjectReference Include="..\SocketLogic\SocketLogic.csproj" />
     </ItemGroup>
 
