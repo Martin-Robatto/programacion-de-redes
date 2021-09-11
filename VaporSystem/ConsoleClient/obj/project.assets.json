@@ -35,16 +35,6 @@
           "bin/placeholder/FunctionInterface.dll": {}
         }
       },
-      "Print/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v5.0",
-        "compile": {
-          "bin/placeholder/Print.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Print.dll": {}
-        }
-      },
       "Protocol/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
@@ -88,11 +78,6 @@
       "path": "../FunctionInterface/FunctionInterface.csproj",
       "msbuildProject": "../FunctionInterface/FunctionInterface.csproj"
     },
-    "Print/1.0.0": {
-      "type": "project",
-      "path": "../Print/Print.csproj",
-      "msbuildProject": "../Print/Print.csproj"
-    },
     "Protocol/1.0.0": {
       "type": "project",
       "path": "../Protocol/Protocol.csproj",
@@ -106,26 +91,31 @@
   },
   "projectFileDependencyGroups": {
     "net5.0": [
+      "C:\\Users\\robak\\Source\\Repos\\programacion-de-redes\\VaporSystem\\Print\\Print.csproj",
       "ConsoleDisplay >= 1.0.0",
       "FunctionInterface >= 1.0.0",
-      "Print >= 1.0.0",
       "SocketLogic >= 1.0.0"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\konop\\.nuget\\packages\\": {}
+    "C:\\Users\\robak\\.nuget\\packages\\": {},
+    "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\konop\\Desktop\\ProgramacionDeRedes\\VaporSystem\\ConsoleClient\\ConsoleClient.csproj",
+      "projectUniqueName": "C:\\Users\\robak\\Source\\Repos\\programacion-de-redes\\VaporSystem\\ConsoleClient\\ConsoleClient.csproj",
       "projectName": "ConsoleClient",
-      "projectPath": "C:\\Users\\konop\\Desktop\\ProgramacionDeRedes\\VaporSystem\\ConsoleClient\\ConsoleClient.csproj",
-      "packagesPath": "C:\\Users\\konop\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\konop\\Desktop\\ProgramacionDeRedes\\VaporSystem\\ConsoleClient\\obj\\",
+      "projectPath": "C:\\Users\\robak\\Source\\Repos\\programacion-de-redes\\VaporSystem\\ConsoleClient\\ConsoleClient.csproj",
+      "packagesPath": "C:\\Users\\robak\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\robak\\Source\\Repos\\programacion-de-redes\\VaporSystem\\ConsoleClient\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\konop\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\robak\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -139,17 +129,17 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\konop\\Desktop\\ProgramacionDeRedes\\VaporSystem\\ConsoleDisplay\\ConsoleDisplay.csproj": {
-              "projectPath": "C:\\Users\\konop\\Desktop\\ProgramacionDeRedes\\VaporSystem\\ConsoleDisplay\\ConsoleDisplay.csproj"
+            "C:\\Users\\robak\\Source\\Repos\\programacion-de-redes\\VaporSystem\\ConsoleDisplay\\ConsoleDisplay.csproj": {
+              "projectPath": "C:\\Users\\robak\\Source\\Repos\\programacion-de-redes\\VaporSystem\\ConsoleDisplay\\ConsoleDisplay.csproj"
             },
-            "C:\\Users\\konop\\Desktop\\ProgramacionDeRedes\\VaporSystem\\FunctionInterface\\FunctionInterface.csproj": {
-              "projectPath": "C:\\Users\\konop\\Desktop\\ProgramacionDeRedes\\VaporSystem\\FunctionInterface\\FunctionInterface.csproj"
+            "C:\\Users\\robak\\Source\\Repos\\programacion-de-redes\\VaporSystem\\FunctionInterface\\FunctionInterface.csproj": {
+              "projectPath": "C:\\Users\\robak\\Source\\Repos\\programacion-de-redes\\VaporSystem\\FunctionInterface\\FunctionInterface.csproj"
             },
-            "C:\\Users\\konop\\Desktop\\ProgramacionDeRedes\\VaporSystem\\Print\\Print.csproj": {
-              "projectPath": "C:\\Users\\konop\\Desktop\\ProgramacionDeRedes\\VaporSystem\\Print\\Print.csproj"
+            "C:\\Users\\robak\\Source\\Repos\\programacion-de-redes\\VaporSystem\\Print\\Print.csproj": {
+              "projectPath": "C:\\Users\\robak\\Source\\Repos\\programacion-de-redes\\VaporSystem\\Print\\Print.csproj"
             },
-            "C:\\Users\\konop\\Desktop\\ProgramacionDeRedes\\VaporSystem\\SocketLogic\\SocketLogic.csproj": {
-              "projectPath": "C:\\Users\\konop\\Desktop\\ProgramacionDeRedes\\VaporSystem\\SocketLogic\\SocketLogic.csproj"
+            "C:\\Users\\robak\\Source\\Repos\\programacion-de-redes\\VaporSystem\\SocketLogic\\SocketLogic.csproj": {
+              "projectPath": "C:\\Users\\robak\\Source\\Repos\\programacion-de-redes\\VaporSystem\\SocketLogic\\SocketLogic.csproj"
             }
           }
         }
@@ -181,5 +171,16 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1104",
+      "level": "Error",
+      "message": "Unable to find project 'C:\\Users\\robak\\Source\\Repos\\programacion-de-redes\\VaporSystem\\Print\\Print.csproj'. Check that the project reference is valid and that the project file exists.",
+      "libraryId": "C:\\Users\\robak\\Source\\Repos\\programacion-de-redes\\VaporSystem\\Print\\Print.csproj",
+      "targetGraphs": [
+        "net5.0"
+      ]
+    }
+  ]
 }
