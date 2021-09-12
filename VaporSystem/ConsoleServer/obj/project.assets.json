@@ -12,6 +12,29 @@
           "bin/placeholder/ConsoleDisplay.dll": {}
         }
       },
+      "DataAccess/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "Domain": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/DataAccess.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DataAccess.dll": {}
+        }
+      },
+      "Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "compile": {
+          "bin/placeholder/Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Domain.dll": {}
+        }
+      },
       "Exceptions/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
@@ -30,6 +53,20 @@
         },
         "runtime": {
           "bin/placeholder/Protocol.dll": {}
+        }
+      },
+      "Service/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "DataAccess": "1.0.0",
+          "Domain": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Service.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Service.dll": {}
         }
       },
       "SocketLogic/1.0.0": {
@@ -54,6 +91,16 @@
       "path": "../ConsoleDisplay/ConsoleDisplay.csproj",
       "msbuildProject": "../ConsoleDisplay/ConsoleDisplay.csproj"
     },
+    "DataAccess/1.0.0": {
+      "type": "project",
+      "path": "../DataAccess/DataAccess.csproj",
+      "msbuildProject": "../DataAccess/DataAccess.csproj"
+    },
+    "Domain/1.0.0": {
+      "type": "project",
+      "path": "../Domain/Domain.csproj",
+      "msbuildProject": "../Domain/Domain.csproj"
+    },
     "Exceptions/1.0.0": {
       "type": "project",
       "path": "../Exceptions/Exceptions.csproj",
@@ -64,6 +111,11 @@
       "path": "../Protocol/Protocol.csproj",
       "msbuildProject": "../Protocol/Protocol.csproj"
     },
+    "Service/1.0.0": {
+      "type": "project",
+      "path": "../Service/Service.csproj",
+      "msbuildProject": "../Service/Service.csproj"
+    },
     "SocketLogic/1.0.0": {
       "type": "project",
       "path": "../SocketLogic/SocketLogic.csproj",
@@ -73,6 +125,7 @@
   "projectFileDependencyGroups": {
     "net5.0": [
       "ConsoleDisplay >= 1.0.0",
+      "Service >= 1.0.0",
       "SocketLogic >= 1.0.0"
     ]
   },
@@ -105,6 +158,9 @@
           "projectReferences": {
             "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\ConsoleDisplay\\ConsoleDisplay.csproj": {
               "projectPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\ConsoleDisplay\\ConsoleDisplay.csproj"
+            },
+            "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\Service\\Service.csproj": {
+              "projectPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\Service\\Service.csproj"
             },
             "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\SocketLogic\\SocketLogic.csproj": {
               "projectPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\SocketLogic\\SocketLogic.csproj"

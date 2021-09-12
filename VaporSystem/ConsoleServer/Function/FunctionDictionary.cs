@@ -9,6 +9,7 @@ namespace ConsoleServer.Function
         {
             var commands = new Dictionary<int, FunctionTemplate>();
             commands.Add(FunctionConstants.Message, new MessageFunction());
+            commands.Add(FunctionConstants.Register, new RegisterFunction());
             return commands;
         }
     }

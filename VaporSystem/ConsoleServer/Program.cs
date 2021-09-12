@@ -61,7 +61,7 @@ namespace ConsoleServer
                 try
                 {
                     var clientConnected = _socket.Accept();
-                    Console.WriteLine("Nueva conexión aceptada");
+                    Console.WriteLine($"Nueva conexión aceptada");
                     _clients.Add(clientConnected);
                     var thread = new Thread(() => Handle(clientConnected));
                     thread.Start();
