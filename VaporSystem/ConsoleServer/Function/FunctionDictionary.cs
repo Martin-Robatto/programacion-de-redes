@@ -10,6 +10,7 @@ namespace ConsoleServer.Function
             var commands = new Dictionary<int, FunctionTemplate>();
             commands.Add(FunctionConstants.Message, new MessageFunction());
             commands.Add(FunctionConstants.Register, new RegisterFunction());
+            commands.Add(FunctionConstants.GetAllGames, new GetAllGamesFunction());
             return commands;
         }
     }
