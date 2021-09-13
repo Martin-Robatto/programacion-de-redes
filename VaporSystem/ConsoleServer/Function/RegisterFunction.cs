@@ -9,28 +9,21 @@ namespace ConsoleServer.Function
 {
     public class RegisterFunction : FunctionTemplate
     {
-        public override void ReceiveRequest(Socket socket, Header header = null)
+        public override void ProcessRequest(byte[] bufferData)
         {
-            var bufferData = new byte[header.DataLength];  
-            SocketManager.Receive(socket, header.DataLength, bufferData);
             var userLine = Encoding.UTF8.GetString(bufferData);
             UserService.Instance.Register(userLine);
         }
 
         public override DataPacket BuildResponse()
         {
-            var message = "Created";
+            var message = StatusCodeConstants.Created;
             var header = new Header(HeaderConstants.Response, FunctionConstants.Register, message.Length);
             return new DataPacket()
             {
                 Header = header,
                 Payload = message
             };
-        }
-
-        public override void SendResponse(Socket socket, DataPacket dataPacket = null)
-        {
-            SocketManager.Send(socket, dataPacket.Header, dataPacket.Payload);
         }
     }
 }

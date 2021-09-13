@@ -21,27 +21,9 @@ namespace ConsoleClient.Function
             };
         }
 
-        public override void SendRequest(Socket socket, DataPacket dataPacket = null)
+        public override void ProcessResponse(byte[] bufferData)
         {
-            SocketManager.Send(socket, dataPacket.Header, dataPacket.Payload);
-        }
-
-        public override void ReceiveResponse(Socket socket, Header header = null)
-        {
-            var bufferHeader = new byte[HeaderConstants.HeaderLength];
-            try
-            {
-                SocketManager.Receive(socket, HeaderConstants.HeaderLength, bufferHeader);
-                header = new Header();
-                header.DecodeData(bufferHeader);
-                var bufferData = new byte[header.DataLength];
-                SocketManager.Receive(socket, header.DataLength, bufferData);
-                Console.WriteLine("Respuesta: " + Encoding.UTF8.GetString(bufferData));
-            }
-            catch (Exception exception)
-            {
-                Console.WriteLine($"{exception.Message}");
-            }
+            throw new NotImplementedException();
         }
     }
 }

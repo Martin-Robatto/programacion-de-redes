@@ -1,5 +1,6 @@
 ﻿using System.Net.Sockets;
 using Protocol;
+using SocketLogic;
 
 namespace ConsoleServer.Function
 {
@@ -7,13 +8,25 @@ namespace ConsoleServer.Function
     {
         public void Execute(Socket socket, Header header = null)
         {
-            ReceiveRequest(socket, header);
+            var bufferData = ReceiveRequest(socket, header);
+            ProcessRequest(bufferData);
             var dataPacket = BuildResponse();
             SendResponse(socket, dataPacket);
         }
 
-        public abstract void ReceiveRequest(Socket socket, Header header = null);
+        public virtual byte[] ReceiveRequest(Socket socket, Header header = null)
+        {
+            var bufferData = new byte[header.DataLength];  
+            SocketManager.Receive(socket, header.DataLength, bufferData);
+            return bufferData;
+        }
+        
+        public abstract void ProcessRequest(byte[] bufferData);
         public abstract DataPacket BuildResponse();
-        public abstract void SendResponse(Socket socket, DataPacket dataPacket = null);
+
+        public virtual void SendResponse(Socket socket, DataPacket dataPacket = null)
+        {
+            SocketManager.Send(socket, dataPacket.Header, dataPacket.Payload);
+        }
     }
 }
