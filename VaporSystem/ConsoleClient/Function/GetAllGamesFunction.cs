@@ -22,7 +22,13 @@ namespace ConsoleClient.Function
 
         public override void ProcessResponse(byte[] bufferData)
         {
-            throw new NotImplementedException();
+            String gamesLine = Encoding.UTF8.GetString(bufferData);
+            var games = gamesLine.Split("#");
+            Console.WriteLine("Games: ");
+            foreach (String game in games)
+            {
+                Console.WriteLine(game);
+            }
         }
     }
 }

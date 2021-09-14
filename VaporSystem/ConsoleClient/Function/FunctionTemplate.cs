@@ -20,7 +20,7 @@ namespace ConsoleClient.Function
 
         public virtual void SendRequest(Socket socket, DataPacket dataPacket)
         {
-            SocketManager.Send(socket, dataPacket.Header, dataPacket.Payload);
+            SocketManager.Send(socket, dataPacket);
         }
 
         public virtual byte[] ReceiveResponse(Socket socket, Header header = null)

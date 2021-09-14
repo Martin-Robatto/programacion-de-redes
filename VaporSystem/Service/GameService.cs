@@ -22,14 +22,15 @@ namespace Service
         }
 
         private GameService() { }
-        public List<string> GetGames()
+        
+        public string GetGames()
         {
-            List<string> games_in_stock = new List<string>();
+            string games = string.Empty;
             foreach (Game game in GameRepository.Get())
             {
-                games_in_stock.Add(game.Title);
+                games += "#" + game.Title;
             }
-            return games_in_stock;
+            return games;
         }
     }
 }

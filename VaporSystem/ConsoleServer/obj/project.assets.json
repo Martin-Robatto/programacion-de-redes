@@ -130,24 +130,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\robak\\.nuget\\packages\\": {},
-    "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\konop\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\robak\\Source\\Repos\\programacion-de-redes\\VaporSystem\\ConsoleServer\\ConsoleServer.csproj",
+      "projectUniqueName": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\ConsoleServer\\ConsoleServer.csproj",
       "projectName": "ConsoleServer",
-      "projectPath": "C:\\Users\\robak\\Source\\Repos\\programacion-de-redes\\VaporSystem\\ConsoleServer\\ConsoleServer.csproj",
-      "packagesPath": "C:\\Users\\robak\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\robak\\Source\\Repos\\programacion-de-redes\\VaporSystem\\ConsoleServer\\obj\\",
+      "projectPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\ConsoleServer\\ConsoleServer.csproj",
+      "packagesPath": "C:\\Users\\konop\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\ConsoleServer\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\robak\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\konop\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -161,14 +156,14 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\robak\\Source\\Repos\\programacion-de-redes\\VaporSystem\\ConsoleDisplay\\ConsoleDisplay.csproj": {
-              "projectPath": "C:\\Users\\robak\\Source\\Repos\\programacion-de-redes\\VaporSystem\\ConsoleDisplay\\ConsoleDisplay.csproj"
+            "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\ConsoleDisplay\\ConsoleDisplay.csproj": {
+              "projectPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\ConsoleDisplay\\ConsoleDisplay.csproj"
             },
-            "C:\\Users\\robak\\Source\\Repos\\programacion-de-redes\\VaporSystem\\Service\\Service.csproj": {
-              "projectPath": "C:\\Users\\robak\\Source\\Repos\\programacion-de-redes\\VaporSystem\\Service\\Service.csproj"
+            "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\Service\\Service.csproj": {
+              "projectPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\Service\\Service.csproj"
             },
-            "C:\\Users\\robak\\Source\\Repos\\programacion-de-redes\\VaporSystem\\SocketLogic\\SocketLogic.csproj": {
-              "projectPath": "C:\\Users\\robak\\Source\\Repos\\programacion-de-redes\\VaporSystem\\SocketLogic\\SocketLogic.csproj"
+            "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\SocketLogic\\SocketLogic.csproj": {
+              "projectPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\SocketLogic\\SocketLogic.csproj"
             }
           }
         }

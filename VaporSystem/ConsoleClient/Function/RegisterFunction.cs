@@ -27,9 +27,6 @@ namespace ConsoleClient.Function
             };
         }
 
-        public override void ProcessResponse(byte[] bufferData)
-        {
-            throw new NotImplementedException();
-        }
+        public override void ProcessResponse(byte[] bufferData) { }
     }
 }

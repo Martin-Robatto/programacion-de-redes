@@ -10,8 +10,7 @@ namespace ConsoleServer.Function
         public void Execute(Socket socket, Header header = null)
         {
             var bufferData = ReceiveRequest(socket, header);
-            var responseData = new ResponseData();
-            responseData = ProcessRequest(bufferData);
+            var responseData = ProcessRequest(bufferData);
             var dataPacket = BuildResponse(responseData);
             SendResponse(socket, dataPacket);
         }
@@ -38,7 +37,7 @@ namespace ConsoleServer.Function
 
         public virtual void SendResponse(Socket socket, DataPacket dataPacket = null)
         {
-            SocketManager.Send(socket, dataPacket.Header, dataPacket.Payload);
+            SocketManager.Send(socket, dataPacket);
         }
     }
 }

@@ -12,8 +12,7 @@ namespace ConsoleServer.Function
             response.Function = FunctionConstants.GetAllGames;
             try
             {
-                var allGames = GameService.Instance.GetGames();
-                response.Data = allGames.ToString();
+                response.Data = GameService.Instance.GetGames();
                 response.StatusCode = StatusCodeConstants.Ok;
             }
             catch (Exception exception)

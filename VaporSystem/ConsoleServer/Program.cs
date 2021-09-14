@@ -41,6 +41,7 @@ namespace ConsoleServer
             catch (Exception exception)
             {
                 Console.WriteLine(exception.Message);
+                ShutDown();
             }
         }
 
@@ -66,9 +67,9 @@ namespace ConsoleServer
                     var thread = new Thread(() => Handle(clientConnected));
                     thread.Start();
                 }
-                catch (Exception e)
+                catch (Exception exception)
                 {
-                    Console.WriteLine(e);
+                    Console.WriteLine(exception.Message);
                     _exit = true;
                 }
             }
@@ -90,7 +91,7 @@ namespace ConsoleServer
                 }
                 catch (Exception exception)
                 {
-                    Console.WriteLine($"{exception.Message}");
+                    Console.WriteLine(exception.Message);
                 }
             }
         }
