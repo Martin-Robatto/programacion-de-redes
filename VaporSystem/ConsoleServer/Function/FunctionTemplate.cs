@@ -1,4 +1,5 @@
-﻿using System.Net.Sockets;
+﻿using System;
+using System.Net.Sockets;
 using Protocol;
 using SocketLogic;
 
@@ -9,8 +10,8 @@ namespace ConsoleServer.Function
         public void Execute(Socket socket, Header header = null)
         {
             var bufferData = ReceiveRequest(socket, header);
-            ProcessRequest(bufferData);
-            var dataPacket = BuildResponse();
+            var responseData = ProcessRequest(bufferData);
+            var dataPacket = BuildResponse(responseData);
             SendResponse(socket, dataPacket);
         }
 
@@ -21,12 +22,22 @@ namespace ConsoleServer.Function
             return bufferData;
         }
         
-        public abstract void ProcessRequest(byte[] bufferData);
-        public abstract DataPacket BuildResponse();
+        public abstract ResponseData ProcessRequest(byte[] bufferData);
+        public virtual DataPacket BuildResponse(ResponseData responseData)
+        {
+            var message = responseData.Data;
+            var header = new Header(HeaderConstants.Response, responseData.Function, message.Length);
+            return new DataPacket()
+            {
+                Header = header,
+                Payload = message,
+                StatusCode = responseData.StatusCode
+            };
+        }
 
         public virtual void SendResponse(Socket socket, DataPacket dataPacket = null)
         {
-            SocketManager.Send(socket, dataPacket.Header, dataPacket.Payload);
+            SocketManager.Send(socket, dataPacket);
         }
     }
 }

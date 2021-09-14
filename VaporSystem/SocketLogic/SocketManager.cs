@@ -9,21 +9,20 @@ namespace SocketLogic
 {
     public class SocketManager
     {
-        public static void Send(Socket socket, Header header, string message)
+        public static void Send(Socket socket, DataPacket dataPacket)
         {
-            var data = header.GetRequest();
-
             var sentBytes = 0;
-            while (sentBytes < data.Length)
+            var header = dataPacket.Header.GetRequest();
+            while (sentBytes < header.Length)
             {
-                sentBytes += socket.Send(data, sentBytes, data.Length - sentBytes, SocketFlags.None);
+                sentBytes += socket.Send(header, sentBytes, header.Length - sentBytes, SocketFlags.None);
             }
 
             sentBytes = 0;
-            var bytesMessage = Encoding.UTF8.GetBytes(message);
-            while (sentBytes < bytesMessage.Length)
+            var message = Encoding.UTF8.GetBytes(dataPacket.Payload);
+            while (sentBytes < message.Length)
             {
-                sentBytes += socket.Send(bytesMessage, sentBytes, bytesMessage.Length - sentBytes, SocketFlags.None);
+                sentBytes += socket.Send(message, sentBytes, message.Length - sentBytes, SocketFlags.None);
             }
         }
 

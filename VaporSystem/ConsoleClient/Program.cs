@@ -40,6 +40,7 @@ namespace ConsoleClient
             catch (Exception exception)
             {
                 Console.WriteLine(exception.Message);
+                ShutDown();
             }
         }
 

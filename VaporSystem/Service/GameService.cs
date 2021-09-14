@@ -6,14 +6,31 @@ namespace Service
 {
     public class GameService
     {
-        public List<string> GetGames()
+        private static GameService _instance;
+        public static GameService Instance
         {
-            List<string> games_in_stock = new List<string>();
+            get { return GetInstance(); }
+        }
+
+        private static GameService GetInstance()
+        {
+            if (_instance is null)
+            {
+                _instance = new GameService();
+            }
+            return _instance;
+        }
+
+        private GameService() { }
+        
+        public string GetGames()
+        {
+            string games = string.Empty;
             foreach (Game game in GameRepository.Get())
             {
-                games_in_stock.Add(game.Title);
+                games += "#" + game.Title;
             }
-            return games_in_stock;
+            return games;
         }
     }
 }
