@@ -8,27 +8,11 @@ namespace ConsoleServer
         {
             try
             {
-                ServerHandler.Exit = false;
-                ServerHandler.InitializeSocket();
-                ServerDisplay.MainMenu();
-                while (!ServerHandler.Exit)
-                {
-                    var userInput = Console.ReadLine();
-                    switch (userInput)
-                    {
-                        case "exit":
-                            ServerHandler.ShutDown();
-                            break;
-                        default:
-                            Console.WriteLine("Opción inválida");
-                            break;
-                    }
-                }
+                ServerHandler.Run();
             }
             catch (Exception exception)
             {
                 Console.WriteLine(exception.Message);
-                ServerHandler.ShutDown();
             }
         }
     }

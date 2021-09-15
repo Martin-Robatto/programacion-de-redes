@@ -1,21 +1,32 @@
 using System.Net.Sockets;
+using FunctionInterface;
 using Protocol;
 
 namespace ConsoleClient.Function
 {
-    public class ExitFunction : IFunction.IFunction
+    public class ExitFunction : FunctionTemplate
     {
-        public string Name { get; set; }
         public const string NAME = "Salir";
 
-        public void Execute(Socket socket, Header header = null)
+        public override DataPacket BuildRequest()
         {
-           ClientHandler.ShutDown();
+            var message = string.Empty;
+            var header = new Header(HeaderConstants.REQUEST, FunctionConstants.EXIT, message.Length);
+            return new DataPacket()
+            {
+                Header = header,
+                Payload = message
+            };
+        }
+
+        public override void ProcessResponse(byte[] bufferData)
+        {
+            ClientHandler.Exit = true;
         }
 
         public ExitFunction()
         {
-            Name = NAME;
+            base.Name = NAME;
         }
     }
 }

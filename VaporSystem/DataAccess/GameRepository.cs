@@ -12,6 +12,18 @@ namespace DataAccess
         private GameRepository()
         {
             _games = new List<Game>();
+            _games.Add(new Game()
+            {
+                Title = "1"
+            });
+            _games.Add(new Game()
+            {
+                Title = "2"
+            });
+            _games.Add(new Game()
+            {
+                Title = "3"
+            });
         }
 
         public static IList<Game> Get()

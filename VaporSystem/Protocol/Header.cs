@@ -15,6 +15,11 @@ namespace Protocol
         
         public Header() { }
 
+        public Header(byte[] buffer)
+        {
+            DecodeData(buffer);
+        }
+
         public Header(string direction, int command, int dataLength)
         {
             _direction = Encoding.UTF8.GetBytes(direction);
@@ -24,20 +29,18 @@ namespace Protocol
 
         public byte[] GetRequest()
         {
-            var headerLength = HeaderConstants.RequestLength + HeaderConstants.CommandLength + HeaderConstants.DataLength;
-            var header = new byte[headerLength];
+            var header = new byte[HeaderConstants.HEADER_LENGTH];
             Array.Copy(_direction, 0, header, 0, 3);
-            Array.Copy(_command, 0, header, HeaderConstants.RequestLength, 2);
-            Array.Copy(_dataLength, 0, header, HeaderConstants.RequestLength + HeaderConstants.CommandLength, 4);
+            Array.Copy(_command, 0, header, HeaderConstants.DIRECTION_LENGTH, 2);
+            Array.Copy(_dataLength, 0, header, HeaderConstants.DIRECTION_LENGTH + HeaderConstants.COMMAND_LENGTH, 4);
             return header;
         }
         
-        public bool DecodeData(byte[] data)
+        public void DecodeData(byte[] data)
         {
-            Direction = Encoding.UTF8.GetString(data, 0, HeaderConstants.RequestLength);
-            Command = int.Parse(Encoding.UTF8.GetString(data, HeaderConstants.RequestLength, HeaderConstants.CommandLength));
-            DataLength = int.Parse(Encoding.UTF8.GetString(data, HeaderConstants.RequestLength + HeaderConstants.CommandLength, HeaderConstants.DataLength));
-            return true;
+            Direction = Encoding.UTF8.GetString(data, 0, HeaderConstants.DIRECTION_LENGTH);
+            Command = Int32.Parse(Encoding.UTF8.GetString(data, HeaderConstants.DIRECTION_LENGTH, HeaderConstants.COMMAND_LENGTH));
+            DataLength = Int32.Parse(Encoding.UTF8.GetString(data, HeaderConstants.DIRECTION_LENGTH + HeaderConstants.COMMAND_LENGTH, HeaderConstants.DATA_LENGTH));
         }
     }
 }

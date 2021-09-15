@@ -11,15 +11,15 @@ namespace ConsoleServer.Function
         public override ResponseData ProcessRequest(byte[] bufferData)
         {
             ResponseData response = new ResponseData();
-            response.Function = FunctionConstants.Message;
+            response.Function = FunctionConstants.MESSAGE;
             try
             {
                 Console.WriteLine("Mensaje: " + Encoding.UTF8.GetString(bufferData));
-                response.StatusCode = StatusCodeConstants.Ok;
+                response.StatusCode = StatusCodeConstants.OK;
             }
             catch (Exception exception)
             {
-                response.StatusCode = StatusCodeConstants.ServerError;
+                response.StatusCode = StatusCodeConstants.SERVER_ERROR;
             }
             return response;
         }

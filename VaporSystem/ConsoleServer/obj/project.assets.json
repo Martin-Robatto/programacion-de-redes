@@ -99,17 +99,17 @@
           "bin/placeholder/Exceptions.dll": {}
         }
       },
-      "IFunction/1.0.0": {
+      "FunctionInterface/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
         "dependencies": {
           "Protocol": "1.0.0"
         },
         "compile": {
-          "bin/placeholder/IFunction.dll": {}
+          "bin/placeholder/FunctionInterface.dll": {}
         },
         "runtime": {
-          "bin/placeholder/IFunction.dll": {}
+          "bin/placeholder/FunctionInterface.dll": {}
         }
       },
       "Protocol/1.0.0": {
@@ -136,17 +136,17 @@
           "bin/placeholder/Service.dll": {}
         }
       },
-      "SettingsManager/1.0.0": {
+      "SettingsLogic/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
         "dependencies": {
           "System.Configuration.Abstractions": "2.0.2.45"
         },
         "compile": {
-          "bin/placeholder/SettingsManager.dll": {}
+          "bin/placeholder/SettingsLogic.dll": {}
         },
         "runtime": {
-          "bin/placeholder/SettingsManager.dll": {}
+          "bin/placeholder/SettingsLogic.dll": {}
         }
       },
       "SocketLogic/1.0.0": {
@@ -405,10 +405,10 @@
       "path": "../Exceptions/Exceptions.csproj",
       "msbuildProject": "../Exceptions/Exceptions.csproj"
     },
-    "IFunction/1.0.0": {
+    "FunctionInterface/1.0.0": {
       "type": "project",
-      "path": "../IFunction/IFunction.csproj",
-      "msbuildProject": "../IFunction/IFunction.csproj"
+      "path": "../FunctionInterface/FunctionInterface.csproj",
+      "msbuildProject": "../FunctionInterface/FunctionInterface.csproj"
     },
     "Protocol/1.0.0": {
       "type": "project",
@@ -420,10 +420,10 @@
       "path": "../Service/Service.csproj",
       "msbuildProject": "../Service/Service.csproj"
     },
-    "SettingsManager/1.0.0": {
+    "SettingsLogic/1.0.0": {
       "type": "project",
-      "path": "../SettingsManager/SettingsManager.csproj",
-      "msbuildProject": "../SettingsManager/SettingsManager.csproj"
+      "path": "../SettingsLogic/SettingsLogic.csproj",
+      "msbuildProject": "../SettingsLogic/SettingsLogic.csproj"
     },
     "SocketLogic/1.0.0": {
       "type": "project",
@@ -433,10 +433,10 @@
   },
   "projectFileDependencyGroups": {
     "net5.0": [
-      "IFunction >= 1.0.0",
+      "FunctionInterface >= 1.0.0",
       "Protocol >= 1.0.0",
       "Service >= 1.0.0",
-      "SettingsManager >= 1.0.0",
+      "SettingsLogic >= 1.0.0",
       "SocketLogic >= 1.0.0"
     ]
   },
@@ -467,8 +467,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\IFunction\\IFunction.csproj": {
-              "projectPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\IFunction\\IFunction.csproj"
+            "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\FunctionInterface\\FunctionInterface.csproj": {
+              "projectPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\FunctionInterface\\FunctionInterface.csproj"
             },
             "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\Protocol\\Protocol.csproj": {
               "projectPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\Protocol\\Protocol.csproj"
@@ -476,8 +476,8 @@
             "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\Service\\Service.csproj": {
               "projectPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\Service\\Service.csproj"
             },
-            "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\SettingsManager\\SettingsManager.csproj": {
-              "projectPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\SettingsManager\\SettingsManager.csproj"
+            "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\SettingsLogic\\SettingsLogic.csproj": {
+              "projectPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\SettingsLogic\\SettingsLogic.csproj"
             },
             "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\SocketLogic\\SocketLogic.csproj": {
               "projectPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\SocketLogic\\SocketLogic.csproj"

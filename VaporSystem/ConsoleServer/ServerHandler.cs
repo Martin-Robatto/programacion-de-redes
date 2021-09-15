@@ -5,91 +5,109 @@ using System.Net.Sockets;
 using System.Threading;
 using ConsoleServer.Function;
 using Protocol;
-using SettingsManager.Interface;
+using SettingsLogic;
+using SettingsLogic.Interface;
 using SocketLogic;
 
 namespace ConsoleServer
 {
     public class ServerHandler
     {
-        public static bool Exit { get; set; }
-        
-        private static Socket _socket;
-        private static ICollection<Socket> _clients = new List<Socket>();
+        private static bool _exit;
         private static Dictionary<int, FunctionTemplate> _functions;
-        private static readonly ISettingsManager _settingsManager = new SettingsManager.SettingsManager();
+        private static readonly ISettingsManager _settingsManager = new SettingsManager();
         
-        public static void InitializeSocket()
+        public static void Run()
         {
-            _socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            var serverIpAddress = _settingsManager.ReadSetting(ServerConfig.ServerIpConfigKey);
-            var serverPort = _settingsManager.ReadSetting(ServerConfig.ServerPortConfigKey);
-            Console.WriteLine(
-                $"Server is starting listening on IP: {serverIpAddress} and port {serverPort}");
-            var ipEndPoint = new IPEndPoint(IPAddress.Parse(serverIpAddress), int.Parse(serverPort));
-            _socket.Bind(ipEndPoint);
-            _socket.Listen(100);
-
-            var thread = new Thread(() => ListenForConnections());
+            _exit = false;
+            var tcpListener = Initialize();
+            var thread = new Thread(() => ListenForConnections(tcpListener));
+            thread.IsBackground = true;
             thread.Start();
+            ServerDisplay.Listening();
+            ServerDisplay.MainMenu();
+            while (!_exit)
+            {
+                var userInput = Console.ReadLine();
+                switch (userInput)
+                {
+                    case "0":
+                        ShutDown(tcpListener);
+                        break;
+                    default:
+                        ServerDisplay.InvalidOption();
+                        break;
+                }
+            }
         }
 
-        public static void ListenForConnections()
+        private static TcpListener Initialize()
         {
-            while (!Exit)
+            var serverIpAddress = _settingsManager.ReadSetting(ServerConfig.ServerIpConfigKey);
+            var serverPort = _settingsManager.ReadSetting(ServerConfig.ServerPortConfigKey);
+            ServerDisplay.Starting(serverIpAddress, serverPort);
+            var ipEndPoint = new IPEndPoint(IPAddress.Parse(serverIpAddress), int.Parse(serverPort));
+            var tcpListener = new TcpListener(ipEndPoint);
+            tcpListener.Start(100);
+            return tcpListener;
+        }
+
+        private static void ListenForConnections(TcpListener tcpListener)
+        {
+            while (!_exit)
             {
                 try
                 {
-                    var clientConnected = _socket.Accept();
-                    Console.WriteLine($"Nueva conexión aceptada");
-                    _clients.Add(clientConnected);
-                    var thread = new Thread(() => Handle(clientConnected));
+                    var tcpClientSocket = tcpListener.AcceptTcpClient();
+                    ServerDisplay.NewConnection();
+                    var thread = new Thread(() => Handle(tcpClientSocket));
+                    thread.IsBackground = true;
                     thread.Start();
                 }
                 catch (Exception exception)
                 {
                     Console.WriteLine(exception.Message);
-                    Exit = true;
+                    _exit = true;
                 }
             }
         }
-        
-        public static void Handle(Socket socket)
+
+        private static void Handle(TcpClient tcpClientSocket)
         {
-            while (!Exit)
+            var isClientConnected = true;
+            try
             {
-                var buffer = new byte[HeaderConstants.HeaderLength];
-                try
+                var buffer = new byte[HeaderConstants.HEADER_LENGTH];
+                var networkStream = tcpClientSocket.GetStream();
+                while (isClientConnected || !_exit)
                 {
-                    SocketManager.Receive(socket, HeaderConstants.HeaderLength, buffer);
-                    var header = new Header();
-                    header.DecodeData(buffer);
-                    _functions = FunctionDictionary.Get();
-                    var command = _functions[header.Command];
-                    command.Execute(socket, header);
+                    SocketManager.Receive(networkStream, HeaderConstants.HEADER_LENGTH, buffer);
+                    var header = new Header(buffer);
+                    if (header.Command == FunctionConstants.EXIT)
+                    {
+                        isClientConnected = false;
+                    }
+                    ExecuteFunction(networkStream, header);
                 }
-                catch (Exception exception)
-                {
-                    Console.WriteLine(exception.Message);
-                    Exit = true;
-                }
+            }
+            catch (SocketException)
+            {
+                ServerDisplay.ConnectionInterrupted();
             }
         }
-        
-        public static void ShutDown()
+
+        private static void ExecuteFunction(NetworkStream networkStream, Header header)
         {
-            Exit = true;
-            _socket.Close(0);
-            foreach (var client in _clients)
-            {
-                client.Shutdown(SocketShutdown.Both);
-                client.Close();
-            }
-            var fakeSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            var serverIpAddress = _settingsManager.ReadSetting(ServerConfig.ServerIpConfigKey);
-            var serverPort = _settingsManager.ReadSetting(ServerConfig.ServerPortConfigKey);
-            var ipEndPoint = new IPEndPoint(IPAddress.Parse(serverIpAddress), int.Parse(serverPort));
-            fakeSocket.Connect(ipEndPoint);
+            _functions = FunctionDictionary.Get();
+            var command = _functions[header.Command];
+            command.Execute(networkStream, header);
+        }
+
+        private static void ShutDown(TcpListener tcpListener)
+        {
+            _exit = true;
+            tcpListener.Stop();
+            ServerDisplay.Closing();
         }
     }
 }

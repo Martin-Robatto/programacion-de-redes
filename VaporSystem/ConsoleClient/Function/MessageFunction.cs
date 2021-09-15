@@ -15,7 +15,7 @@ namespace ConsoleClient.Function
         {
             Console.WriteLine("Ingrese el mensaje:");
             var message = Console.ReadLine();
-            var header = new Header(HeaderConstants.Request, FunctionConstants.Message, message.Length);
+            var header = new Header(HeaderConstants.REQUEST, FunctionConstants.MESSAGE, message.Length);
             return new DataPacket()
             {
                 Header = header,
@@ -23,7 +23,14 @@ namespace ConsoleClient.Function
             };
         }
 
-        public override void ProcessResponse(byte[] bufferData) { }
+        public override void ProcessResponse(byte[] bufferData)
+        {
+            var statusCode = Int32.Parse(Encoding.UTF8.GetString(bufferData, 0, HeaderConstants.STATUS_CODE_LENGTH));
+            if (statusCode == StatusCodeConstants.SERVER_ERROR)
+            {
+                Console.WriteLine("Error de servidor");
+            }
+        }
 
         public MessageFunction()
         {

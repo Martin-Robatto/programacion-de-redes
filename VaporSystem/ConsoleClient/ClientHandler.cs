@@ -3,27 +3,42 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
 using ConsoleClient.Function;
-using SettingsManager.Interface;
+using SettingsLogic;
+using SettingsLogic.Interface;
 
 namespace ConsoleClient
 {
     public class ClientHandler
     {
         public static bool Exit { get; set; }
-        
-        private static Socket _socket;
-        private static Dictionary<int, IFunction.IFunction> _functions;
-        private static readonly ISettingsManager _settingsManager = new SettingsManager.SettingsManager();
+        private static Dictionary<int, FunctionInterface.IFunction> _functions;
+        private static readonly ISettingsManager _settingsManager = new SettingsManager();
 
-        public static void InitializeSocket()
+        public static void Run()
         {
-            _socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            Exit = false;
+            var tcpClient = Initialize();
+            Connect(tcpClient);
+            using (var networkStream = tcpClient.GetStream())
+            {
+                while (!Exit)
+                {
+                    ClientDisplay.MainMenu();
+                    var userInput = Console.ReadLine();
+                    Execute(networkStream, userInput);
+                }
+            }
+            tcpClient.Close();
+        }
+
+        private static TcpClient Initialize()
+        {
             var clientIpAddress = _settingsManager.ReadSetting(ClientConfig.ClientIpConfigKey);
             var clientPort = GetPort();
-            Console.WriteLine(
-                $"Client is starting on IP: {clientIpAddress} and port {clientPort}");
+            ClientDisplay.Starting(clientIpAddress, clientPort);
             var ipEndPoint = new IPEndPoint(IPAddress.Parse(clientIpAddress), clientPort);
-            _socket.Bind(ipEndPoint);
+            var tcpClient = new TcpClient(ipEndPoint);
+            return tcpClient;
         }
 
         private static int GetPort()
@@ -33,27 +48,21 @@ namespace ConsoleClient
             return port;
         }
         
-        public static void Connect()
+        private static void Connect(TcpClient tcpClient)
         {
             var serverIpAddress = _settingsManager.ReadSetting(ClientConfig.ServerIpConfigKey);
             var serverPort = _settingsManager.ReadSetting(ClientConfig.ServerPortConfigKey);
             var ipEndPoint = new IPEndPoint(IPAddress.Parse(serverIpAddress), int.Parse(serverPort));
-            _socket.Connect(ipEndPoint);
+            tcpClient.Connect(ipEndPoint);
+            ClientDisplay.Connected();
         }
         
-        public static void Execute(string userInput)
+        private static void Execute(NetworkStream stream, string userInput)
         {
             _functions = FunctionDictionary.Get();
             int commandID = Int32.Parse(userInput);
             var command = _functions[commandID];
-            command.Execute(_socket);
-        }
-        
-        public static void ShutDown()
-        {
-            Exit = true;
-            _socket.Shutdown(SocketShutdown.Both);
-            _socket.Close();
+            command.Execute(stream);
         }
 
     }

@@ -28,14 +28,14 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\IFunction\\IFunction.csproj": {
-                "projectPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\IFunction\\IFunction.csproj"
+              "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\FunctionInterface\\FunctionInterface.csproj": {
+                "projectPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\FunctionInterface\\FunctionInterface.csproj"
               },
               "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\Protocol\\Protocol.csproj": {
                 "projectPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\Protocol\\Protocol.csproj"
               },
-              "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\SettingsManager\\SettingsManager.csproj": {
-                "projectPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\SettingsManager\\SettingsManager.csproj"
+              "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\SettingsLogic\\SettingsLogic.csproj": {
+                "projectPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\SettingsLogic\\SettingsLogic.csproj"
               },
               "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\SocketLogic\\SocketLogic.csproj": {
                 "projectPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\SocketLogic\\SocketLogic.csproj"
@@ -125,14 +125,14 @@
         }
       }
     },
-    "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\IFunction\\IFunction.csproj": {
+    "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\FunctionInterface\\FunctionInterface.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\IFunction\\IFunction.csproj",
-        "projectName": "IFunction",
-        "projectPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\IFunction\\IFunction.csproj",
+        "projectUniqueName": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\FunctionInterface\\FunctionInterface.csproj",
+        "projectName": "FunctionInterface",
+        "projectPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\FunctionInterface\\FunctionInterface.csproj",
         "packagesPath": "C:\\Users\\konop\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\IFunction\\obj\\",
+        "outputPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\FunctionInterface\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\konop\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -237,14 +237,14 @@
         }
       }
     },
-    "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\SettingsManager\\SettingsManager.csproj": {
+    "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\SettingsLogic\\SettingsLogic.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\SettingsManager\\SettingsManager.csproj",
-        "projectName": "SettingsManager",
-        "projectPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\SettingsManager\\SettingsManager.csproj",
+        "projectUniqueName": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\SettingsLogic\\SettingsLogic.csproj",
+        "projectName": "SettingsLogic",
+        "projectPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\SettingsLogic\\SettingsLogic.csproj",
         "packagesPath": "C:\\Users\\konop\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\SettingsManager\\obj\\",
+        "outputPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\SettingsLogic\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\konop\\AppData\\Roaming\\NuGet\\NuGet.Config",

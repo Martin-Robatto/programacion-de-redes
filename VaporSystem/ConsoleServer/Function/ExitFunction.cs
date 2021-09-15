@@ -1,21 +1,18 @@
-﻿using Protocol;
-using Service;
-using System;
-using System.Text;
+﻿using System;
+using Protocol;
 
 namespace ConsoleServer.Function
 {
-    public class RegisterFunction : FunctionTemplate
+    public class ExitFunction : FunctionTemplate
     {
         public override ResponseData ProcessRequest(byte[] bufferData)
         {
             ResponseData response = new ResponseData();
-            response.Function = FunctionConstants.REGISTER;
+            response.Function = FunctionConstants.GET_ALL_GAMES;
             try
             {
-                var userLine = Encoding.UTF8.GetString(bufferData);
-                UserService.Instance.Register(userLine);
-                response.StatusCode = StatusCodeConstants.CREATED;
+                response.Data = string.Empty;
+                response.StatusCode = StatusCodeConstants.OK;
             }
             catch (Exception exception)
             {

@@ -1,41 +1,45 @@
 ﻿using System;
 using System.Net.Sockets;
 using System.Text;
+using FunctionInterface;
 using Protocol;
 using SocketLogic;
 
 namespace ConsoleClient.Function
 {
-    public abstract class FunctionTemplate : IFunction.IFunction
+    public abstract class FunctionTemplate : IFunction
     {
         public string Name { get; set; }
 
-        public void Execute(Socket socket, Header header = null)
+        public void Execute(NetworkStream stream, Header header = null)
         {
             var dataPacket = BuildRequest();
-            SendRequest(socket, dataPacket);
-            var bufferData = ReceiveResponse(socket, header);
+            SocketManager.Send(stream, dataPacket);
+            var bufferData = ReceiveResponse(stream);
             ProcessResponse(bufferData);
         }
 
         public abstract DataPacket BuildRequest();
 
-        public virtual void SendRequest(Socket socket, DataPacket dataPacket)
+        public virtual byte[] ReceiveResponse(NetworkStream stream)
         {
-            SocketManager.Send(socket, dataPacket);
-        }
-
-        public virtual byte[] ReceiveResponse(Socket socket, Header header = null)
-        {
-            var bufferHeader = new byte[HeaderConstants.HeaderLength];
             try
             {
-                SocketManager.Receive(socket, HeaderConstants.HeaderLength, bufferHeader);
-                header = new Header();
-                header.DecodeData(bufferHeader);
+                var bufferHeader = new byte[HeaderConstants.HEADER_LENGTH];
+                SocketManager.Receive(stream, HeaderConstants.HEADER_LENGTH, bufferHeader);
+                var header = new Header(bufferHeader);
+                
                 var bufferData = new byte[header.DataLength];
-                SocketManager.Receive(socket, header.DataLength, bufferData);
-                return bufferData;
+                SocketManager.Receive(stream, header.DataLength, bufferData);
+                
+                var bufferStatusCode = new byte[HeaderConstants.STATUS_CODE_LENGTH];
+                SocketManager.Receive(stream, HeaderConstants.STATUS_CODE_LENGTH, bufferStatusCode);
+                
+                var bufferToReturn = new byte[header.DataLength + HeaderConstants.STATUS_CODE_LENGTH];
+                Array.Copy(bufferStatusCode, 0, bufferToReturn, 0, HeaderConstants.STATUS_CODE_LENGTH);
+                Array.Copy(bufferData, 0, bufferToReturn, HeaderConstants.STATUS_CODE_LENGTH, header.DataLength);
+                
+                return bufferToReturn;
             }
             catch (Exception exception)
             {

@@ -37,7 +37,7 @@ namespace Service
                 Password = userAttributes[2]
             };
             UserRepository.Get().Add(user);
-            Console.WriteLine($"New user: {user.Username}");
+            Console.WriteLine($"Nuevo usuario: {user.Username}");
         }
         
     }

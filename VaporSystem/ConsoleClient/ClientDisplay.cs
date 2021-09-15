@@ -5,6 +5,14 @@ namespace ConsoleClient
 {
     public class ClientDisplay
     {
+        public static void ClearConsole()
+        {
+            for (int i = 0; i < 20; i++)
+            {
+                Console.WriteLine();
+            }
+        }
+        
         public static void LoginMenu()
         {
             ClearConsole();
@@ -14,7 +22,7 @@ namespace ConsoleClient
             Console.WriteLine("2) Registrarse");
             Console.WriteLine("------------------------------");
             Console.WriteLine("0) Salir");
-            Console.WriteLine("");
+            Console.WriteLine();
             Console.WriteLine("Ingrese su opcion: ");
         }
 
@@ -28,7 +36,7 @@ namespace ConsoleClient
             {
                 Console.WriteLine($"{option.Key}) {option.Value.Name}");
             }
-            Console.WriteLine("");
+            Console.WriteLine();
             Console.WriteLine("Ingrese su opcion: ");
         }
 
@@ -42,16 +50,18 @@ namespace ConsoleClient
             Console.WriteLine("3) Eliminar");
             Console.WriteLine("------------------------------");
             Console.WriteLine("0) Volver");
-            Console.WriteLine("");
+            Console.WriteLine();
             Console.WriteLine("Ingrese su opcion: ");
         }
-
-        public static void ClearConsole()
+        
+        public static void Starting(string clientIpAddress, int clientPort)
         {
-            for (int i = 0; i < 20; i++)
-            {
-                Console.WriteLine();
-            }
+            Console.WriteLine($"El cliente se inicializo en IP: : {clientIpAddress} y puerto {clientPort}");
+        }
+
+        public static void Connected()
+        {
+            Console.WriteLine("Conectado exitosamente al servidor");
         }
     }
 }

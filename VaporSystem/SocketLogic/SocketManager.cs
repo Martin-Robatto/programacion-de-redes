@@ -9,43 +9,32 @@ namespace SocketLogic
 {
     public class SocketManager
     {
-        public static void Send(Socket socket, DataPacket dataPacket)
+        public static void Send(NetworkStream stream, DataPacket dataPacket)
         {
-            var sentBytes = 0;
             var header = dataPacket.Header.GetRequest();
-            while (sentBytes < header.Length)
-            {
-                sentBytes += socket.Send(header, sentBytes, header.Length - sentBytes, SocketFlags.None);
-            }
+            stream.Write(header, 0, header.Length);
 
-            sentBytes = 0;
             var message = Encoding.UTF8.GetBytes(dataPacket.Payload);
-            while (sentBytes < message.Length)
+            stream.Write(message, 0, message.Length);
+
+            if (dataPacket.StatusCode != StatusCodeConstants.EMPTY)
             {
-                sentBytes += socket.Send(message, sentBytes, message.Length - sentBytes, SocketFlags.None);
+                var statusCode = Encoding.UTF8.GetBytes(dataPacket.StatusCode.ToString());
+                stream.Write(statusCode, 0, statusCode.Length);
             }
         }
 
-        public static void Receive(Socket socket, int length, byte[] buffer)
+        public static void Receive(NetworkStream stream, int length, byte[] buffer)
         {
             var totalReceived = 0;
             while (totalReceived < length)
             {
-                try
+                var received = stream.Read(buffer, totalReceived, length - totalReceived);
+                if (received == 0)
                 {
-                    var receive = socket.Receive(buffer, totalReceived, length - totalReceived, SocketFlags.None);
-                    if (receive == 0)
-                    {
-                        socket.Shutdown(SocketShutdown.Both);
-                        socket.Close();
-                        throw new ConnectionClosedException();
-                    }
-                    totalReceived += receive;
+                    throw new SocketException();
                 }
-                catch (SocketException socketException)
-                {
-                    Console.WriteLine(socketException.Message);
-                }
+                totalReceived += received;
             }
         }
     }

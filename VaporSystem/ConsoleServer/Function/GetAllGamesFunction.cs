@@ -9,15 +9,15 @@ namespace ConsoleServer.Function
         public override ResponseData ProcessRequest(byte[] bufferData)
         {
             ResponseData response = new ResponseData();
-            response.Function = FunctionConstants.GetAllGames;
+            response.Function = FunctionConstants.GET_ALL_GAMES;
             try
             {
                 response.Data = GameService.Instance.GetGames();
-                response.StatusCode = StatusCodeConstants.Ok;
+                response.StatusCode = StatusCodeConstants.OK;
             }
             catch (Exception exception)
             {
-                response.StatusCode = StatusCodeConstants.ServerError;
+                response.StatusCode = StatusCodeConstants.SERVER_ERROR;
             }
             return response;
         }

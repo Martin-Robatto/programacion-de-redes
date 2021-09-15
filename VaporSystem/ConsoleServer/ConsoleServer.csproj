@@ -6,10 +6,10 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\IFunction\IFunction.csproj" />
+      <ProjectReference Include="..\FunctionInterface\FunctionInterface.csproj" />
       <ProjectReference Include="..\Protocol\Protocol.csproj" />
       <ProjectReference Include="..\Service\Service.csproj" />
-      <ProjectReference Include="..\SettingsManager\SettingsManager.csproj" />
+      <ProjectReference Include="..\SettingsLogic\SettingsLogic.csproj" />
       <ProjectReference Include="..\SocketLogic\SocketLogic.csproj" />
     </ItemGroup>
 

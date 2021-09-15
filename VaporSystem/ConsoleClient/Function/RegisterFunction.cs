@@ -20,7 +20,7 @@ namespace ConsoleClient.Function
             var password = Console.ReadLine();
 
             var message = $"{email}#{username}#{password}";
-            var header = new Header(HeaderConstants.Request, FunctionConstants.Register, message.Length);
+            var header = new Header(HeaderConstants.REQUEST, FunctionConstants.REGISTER, message.Length);
             
             return new DataPacket()
             {
@@ -29,7 +29,18 @@ namespace ConsoleClient.Function
             };
         }
 
-        public override void ProcessResponse(byte[] bufferData) { }
+        public override void ProcessResponse(byte[] bufferData)
+        {
+            var statusCode = Int32.Parse(Encoding.UTF8.GetString(bufferData, 0, HeaderConstants.STATUS_CODE_LENGTH));
+            if (statusCode == StatusCodeConstants.CREATED)
+            {
+                Console.WriteLine("Usuario creado exitosamente");
+            }
+            else if (statusCode == StatusCodeConstants.SERVER_ERROR)
+            {
+                Console.WriteLine("Error de servidor");
+            }
+        }
 
         public RegisterFunction()
         {

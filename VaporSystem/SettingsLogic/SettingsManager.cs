@@ -1,8 +1,8 @@
 using System;
-using SettingsManager.Interface;
 using System.Configuration;
+using SettingsLogic.Interface;
 
-namespace SettingsManager
+namespace SettingsLogic
 {
     public class SettingsManager : ISettingsManager
     {
@@ -15,7 +15,7 @@ namespace SettingsManager
             }
             catch (ConfigurationErrorsException)
             {
-                Console.WriteLine("Error reading app settings");
+                Console.WriteLine("Error al leer app settings");
                 return string.Empty;
             }
         }
