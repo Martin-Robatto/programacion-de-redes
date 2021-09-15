@@ -12,6 +12,9 @@ namespace Protocol
         public int Function { get; set; }
         public string Data { get; set; }
 
-        public ResponseData() { }
+        public ResponseData()
+        {
+            Data = string.Empty;
+        }
     }
 }

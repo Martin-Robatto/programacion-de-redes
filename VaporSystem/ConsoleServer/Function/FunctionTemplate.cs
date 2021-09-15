@@ -23,6 +23,7 @@ namespace ConsoleServer.Function
         }
         
         public abstract ResponseData ProcessRequest(byte[] bufferData);
+        
         public virtual DataPacket BuildResponse(ResponseData responseData)
         {
             var message = responseData.Data;

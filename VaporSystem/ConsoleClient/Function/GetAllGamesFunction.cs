@@ -9,7 +9,8 @@ namespace ConsoleClient.Function
 {
     public class GetAllGamesFunction : FunctionTemplate
     {
-        public const string NAME = "Games";
+        public const string NAME = "Juegos";
+        
         public override DataPacket BuildRequest()
         {
             var message = string.Empty;
@@ -30,6 +31,10 @@ namespace ConsoleClient.Function
                 Console.WriteLine(game);
             }
         }
-        public GetAllGamesFunction() : base(NAME) { }
+
+        public GetAllGamesFunction()
+        {
+            base.Name = NAME;
+        }
     }
 }

@@ -13,6 +13,7 @@ namespace ConsoleServer
     public class ServerHandler
     {
         public static bool Exit { get; set; }
+        
         private static Socket _socket;
         private static ICollection<Socket> _clients = new List<Socket>();
         private static Dictionary<int, FunctionTemplate> _functions;
@@ -25,7 +26,6 @@ namespace ConsoleServer
             var serverPort = _settingsManager.ReadSetting(ServerConfig.ServerPortConfigKey);
             Console.WriteLine(
                 $"Server is starting listening on IP: {serverIpAddress} and port {serverPort}");
-
             var ipEndPoint = new IPEndPoint(IPAddress.Parse(serverIpAddress), int.Parse(serverPort));
             _socket.Bind(ipEndPoint);
             _socket.Listen(100);
@@ -71,6 +71,7 @@ namespace ConsoleServer
                 catch (Exception exception)
                 {
                     Console.WriteLine(exception.Message);
+                    Exit = true;
                 }
             }
         }
@@ -85,7 +86,10 @@ namespace ConsoleServer
                 client.Close();
             }
             var fakeSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            fakeSocket.Connect("127.0.0.1", 20000);
+            var serverIpAddress = _settingsManager.ReadSetting(ServerConfig.ServerIpConfigKey);
+            var serverPort = _settingsManager.ReadSetting(ServerConfig.ServerPortConfigKey);
+            var ipEndPoint = new IPEndPoint(IPAddress.Parse(serverIpAddress), int.Parse(serverPort));
+            fakeSocket.Connect(ipEndPoint);
         }
     }
 }

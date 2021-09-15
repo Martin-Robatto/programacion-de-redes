@@ -6,7 +6,7 @@ namespace ConsoleClient.Function
     public class ExitFunction : IFunction.IFunction
     {
         public string Name { get; set; }
-        public const string NAME = "Exit";
+        public const string NAME = "Salir";
 
         public void Execute(Socket socket, Header header = null)
         {

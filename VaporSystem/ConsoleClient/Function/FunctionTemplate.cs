@@ -10,15 +10,6 @@ namespace ConsoleClient.Function
     {
         public string Name { get; set; }
 
-        public FunctionTemplate(string name)
-        {
-            Name = name;
-        }
-        
-        public FunctionTemplate()
-        {
-        }
-
         public void Execute(Socket socket, Header header = null)
         {
             var dataPacket = BuildRequest();

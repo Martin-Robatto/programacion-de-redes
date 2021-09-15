@@ -9,7 +9,8 @@ namespace ConsoleClient.Function
 {
     public class MessageFunction : FunctionTemplate
     {
-        public const string NAME = "Message";
+        public const string NAME = "Mensaje";
+        
         public override DataPacket BuildRequest()
         {
             Console.WriteLine("Ingrese el mensaje:");
@@ -23,6 +24,10 @@ namespace ConsoleClient.Function
         }
 
         public override void ProcessResponse(byte[] bufferData) { }
-        public MessageFunction() : base(NAME) { }
+
+        public MessageFunction()
+        {
+            base.Name = NAME;
+        }
     }
 }

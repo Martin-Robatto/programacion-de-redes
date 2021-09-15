@@ -1,97 +1,47 @@
 {
   "format": 1,
   "restore": {
-    "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/ConsoleServer/ConsoleServer.csproj": {}
+    "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\ConsoleServer\\ConsoleServer.csproj": {}
   },
   "projects": {
-    "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/ConsoleDisplay/ConsoleDisplay.csproj": {
+    "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\ConsoleServer\\ConsoleServer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/ConsoleDisplay/ConsoleDisplay.csproj",
-        "projectName": "ConsoleDisplay",
-        "projectPath": "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/ConsoleDisplay/ConsoleDisplay.csproj",
-        "packagesPath": "/Users/nicosmac/.nuget/packages/",
-        "outputPath": "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/ConsoleDisplay/obj/",
-        "projectStyle": "PackageReference",
-        "configFilePaths": [
-          "/Users/nicosmac/.nuget/NuGet/NuGet.Config"
-        ],
-        "originalTargetFrameworks": [
-          "net5.0"
-        ],
-        "sources": {
-          "https://api.nuget.org/v3/index.json": {}
-        },
-        "frameworks": {
-          "net5.0": {
-            "targetAlias": "net5.0",
-            "projectReferences": {}
-          }
-        },
-        "warningProperties": {
-          "warnAsError": [
-            "NU1605"
-          ]
-        }
-      },
-      "frameworks": {
-        "net5.0": {
-          "targetAlias": "net5.0",
-          "imports": [
-            "net461",
-            "net462",
-            "net47",
-            "net471",
-            "net472",
-            "net48"
-          ],
-          "assetTargetFallback": true,
-          "warn": true,
-          "frameworkReferences": {
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
-            }
-          },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.400/RuntimeIdentifierGraph.json"
-        }
-      }
-    },
-    "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/ConsoleServer/ConsoleServer.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/ConsoleServer/ConsoleServer.csproj",
+        "projectUniqueName": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\ConsoleServer\\ConsoleServer.csproj",
         "projectName": "ConsoleServer",
-        "projectPath": "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/ConsoleServer/ConsoleServer.csproj",
-        "packagesPath": "/Users/nicosmac/.nuget/packages/",
-        "outputPath": "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/ConsoleServer/obj/",
+        "projectPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\ConsoleServer\\ConsoleServer.csproj",
+        "packagesPath": "C:\\Users\\konop\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\ConsoleServer\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/nicosmac/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\konop\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/ConsoleDisplay/ConsoleDisplay.csproj": {
-                "projectPath": "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/ConsoleDisplay/ConsoleDisplay.csproj"
+              "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\IFunction\\IFunction.csproj": {
+                "projectPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\IFunction\\IFunction.csproj"
               },
-              "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/IFunction/IFunction.csproj": {
-                "projectPath": "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/IFunction/IFunction.csproj"
+              "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\Protocol\\Protocol.csproj": {
+                "projectPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\Protocol\\Protocol.csproj"
               },
-              "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/Service/Service.csproj": {
-                "projectPath": "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/Service/Service.csproj"
+              "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\Service\\Service.csproj": {
+                "projectPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\Service\\Service.csproj"
               },
-              "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/SettingsManager/SettingsManager.csproj": {
-                "projectPath": "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/SettingsManager/SettingsManager.csproj"
+              "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\SettingsManager\\SettingsManager.csproj": {
+                "projectPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\SettingsManager\\SettingsManager.csproj"
               },
-              "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/SocketLogic/SocketLogic.csproj": {
-                "projectPath": "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/SocketLogic/SocketLogic.csproj"
+              "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\SocketLogic\\SocketLogic.csproj": {
+                "projectPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\SocketLogic\\SocketLogic.csproj"
               }
             }
           }
@@ -120,34 +70,36 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.400/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/DataAccess/DataAccess.csproj": {
+    "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\DataAccess\\DataAccess.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/DataAccess/DataAccess.csproj",
+        "projectUniqueName": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\DataAccess\\DataAccess.csproj",
         "projectName": "DataAccess",
-        "projectPath": "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/DataAccess/DataAccess.csproj",
-        "packagesPath": "/Users/nicosmac/.nuget/packages/",
-        "outputPath": "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/DataAccess/obj/",
+        "projectPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\DataAccess\\DataAccess.csproj",
+        "packagesPath": "C:\\Users\\konop\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\DataAccess\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/nicosmac/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\konop\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/Domain/Domain.csproj": {
-                "projectPath": "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/Domain/Domain.csproj"
+              "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\Domain\\Domain.csproj"
               }
             }
           }
@@ -176,26 +128,28 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.400/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/Domain/Domain.csproj": {
+    "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/Domain/Domain.csproj",
+        "projectUniqueName": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/Domain/Domain.csproj",
-        "packagesPath": "/Users/nicosmac/.nuget/packages/",
-        "outputPath": "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/Domain/obj/",
+        "projectPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\Domain\\Domain.csproj",
+        "packagesPath": "C:\\Users\\konop\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/nicosmac/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\konop\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -228,26 +182,28 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.400/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/Exceptions/Exceptions.csproj": {
+    "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\Exceptions\\Exceptions.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/Exceptions/Exceptions.csproj",
+        "projectUniqueName": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\Exceptions\\Exceptions.csproj",
         "projectName": "Exceptions",
-        "projectPath": "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/Exceptions/Exceptions.csproj",
-        "packagesPath": "/Users/nicosmac/.nuget/packages/",
-        "outputPath": "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/Exceptions/obj/",
+        "projectPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\Exceptions\\Exceptions.csproj",
+        "packagesPath": "C:\\Users\\konop\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\Exceptions\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/nicosmac/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\konop\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -280,34 +236,36 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.400/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/IFunction/IFunction.csproj": {
+    "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\IFunction\\IFunction.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/IFunction/IFunction.csproj",
+        "projectUniqueName": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\IFunction\\IFunction.csproj",
         "projectName": "IFunction",
-        "projectPath": "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/IFunction/IFunction.csproj",
-        "packagesPath": "/Users/nicosmac/.nuget/packages/",
-        "outputPath": "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/IFunction/obj/",
+        "projectPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\IFunction\\IFunction.csproj",
+        "packagesPath": "C:\\Users\\konop\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\IFunction\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/nicosmac/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\konop\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/Protocol/Protocol.csproj": {
-                "projectPath": "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/Protocol/Protocol.csproj"
+              "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\Protocol\\Protocol.csproj": {
+                "projectPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\Protocol\\Protocol.csproj"
               }
             }
           }
@@ -336,26 +294,28 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.400/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/Protocol/Protocol.csproj": {
+    "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\Protocol\\Protocol.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/Protocol/Protocol.csproj",
+        "projectUniqueName": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\Protocol\\Protocol.csproj",
         "projectName": "Protocol",
-        "projectPath": "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/Protocol/Protocol.csproj",
-        "packagesPath": "/Users/nicosmac/.nuget/packages/",
-        "outputPath": "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/Protocol/obj/",
+        "projectPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\Protocol\\Protocol.csproj",
+        "packagesPath": "C:\\Users\\konop\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\Protocol\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/nicosmac/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\konop\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -388,37 +348,39 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.400/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/Service/Service.csproj": {
+    "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\Service\\Service.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/Service/Service.csproj",
+        "projectUniqueName": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\Service\\Service.csproj",
         "projectName": "Service",
-        "projectPath": "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/Service/Service.csproj",
-        "packagesPath": "/Users/nicosmac/.nuget/packages/",
-        "outputPath": "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/Service/obj/",
+        "projectPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\Service\\Service.csproj",
+        "packagesPath": "C:\\Users\\konop\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\Service\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/nicosmac/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\konop\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/DataAccess/DataAccess.csproj": {
-                "projectPath": "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/DataAccess/DataAccess.csproj"
+              "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\DataAccess\\DataAccess.csproj": {
+                "projectPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\DataAccess\\DataAccess.csproj"
               },
-              "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/Domain/Domain.csproj": {
-                "projectPath": "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/Domain/Domain.csproj"
+              "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\Domain\\Domain.csproj"
               }
             }
           }
@@ -447,26 +409,28 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.400/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/SettingsManager/SettingsManager.csproj": {
+    "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\SettingsManager\\SettingsManager.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/SettingsManager/SettingsManager.csproj",
+        "projectUniqueName": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\SettingsManager\\SettingsManager.csproj",
         "projectName": "SettingsManager",
-        "projectPath": "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/SettingsManager/SettingsManager.csproj",
-        "packagesPath": "/Users/nicosmac/.nuget/packages/",
-        "outputPath": "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/SettingsManager/obj/",
+        "projectPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\SettingsManager\\SettingsManager.csproj",
+        "packagesPath": "C:\\Users\\konop\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\SettingsManager\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/nicosmac/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\konop\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -505,37 +469,39 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.400/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/SocketLogic/SocketLogic.csproj": {
+    "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\SocketLogic\\SocketLogic.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/SocketLogic/SocketLogic.csproj",
+        "projectUniqueName": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\SocketLogic\\SocketLogic.csproj",
         "projectName": "SocketLogic",
-        "projectPath": "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/SocketLogic/SocketLogic.csproj",
-        "packagesPath": "/Users/nicosmac/.nuget/packages/",
-        "outputPath": "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/SocketLogic/obj/",
+        "projectPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\SocketLogic\\SocketLogic.csproj",
+        "packagesPath": "C:\\Users\\konop\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\SocketLogic\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/nicosmac/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\konop\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/Exceptions/Exceptions.csproj": {
-                "projectPath": "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/Exceptions/Exceptions.csproj"
+              "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\Exceptions\\Exceptions.csproj": {
+                "projectPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\Exceptions\\Exceptions.csproj"
               },
-              "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/Protocol/Protocol.csproj": {
-                "projectPath": "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/Protocol/Protocol.csproj"
+              "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\Protocol\\Protocol.csproj": {
+                "projectPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\Protocol\\Protocol.csproj"
               }
             }
           }
@@ -564,7 +530,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.400/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }

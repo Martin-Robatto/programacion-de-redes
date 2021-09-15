@@ -6,8 +6,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\ConsoleDisplay\ConsoleDisplay.csproj" />
       <ProjectReference Include="..\IFunction\IFunction.csproj" />
+      <ProjectReference Include="..\Protocol\Protocol.csproj" />
       <ProjectReference Include="..\Service\Service.csproj" />
       <ProjectReference Include="..\SettingsManager\SettingsManager.csproj" />
       <ProjectReference Include="..\SocketLogic\SocketLogic.csproj" />

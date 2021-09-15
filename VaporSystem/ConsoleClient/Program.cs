@@ -1,5 +1,4 @@
 ﻿using System;
-using ConsoleDisplay;
 using Protocol;
 
 namespace ConsoleClient
@@ -12,7 +11,7 @@ namespace ConsoleClient
             {
                 ClientHandler.Exit = false;
                 ClientHandler.InitializeSocket();
-                ClientHandler.Connection();
+                ClientHandler.Connect();
                 while (!ClientHandler.Exit)
                 {
                     ClientDisplay.MainMenu();
