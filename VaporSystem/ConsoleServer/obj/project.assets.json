@@ -109,6 +109,19 @@
           "bin/placeholder/Exceptions.dll": {}
         }
       },
+      "IFunction/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "Protocol": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/IFunction.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/IFunction.dll": {}
+        }
+      },
       "Protocol/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
@@ -407,6 +420,11 @@
       "path": "../Exceptions/Exceptions.csproj",
       "msbuildProject": "../Exceptions/Exceptions.csproj"
     },
+    "IFunction/1.0.0": {
+      "type": "project",
+      "path": "../IFunction/IFunction.csproj",
+      "msbuildProject": "../IFunction/IFunction.csproj"
+    },
     "Protocol/1.0.0": {
       "type": "project",
       "path": "../Protocol/Protocol.csproj",
@@ -431,6 +449,7 @@
   "projectFileDependencyGroups": {
     "net5.0": [
       "ConsoleDisplay >= 1.0.0",
+      "IFunction >= 1.0.0",
       "Service >= 1.0.0",
       "SettingsManager >= 1.0.0",
       "SocketLogic >= 1.0.0"
@@ -463,6 +482,9 @@
           "projectReferences": {
             "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/ConsoleDisplay/ConsoleDisplay.csproj": {
               "projectPath": "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/ConsoleDisplay/ConsoleDisplay.csproj"
+            },
+            "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/IFunction/IFunction.csproj": {
+              "projectPath": "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/IFunction/IFunction.csproj"
             },
             "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/Service/Service.csproj": {
               "projectPath": "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/Service/Service.csproj"

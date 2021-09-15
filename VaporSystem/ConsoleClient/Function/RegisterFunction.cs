@@ -8,6 +8,7 @@ namespace ConsoleClient.Function
 {
     public class RegisterFunction : FunctionTemplate
     {
+        public const string NAME = "Register";
         public override DataPacket BuildRequest()
         {
             Console.WriteLine("Ingrese el email: ");
@@ -28,5 +29,7 @@ namespace ConsoleClient.Function
         }
 
         public override void ProcessResponse(byte[] bufferData) { }
+        
+        public RegisterFunction() : base(NAME) { }
     }
 }

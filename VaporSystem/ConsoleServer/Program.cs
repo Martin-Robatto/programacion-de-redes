@@ -11,7 +11,7 @@ namespace ConsoleServer
             {
                 ServerHandler.Exit = false;
                 ServerHandler.InitializeSocket();
-                Print.MainServerMenu();
+                ServerDisplay.MainMenu();
                 while (!ServerHandler.Exit)
                 {
                     var userInput = Console.ReadLine();

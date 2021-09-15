@@ -1,5 +1,6 @@
 ﻿using System;
 using ConsoleDisplay;
+using Protocol;
 
 namespace ConsoleClient
 {
@@ -14,22 +15,15 @@ namespace ConsoleClient
                 ClientHandler.Connection();
                 while (!ClientHandler.Exit)
                 {
-                    Print.MainClientMenu();
+                    ClientDisplay.MainMenu();
                     var userInput = Console.ReadLine();
-                    if (userInput.Equals("exit"))
-                    {
-                        ClientHandler.ShutDown();
-                    }
-                    else
-                    {
-                        ClientHandler.Execute(userInput);
-                    }
+                    ClientHandler.Execute(userInput);
                 }
             }
             catch (Exception exception)
             {
                 Console.WriteLine(exception.Message);
-                ClientHandler.ShutDown();
+                ClientHandler.Execute(FunctionConstants.Exit.ToString());
             }
         }
     }

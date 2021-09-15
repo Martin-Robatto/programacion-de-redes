@@ -81,6 +81,9 @@
               "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/ConsoleDisplay/ConsoleDisplay.csproj": {
                 "projectPath": "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/ConsoleDisplay/ConsoleDisplay.csproj"
               },
+              "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/IFunction/IFunction.csproj": {
+                "projectPath": "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/IFunction/IFunction.csproj"
+              },
               "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/Service/Service.csproj": {
                 "projectPath": "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/Service/Service.csproj"
               },
@@ -251,6 +254,62 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.400/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/IFunction/IFunction.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/IFunction/IFunction.csproj",
+        "projectName": "IFunction",
+        "projectPath": "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/IFunction/IFunction.csproj",
+        "packagesPath": "/Users/nicosmac/.nuget/packages/",
+        "outputPath": "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/IFunction/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/nicosmac/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/Protocol/Protocol.csproj": {
+                "projectPath": "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/Protocol/Protocol.csproj"
+              }
+            }
           }
         },
         "warningProperties": {

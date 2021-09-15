@@ -104,3 +104,5 @@ C:/Users/robak/Source/Repos/programacion-de-redes/VaporSystem/ConsoleClient/obj/
 /Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/ConsoleClient/obj/Debug/net5.0/ref/ConsoleClient.dll
 /Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/ConsoleClient/obj/Debug/net5.0/ConsoleClient.pdb
 /Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/ConsoleClient/obj/Debug/net5.0/ConsoleClient.genruntimeconfig.cache
+/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/ConsoleClient/bin/Debug/net5.0/IFunction.dll
+/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/ConsoleClient/bin/Debug/net5.0/IFunction.pdb

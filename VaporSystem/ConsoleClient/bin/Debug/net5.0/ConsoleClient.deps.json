@@ -9,6 +9,7 @@
       "ConsoleClient/1.0.0": {
         "dependencies": {
           "ConsoleDisplay": "1.0.0",
+          "IFunction": "1.0.0",
           "SettingsManager": "1.0.0",
           "SocketLogic": "1.0.0"
         },
@@ -69,6 +70,14 @@
       "Exceptions/1.0.0": {
         "runtime": {
           "Exceptions.dll": {}
+        }
+      },
+      "IFunction/1.0.0": {
+        "dependencies": {
+          "Protocol": "1.0.0"
+        },
+        "runtime": {
+          "IFunction.dll": {}
         }
       },
       "Protocol/1.0.0": {
@@ -142,6 +151,11 @@
       "sha512": ""
     },
     "Exceptions/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "IFunction/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

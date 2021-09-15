@@ -11,7 +11,7 @@ namespace ConsoleClient
     {
         public static bool Exit { get; set; }
         private static Socket _socket;
-        private static Dictionary<int, FunctionTemplate> _functions;
+        private static Dictionary<int, IFunction.IFunction> _functions;
         private static readonly ISettingsManager _settingsManager = new SettingsManager.SettingsManager();
         
         public static void Connection()
@@ -41,7 +41,7 @@ namespace ConsoleClient
             _socket.Close();
         }
         
-        public static void Execute(string? userInput)
+        public static void Execute(string userInput)
         {
             _functions = FunctionDictionary.Get();
             int commandID = Int32.Parse(userInput);

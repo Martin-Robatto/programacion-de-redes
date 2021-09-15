@@ -6,8 +6,19 @@ using SocketLogic;
 
 namespace ConsoleClient.Function
 {
-    public abstract class FunctionTemplate
+    public abstract class FunctionTemplate : IFunction.IFunction
     {
+        public string Name { get; set; }
+
+        public FunctionTemplate(string name)
+        {
+            Name = name;
+        }
+        
+        public FunctionTemplate()
+        {
+        }
+
         public void Execute(Socket socket, Header header = null)
         {
             var dataPacket = BuildRequest();

@@ -5,7 +5,7 @@ using SocketLogic;
 
 namespace ConsoleServer.Function
 {
-    public abstract class FunctionTemplate
+    public abstract class FunctionTemplate 
     {
         public void Execute(Socket socket, Header header = null)
         {
