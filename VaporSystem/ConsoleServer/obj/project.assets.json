@@ -127,7 +127,8 @@
         "framework": ".NETCoreApp,Version=v5.0",
         "dependencies": {
           "DataAccess": "1.0.0",
-          "Domain": "1.0.0"
+          "Domain": "1.0.0",
+          "Exceptions": "1.0.0"
         },
         "compile": {
           "bin/placeholder/Service.dll": {}

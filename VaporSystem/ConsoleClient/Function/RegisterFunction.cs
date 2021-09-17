@@ -12,14 +12,12 @@ namespace ConsoleClient.Function
         
         public override DataPacket BuildRequest()
         {
-            Console.WriteLine("Ingrese el email: ");
-            var email = Console.ReadLine();
             Console.WriteLine("Ingrese el nombre: ");
             var username = Console.ReadLine();
             Console.WriteLine("Ingrese la contraseña: ");
             var password = Console.ReadLine();
 
-            var message = $"{email}#{username}#{password}";
+            var message = $"{username}#{password}";
             var header = new Header(HeaderConstants.REQUEST, FunctionConstants.REGISTER, message.Length);
             
             return new DataPacket()

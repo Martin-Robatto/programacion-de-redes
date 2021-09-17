@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DataAccess;
 using Domain;
+using Exceptions;
 
 namespace Service
 {
@@ -32,10 +33,14 @@ namespace Service
             string[] userAttributes = userLine.Split("#");
             User inputUser = new User()
             {
-                Email = userAttributes[0],
-                Username = userAttributes[1],
-                Password = userAttributes[2]
+                Username = userAttributes[0],
+                Password = userAttributes[1]
             };
+            var user = UserRepository.Get().FirstOrDefault(user => user.Username.Equals(inputUser.Username));
+            if (user is not null)
+            {
+                throw new AlreadyExistsException(inputUser.Username);
+            }
             UserRepository.Get().Add(inputUser);
             Console.WriteLine($"Nuevo usuario: {inputUser.Username}");
             return inputUser.Username;
@@ -53,7 +58,7 @@ namespace Service
                                                              && user.Password.Equals(inputUser.Password));
             if (user is null)
             {
-                throw new InvalidCastException(inputUser.Username);
+                throw new InvalidInputException("username or password");
             }
             Console.WriteLine($"Usuario conectado: {inputUser.Username}");
             return inputUser.Username;

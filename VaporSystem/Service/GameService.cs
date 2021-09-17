@@ -1,6 +1,7 @@
 ﻿using DataAccess;
 using Domain;
 using System.Collections.Generic;
+using Exceptions;
 
 namespace Service
 {
@@ -29,6 +30,10 @@ namespace Service
             foreach (Game game in GameRepository.Get())
             {
                 games += "#" + game.Title;
+            }
+            if (GameRepository.Get().Count == 0)
+            {
+                throw new NotFoundException("Games");
             }
             return games;
         }
