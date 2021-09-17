@@ -26,9 +26,14 @@ namespace ConsoleClient.Function
         public override void ProcessResponse(byte[] bufferData)
         {
             var statusCode = Int32.Parse(Encoding.UTF8.GetString(bufferData, 0, HeaderConstants.STATUS_CODE_LENGTH));
-            if (statusCode == StatusCodeConstants.SERVER_ERROR)
+            var data = Encoding.UTF8.GetString(bufferData, HeaderConstants.STATUS_CODE_LENGTH, bufferData.Length - HeaderConstants.COMMAND_LENGTH - 1);
+            if (statusCode == StatusCodeConstants.OK)
             {
-                Console.WriteLine("Error de servidor");
+                Console.WriteLine("Mensaje recibido exitosamente");
+            }
+            else
+            {
+                Console.WriteLine($"{statusCode}: {data}");
             }
         }
 

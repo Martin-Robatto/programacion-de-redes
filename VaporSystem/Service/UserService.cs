@@ -27,18 +27,36 @@ namespace Service
         
         private UserService() { }
 
-        public void Register(string userLine)
+        public string Register(string userLine)
         {
             string[] userAttributes = userLine.Split("#");
-            User user = new User()
+            User inputUser = new User()
             {
                 Email = userAttributes[0],
                 Username = userAttributes[1],
                 Password = userAttributes[2]
             };
-            UserRepository.Get().Add(user);
-            Console.WriteLine($"Nuevo usuario: {user.Username}");
+            UserRepository.Get().Add(inputUser);
+            Console.WriteLine($"Nuevo usuario: {inputUser.Username}");
+            return inputUser.Username;
         }
-        
+
+        public string LogIn(string userLine)
+        {
+            string[] userAttributes = userLine.Split("#");
+            User inputUser = new User()
+            {
+                Username = userAttributes[0],
+                Password = userAttributes[1]
+            };
+            var user = UserRepository.Get().FirstOrDefault(user => user.Username.Equals(inputUser.Username) 
+                                                             && user.Password.Equals(inputUser.Password));
+            if (user is null)
+            {
+                throw new InvalidCastException(inputUser.Username);
+            }
+            Console.WriteLine($"Usuario conectado: {inputUser.Username}");
+            return inputUser.Username;
+        }
     }
 }

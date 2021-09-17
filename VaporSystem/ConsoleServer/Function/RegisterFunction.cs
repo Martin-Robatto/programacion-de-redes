@@ -2,6 +2,7 @@
 using Service;
 using System;
 using System.Text;
+using Exceptions;
 
 namespace ConsoleServer.Function
 {
@@ -17,8 +18,14 @@ namespace ConsoleServer.Function
                 UserService.Instance.Register(userLine);
                 response.StatusCode = StatusCodeConstants.CREATED;
             }
+            catch (AppException exception)
+            {
+                response.Data = exception.Message;
+                response.StatusCode = exception.StatusCode;
+            }
             catch (Exception exception)
             {
+                response.Data = "Error de servidor";
                 response.StatusCode = StatusCodeConstants.SERVER_ERROR;
             }
             return response;

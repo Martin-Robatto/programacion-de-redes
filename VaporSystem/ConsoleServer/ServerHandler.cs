@@ -79,13 +79,14 @@ namespace ConsoleServer
             {
                 var buffer = new byte[HeaderConstants.HEADER_LENGTH];
                 var networkStream = tcpClientSocket.GetStream();
-                while (isClientConnected || !_exit)
+                while (isClientConnected && !_exit)
                 {
                     SocketManager.Receive(networkStream, HeaderConstants.HEADER_LENGTH, buffer);
                     var header = new Header(buffer);
                     if (header.Command == FunctionConstants.EXIT)
                     {
                         isClientConnected = false;
+                        ServerDisplay.ConnectionInterrupted();
                     }
                     ExecuteFunction(networkStream, header);
                 }

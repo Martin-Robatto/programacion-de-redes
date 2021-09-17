@@ -21,6 +21,7 @@ namespace ConsoleClient.Function
 
         public override void ProcessResponse(byte[] bufferData)
         {
+            ClientDisplay.Closing();
             ClientHandler.Exit = true;
         }
 

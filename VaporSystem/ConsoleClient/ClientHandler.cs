@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
 using ConsoleClient.Function;
+using Protocol;
 using SettingsLogic;
 using SettingsLogic.Interface;
 
@@ -11,6 +12,7 @@ namespace ConsoleClient
     public class ClientHandler
     {
         public static bool Exit { get; set; }
+        private static string _actualSession = string.Empty;
         private static Dictionary<int, FunctionInterface.IFunction> _functions;
         private static readonly ISettingsManager _settingsManager = new SettingsManager();
 
@@ -23,9 +25,15 @@ namespace ConsoleClient
             {
                 while (!Exit)
                 {
-                    ClientDisplay.MainMenu();
-                    var userInput = Console.ReadLine();
-                    Execute(networkStream, userInput);
+                    if (String.IsNullOrEmpty(_actualSession))
+                    {
+                        ShowAccessFunctions(networkStream);
+                    }
+                    else
+                    {
+                        ShowMainFunctions(networkStream);
+                    }
+                    ClientDisplay.Continue();
                 }
             }
             tcpClient.Close();
@@ -55,6 +63,42 @@ namespace ConsoleClient
             var ipEndPoint = new IPEndPoint(IPAddress.Parse(serverIpAddress), int.Parse(serverPort));
             tcpClient.Connect(ipEndPoint);
             ClientDisplay.Connected();
+        }
+        
+        private static void ShowAccessFunctions(NetworkStream networkStream)
+        {
+            IList<string> optionsToDisplay = new List<string>()
+            {
+                FunctionConstants.REGISTER.ToString(),
+                FunctionConstants.LOGIN.ToString()
+            };
+            ClientDisplay.LoginMenu(optionsToDisplay);
+            var userInput = Console.ReadLine();
+            if (optionsToDisplay.Contains(userInput)
+                || userInput.Equals(FunctionConstants.EXIT.ToString()))
+            {
+                Execute(networkStream, userInput);
+            }
+        }
+
+        public static void KeepActualSession(string user)
+        {
+            _actualSession = user;
+        }
+
+        private static void ShowMainFunctions(NetworkStream networkStream)
+        {
+            IList<string> optionsToDisplay = new List<string>()
+            {
+                FunctionConstants.GET_ALL_GAMES.ToString()
+            };
+            ClientDisplay.MainMenu(optionsToDisplay);
+            var userInput = Console.ReadLine();
+            if (optionsToDisplay.Contains(userInput)
+                || userInput.Equals(FunctionConstants.EXIT.ToString()))
+            {
+                Execute(networkStream, userInput);
+            }
         }
         
         private static void Execute(NetworkStream stream, string userInput)

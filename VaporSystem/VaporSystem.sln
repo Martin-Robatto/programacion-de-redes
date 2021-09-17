@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SettingsLogic", "SettingsLo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FunctionInterface", "FunctionInterface\FunctionInterface.csproj", "{305D2272-2F2A-483C-840F-ACE8DE6E631A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exceptions", "Exceptions\Exceptions.csproj", "{ECF257FE-4D71-4CC6-B4CD-509A18207DD9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{305D2272-2F2A-483C-840F-ACE8DE6E631A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{305D2272-2F2A-483C-840F-ACE8DE6E631A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{305D2272-2F2A-483C-840F-ACE8DE6E631A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ECF257FE-4D71-4CC6-B4CD-509A18207DD9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECF257FE-4D71-4CC6-B4CD-509A18207DD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECF257FE-4D71-4CC6-B4CD-509A18207DD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECF257FE-4D71-4CC6-B4CD-509A18207DD9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
