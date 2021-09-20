@@ -15,36 +15,30 @@ namespace ConsoleClient
             }
         }
         
-        public static void LoginMenu(IList<string> optionsToDisplay)
+        public static void LoginMenu()
         {
             ClearConsole();
             Console.WriteLine("VAPOR");
             Console.WriteLine("------------------------------");
-            var functions = FunctionDictionary.Get();
-            foreach (var option in optionsToDisplay)
+            var functions = FunctionDictionary.NoRequiresCredentials();
+            foreach (var function in functions)
             {
-                var key = Int32.Parse(option);
-                Console.WriteLine($"{key}) {functions[key].Name}");
+                Console.WriteLine($"{function.Key}) {function.Value.Name}");
             }
-            Console.WriteLine("------------------------------");
-            Console.WriteLine($"{FunctionConstants.EXIT}) {functions[FunctionConstants.EXIT].Name}");
             Console.WriteLine();
             Console.WriteLine("Ingrese su opcion: ");
         }
 
-        public static void MainMenu(IList<string> optionsToDisplay)
+        public static void MainMenu()
         {
             ClearConsole();
             Console.WriteLine("VAPOR");
             Console.WriteLine("------------------------------");
-            var functions = FunctionDictionary.Get();
-            foreach (var option in optionsToDisplay)
+            var functions = FunctionDictionary.RequiresCredentials();
+            foreach (var function in functions)
             {
-                var key = Int32.Parse(option);
-                Console.WriteLine($"{key}) {functions[key].Name}");
+                Console.WriteLine($"{function.Key}) {function.Value.Name}");
             }
-            Console.WriteLine("------------------------------");
-            Console.WriteLine($"{FunctionConstants.EXIT}) {functions[FunctionConstants.EXIT].Name}");
             Console.WriteLine();
             Console.WriteLine("Ingrese su opcion: ");
         }

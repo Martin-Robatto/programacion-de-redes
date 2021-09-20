@@ -7,12 +7,11 @@ using SocketLogic;
 
 namespace ConsoleClient.Function
 {
-    public abstract class FunctionTemplate : IFunction
+    public abstract class FunctionTemplate : IClientFunction
     {
         public string Name { get; set; }
-        public bool RequiredCredentials { get; set; }
 
-        public void Execute(NetworkStream stream, Header header = null, string session = null)
+        public void Execute(NetworkStream stream, string session = null)
         {
             var dataPacket = BuildRequest(session);
             SocketManager.Send(stream, dataPacket);

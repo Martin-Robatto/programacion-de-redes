@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
 using ConsoleClient.Function;
+using FunctionInterface;
 using Protocol;
 using SettingsLogic;
 using SettingsLogic.Interface;
@@ -13,7 +14,7 @@ namespace ConsoleClient
     {
         public static bool Exit { get; set; }
         private static string _actualSession = string.Empty;
-        private static Dictionary<int, FunctionInterface.IFunction> _functions;
+        private static Dictionary<int, IClientFunction> _functions;
         private static readonly ISettingsManager _settingsManager = new SettingsManager();
 
         public static void Run()
@@ -67,17 +68,14 @@ namespace ConsoleClient
         
         private static void ShowAccessFunctions(NetworkStream networkStream)
         {
-            IList<string> optionsToDisplay = new List<string>()
-            {
-                FunctionConstants.REGISTER.ToString(),
-                FunctionConstants.LOGIN.ToString()
-            };
-            ClientDisplay.LoginMenu(optionsToDisplay);
+            ClientDisplay.LoginMenu();
             var userInput = Console.ReadLine();
-            if (optionsToDisplay.Contains(userInput)
-                || userInput.Equals(FunctionConstants.EXIT.ToString()))
+            int input = int.TryParse(userInput, out input) ? input : 1000;
+            if (FunctionDictionary.NoRequiresCredentials().ContainsKey(input))
             {
-                Execute(networkStream, userInput);
+                _functions = FunctionDictionary.NoRequiresCredentials();
+                var command = _functions[input];
+                command.Execute(networkStream, session: _actualSession);
             }
         }
 
@@ -88,27 +86,15 @@ namespace ConsoleClient
 
         private static void ShowMainFunctions(NetworkStream networkStream)
         {
-            IList<string> optionsToDisplay = new List<string>()
-            {
-                FunctionConstants.GET_ALL_GAMES.ToString(),
-                FunctionConstants.GET_PUBLISHES_BY_USER.ToString(),
-                FunctionConstants.POST_PUBLISH.ToString()
-            };
-            ClientDisplay.MainMenu(optionsToDisplay);
+            ClientDisplay.MainMenu();
             var userInput = Console.ReadLine();
-            if (optionsToDisplay.Contains(userInput)
-                || userInput.Equals(FunctionConstants.EXIT.ToString()))
+            int input = int.TryParse(userInput, out input) ? input : 1000;
+            if (FunctionDictionary.RequiresCredentials().ContainsKey(input))
             {
-                Execute(networkStream, userInput);
+                _functions = FunctionDictionary.RequiresCredentials();
+                var command = _functions[input];
+                command.Execute(networkStream, session: _actualSession);
             }
-        }
-        
-        private static void Execute(NetworkStream stream, string userInput)
-        {
-            _functions = FunctionDictionary.Get();
-            int commandID = Int32.Parse(userInput);
-            var command = _functions[commandID];
-            command.Execute(stream, session: _actualSession);
         }
 
     }
