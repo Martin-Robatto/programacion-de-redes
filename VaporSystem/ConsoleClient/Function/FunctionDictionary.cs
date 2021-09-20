@@ -15,6 +15,7 @@ namespace ConsoleClient.Function
             commands.Add(FunctionConstants.LOGIN, new LogInFunction());
             commands.Add(FunctionConstants.GET_ALL_GAMES, new GetAllGamesFunction());
             commands.Add(FunctionConstants.POST_PUBLISH, new PostPublishFunction());
+            commands.Add(FunctionConstants.GET_PUBLISHES_BY_USER, new GetPublishesByUserFunction());
             return commands;
         }
     }

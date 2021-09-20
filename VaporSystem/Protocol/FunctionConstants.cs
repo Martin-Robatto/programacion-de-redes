@@ -8,10 +8,14 @@
         public const int MESSAGE = 3;
         
         public const int GET_ALL_GAMES = 5;
+        public const int GET_GAME_BY_TITLE = 6;
+        public const int GET_GAME_BY_CATEGORY = 7;
+        public const int GET_GAME_BY_RATE = 8;
 
         public const int GET_PUBLISHES_BY_USER = 10;
         public const int POST_PUBLISH = 11;
         public const int DELETE_PUBLISH = 12;
+        public const int PUT_PUBLISH = 13;
         
         public const int GET_PURCHASES_BY_USER = 20;
         public const int POST_PURCHASE = 21;

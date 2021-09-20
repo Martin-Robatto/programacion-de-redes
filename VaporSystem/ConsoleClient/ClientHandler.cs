@@ -91,6 +91,7 @@ namespace ConsoleClient
             IList<string> optionsToDisplay = new List<string>()
             {
                 FunctionConstants.GET_ALL_GAMES.ToString(),
+                FunctionConstants.GET_PUBLISHES_BY_USER.ToString(),
                 FunctionConstants.POST_PUBLISH.ToString()
             };
             ClientDisplay.MainMenu(optionsToDisplay);

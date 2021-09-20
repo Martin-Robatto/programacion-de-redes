@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DataAccess;
 using Domain;
+using Exceptions;
 
 namespace Service
 {
@@ -40,6 +41,21 @@ namespace Service
                 Date = DateTime.Now
             };
             PublishRepository.Get().Add(inputPublish);
+        }
+
+        public string Get(string userLine)
+        {
+            string publishes = string.Empty;
+            IEnumerable<Publish> userPublishes = PublishRepository.Get().Where(publish => publish.User.Username.Equals(userLine));
+            foreach (Publish publish in userPublishes)
+            {
+                publishes += "#" + publish.Game.Title;
+            }
+            if (userPublishes.Count() == 0)
+            {
+                throw new NotFoundException("Publishes");
+            }
+            return publishes;
         }
     }
 }

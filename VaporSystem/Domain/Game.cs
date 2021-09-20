@@ -11,11 +11,7 @@ namespace Domain
         public float Rate { get; set; }
         public string Synopsis { get; set; }
         public string Picture { get; set; }
-        
-        public ICollection<Purchase> Purchases { get; set; }
-        public Publish Publish { get; set; }
-        public ICollection<Review> Reviews { get; set; }
-        
+
         public Game() { }
     }
 }

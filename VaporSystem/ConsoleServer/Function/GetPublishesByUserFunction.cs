@@ -1,20 +1,21 @@
-﻿using Protocol;
-using Service;
-using System;
+﻿using System;
 using System.Text;
 using Exceptions;
+using Protocol;
+using Service;
 
 namespace ConsoleServer.Function
 {
-    public class GetAllGamesFunction : FunctionTemplate
+    public class GetPublishesByUserFunction: FunctionTemplate
     {
         public override ResponseData ProcessRequest(byte[] bufferData)
         {
             ResponseData response = new ResponseData();
-            response.Function = FunctionConstants.GET_ALL_GAMES;
+            response.Function = FunctionConstants.GET_PUBLISHES_BY_USER;
             try
             {
-                response.Data = GameService.Instance.GetGames();
+                var userLine = Encoding.UTF8.GetString(bufferData);
+                response.Data = PublishService.Instance.Get(userLine);
                 response.StatusCode = StatusCodeConstants.OK;
             }
             catch (AppException exception)
