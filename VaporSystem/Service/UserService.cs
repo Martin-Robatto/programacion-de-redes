@@ -33,6 +33,7 @@ namespace Service
             string[] userAttributes = userLine.Split("#");
             User inputUser = new User()
             {
+                Id = Guid.NewGuid(),
                 Username = userAttributes[0],
                 Password = userAttributes[1]
             };
@@ -62,6 +63,16 @@ namespace Service
             }
             Console.WriteLine($"Usuario conectado: {inputUser.Username}");
             return inputUser.Username;
+        }
+
+        public User Get(string username)
+        {
+            User user = UserRepository.Get().FirstOrDefault(user => user.Username.Equals(username));
+            if (user is null)
+            {
+                throw new NotFoundException(username);
+            }
+            return user;
         }
     }
 }

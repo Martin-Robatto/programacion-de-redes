@@ -4,8 +4,7 @@ namespace Domain
 {
     public class Publish
     {
-        public int Id { get; set; }
-        public int Version { get; set; }
+        public Guid Id { get; set; }
         public DateTime Date { get; set; }
         
         public Game Game { get; set; }

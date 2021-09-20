@@ -8,7 +8,7 @@ namespace ConsoleClient.Function
     {
         public const string NAME = "Salir";
 
-        public override DataPacket BuildRequest()
+        public override DataPacket BuildRequest(string session)
         {
             var message = string.Empty;
             var header = new Header(HeaderConstants.REQUEST, FunctionConstants.EXIT, message.Length);

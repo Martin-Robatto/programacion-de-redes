@@ -6,6 +6,7 @@ namespace FunctionInterface
     public interface IFunction
     {
         string Name { get; set; }
-        void Execute(NetworkStream stream, Header header = null);
+        bool RequiredCredentials { get; set; }
+        void Execute(NetworkStream stream, Header header = null, string session = null);
     }
 }

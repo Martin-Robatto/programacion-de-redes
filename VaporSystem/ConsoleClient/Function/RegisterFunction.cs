@@ -10,7 +10,7 @@ namespace ConsoleClient.Function
     {
         public const string NAME = "Registrar";
         
-        public override DataPacket BuildRequest()
+        public override DataPacket BuildRequest(string session)
         {
             Console.WriteLine("Ingrese el nombre: ");
             var username = Console.ReadLine();

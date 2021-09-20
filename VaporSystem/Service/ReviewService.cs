@@ -8,5 +8,23 @@ namespace Service
 {
     public class ReviewService
     {
+        private static ReviewService _instance;
+        public static ReviewService Instance
+        {
+            get { return GetInstance(); }
+        }
+
+        private static ReviewService GetInstance()
+        {
+            if (_instance is null)
+            {
+                _instance = new ReviewService();
+            }
+            return _instance;
+        }
+
+        private ReviewService() { }
+        
+        
     }
 }

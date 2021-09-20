@@ -1,21 +1,25 @@
 ﻿using System;
-using System.Net;
-using System.Net.Sockets;
 using System.Text;
 using Protocol;
-using SocketLogic;
 
 namespace ConsoleClient.Function
 {
-    public class MessageFunction : FunctionTemplate
+    public class PostPublishFunction : FunctionTemplate
     {
-        public const string NAME = "Mensaje";
+        public const string NAME = "Publicar juego";
         
         public override DataPacket BuildRequest(string session)
         {
-            Console.WriteLine("Ingrese el mensaje:");
-            var message = Console.ReadLine();
-            var header = new Header(HeaderConstants.REQUEST, FunctionConstants.MESSAGE, message.Length);
+            Console.WriteLine("Ingrese el titulo: ");
+            var title = Console.ReadLine();
+            Console.WriteLine("Ingrese el genero: ");
+            var genre = Console.ReadLine();
+            Console.WriteLine("Ingrese la sinopsis: ");
+            var synopsis = Console.ReadLine();
+
+            var message = $"{session}&{title}#{genre}#{synopsis}";
+            var header = new Header(HeaderConstants.REQUEST, FunctionConstants.POST_PUBLISH, message.Length);
+            
             return new DataPacket()
             {
                 Header = header,
@@ -27,9 +31,9 @@ namespace ConsoleClient.Function
         {
             var statusCode = Int32.Parse(Encoding.UTF8.GetString(bufferData, 0, HeaderConstants.STATUS_CODE_LENGTH));
             var data = Encoding.UTF8.GetString(bufferData, HeaderConstants.STATUS_CODE_LENGTH, bufferData.Length - HeaderConstants.COMMAND_LENGTH - 1);
-            if (statusCode == StatusCodeConstants.OK)
+            if (statusCode == StatusCodeConstants.CREATED)
             {
-                Console.WriteLine("Mensaje recibido exitosamente");
+                Console.WriteLine("Juego publicado exitosamente");
             }
             else
             {
@@ -37,7 +41,7 @@ namespace ConsoleClient.Function
             }
         }
 
-        public MessageFunction()
+        public PostPublishFunction()
         {
             base.Name = NAME;
         }

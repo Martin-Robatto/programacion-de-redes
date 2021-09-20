@@ -1,4 +1,5 @@
-﻿using DataAccess;
+﻿using System;
+using DataAccess;
 using Domain;
 using System.Collections.Generic;
 using Exceptions;
@@ -36,6 +37,22 @@ namespace Service
                 throw new NotFoundException("Games");
             }
             return games;
+        }
+
+        public Game Save(string gameLine)
+        {
+            string[] gameAttributes = gameLine.Split("#");
+            Game inputGame = new Game()
+            {
+                Id = Guid.NewGuid(),
+                Title = gameAttributes[0],
+                Genre = gameAttributes[1],
+                Synopsis = gameAttributes[2],
+                Rate = 0
+            };
+            GameRepository.Get().Add(inputGame);
+            Console.WriteLine($"Nuevo juego: {inputGame.Title}");
+            return inputGame;
         }
     }
 }

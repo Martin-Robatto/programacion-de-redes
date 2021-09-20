@@ -10,16 +10,17 @@ namespace ConsoleClient.Function
     public abstract class FunctionTemplate : IFunction
     {
         public string Name { get; set; }
+        public bool RequiredCredentials { get; set; }
 
-        public void Execute(NetworkStream stream, Header header = null)
+        public void Execute(NetworkStream stream, Header header = null, string session = null)
         {
-            var dataPacket = BuildRequest();
+            var dataPacket = BuildRequest(session);
             SocketManager.Send(stream, dataPacket);
             var bufferData = ReceiveResponse(stream);
             ProcessResponse(bufferData);
         }
 
-        public abstract DataPacket BuildRequest();
+        public abstract DataPacket BuildRequest(string session);
 
         public virtual byte[] ReceiveResponse(NetworkStream stream)
         {

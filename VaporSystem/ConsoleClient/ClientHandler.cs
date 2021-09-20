@@ -90,7 +90,8 @@ namespace ConsoleClient
         {
             IList<string> optionsToDisplay = new List<string>()
             {
-                FunctionConstants.GET_ALL_GAMES.ToString()
+                FunctionConstants.GET_ALL_GAMES.ToString(),
+                FunctionConstants.POST_PUBLISH.ToString()
             };
             ClientDisplay.MainMenu(optionsToDisplay);
             var userInput = Console.ReadLine();
@@ -106,7 +107,7 @@ namespace ConsoleClient
             _functions = FunctionDictionary.Get();
             int commandID = Int32.Parse(userInput);
             var command = _functions[commandID];
-            command.Execute(stream);
+            command.Execute(stream, session: _actualSession);
         }
 
     }

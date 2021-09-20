@@ -101,7 +101,7 @@ namespace ConsoleServer
         {
             _functions = FunctionDictionary.Get();
             var command = _functions[header.Command];
-            command.Execute(networkStream, header);
+            command.Execute(networkStream, header: header);
         }
 
         private static void ShutDown(TcpListener tcpListener)
