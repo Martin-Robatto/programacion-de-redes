@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using ConsoleClient.Function.Purchase;
 using FunctionInterface;
 using Protocol;
 
@@ -21,6 +22,8 @@ namespace ConsoleClient.Function
             commands.Add(FunctionConstants.GET_ALL_GAMES, new GetAllGamesFunction());
             commands.Add(FunctionConstants.GET_PUBLISHES_BY_USER, new GetPublishesByUserFunction());
             commands.Add(FunctionConstants.POST_PUBLISH, new PostPublishFunction());
+            commands.Add(FunctionConstants.GET_PURCHASES_BY_USER, new GetPurchasesByUserFunction());
+            commands.Add(FunctionConstants.POST_PURCHASE, new PostPurchaseFunction()); 
             commands.Add(FunctionConstants.EXIT, new ExitFunction());
             return commands;
         }

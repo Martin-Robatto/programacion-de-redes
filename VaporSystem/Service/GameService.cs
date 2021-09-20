@@ -2,6 +2,7 @@
 using DataAccess;
 using Domain;
 using System.Collections.Generic;
+using System.Linq;
 using Exceptions;
 
 namespace Service
@@ -53,6 +54,16 @@ namespace Service
             GameRepository.Get().Add(inputGame);
             Console.WriteLine($"Nuevo juego: {inputGame.Title}");
             return inputGame;
+        }
+
+        public Game Get(string title)
+        {
+            Game game = GameRepository.Get().FirstOrDefault(game => game.Title.Equals(title));
+            if (game is null)
+            {
+                throw new NotFoundException(title);
+            }
+            return game;
         }
     }
 }

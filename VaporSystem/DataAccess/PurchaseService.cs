@@ -3,12 +3,12 @@ using Domain;
 
 namespace DataAccess
 {
-    public class PurchaseService
+    public class PurchaseRepository
     {
-        private static PurchaseService _instance;
+        private static PurchaseRepository _instance;
         private IList<Purchase> _purchases;
 
-        private PurchaseService()
+        private PurchaseRepository()
         {
             _purchases = new List<Purchase>();
         }
@@ -18,11 +18,11 @@ namespace DataAccess
             return GetInstance()._purchases;
         }
 
-        private static PurchaseService GetInstance()
+        private static PurchaseRepository GetInstance()
         {
             if (_instance is null)
             {
-                _instance = new PurchaseService();
+                _instance = new PurchaseRepository();
             }
             return _instance;
         }

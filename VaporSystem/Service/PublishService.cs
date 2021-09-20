@@ -28,21 +28,6 @@ namespace Service
 
         private PublishService() { }
 
-        public void Save(string publishLine)
-        {
-            string[] publishAttributes = publishLine.Split("&");
-            User user = UserService.Instance.Get(publishAttributes[0]);
-            Game game = GameService.Instance.Save(publishAttributes[1]);
-            Publish inputPublish = new Publish()
-            {
-                Id = Guid.NewGuid(),
-                User = user,
-                Game = game,
-                Date = DateTime.Now
-            };
-            PublishRepository.Get().Add(inputPublish);
-        }
-
         public string Get(string userLine)
         {
             string publishes = string.Empty;
@@ -56,6 +41,22 @@ namespace Service
                 throw new NotFoundException("Publishes");
             }
             return publishes;
+        }
+        
+        public void Save(string publishLine)
+        {
+            string[] publishAttributes = publishLine.Split("&");
+            User user = UserService.Instance.Get(publishAttributes[0]);
+            Game game = GameService.Instance.Save(publishAttributes[1]);
+            Publish inputPublish = new Publish()
+            {
+                Id = Guid.NewGuid(),
+                User = user,
+                Game = game,
+                Date = DateTime.Now
+            };
+            PublishRepository.Get().Add(inputPublish);
+            Console.WriteLine($"Usuario {user.Username} publico el juego {game.Title}");
         }
     }
 }
