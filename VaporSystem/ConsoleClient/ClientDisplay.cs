@@ -1,7 +1,5 @@
 using System;
-using System.Collections.Generic;
 using ConsoleClient.Function;
-using Protocol;
 
 namespace ConsoleClient
 {

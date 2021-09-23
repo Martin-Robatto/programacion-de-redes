@@ -43,23 +43,23 @@ namespace Service
 
         public void Save(string purchaseLine)
         {
-            string[] purchaseAttributes = purchaseLine.Split("&");
-            User user = UserService.Instance.Get(purchaseAttributes[0]);
-            Game game = GameService.Instance.Get(purchaseAttributes[1]);
-            Purchase inputPurchase = new Purchase()
+            string[] attributes = purchaseLine.Split("&");
+            User user = UserService.Instance.Get(attributes[0]);
+            Game game = GameService.Instance.Get(attributes[1]);
+            Purchase input = new Purchase()
             {
                 Id = Guid.NewGuid(),
                 User = user,
                 Game = game,
                 Date = DateTime.Now
             };
-            var purchase = PurchaseRepository.Get().FirstOrDefault(purchase => purchase.Game.Title.Equals(inputPurchase.Game.Title)
-                                                                                && purchase.User.Username.Equals(inputPurchase.User.Username));
+            var purchase = PurchaseRepository.Get().FirstOrDefault(purchase => purchase.Game.Title.Equals(input.Game.Title)
+                                                                                && purchase.User.Username.Equals(input.User.Username));
             if (purchase is not null)
             {
                 throw new AlreadyExistsException("Purchase");
             }
-            PurchaseRepository.Get().Add(inputPurchase);
+            PurchaseRepository.Get().Add(input);
             Console.WriteLine($"Usuario {user.Username} compro el juego {game.Title}");
         }
     }

@@ -45,17 +45,17 @@ namespace Service
         
         public void Save(string publishLine)
         {
-            string[] publishAttributes = publishLine.Split("&");
-            User user = UserService.Instance.Get(publishAttributes[0]);
-            Game game = GameService.Instance.Save(publishAttributes[1]);
-            Publish inputPublish = new Publish()
+            string[] attributes = publishLine.Split("&");
+            User user = UserService.Instance.Get(attributes[0]);
+            Game game = GameService.Instance.Save(attributes[1]);
+            Publish input = new Publish()
             {
                 Id = Guid.NewGuid(),
                 User = user,
                 Game = game,
                 Date = DateTime.Now
             };
-            PublishRepository.Get().Add(inputPublish);
+            PublishRepository.Get().Add(input);
             Console.WriteLine($"Usuario {user.Username} publico el juego {game.Title}");
         }
     }

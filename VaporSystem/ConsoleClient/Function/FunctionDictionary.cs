@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using ConsoleClient.Function.Purchase;
+using ConsoleClient.Function.Review;
 using FunctionInterface;
 using Protocol;
 
@@ -23,7 +24,9 @@ namespace ConsoleClient.Function
             commands.Add(FunctionConstants.GET_PUBLISHES_BY_USER, new GetPublishesByUserFunction());
             commands.Add(FunctionConstants.POST_PUBLISH, new PostPublishFunction());
             commands.Add(FunctionConstants.GET_PURCHASES_BY_USER, new GetPurchasesByUserFunction());
-            commands.Add(FunctionConstants.POST_PURCHASE, new PostPurchaseFunction()); 
+            commands.Add(FunctionConstants.POST_PURCHASE, new PostPurchaseFunction());
+            commands.Add(FunctionConstants.GET_REVIEWS_BY_USER, new GetReviewsByUserFunction());
+            commands.Add(FunctionConstants.POST_REVIEW, new PostReviewFunction());
             commands.Add(FunctionConstants.EXIT, new ExitFunction());
             return commands;
         }

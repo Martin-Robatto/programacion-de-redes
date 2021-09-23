@@ -40,22 +40,6 @@ namespace Service
             return games;
         }
 
-        public Game Save(string gameLine)
-        {
-            string[] gameAttributes = gameLine.Split("#");
-            Game inputGame = new Game()
-            {
-                Id = Guid.NewGuid(),
-                Title = gameAttributes[0],
-                Genre = gameAttributes[1],
-                Synopsis = gameAttributes[2],
-                Rate = 0
-            };
-            GameRepository.Get().Add(inputGame);
-            Console.WriteLine($"Nuevo juego: {inputGame.Title}");
-            return inputGame;
-        }
-
         public Game Get(string title)
         {
             Game game = GameRepository.Get().FirstOrDefault(game => game.Title.Equals(title));
@@ -64,6 +48,22 @@ namespace Service
                 throw new NotFoundException(title);
             }
             return game;
+        }
+        
+        public Game Save(string gameLine)
+        {
+            string[] attributes = gameLine.Split("#");
+            Game input = new Game()
+            {
+                Id = Guid.NewGuid(),
+                Title = attributes[0],
+                Genre = attributes[1],
+                Synopsis = attributes[2],
+                Rate = 0
+            };
+            GameRepository.Get().Add(input);
+            Console.WriteLine($"Nuevo juego: {input.Title}");
+            return input;
         }
     }
 }

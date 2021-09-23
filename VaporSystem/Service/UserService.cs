@@ -30,39 +30,39 @@ namespace Service
 
         public string Register(string userLine)
         {
-            string[] userAttributes = userLine.Split("#");
-            User inputUser = new User()
+            string[] attributes = userLine.Split("#");
+            User input = new User()
             {
                 Id = Guid.NewGuid(),
-                Username = userAttributes[0],
-                Password = userAttributes[1]
+                Username = attributes[0],
+                Password = attributes[1]
             };
-            var user = UserRepository.Get().FirstOrDefault(user => user.Username.Equals(inputUser.Username));
+            var user = UserRepository.Get().FirstOrDefault(user => user.Username.Equals(input.Username));
             if (user is not null)
             {
-                throw new AlreadyExistsException(inputUser.Username);
+                throw new AlreadyExistsException(input.Username);
             }
-            UserRepository.Get().Add(inputUser);
-            Console.WriteLine($"Nuevo usuario: {inputUser.Username}");
-            return inputUser.Username;
+            UserRepository.Get().Add(input);
+            Console.WriteLine($"Nuevo usuario: {input.Username}");
+            return input.Username;
         }
 
         public string LogIn(string userLine)
         {
-            string[] userAttributes = userLine.Split("#");
-            User inputUser = new User()
+            string[] attributes = userLine.Split("#");
+            User input = new User()
             {
-                Username = userAttributes[0],
-                Password = userAttributes[1]
+                Username = attributes[0],
+                Password = attributes[1]
             };
-            var user = UserRepository.Get().FirstOrDefault(user => user.Username.Equals(inputUser.Username) 
-                                                             && user.Password.Equals(inputUser.Password));
+            var user = UserRepository.Get().FirstOrDefault(user => user.Username.Equals(input.Username) 
+                                                             && user.Password.Equals(input.Password));
             if (user is null)
             {
                 throw new InvalidInputException("username or password");
             }
-            Console.WriteLine($"Usuario conectado: {inputUser.Username}");
-            return inputUser.Username;
+            Console.WriteLine($"Usuario conectado: {input.Username}");
+            return input.Username;
         }
 
         public User Get(string username)

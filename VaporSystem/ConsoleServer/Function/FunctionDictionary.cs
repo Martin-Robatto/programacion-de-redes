@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using ConsoleServer.Function;
+using ConsoleServer.Function.Review;
 using Protocol;
 
 namespace ConsoleServer.Function
@@ -18,6 +19,8 @@ namespace ConsoleServer.Function
             commands.Add(FunctionConstants.GET_PUBLISHES_BY_USER, new GetPublishesByUserFunction());
             commands.Add(FunctionConstants.POST_PURCHASE, new PostPurchaseFunction());
             commands.Add(FunctionConstants.GET_PURCHASES_BY_USER, new GetPurchasesByUserFunction());
+            commands.Add(FunctionConstants.POST_REVIEW, new PostReviewFunction());
+            commands.Add(FunctionConstants.GET_REVIEWS_BY_USER, new GetReviewsByUserFunction());
             return commands;
         }
     }

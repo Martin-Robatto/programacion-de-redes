@@ -21,7 +21,7 @@
         public const int POST_PURCHASE = 21;
         public const int DELETE_PURCHASE = 22;
         
-        public const int GET_REVIEWS_BY_GAME = 30;
+        public const int GET_REVIEWS_BY_USER = 30;
         public const int POST_REVIEW = 31;
         public const int DELETE_REVIEW = 32;
         public const int PUT_REVIEW = 33;
