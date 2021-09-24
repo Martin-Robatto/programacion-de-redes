@@ -6,7 +6,7 @@ namespace ConsoleClient.Function.Review
 {
     public class PostReviewFunction : FunctionTemplate
     {
-        public const string NAME = "Calificar juego";
+        public const string NAME = "Crear reseña";
         
         public override DataPacket BuildRequest(string session)
         {
@@ -33,7 +33,7 @@ namespace ConsoleClient.Function.Review
             var data = Encoding.UTF8.GetString(bufferData, HeaderConstants.STATUS_CODE_LENGTH, bufferData.Length - HeaderConstants.COMMAND_LENGTH - 1);
             if (statusCode == StatusCodeConstants.CREATED)
             {
-                Console.WriteLine("Juego calificado exitosamente");
+                Console.WriteLine("Reseña creada exitosamentmente");
             }
             else
             {

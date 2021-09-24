@@ -20,7 +20,9 @@ namespace ConsoleServer.Function
             commands.Add(FunctionConstants.POST_PURCHASE, new PostPurchaseFunction());
             commands.Add(FunctionConstants.GET_PURCHASES_BY_USER, new GetPurchasesByUserFunction());
             commands.Add(FunctionConstants.POST_REVIEW, new PostReviewFunction());
+            commands.Add(FunctionConstants.DELETE_REVIEW, new DeleteReviewFunction());
             commands.Add(FunctionConstants.GET_REVIEWS_BY_USER, new GetReviewsByUserFunction());
+            commands.Add(FunctionConstants.DELETE_PURCHASE, new DeletePurchaseFunction());
             return commands;
         }
     }

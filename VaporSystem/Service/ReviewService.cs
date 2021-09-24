@@ -69,19 +69,39 @@ namespace Service
             ReviewRepository.Get().Add(input);
             game.Rate = CalculateMediaRate(game);
             Console.WriteLine($"Usuario {user.Username} califico el juego {game.Title}");
-            Console.WriteLine(game.Rate);
         }
 
         private float CalculateMediaRate(Game game)
         {
             var reviews = ReviewRepository.Get().Where(review => review.Game.Title.Equals(game.Title));
-            int total = 0;
-            foreach (var review in reviews)
+            float mediaRate = 0;
+            if (reviews.Count() > 0)
             {
-                total += review.Rate;
+                int total = 0;
+                foreach (var review in reviews)
+                {
+                    total += review.Rate;
+                }
+
+                mediaRate = total / reviews.Count();
             }
-            float mediaRate = total / reviews.Count();
             return mediaRate;
-        } 
+        }
+
+        public void Delete(string reviewLine)
+        {
+            string[] attributes = reviewLine.Split("&");
+            User user = UserService.Instance.Get(attributes[0]);
+            Game game = GameService.Instance.Get(attributes[1]);
+            var review = ReviewRepository.Get().FirstOrDefault(review => review.Game.Title.Equals(game.Title)
+                                                                         && review.User.Username.Equals(user.Username));
+            if (review is null)
+            {
+                throw new NotFoundException("Review");
+            }
+            ReviewRepository.Get().Remove(review);
+            Console.WriteLine($"Usuario {user.Username} eliminó la calificación del juego {game.Title}");
+            game.Rate = CalculateMediaRate(game);
+        }
     }
 }

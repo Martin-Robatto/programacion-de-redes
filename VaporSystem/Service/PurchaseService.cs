@@ -62,5 +62,21 @@ namespace Service
             PurchaseRepository.Get().Add(input);
             Console.WriteLine($"Usuario {user.Username} compro el juego {game.Title}");
         }
+
+        public void Delete(string purchaseLine)
+        {
+            string[] attributes = purchaseLine.Split("&");
+            User user = UserService.Instance.Get(attributes[0]);
+            Game game = GameService.Instance.Get(attributes[1]);
+            
+            var purchase = PurchaseRepository.Get().FirstOrDefault(purchase => purchase.Game.Title.Equals(game.Title)
+                                                                               && purchase.User.Username.Equals(user.Username));
+            if (purchase is null)
+            {
+                throw new NotFoundException("Purchase");
+            }
+            PurchaseRepository.Get().Remove(purchase);
+            Console.WriteLine($"Usuario {user.Username} desinstaló el juego {game.Title}");
+        }
     }
 }

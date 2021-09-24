@@ -56,6 +56,8 @@ namespace Service
                 Date = DateTime.Now
             };
             PublishRepository.Get().Add(input);
+            string purchaseLine = $"{user.Username}&{game.Title}";
+            PurchaseService.Instance.Save(purchaseLine);
             Console.WriteLine($"Usuario {user.Username} publico el juego {game.Title}");
         }
     }
