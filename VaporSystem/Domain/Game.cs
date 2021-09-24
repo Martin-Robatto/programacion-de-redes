@@ -13,5 +13,17 @@ namespace Domain
         public string Picture { get; set; }
 
         public Game() { }
+        
+        public override bool Equals(object obj)
+        {
+            bool result = false;
+
+            if (obj is Game game)
+            {
+                result = this.Title == game.Title;
+            }
+
+            return result;
+        }
     }
 }

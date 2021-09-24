@@ -37,12 +37,12 @@ namespace Service
                 Username = attributes[0],
                 Password = attributes[1]
             };
-            var user = UserRepository.Get().FirstOrDefault(user => user.Username.Equals(input.Username));
+            var user = UserRepository.Get(u => u.Equals(input));
             if (user is not null)
             {
-                throw new AlreadyExistsException(input.Username);
+                throw new AlreadyExistsException("User");
             }
-            UserRepository.Get().Add(input);
+            UserRepository.Add(input);
             Console.WriteLine($"Nuevo usuario: {input.Username}");
             return input.Username;
         }
@@ -55,8 +55,8 @@ namespace Service
                 Username = attributes[0],
                 Password = attributes[1]
             };
-            var user = UserRepository.Get().FirstOrDefault(user => user.Username.Equals(input.Username) 
-                                                             && user.Password.Equals(input.Password));
+            var user = UserRepository.Get(u => u.Username.Equals(input.Username) 
+                                                  && u.Password.Equals(input.Password));
             if (user is null)
             {
                 throw new InvalidInputException("username or password");
@@ -67,10 +67,10 @@ namespace Service
 
         public User Get(string username)
         {
-            User user = UserRepository.Get().FirstOrDefault(user => user.Username.Equals(username));
+            User user = UserRepository.Get(u => u.Username.Equals(username));
             if (user is null)
             {
-                throw new NotFoundException(username);
+                throw new NotFoundException("User");
             }
             return user;
         }

@@ -28,24 +28,25 @@ namespace Service
         
         public string GetGames()
         {
-            string games = string.Empty;
-            foreach (Game game in GameRepository.Get())
-            {
-                games += "#" + game.Title;
-            }
-            if (GameRepository.Get().Count == 0)
+            IEnumerable<Game> games = GameRepository.GetAll();
+            if (!games.Any())
             {
                 throw new NotFoundException("Games");
             }
-            return games;
+            string gamesLine = string.Empty;
+            foreach (Game game in games)
+            {
+                gamesLine += "#" + game.Title;
+            }
+            return gamesLine;
         }
 
         public Game Get(string title)
         {
-            Game game = GameRepository.Get().FirstOrDefault(game => game.Title.Equals(title));
+            Game game = GameRepository.Get(g => g.Title.Equals(title));
             if (game is null)
             {
-                throw new NotFoundException(title);
+                throw new NotFoundException("Game");
             }
             return game;
         }
@@ -61,7 +62,12 @@ namespace Service
                 Synopsis = attributes[2],
                 Rate = 0
             };
-            GameRepository.Get().Add(input);
+            var game = GameRepository.Get(g => g.Equals(input));
+            if (game is not null)
+            {
+                throw new AlreadyExistsException("Game");
+            }
+            GameRepository.Add(input);
             Console.WriteLine($"Nuevo juego: {input.Title}");
             return input;
         }

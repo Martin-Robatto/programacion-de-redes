@@ -28,17 +28,17 @@ namespace Service
 
         public string Get(string userLine)
         {
-            string purchases = string.Empty;
-            IEnumerable<Purchase> userPurchases = PurchaseRepository.Get().Where(purchase => purchase.User.Username.Equals(userLine));
-            foreach (Purchase purchase in userPurchases)
-            {
-                purchases += "#" + purchase.Game.Title;
-            }
-            if (userPurchases.Count() == 0)
+            IEnumerable<Purchase> userPurchases = PurchaseRepository.GetAll(p => p.User.Username.Equals(userLine));
+            if (!userPurchases.Any())
             {
                 throw new NotFoundException("Purchases");
             }
-            return purchases;
+            string purchasesLine = string.Empty;
+            foreach (Purchase purchase in userPurchases)
+            {
+                purchasesLine += "#" + purchase.Game.Title;
+            }
+            return purchasesLine;
         }
 
         public void Save(string purchaseLine)
@@ -53,13 +53,12 @@ namespace Service
                 Game = game,
                 Date = DateTime.Now
             };
-            var purchase = PurchaseRepository.Get().FirstOrDefault(purchase => purchase.Game.Title.Equals(input.Game.Title)
-                                                                                && purchase.User.Username.Equals(input.User.Username));
+            var purchase = PurchaseRepository.Get(p => p.Equals(input));
             if (purchase is not null)
             {
                 throw new AlreadyExistsException("Purchase");
             }
-            PurchaseRepository.Get().Add(input);
+            PurchaseRepository.Add(input);
             Console.WriteLine($"Usuario {user.Username} compro el juego {game.Title}");
         }
 
@@ -68,14 +67,12 @@ namespace Service
             string[] attributes = purchaseLine.Split("&");
             User user = UserService.Instance.Get(attributes[0]);
             Game game = GameService.Instance.Get(attributes[1]);
-            
-            var purchase = PurchaseRepository.Get().FirstOrDefault(purchase => purchase.Game.Title.Equals(game.Title)
-                                                                               && purchase.User.Username.Equals(user.Username));
+            var purchase = PurchaseRepository.Get(p => p.Game.Equals(game) && p.User.Equals(user));
             if (purchase is null)
             {
                 throw new NotFoundException("Purchase");
             }
-            PurchaseRepository.Get().Remove(purchase);
+            PurchaseRepository.Remove(purchase);
             Console.WriteLine($"Usuario {user.Username} desinstaló el juego {game.Title}");
         }
     }

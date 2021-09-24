@@ -11,5 +11,17 @@ namespace Domain
         public User User { get; set; }
         
         public Publish() { }
+        
+        public override bool Equals(object obj)
+        {
+            bool result = false;
+
+            if (obj is Publish publish)
+            {
+                result = this.User.Equals(publish.User) && this.Game.Equals(publish.Game);
+            }
+
+            return result;
+        }
     }
 }

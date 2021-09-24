@@ -30,17 +30,17 @@ namespace Service
 
         public string Get(string userLine)
         {
-            string publishes = string.Empty;
-            IEnumerable<Publish> userPublishes = PublishRepository.Get().Where(publish => publish.User.Username.Equals(userLine));
+            IEnumerable<Publish> userPublishes = PublishRepository.GetAll(p => p.User.Username.Equals(userLine));
+            if (!userPublishes.Any())
+            {
+                throw new NotFoundException("Publishs");
+            }
+            string publishsLine = string.Empty;
             foreach (Publish publish in userPublishes)
             {
-                publishes += "#" + publish.Game.Title;
+                publishsLine += "#" + publish.Game.Title;
             }
-            if (userPublishes.Count() == 0)
-            {
-                throw new NotFoundException("Publishes");
-            }
-            return publishes;
+            return publishsLine;
         }
         
         public void Save(string publishLine)
@@ -55,7 +55,7 @@ namespace Service
                 Game = game,
                 Date = DateTime.Now
             };
-            PublishRepository.Get().Add(input);
+            PublishRepository.Add(input);
             string purchaseLine = $"{user.Username}&{game.Title}";
             PurchaseService.Instance.Save(purchaseLine);
             Console.WriteLine($"Usuario {user.Username} publico el juego {game.Title}");
