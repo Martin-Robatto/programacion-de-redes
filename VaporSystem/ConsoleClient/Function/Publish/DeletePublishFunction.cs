@@ -1,41 +1,35 @@
-﻿using Protocol;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System;
 using System.Text;
-using System.Threading.Tasks;
+using Protocol;
 
 namespace ConsoleClient.Function
 {
-    public class GetAllGamesFunction : FunctionTemplate
+    public class DeletePublishFunction : FunctionTemplate
     {
-        public const string NAME = "Juegos";
+        public const string NAME = "Eliminar juego";
         
         public override DataPacket BuildRequest(string session)
         {
-            var message = string.Empty;
-            var header = new Header(HeaderConstants.REQUEST, FunctionConstants.GET_ALL_GAMES, message.Length);
+            Console.WriteLine("Ingrese el titulo: ");
+            var title = Console.ReadLine();
+
+            var message = $"{session}&{title}";
+            var header = new Header(HeaderConstants.REQUEST, FunctionConstants.DELETE_PUBLISH, message.Length);
+            
             return new DataPacket()
             {
                 Header = header,
-                Payload = message,
-                StatusCode = StatusCodeConstants.EMPTY
+                Payload = message
             };
         }
-        
+
         public override void ProcessResponse(byte[] bufferData)
         {
             var statusCode = Int32.Parse(Encoding.UTF8.GetString(bufferData, 0, HeaderConstants.STATUS_CODE_LENGTH));
             var data = Encoding.UTF8.GetString(bufferData, HeaderConstants.STATUS_CODE_LENGTH, bufferData.Length - HeaderConstants.COMMAND_LENGTH - 1);
             if (statusCode == StatusCodeConstants.OK)
             {
-                var games = data.Split("#");
-                Console.WriteLine("Juegos: ");
-                Console.WriteLine();
-                foreach (String game in games)
-                {
-                    Console.WriteLine(game);
-                }
+                Console.WriteLine("Juego eliminado exitosamente");
             }
             else
             {
@@ -43,7 +37,7 @@ namespace ConsoleClient.Function
             }
         }
 
-        public GetAllGamesFunction()
+        public DeletePublishFunction()
         {
             base.Name = NAME;
         }

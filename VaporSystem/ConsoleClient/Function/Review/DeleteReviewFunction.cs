@@ -6,7 +6,7 @@ namespace ConsoleClient.Function.Review
 {
     public class DeleteReviewFunction : FunctionTemplate
     {
-        public const string NAME = "Borrar reseña";
+        public const string NAME = "Eliminar reseña";
         
         public override DataPacket BuildRequest(string session)
         {

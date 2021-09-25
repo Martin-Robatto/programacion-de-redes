@@ -23,6 +23,10 @@ namespace ConsoleServer.Function
             commands.Add(FunctionConstants.DELETE_REVIEW, new DeleteReviewFunction());
             commands.Add(FunctionConstants.GET_REVIEWS_BY_USER, new GetReviewsByUserFunction());
             commands.Add(FunctionConstants.DELETE_PURCHASE, new DeletePurchaseFunction());
+            commands.Add(FunctionConstants.DELETE_PUBLISH, new DeletePublishFunction());
+            commands.Add(FunctionConstants.GET_GAME_BY_TITLE, new GetGameByTitleFunction());
+            commands.Add(FunctionConstants.GET_GAME_BY_CATEGORY, new GetGameByCategoryFunction());
+            commands.Add(FunctionConstants.GET_GAME_BY_RATE, new GetGameByRateFunction());
             return commands;
         }
     }

@@ -26,6 +26,11 @@ namespace Service
 
         private PurchaseService() { }
 
+        public IEnumerable<Purchase> GetAll(Func<Purchase, bool> filter = null)
+        {
+            return PurchaseRepository.GetAll(filter);
+        }
+        
         public string Get(string userLine)
         {
             IEnumerable<Purchase> userPurchases = PurchaseRepository.GetAll(p => p.User.Username.Equals(userLine));
@@ -61,6 +66,19 @@ namespace Service
             PurchaseRepository.Add(input);
             Console.WriteLine($"Usuario {user.Username} compro el juego {game.Title}");
         }
+        
+        public void Delete(Purchase purchase)
+        {
+            User user = purchase.User;
+            Game game = purchase.Game;
+            var aPurchase = PurchaseRepository.Get(p => p.Equals(purchase));
+            if (aPurchase is null)
+            {
+                throw new NotFoundException("Purchase");
+            }
+            PurchaseRepository.Remove(aPurchase);
+            Console.WriteLine($"Usuario {user.Username} desinstalo el juego {game.Title}");
+        }
 
         public void Delete(string purchaseLine)
         {
@@ -73,7 +91,7 @@ namespace Service
                 throw new NotFoundException("Purchase");
             }
             PurchaseRepository.Remove(purchase);
-            Console.WriteLine($"Usuario {user.Username} desinstaló el juego {game.Title}");
+            Console.WriteLine($"Usuario {user.Username} desinstalo el juego {game.Title}");
         }
     }
 }

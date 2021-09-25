@@ -27,7 +27,12 @@ namespace Service
         }
 
         private ReviewService() { }
-        
+
+        public IEnumerable<Review> GetAll(Func<Review, bool> filter = null)
+        {
+            return ReviewRepository.GetAll(filter);
+        }
+
         public string Get(string userLine)
         {
             IEnumerable<Review> userReviews = ReviewRepository.GetAll(r => r.User.Username.Equals(userLine));
@@ -69,6 +74,20 @@ namespace Service
             game.Rate = CalculateMediaRate(game);
         }
 
+        public void Delete(Review review)
+        {
+            User user = review.User;
+            Game game = review.Game;
+            var aReview = ReviewRepository.Get(r => r.Equals(review));
+            if (aReview is null)
+            {
+                throw new NotFoundException("Review");
+            }
+            ReviewRepository.Remove(aReview);
+            Console.WriteLine($"Usuario {user.Username} eliminó la calificación del juego {game.Title}");
+            game.Rate = CalculateMediaRate(game);
+        }
+        
         public void Delete(string reviewLine)
         {
             string[] attributes = reviewLine.Split("&");

@@ -60,5 +60,32 @@ namespace Service
             PurchaseService.Instance.Save(purchaseLine);
             Console.WriteLine($"Usuario {user.Username} publico el juego {game.Title}");
         }
+
+        public void Delete(string publishLine)
+        {
+            string[] attributes = publishLine.Split("&");
+            User user = UserService.Instance.Get(attributes[0]);
+            Game game = GameService.Instance.Get(attributes[1]);
+            var publish = PublishRepository.Get(p => p.Game.Equals(game) && p.User.Equals(user));
+            if (publish is null)
+            {
+                throw new NotFoundException("Purchase");
+            }
+
+            IList<Review> reviews = ReviewService.Instance.GetAll(r => r.Game.Equals(game)).ToList();
+            foreach (var review in reviews)
+            {
+                ReviewService.Instance.Delete(review);
+            }
+
+            IList<Purchase> purchases = PurchaseService.Instance.GetAll(p => p.Game.Equals(game)).ToList();
+            foreach (var purchase in purchases)
+            {
+                PurchaseService.Instance.Delete(purchase);
+            }
+            GameService.Instance.Delete(game);
+            PublishRepository.Remove(publish);
+            Console.WriteLine($"Usuario {user.Username} elimino el juego {game.Title}");
+        }
     }
 }
