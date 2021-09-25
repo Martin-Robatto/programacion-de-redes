@@ -70,7 +70,7 @@ namespace Service
                 throw new AlreadyExistsException("Review");
             }
             ReviewRepository.Add(input);
-            Console.WriteLine($"Usuario {user.Username} califico el juego {game.Title}");
+            Console.WriteLine($"{user.Username} califico: {game.Title}");
             game.Rate = CalculateMediaRate(game);
         }
 
@@ -84,7 +84,6 @@ namespace Service
                 throw new NotFoundException("Review");
             }
             ReviewRepository.Remove(aReview);
-            Console.WriteLine($"Usuario {user.Username} eliminó la calificación del juego {game.Title}");
             game.Rate = CalculateMediaRate(game);
         }
         
@@ -99,7 +98,7 @@ namespace Service
                 throw new NotFoundException("Review");
             }
             ReviewRepository.Remove(review);
-            Console.WriteLine($"Usuario {user.Username} eliminó la calificación del juego {game.Title}");
+            Console.WriteLine($"{user.Username} descalifico: {game.Title}");
             game.Rate = CalculateMediaRate(game);
         }
         
@@ -117,6 +116,31 @@ namespace Service
                 mediaRate = total / reviews.Count();
             }
             return mediaRate;
+        }
+
+        public void Update(string reviewLine)
+        {
+            string[] attributes = reviewLine.Split("&");
+            User user = UserService.Instance.Get(attributes[0]);
+            Game game = GameService.Instance.Get(attributes[1]);
+            string[] reviewAttributes = attributes[2].Split("#");
+            int rate = Int32.Parse(reviewAttributes[0]);
+            string comment = reviewAttributes[1];
+            Review input = new Review()
+            {
+                User = user,
+                Game = game,
+                Rate = rate,
+                Comment = comment
+            };
+            var review = ReviewRepository.Get(r => r.Equals(input));
+            if (review is null)
+            {
+                throw new NotFoundException("Review");
+            }
+            ReviewRepository.Update(input);
+            Console.WriteLine($"{user.Username} califico: {game.Title}");
+            game.Rate = CalculateMediaRate(game);
         }
     }
 }

@@ -43,7 +43,7 @@ namespace Service
                 throw new AlreadyExistsException("User");
             }
             UserRepository.Add(input);
-            Console.WriteLine($"Nuevo usuario: {input.Username}");
+            Console.WriteLine($"Usuario nuevo: {input.Username}");
             return input.Username;
         }
 

@@ -133,7 +133,7 @@ namespace Service
                 throw new AlreadyExistsException("Game");
             }
             GameRepository.Add(input);
-            Console.WriteLine($"Nuevo juego: {input.Title}");
+            Console.WriteLine($"Juego nuevo: {input.Title}");
             return input;
         }
         
@@ -145,7 +145,17 @@ namespace Service
                 throw new NotFoundException("Game");
             }
             GameRepository.Remove(aGame);
-            Console.WriteLine($"Se eliminó el juego {game.Title}");
+            Console.WriteLine($"Juego eliminado: {game.Title}");
+        }
+
+        public void Update(string gameLine)
+        {
+            string[] attributes = gameLine.Split("#");
+            var game = Get(attributes[0]);
+            game.Genre = attributes[1];
+            game.Synopsis = attributes[2];
+            GameRepository.Update(game);
+            Console.WriteLine($"Juego modificado: {game.Title}");
         }
     }
 }

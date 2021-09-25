@@ -27,12 +27,14 @@ namespace ConsoleClient.Function
             commands.Add(FunctionConstants.GET_PUBLISHES_BY_USER, new GetPublishesByUserFunction());
             commands.Add(FunctionConstants.POST_PUBLISH, new PostPublishFunction());
             commands.Add(FunctionConstants.DELETE_PUBLISH, new DeletePublishFunction());
+            commands.Add(FunctionConstants.PUT_PUBLISH, new PutPublishFunction());
             commands.Add(FunctionConstants.GET_PURCHASES_BY_USER, new GetPurchasesByUserFunction());
             commands.Add(FunctionConstants.POST_PURCHASE, new PostPurchaseFunction());
             commands.Add(FunctionConstants.DELETE_PURCHASE, new DeletePurchaseFunction());
             commands.Add(FunctionConstants.GET_REVIEWS_BY_USER, new GetReviewsByUserFunction());
             commands.Add(FunctionConstants.POST_REVIEW, new PostReviewFunction());
             commands.Add(FunctionConstants.DELETE_REVIEW, new DeleteReviewFunction());
+            commands.Add(FunctionConstants.PUT_REVIEW, new PutReviewFunction());
             commands.Add(FunctionConstants.EXIT, new ExitFunction());
             return commands;
         }

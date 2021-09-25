@@ -69,7 +69,8 @@ namespace DataAccess
             lock (Games)
             {
                 Game gameToUpdate = Games.FirstOrDefault(g => g.Equals(game));
-                gameToUpdate = game;
+                gameToUpdate.Genre = game.Genre;
+                gameToUpdate.Synopsis = game.Synopsis;
             }
         }
     }

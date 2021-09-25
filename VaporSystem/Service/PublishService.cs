@@ -58,7 +58,6 @@ namespace Service
             PublishRepository.Add(input);
             string purchaseLine = $"{user.Username}&{game.Title}";
             PurchaseService.Instance.Save(purchaseLine);
-            Console.WriteLine($"Usuario {user.Username} publico el juego {game.Title}");
         }
 
         public void Delete(string publishLine)
@@ -85,7 +84,12 @@ namespace Service
             }
             GameService.Instance.Delete(game);
             PublishRepository.Remove(publish);
-            Console.WriteLine($"Usuario {user.Username} elimino el juego {game.Title}");
+        }
+
+        public void Update(string publishLine)
+        {
+            string[] attributes = publishLine.Split("&");
+            GameService.Instance.Update(attributes[1]);
         }
     }
 }

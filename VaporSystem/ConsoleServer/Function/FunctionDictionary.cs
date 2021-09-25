@@ -27,6 +27,8 @@ namespace ConsoleServer.Function
             commands.Add(FunctionConstants.GET_GAME_BY_TITLE, new GetGameByTitleFunction());
             commands.Add(FunctionConstants.GET_GAME_BY_CATEGORY, new GetGameByCategoryFunction());
             commands.Add(FunctionConstants.GET_GAME_BY_RATE, new GetGameByRateFunction());
+            commands.Add(FunctionConstants.PUT_REVIEW, new PutReviewFunction());
+            commands.Add(FunctionConstants.PUT_PUBLISH, new PutPublishFunction());
             return commands;
         }
     }

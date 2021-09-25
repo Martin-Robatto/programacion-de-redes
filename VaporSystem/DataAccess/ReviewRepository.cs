@@ -68,7 +68,9 @@ namespace DataAccess
             lock (Reviews)
             {
                 Review reviewToUpdate = Reviews.FirstOrDefault(r => r.Equals(review));
-                reviewToUpdate = review;
+                reviewToUpdate.Date = review.Date;
+                reviewToUpdate.Rate = review.Rate;
+                reviewToUpdate.Comment = review.Comment;
             }
         }
     }

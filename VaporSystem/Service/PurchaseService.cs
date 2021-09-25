@@ -64,7 +64,7 @@ namespace Service
                 throw new AlreadyExistsException("Purchase");
             }
             PurchaseRepository.Add(input);
-            Console.WriteLine($"Usuario {user.Username} compro el juego {game.Title}");
+            Console.WriteLine($"{user.Username} compro: {game.Title}");
         }
         
         public void Delete(Purchase purchase)
@@ -77,7 +77,6 @@ namespace Service
                 throw new NotFoundException("Purchase");
             }
             PurchaseRepository.Remove(aPurchase);
-            Console.WriteLine($"Usuario {user.Username} desinstalo el juego {game.Title}");
         }
 
         public void Delete(string purchaseLine)
@@ -91,7 +90,7 @@ namespace Service
                 throw new NotFoundException("Purchase");
             }
             PurchaseRepository.Remove(purchase);
-            Console.WriteLine($"Usuario {user.Username} desinstalo el juego {game.Title}");
+            Console.WriteLine($"{user.Username} desinstalo: {game.Title}");
         }
     }
 }
