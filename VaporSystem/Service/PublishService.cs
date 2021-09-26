@@ -48,6 +48,7 @@ namespace Service
         public void Save(string publishLine)
         {
             string[] attributes = publishLine.Split("&");
+            _validator.CheckAttributesAreEmpty(attributes);
             User user = UserService.Instance.Get(attributes[0]);
             Game game = GameService.Instance.Save(attributes[1]);
             Publish input = new Publish()
@@ -65,6 +66,7 @@ namespace Service
         public void Delete(string publishLine)
         {
             string[] attributes = publishLine.Split("&");
+            _validator.CheckAttributesAreEmpty(attributes);
             User user = UserService.Instance.Get(attributes[0]);
             Game game = GameService.Instance.Get(attributes[1]);
             var publish = PublishRepository.Get(p => p.Game.Equals(game) && p.User.Equals(user));
@@ -96,6 +98,7 @@ namespace Service
         public void Update(string publishLine)
         {
             string[] attributes = publishLine.Split("&");
+            _validator.CheckAttributesAreEmpty(attributes);
             GameService.Instance.Update(attributes[1]);
         }
     }

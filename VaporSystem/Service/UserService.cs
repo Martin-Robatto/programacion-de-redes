@@ -36,6 +36,7 @@ namespace Service
         public string Register(string userLine)
         {
             string[] attributes = userLine.Split("#");
+            _validator.CheckAttributesAreEmpty(attributes);
             User input = new User()
             {
                 Id = Guid.NewGuid(),
@@ -51,6 +52,7 @@ namespace Service
         public string LogIn(string userLine)
         {
             string[] attributes = userLine.Split("#");
+            _validator.CheckAttributesAreEmpty(attributes);
             User input = new User()
             {
                 Username = attributes[0],

@@ -53,9 +53,11 @@ namespace Service
         public void Save(string reviewLine)
         {
             string[] attributes = reviewLine.Split("&");
+            _validator.CheckAttributesAreEmpty(attributes);
             User user = UserService.Instance.Get(attributes[0]);
             Game game = GameService.Instance.Get(attributes[1]);
             string[] reviewAttributes = attributes[2].Split("#");
+            _validator.CheckAttributesAreEmpty(reviewAttributes);
             int rate = Int32.Parse(reviewAttributes[0]);
             Review input = new Review()
             {
@@ -85,6 +87,7 @@ namespace Service
         public void Delete(string reviewLine)
         {
             string[] attributes = reviewLine.Split("&");
+            _validator.CheckAttributesAreEmpty(attributes);
             User user = UserService.Instance.Get(attributes[0]);
             Game game = GameService.Instance.Get(attributes[1]);
             var review = ReviewRepository.Get(r => r.Game.Equals(game) && r.User.Equals(user));
@@ -113,9 +116,11 @@ namespace Service
         public void Update(string reviewLine)
         {
             string[] attributes = reviewLine.Split("&");
+            _validator.CheckAttributesAreEmpty(attributes);
             User user = UserService.Instance.Get(attributes[0]);
             Game game = GameService.Instance.Get(attributes[1]);
             string[] reviewAttributes = attributes[2].Split("#");
+            _validator.CheckAttributesAreEmpty(reviewAttributes);
             int rate = Int32.Parse(reviewAttributes[0]);
             string comment = reviewAttributes[1];
             Review input = new Review()

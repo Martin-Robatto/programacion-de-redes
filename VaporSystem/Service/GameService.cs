@@ -57,6 +57,7 @@ namespace Service
             IEnumerable<Game> games = new List<Game>();
             string gamesLine = string.Empty;
             string[] attributes = titleLine.Split("&");
+            _validator.CheckAttributesAreEmpty(attributes);
             games = GetAll(g => g.Title.Equals(attributes[1]));
             gamesLine = FullFormat(games);
             return gamesLine;
@@ -67,6 +68,7 @@ namespace Service
             IEnumerable<Game> games = new List<Game>();
             string gamesLine = string.Empty;
             string[] attributes = categoryLine.Split("&");
+            _validator.CheckAttributesAreEmpty(attributes);
             games = GetAll(g => g.Genre.Equals(attributes[1]));
             gamesLine = FullFormat(games);
             return gamesLine;
@@ -77,6 +79,7 @@ namespace Service
             IEnumerable<Game> games = new List<Game>();
             string gamesLine = string.Empty;
             string[] attributes = rateLine.Split("&");
+            _validator.CheckAttributesAreEmpty(attributes);
             float rate = float.Parse(attributes[1]);
             games = GetAll(g => g.Rate.Equals(rate));
             gamesLine = FullFormat(games);
@@ -118,6 +121,7 @@ namespace Service
         public Game Save(string gameLine)
         {
             string[] attributes = gameLine.Split("#");
+            _validator.CheckAttributesAreEmpty(attributes);
             Game input = new Game()
             {
                 Id = Guid.NewGuid(),
@@ -143,6 +147,7 @@ namespace Service
         public void Update(string gameLine)
         {
             string[] attributes = gameLine.Split("#");
+            _validator.CheckAttributesAreEmpty(attributes);
             var game = Get(attributes[0]);
             game.Genre = attributes[1];
             game.Synopsis = attributes[2];

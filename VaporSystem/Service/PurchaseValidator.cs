@@ -24,6 +24,17 @@ namespace Service
             }
         }
         
+        public void CheckAttributesAreEmpty(string[] attributes)
+        {
+            foreach (var attribute in attributes)
+            {
+                if (string.IsNullOrEmpty(attribute))
+                {
+                    throw new InvalidInputException("empty attribute");
+                }
+            }
+        }
+        
         public void CheckPurchaseAlreadyExists(Purchase input)
         {
             var purchase = PurchaseRepository.Get(p => p.Equals(input));

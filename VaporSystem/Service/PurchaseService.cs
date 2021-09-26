@@ -51,6 +51,7 @@ namespace Service
         public void Save(string purchaseLine)
         {
             string[] attributes = purchaseLine.Split("&");
+            _validator.CheckAttributesAreEmpty(attributes);
             User user = UserService.Instance.Get(attributes[0]);
             Game game = GameService.Instance.Get(attributes[1]);
             Purchase input = new Purchase()
@@ -77,6 +78,7 @@ namespace Service
         public void Delete(string purchaseLine)
         {
             string[] attributes = purchaseLine.Split("&");
+            _validator.CheckAttributesAreEmpty(attributes);
             User user = UserService.Instance.Get(attributes[0]);
             Game game = GameService.Instance.Get(attributes[1]);
             var purchase = PurchaseRepository.Get(p => p.Game.Equals(game) && p.User.Equals(user));

@@ -24,6 +24,17 @@ namespace Service
             }
         }
         
+        public void CheckAttributesAreEmpty(string[] attributes)
+        {
+            foreach (var attribute in attributes)
+            {
+                if (string.IsNullOrEmpty(attribute))
+                {
+                    throw new InvalidInputException("empty attribute");
+                }
+            }
+        }
+        
         public void CheckReviewAlreadyExists(Review input)
         {
             var review = ReviewRepository.Get(r => r.Equals(input));

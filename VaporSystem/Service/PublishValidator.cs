@@ -22,5 +22,16 @@ namespace Service
                 throw new NotFoundException("Publishs");
             }
         }
+        
+        public void CheckAttributesAreEmpty(string[] attributes)
+        {
+            foreach (var attribute in attributes)
+            {
+                if (string.IsNullOrEmpty(attribute))
+                {
+                    throw new InvalidInputException("empty attribute");
+                }
+            }
+        }
     }
 }
