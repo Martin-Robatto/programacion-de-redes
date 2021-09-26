@@ -25,5 +25,6 @@
         public const int POST_REVIEW = 31;
         public const int DELETE_REVIEW = 32;
         public const int PUT_REVIEW = 33;
+        public const int GET_REVIEWS_BY_GAME = 36;
     }
 }

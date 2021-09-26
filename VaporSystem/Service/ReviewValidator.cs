@@ -34,6 +34,14 @@ namespace Service
                 }
             }
         }
+
+        public void CheckRateIsInRange(int rate)
+        {
+            if (rate < 1 || rate > 5)
+            {
+                throw new InvalidInputException("rate");
+            }
+        }
         
         public void CheckReviewAlreadyExists(Review input)
         {

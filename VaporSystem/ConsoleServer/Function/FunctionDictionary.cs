@@ -21,6 +21,7 @@ namespace ConsoleServer.Function
             commands.Add(FunctionConstants.POST_REVIEW, new PostReviewFunction());
             commands.Add(FunctionConstants.DELETE_REVIEW, new DeleteReviewFunction());
             commands.Add(FunctionConstants.GET_REVIEWS_BY_USER, new GetReviewsByUserFunction());
+            commands.Add(FunctionConstants.GET_REVIEWS_BY_GAME, new GetReviewsByGameFunction());
             commands.Add(FunctionConstants.DELETE_PURCHASE, new DeletePurchaseFunction());
             commands.Add(FunctionConstants.DELETE_PUBLISH, new DeletePublishFunction());
             commands.Add(FunctionConstants.GET_GAME_BY_TITLE, new GetGameByTitleFunction());

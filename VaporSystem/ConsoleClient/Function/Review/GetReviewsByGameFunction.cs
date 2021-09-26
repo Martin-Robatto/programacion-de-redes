@@ -4,14 +4,17 @@ using Protocol;
 
 namespace ConsoleClient.Function.Review
 {
-    public class GetReviewsByUserFunction : FunctionTemplate
+    public class GetReviewsByGameFunction : FunctionTemplate
     {
-        public const string NAME = "Tus Reseñas";
+        public const string NAME = "Reseñas de juego";
         
         public override DataPacket BuildRequest(string session)
         {
-            var message = session;
-            var header = new Header(HeaderConstants.REQUEST, FunctionConstants.GET_REVIEWS_BY_USER, message.Length);
+            Console.WriteLine("Ingrese el titulo: ");
+            var title = Console.ReadLine();
+
+            var message = $"{session}&{title}";
+            var header = new Header(HeaderConstants.REQUEST, FunctionConstants.GET_REVIEWS_BY_GAME, message.Length);
             return new DataPacket()
             {
                 Header = header,
@@ -39,7 +42,7 @@ namespace ConsoleClient.Function.Review
             }
         }
 
-        public GetReviewsByUserFunction()
+        public GetReviewsByGameFunction()
         {
             base.Name = NAME;
         }

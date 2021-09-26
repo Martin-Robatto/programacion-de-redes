@@ -65,6 +65,7 @@ namespace ConsoleClient.Function
         {
             var commands = new Dictionary<int, IClientFunction>();
             commands.Add(FunctionConstants.GET_REVIEWS_BY_USER, new GetReviewsByUserFunction());
+            commands.Add(FunctionConstants.GET_REVIEWS_BY_GAME, new GetReviewsByGameFunction());
             commands.Add(FunctionConstants.POST_REVIEW, new PostReviewFunction());
             commands.Add(FunctionConstants.DELETE_REVIEW, new DeleteReviewFunction());
             commands.Add(FunctionConstants.PUT_REVIEW, new PutReviewFunction());

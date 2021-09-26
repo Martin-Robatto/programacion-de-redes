@@ -12,7 +12,7 @@ namespace ConsoleClient.Function.Review
         {
             Console.WriteLine("Ingrese el titulo: ");
             var title = Console.ReadLine();
-            Console.WriteLine("Ingrese la calificacion: ");
+            Console.WriteLine("Ingrese la calificacion [1-5]: ");
             var rate = Console.ReadLine();
             Console.WriteLine("Ingrese el comentario: ");
             var comment = Console.ReadLine();

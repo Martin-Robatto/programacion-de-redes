@@ -6,16 +6,16 @@ using Service;
 
 namespace ConsoleServer.Function.Review
 {
-    public class GetReviewsByUserFunction : FunctionTemplate
+    public class GetReviewsByGameFunction : FunctionTemplate
     {
         public override ResponseData ProcessRequest(byte[] bufferData)
         {
             ResponseData response = new ResponseData();
-            response.Function = FunctionConstants.GET_REVIEWS_BY_USER;
+            response.Function = FunctionConstants.GET_REVIEWS_BY_GAME;
             try
             {
-                var userLine = Encoding.UTF8.GetString(bufferData);
-                response.Data = ReviewService.Instance.GetByUser(userLine);
+                var gameLine = Encoding.UTF8.GetString(bufferData);
+                response.Data = ReviewService.Instance.GetByGame(gameLine);
                 response.StatusCode = StatusCodeConstants.OK;
             }
             catch (AppException exception)

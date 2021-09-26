@@ -38,9 +38,23 @@ namespace Service
             return ReviewRepository.GetAll(filter);
         }
 
-        public string Get(string userLine)
+        public string GetByUser(string userLine)
         {
             IEnumerable<Review> userReviews = ReviewRepository.GetAll(r => r.User.Username.Equals(userLine));
+            _validator.CheckReviewsAreEmpty(userReviews);
+            string reviewsLine = string.Empty;
+            foreach (Review review in userReviews)
+            {
+                reviewsLine += "#" + $"{review.Game.Title} [{review.Rate}]: {review.Comment}";
+            }
+            return reviewsLine;
+        }
+        
+        public string GetByGame(string gameLine)
+        {
+            string[] attributes = gameLine.Split("&");
+            _validator.CheckAttributesAreEmpty(attributes);
+            IEnumerable<Review> userReviews = ReviewRepository.GetAll(r => r.Game.Title.Equals(attributes[1]));
             _validator.CheckReviewsAreEmpty(userReviews);
             string reviewsLine = string.Empty;
             foreach (Review review in userReviews)
@@ -59,6 +73,7 @@ namespace Service
             string[] reviewAttributes = attributes[2].Split("#");
             _validator.CheckAttributesAreEmpty(reviewAttributes);
             int rate = Int32.Parse(reviewAttributes[0]);
+            _validator.CheckRateIsInRange(rate);
             Review input = new Review()
             {
                 Id = Guid.NewGuid(),
@@ -122,6 +137,7 @@ namespace Service
             string[] reviewAttributes = attributes[2].Split("#");
             _validator.CheckAttributesAreEmpty(reviewAttributes);
             int rate = Int32.Parse(reviewAttributes[0]);
+            _validator.CheckRateIsInRange(rate);
             string comment = reviewAttributes[1];
             Review input = new Review()
             {
