@@ -12,6 +12,8 @@ namespace Service
     public class ReviewService
     {
         private static ReviewService _instance;
+        private ReviewValidator _validator;
+        
         public static ReviewService Instance
         {
             get { return GetInstance(); }
@@ -26,7 +28,10 @@ namespace Service
             return _instance;
         }
 
-        private ReviewService() { }
+        private ReviewService()
+        {
+            _validator = new ReviewValidator();
+        }
 
         public IEnumerable<Review> GetAll(Func<Review, bool> filter = null)
         {
@@ -36,10 +41,7 @@ namespace Service
         public string Get(string userLine)
         {
             IEnumerable<Review> userReviews = ReviewRepository.GetAll(r => r.User.Username.Equals(userLine));
-            if (!userReviews.Any())
-            {
-                throw new NotFoundException("Reviews");
-            }
+            _validator.CheckReviewsAreEmpty(userReviews);
             string reviewsLine = string.Empty;
             foreach (Review review in userReviews)
             {
@@ -64,11 +66,7 @@ namespace Service
                 Rate = rate,
                 Comment = reviewAttributes[1]
             };
-            var review = ReviewRepository.Get(r => r.Equals(input));
-            if (review is not null)
-            {
-                throw new AlreadyExistsException("Review");
-            }
+            _validator.CheckReviewAlreadyExists(input);
             ReviewRepository.Add(input);
             Console.WriteLine($"{user.Username} califico: {game.Title}");
             game.Rate = CalculateMediaRate(game);
@@ -79,10 +77,7 @@ namespace Service
             User user = review.User;
             Game game = review.Game;
             var aReview = ReviewRepository.Get(r => r.Equals(review));
-            if (aReview is null)
-            {
-                throw new NotFoundException("Review");
-            }
+            _validator.CheckReviewIsNull(aReview);
             ReviewRepository.Remove(aReview);
             game.Rate = CalculateMediaRate(game);
         }
@@ -93,15 +88,12 @@ namespace Service
             User user = UserService.Instance.Get(attributes[0]);
             Game game = GameService.Instance.Get(attributes[1]);
             var review = ReviewRepository.Get(r => r.Game.Equals(game) && r.User.Equals(user));
-            if (review is null)
-            {
-                throw new NotFoundException("Review");
-            }
+            _validator.CheckReviewIsNull(review);
             ReviewRepository.Remove(review);
             Console.WriteLine($"{user.Username} descalifico: {game.Title}");
             game.Rate = CalculateMediaRate(game);
         }
-        
+
         private float CalculateMediaRate(Game game)
         {
             var reviews = ReviewRepository.GetAll(r => r.Game.Equals(game));
@@ -134,10 +126,7 @@ namespace Service
                 Comment = comment
             };
             var review = ReviewRepository.Get(r => r.Equals(input));
-            if (review is null)
-            {
-                throw new NotFoundException("Review");
-            }
+            _validator.CheckReviewIsNull(review);
             ReviewRepository.Update(input);
             Console.WriteLine($"{user.Username} califico: {game.Title}");
             game.Rate = CalculateMediaRate(game);

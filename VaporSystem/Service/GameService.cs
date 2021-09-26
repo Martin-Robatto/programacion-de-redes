@@ -11,6 +11,8 @@ namespace Service
     public class GameService
     {
         private static GameService _instance;
+        private GameValidator _validator;
+        
         public static GameService Instance
         {
             get { return GetInstance(); }
@@ -25,25 +27,22 @@ namespace Service
             return _instance;
         }
 
-        private GameService() { }
+        private GameService()
+        {
+            _validator = new GameValidator();
+        }
         
         public Game Get(string title)
         {
             Game game = GameRepository.Get(g => g.Title.Equals(title));
-            if (game is null)
-            {
-                throw new NotFoundException("Game");
-            }
+            _validator.CheckGameIsNull(game);
             return game;
         }
-        
+
         public IEnumerable<Game> GetAll(Func<Game, bool> filter = null)
         {
             IEnumerable<Game> games = GameRepository.GetAll(filter);
-            if (!games.Any())
-            {
-                throw new NotFoundException("Games");
-            }
+            _validator.CheckGamesAreEmpty(games);
             return games;
         }
 
@@ -127,23 +126,16 @@ namespace Service
                 Synopsis = attributes[2],
                 Rate = 0
             };
-            var game = GameRepository.Get(g => g.Equals(input));
-            if (game is not null)
-            {
-                throw new AlreadyExistsException("Game");
-            }
+            _validator.CheckGameAlreadyExists(input);
             GameRepository.Add(input);
             Console.WriteLine($"Juego nuevo: {input.Title}");
             return input;
         }
-        
+
         public void Delete(Game game)
         {
             var aGame = GameRepository.Get(g => g.Equals(game));
-            if (aGame is null)
-            {
-                throw new NotFoundException("Game");
-            }
+            _validator.CheckGameIsNull(aGame);
             GameRepository.Remove(aGame);
             Console.WriteLine($"Juego eliminado: {game.Title}");
         }

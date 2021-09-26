@@ -12,6 +12,8 @@ namespace Service
     public class PublishService
     {
         private static PublishService _instance;
+        private PublishValidator _validator;
+        
         public static PublishService Instance
         {
             get { return GetInstance(); }
@@ -26,15 +28,15 @@ namespace Service
             return _instance;
         }
 
-        private PublishService() { }
+        private PublishService()
+        {
+            _validator = new PublishValidator();
+        }
 
         public string Get(string userLine)
         {
             IEnumerable<Publish> userPublishes = PublishRepository.GetAll(p => p.User.Username.Equals(userLine));
-            if (!userPublishes.Any())
-            {
-                throw new NotFoundException("Publishs");
-            }
+            _validator.CheckPublishesAreEmpty(userPublishes);
             string publishsLine = string.Empty;
             foreach (Publish publish in userPublishes)
             {
@@ -42,7 +44,7 @@ namespace Service
             }
             return publishsLine;
         }
-        
+
         public void Save(string publishLine)
         {
             string[] attributes = publishLine.Split("&");
@@ -66,24 +68,29 @@ namespace Service
             User user = UserService.Instance.Get(attributes[0]);
             Game game = GameService.Instance.Get(attributes[1]);
             var publish = PublishRepository.Get(p => p.Game.Equals(game) && p.User.Equals(user));
-            if (publish is null)
-            {
-                throw new NotFoundException("Purchase");
-            }
+            _validator.CheckPublishIsNull(publish);
+            DeleteReviews(game);
+            DeletePurchases(game);
+            GameService.Instance.Delete(game);
+            PublishRepository.Remove(publish);
+        }
 
+        private void DeleteReviews(Game game)
+        {
             IList<Review> reviews = ReviewService.Instance.GetAll(r => r.Game.Equals(game)).ToList();
             foreach (var review in reviews)
             {
                 ReviewService.Instance.Delete(review);
             }
-
+        }
+        
+        private void DeletePurchases(Game game)
+        {
             IList<Purchase> purchases = PurchaseService.Instance.GetAll(p => p.Game.Equals(game)).ToList();
             foreach (var purchase in purchases)
             {
                 PurchaseService.Instance.Delete(purchase);
             }
-            GameService.Instance.Delete(game);
-            PublishRepository.Remove(publish);
         }
 
         public void Update(string publishLine)

@@ -10,6 +10,8 @@ namespace Service
     public class PurchaseService
     {
         private static PurchaseService _instance;
+        private PurchaseValidator _validator;
+        
         public static PurchaseService Instance
         {
             get { return GetInstance(); }
@@ -24,7 +26,10 @@ namespace Service
             return _instance;
         }
 
-        private PurchaseService() { }
+        private PurchaseService()
+        {
+            _validator = new PurchaseValidator();
+        }
 
         public IEnumerable<Purchase> GetAll(Func<Purchase, bool> filter = null)
         {
@@ -34,10 +39,7 @@ namespace Service
         public string Get(string userLine)
         {
             IEnumerable<Purchase> userPurchases = PurchaseRepository.GetAll(p => p.User.Username.Equals(userLine));
-            if (!userPurchases.Any())
-            {
-                throw new NotFoundException("Purchases");
-            }
+            _validator.CheckPurchasesAreEmpty(userPurchases);
             string purchasesLine = string.Empty;
             foreach (Purchase purchase in userPurchases)
             {
@@ -58,24 +60,17 @@ namespace Service
                 Game = game,
                 Date = DateTime.Now
             };
-            var purchase = PurchaseRepository.Get(p => p.Equals(input));
-            if (purchase is not null)
-            {
-                throw new AlreadyExistsException("Purchase");
-            }
+            _validator.CheckPurchaseAlreadyExists(input);
             PurchaseRepository.Add(input);
             Console.WriteLine($"{user.Username} compro: {game.Title}");
         }
-        
+
         public void Delete(Purchase purchase)
         {
             User user = purchase.User;
             Game game = purchase.Game;
             var aPurchase = PurchaseRepository.Get(p => p.Equals(purchase));
-            if (aPurchase is null)
-            {
-                throw new NotFoundException("Purchase");
-            }
+            _validator.CheckPurchaseIsNull(aPurchase);
             PurchaseRepository.Remove(aPurchase);
         }
 
@@ -85,10 +80,7 @@ namespace Service
             User user = UserService.Instance.Get(attributes[0]);
             Game game = GameService.Instance.Get(attributes[1]);
             var purchase = PurchaseRepository.Get(p => p.Game.Equals(game) && p.User.Equals(user));
-            if (purchase is null)
-            {
-                throw new NotFoundException("Purchase");
-            }
+            _validator.CheckPurchaseIsNull(purchase);
             PurchaseRepository.Remove(purchase);
             Console.WriteLine($"{user.Username} desinstalo: {game.Title}");
         }

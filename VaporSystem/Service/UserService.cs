@@ -12,6 +12,8 @@ namespace Service
     public class UserService
     {
         private static UserService _instance;
+        private UserValidator _validator;
+        
         public static UserService Instance
         {
             get { return GetInstance(); }
@@ -25,8 +27,11 @@ namespace Service
             }
             return _instance;
         }
-        
-        private UserService() { }
+
+        private UserService()
+        {
+            _validator = new UserValidator();
+        }
 
         public string Register(string userLine)
         {
@@ -37,11 +42,7 @@ namespace Service
                 Username = attributes[0],
                 Password = attributes[1]
             };
-            var user = UserRepository.Get(u => u.Equals(input));
-            if (user is not null)
-            {
-                throw new AlreadyExistsException("User");
-            }
+            _validator.CheckUserAlreadyExists(input);
             UserRepository.Add(input);
             Console.WriteLine($"Usuario nuevo: {input.Username}");
             return input.Username;
@@ -55,12 +56,7 @@ namespace Service
                 Username = attributes[0],
                 Password = attributes[1]
             };
-            var user = UserRepository.Get(u => u.Username.Equals(input.Username) 
-                                                  && u.Password.Equals(input.Password));
-            if (user is null)
-            {
-                throw new InvalidInputException("username or password");
-            }
+            _validator.CheckCredentials(input);
             Console.WriteLine($"Usuario conectado: {input.Username}");
             return input.Username;
         }
@@ -68,10 +64,7 @@ namespace Service
         public User Get(string username)
         {
             User user = UserRepository.Get(u => u.Username.Equals(username));
-            if (user is null)
-            {
-                throw new NotFoundException("User");
-            }
+            _validator.CheckUserIsNull(user);
             return user;
         }
     }
