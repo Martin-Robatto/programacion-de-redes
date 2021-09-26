@@ -4,7 +4,6 @@ using System.Net;
 using System.Net.Sockets;
 using ConsoleClient.Function;
 using FunctionInterface;
-using Protocol;
 using SettingsLogic;
 using SettingsLogic.Interface;
 
@@ -14,7 +13,7 @@ namespace ConsoleClient
     {
         public static bool Exit { get; set; }
         private static string _actualSession = string.Empty;
-        private static Dictionary<int, IClientFunction> _functions;
+        private static Dictionary<int, IClientFunction> _actualFunctions;
         private static readonly ISettingsManager _settingsManager = new SettingsManager();
 
         public static void Run()
@@ -28,11 +27,15 @@ namespace ConsoleClient
                 {
                     if (String.IsNullOrEmpty(_actualSession))
                     {
-                        ShowAccessFunctions(networkStream);
+                        _actualFunctions = FunctionDictionary.LogIn();
                     }
-                    else
+                    ClientDisplay.Menu(_actualFunctions);
+                    var userInput = Console.ReadLine();
+                    int input = int.TryParse(userInput, out input) ? input : 1000;
+                    if (_actualFunctions.ContainsKey(input))
                     {
-                        ShowMainFunctions(networkStream);
+                        var command = _actualFunctions[input];
+                        command.Execute(networkStream, session: _actualSession);
                     }
                     ClientDisplay.Continue();
                 }
@@ -65,37 +68,16 @@ namespace ConsoleClient
             tcpClient.Connect(ipEndPoint);
             ClientDisplay.Connected();
         }
-        
-        private static void ShowAccessFunctions(NetworkStream networkStream)
-        {
-            ClientDisplay.LoginMenu();
-            var userInput = Console.ReadLine();
-            int input = int.TryParse(userInput, out input) ? input : 1000;
-            if (FunctionDictionary.NoRequiresCredentials().ContainsKey(input))
-            {
-                _functions = FunctionDictionary.NoRequiresCredentials();
-                var command = _functions[input];
-                command.Execute(networkStream, session: _actualSession);
-            }
-        }
 
-        public static void KeepActualSession(string user)
+        public static void SetActualSession(string user)
         {
             _actualSession = user;
+            SetActualFunctions(FunctionDictionary.Main()); 
         }
-
-        private static void ShowMainFunctions(NetworkStream networkStream)
+        
+        public static void SetActualFunctions(Dictionary<int, IClientFunction> functions)
         {
-            ClientDisplay.MainMenu();
-            var userInput = Console.ReadLine();
-            int input = int.TryParse(userInput, out input) ? input : 1000;
-            if (FunctionDictionary.RequiresCredentials().ContainsKey(input))
-            {
-                _functions = FunctionDictionary.RequiresCredentials();
-                var command = _functions[input];
-                command.Execute(networkStream, session: _actualSession);
-            }
+            _actualFunctions = functions;
         }
-
     }
 }

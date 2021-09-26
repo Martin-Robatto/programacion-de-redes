@@ -1,21 +1,24 @@
 ﻿using System;
-using System.Net;
-using System.Net.Sockets;
 using System.Text;
 using Protocol;
-using SocketLogic;
 
 namespace ConsoleClient.Function
 {
-    public class MessageFunction : FunctionTemplate
+    public class PutPublishFunction : FunctionTemplate
     {
-        public const string NAME = "Mensaje";
+        public const string NAME = "Modificar juego";
         
         public override DataPacket BuildRequest(string session)
         {
-            Console.WriteLine("Ingrese el mensaje:");
-            var message = Console.ReadLine();
-            var header = new Header(HeaderConstants.REQUEST, FunctionConstants.MESSAGE, message.Length);
+            Console.WriteLine("Ingrese el titulo: ");
+            var title = Console.ReadLine();
+            Console.WriteLine("Ingrese el nuevo genero: ");
+            var genre = Console.ReadLine();
+            Console.WriteLine("Ingrese la nueva sinopsis: ");
+            var synopsis = Console.ReadLine();
+
+            var message = $"{session}&{title}#{genre}#{synopsis}";
+            var header = new Header(HeaderConstants.REQUEST, FunctionConstants.PUT_PUBLISH, message.Length);
             return new DataPacket()
             {
                 Header = header,
@@ -29,7 +32,7 @@ namespace ConsoleClient.Function
             var data = Encoding.UTF8.GetString(bufferData, HeaderConstants.STATUS_CODE_LENGTH, bufferData.Length - HeaderConstants.COMMAND_LENGTH - 1);
             if (statusCode == StatusCodeConstants.OK)
             {
-                Console.WriteLine("Mensaje recibido exitosamente");
+                Console.WriteLine("Juego modificado exitosamente");
             }
             else
             {
@@ -37,7 +40,7 @@ namespace ConsoleClient.Function
             }
         }
 
-        public MessageFunction()
+        public PutPublishFunction()
         {
             base.Name = NAME;
         }

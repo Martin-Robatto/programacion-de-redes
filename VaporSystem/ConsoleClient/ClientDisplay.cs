@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using ConsoleClient.Function;
+using FunctionInterface;
 
 namespace ConsoleClient
 {
@@ -13,26 +15,11 @@ namespace ConsoleClient
             }
         }
         
-        public static void LoginMenu()
+        public static void Menu(Dictionary<int, IClientFunction> functions)
         {
             ClearConsole();
             Console.WriteLine("VAPOR");
             Console.WriteLine("------------------------------");
-            var functions = FunctionDictionary.NoRequiresCredentials();
-            foreach (var function in functions)
-            {
-                Console.WriteLine($"{function.Key}) {function.Value.Name}");
-            }
-            Console.WriteLine();
-            Console.WriteLine("Ingrese su opcion: ");
-        }
-
-        public static void MainMenu()
-        {
-            ClearConsole();
-            Console.WriteLine("VAPOR");
-            Console.WriteLine("------------------------------");
-            var functions = FunctionDictionary.RequiresCredentials();
             foreach (var function in functions)
             {
                 Console.WriteLine($"{function.Key}) {function.Value.Name}");

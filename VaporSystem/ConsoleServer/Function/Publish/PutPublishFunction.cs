@@ -1,21 +1,21 @@
 ﻿using System;
-using System.Net.Sockets;
 using System.Text;
 using Exceptions;
 using Protocol;
-using SocketLogic;
+using Service;
 
 namespace ConsoleServer.Function
 {
-    public class MessageFunction : FunctionTemplate
+    public class PutPublishFunction : FunctionTemplate
     {
         public override ResponseData ProcessRequest(byte[] bufferData)
         {
             ResponseData response = new ResponseData();
-            response.Function = FunctionConstants.MESSAGE;
+            response.Function = FunctionConstants.PUT_PUBLISH;
             try
             {
-                Console.WriteLine("Mensaje: " + Encoding.UTF8.GetString(bufferData));
+                var gameLine = Encoding.UTF8.GetString(bufferData);
+                PublishService.Instance.Update(gameLine);
                 response.StatusCode = StatusCodeConstants.OK;
             }
             catch (AppException exception)

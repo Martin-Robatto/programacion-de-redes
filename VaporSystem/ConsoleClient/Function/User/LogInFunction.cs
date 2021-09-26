@@ -32,7 +32,7 @@ namespace ConsoleClient.Function
             if (statusCode == StatusCodeConstants.OK)
             {
                 Console.WriteLine("Usuario conectado exitosamente");
-                ClientHandler.KeepActualSession(data);   
+                ClientHandler.SetActualSession(data);   
             }
             else
             {
