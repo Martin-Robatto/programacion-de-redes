@@ -111,3 +111,5 @@ C:\Users\konop\Desktop\programacion-de-redes\VaporSystem\ConsoleClient\obj\Debug
 C:\Users\konop\Desktop\programacion-de-redes\VaporSystem\ConsoleClient\obj\Debug\net5.0\ref\ConsoleClient.dll
 C:\Users\konop\Desktop\programacion-de-redes\VaporSystem\ConsoleClient\obj\Debug\net5.0\ConsoleClient.pdb
 C:\Users\konop\Desktop\programacion-de-redes\VaporSystem\ConsoleClient\obj\Debug\net5.0\ConsoleClient.genruntimeconfig.cache
+C:\Users\konop\Desktop\programacion-de-redes\VaporSystem\ConsoleClient\bin\Debug\net5.0\FileLogic.dll
+C:\Users\konop\Desktop\programacion-de-redes\VaporSystem\ConsoleClient\bin\Debug\net5.0\FileLogic.pdb

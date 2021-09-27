@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using ConsoleServer.Function;
+using ConsoleServer.Function.File;
 using ConsoleServer.Function.Review;
 using Protocol;
 
@@ -28,6 +28,7 @@ namespace ConsoleServer.Function
             commands.Add(FunctionConstants.GET_GAME_BY_RATE, new GetGameByRateFunction());
             commands.Add(FunctionConstants.PUT_REVIEW, new PutReviewFunction());
             commands.Add(FunctionConstants.PUT_PUBLISH, new PutPublishFunction());
+            commands.Add(FunctionConstants.POST_FILE, new PostFileFunction());
             return commands;
         }
     }

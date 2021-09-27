@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Net.Sockets;
 using System.Text;
 using Protocol;
+using SocketLogic;
 
 namespace ConsoleClient.Function
 {
@@ -36,10 +38,18 @@ namespace ConsoleClient.Function
                 {
                     var attributes = game.Split("#");
                     Console.WriteLine();
-                    Console.WriteLine($"Titulo: {attributes[0]}");
-                    Console.WriteLine($"Genero: {attributes[1]}");
-                    Console.WriteLine($"Sinopsis: {attributes[2]}");
-                    Console.WriteLine($"Calificacion: {attributes[3]}");
+                    Console.WriteLine($"Titulo: {attributes[2]}");
+                    Console.WriteLine($"Genero: {attributes[3]}");
+                    Console.WriteLine($"Sinopsis: {attributes[4]}");
+                    Console.WriteLine($"Calificacion: {attributes[5]}");
+                    long fileSize = long.Parse(attributes[1]);
+                    if (fileSize > 0)
+                    {
+                        string[] filePathAttributes = attributes[0].Split(".");
+                        string fileExtension = filePathAttributes[filePathAttributes.Length-1];
+                        string fileName = $@"C:\VAPOR\CLIENT\{attributes[2]}.{fileExtension}";
+                        NetworkStreamManager.DownloadFile(base.networkStream, fileSize, fileName);
+                    }
                 }
             }
             else

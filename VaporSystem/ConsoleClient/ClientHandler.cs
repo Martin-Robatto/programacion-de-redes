@@ -13,31 +13,31 @@ namespace ConsoleClient
 {
     public class ClientHandler
     {
-        public static bool Exit { get; set; }
+        private static bool _exit;
         private static bool _connected;
+        private static TcpClient _tcpClient;
         private static string _actualSession = string.Empty;
         private static Dictionary<int, IClientFunction> _actualFunctions;
         private static readonly ISettingsManager _settingsManager = new SettingsManager();
 
         public static void Run()
         {
-            Exit = false;
+            _exit = false;
             _connected = false;
-            while (!_connected && !Exit)
+            while (!_connected && !_exit)
             {
                 try
                 {
                     ClientDisplay.ClearConsole();
-                    var tcpClient = Initialize();
-                    Connect(tcpClient);
-                    using (var networkStream = tcpClient.GetStream())
+                    Initialize();
+                    Connect();
+                    using (var networkStream = _tcpClient.GetStream())
                     {
-                        while (!Exit)
+                        while (!_exit)
                         {
                             DisplayServerUpMenu(networkStream);
                         }
                     }
-                    tcpClient.Close();
                 }
                 catch (IOException)
                 {
@@ -54,13 +54,12 @@ namespace ConsoleClient
             }
         }
 
-        private static TcpClient Initialize()
+        private static void Initialize()
         {
             var clientIpAddress = _settingsManager.ReadSetting(ClientConfig.ClientIpConfigKey);
             var clientPort = GetPort();
             var ipEndPoint = new IPEndPoint(IPAddress.Parse(clientIpAddress), clientPort);
-            var tcpClient = new TcpClient(ipEndPoint);
-            return tcpClient;
+            _tcpClient = new TcpClient(ipEndPoint);
         }
 
         private static int GetPort()
@@ -70,14 +69,15 @@ namespace ConsoleClient
             return port;
         }
         
-        private static void Connect(TcpClient tcpClient)
+        private static void Connect()
         {
+            ClientDisplay.Connecting();
             var serverIpAddress = _settingsManager.ReadSetting(ClientConfig.ServerIpConfigKey);
             var serverPort = _settingsManager.ReadSetting(ClientConfig.ServerPortConfigKey);
             var ipEndPoint = new IPEndPoint(IPAddress.Parse(serverIpAddress), int.Parse(serverPort));
-            tcpClient.Connect(ipEndPoint);
-            ClientDisplay.Connected();
+            _tcpClient.Connect(ipEndPoint);
             _connected = true;
+            ClientDisplay.Connected();
         }
         
         private static void DisplayServerUpMenu(NetworkStream networkStream)
@@ -102,7 +102,6 @@ namespace ConsoleClient
         
         private static void DisplayServerDownMenu()
         {
-            ClientDisplay.ClearConsole();
             ClientDisplay.ConnectionInterrupted();
             ClientDisplay.Menu(_actualFunctions);
             ClientDisplay.Continue();
@@ -114,6 +113,7 @@ namespace ConsoleClient
                 var command = _actualFunctions[input];
                 command.Execute();
             }
+            ClientDisplay.ClearConsole();
         }
 
         public static void SetActualSession(string user)
@@ -125,6 +125,12 @@ namespace ConsoleClient
         public static void SetActualFunctions(Dictionary<int, IClientFunction> functions)
         {
             _actualFunctions = functions;
+        }
+
+        public static void ShutDown()
+        {
+            _tcpClient.Close();
+            _exit = true;
         }
     }
 }

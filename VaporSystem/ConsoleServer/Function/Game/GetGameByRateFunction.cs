@@ -3,6 +3,7 @@ using System.Text;
 using Exceptions;
 using Protocol;
 using Service;
+using SocketLogic;
 
 namespace ConsoleServer.Function
 {
@@ -29,6 +30,22 @@ namespace ConsoleServer.Function
                 response.StatusCode = StatusCodeConstants.SERVER_ERROR;
             }
             return response;
+        }
+        
+        public override void SendResponse(DataPacket dataPacket)
+        {
+            NetworkStreamManager.Send(networkStream, dataPacket);
+            var games = dataPacket.Payload.Split("&");
+            foreach (String game in games)
+            {
+                var attributes = game.Split("#");
+                string filePath = attributes[0];
+                long fileSize = long.Parse(attributes[1]);
+                if (fileSize > 0)
+                {
+                    NetworkStreamManager.UploadFile(base.networkStream, fileSize, filePath);
+                }
+            }
         }
     }
 }

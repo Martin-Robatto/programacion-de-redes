@@ -11,6 +11,7 @@ namespace Domain
         public float Rate { get; set; }
         public string Synopsis { get; set; }
         public string Picture { get; set; }
+        public long FileSize { get; set; }
 
         public Game() { }
         

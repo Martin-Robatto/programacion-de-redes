@@ -5,14 +5,21 @@ using SocketLogic;
 
 namespace ConsoleServer.Function
 {
-    public abstract class FunctionTemplate 
+    public abstract class FunctionTemplate
     {
+        protected NetworkStream networkStream;
         public void Execute(NetworkStream stream, Header header = null)
         {
-            var bufferData = SocketManager.Receive(stream, header.DataLength);
+            networkStream = stream;
+            var bufferData = ReceiveRequest(header);
             var response = ProcessRequest(bufferData);
             var dataPacket = BuildResponse(response);
-            SocketManager.Send(stream, dataPacket);
+            SendResponse(dataPacket);
+        }
+
+        public virtual byte[] ReceiveRequest(Header header)
+        {
+            return NetworkStreamManager.Receive(networkStream, header.DataLength);
         }
 
         public abstract ResponseData ProcessRequest(byte[] bufferData);
@@ -27,6 +34,11 @@ namespace ConsoleServer.Function
                 Payload = message,
                 StatusCode = responseData.StatusCode
             };
+        }
+        
+        public virtual void SendResponse(DataPacket dataPacket)
+        {
+            NetworkStreamManager.Send(networkStream, dataPacket);
         }
     }
 }

@@ -112,7 +112,7 @@ namespace Service
                 {
                     gamesLine += $"&";
                 }
-                gamesLine += $"{game.Title}#{game.Genre}#{game.Synopsis}#{game.Rate}";
+                gamesLine += $"{game.Picture}#{game.FileSize}#{game.Title}#{game.Genre}#{game.Synopsis}#{game.Rate}";
                 index++;
             }
             return gamesLine;
@@ -128,7 +128,9 @@ namespace Service
                 Title = attributes[0],
                 Genre = attributes[1],
                 Synopsis = attributes[2],
-                Rate = 0
+                Rate = 0,
+                Picture = string.Empty,
+                FileSize = 0
             };
             _validator.CheckGameAlreadyExists(input);
             GameRepository.Add(input);

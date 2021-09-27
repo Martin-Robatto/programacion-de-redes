@@ -81,7 +81,7 @@ namespace ConsoleServer
             {
                 while (isClientConnected && !_exit)
                 {
-                    var buffer = SocketManager.Receive(networkStream, HeaderConstants.HEADER_LENGTH);
+                    var buffer = NetworkStreamManager.Receive(networkStream, HeaderConstants.HEADER_LENGTH);
                     var header = new Header(buffer);
                     if (header.Command == FunctionConstants.EXIT)
                     {

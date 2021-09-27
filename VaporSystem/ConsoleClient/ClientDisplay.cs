@@ -25,42 +25,34 @@ namespace ConsoleClient
                 Console.WriteLine($"{function.Key}) {function.Value.Name}");
             }
         }
-
-        public static void ChooseOption()
-        {
-            Console.WriteLine();
-            Console.WriteLine("Ingrese su opcion: ");
-        }
-
-        public static void Starting(string clientIpAddress, int clientPort)
-        {
-            Console.WriteLine($"El cliente se inicializo en IP {clientIpAddress} y puerto {clientPort}");
-        }
-
-        public static void Connected()
-        {
-            Console.WriteLine("Conectado exitosamente al servidor");
-        }
         
         public static void Continue()
         {
             Console.WriteLine();
             Console.WriteLine("ENTER para continuar");
         }
-        
-        public static void Closing()
+
+        public static void ChooseOption()
         {
-            Console.WriteLine("El cliente se está cerrando ");
+            Console.WriteLine();
+            Console.WriteLine("Ingrese su opcion: ");
+        }
+        
+        public static void Connecting()
+        {
+            Console.WriteLine("Intentando conectarse al servidor");
+        }
+
+        public static void Connected()
+        {
+            ClearConsole();
+            Console.WriteLine("Conectado exitosamente al servidor");
         }
         
         public static void ConnectionInterrupted()
         {
+            ClearConsole();
             Console.WriteLine("El servidor está fuera de servicio");
-        }
-        
-        public static void Reconnecting()
-        {
-            Console.WriteLine("Intentando conectarse al servidor");
         }
     }
 }

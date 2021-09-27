@@ -6,6 +6,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\FileLogic\FileLogic.csproj" />
       <ProjectReference Include="..\FunctionInterface\FunctionInterface.csproj" />
       <ProjectReference Include="..\Protocol\Protocol.csproj" />
       <ProjectReference Include="..\SettingsLogic\SettingsLogic.csproj" />

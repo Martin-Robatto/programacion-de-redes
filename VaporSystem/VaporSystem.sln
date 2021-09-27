@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FunctionInterface", "Functi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exceptions", "Exceptions\Exceptions.csproj", "{ECF257FE-4D71-4CC6-B4CD-509A18207DD9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileLogic", "FileLogic\FileLogic.csproj", "{7CA76186-2870-4D9F-8AE3-91859A1B23C9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +71,10 @@ Global
 		{ECF257FE-4D71-4CC6-B4CD-509A18207DD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ECF257FE-4D71-4CC6-B4CD-509A18207DD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ECF257FE-4D71-4CC6-B4CD-509A18207DD9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7CA76186-2870-4D9F-8AE3-91859A1B23C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CA76186-2870-4D9F-8AE3-91859A1B23C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CA76186-2870-4D9F-8AE3-91859A1B23C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CA76186-2870-4D9F-8AE3-91859A1B23C9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

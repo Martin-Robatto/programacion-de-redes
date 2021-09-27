@@ -99,6 +99,20 @@
           "bin/placeholder/Exceptions.dll": {}
         }
       },
+      "FileLogic/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "Exceptions": "1.0.0",
+          "Protocol": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/FileLogic.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/FileLogic.dll": {}
+        }
+      },
       "FunctionInterface/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
@@ -129,7 +143,9 @@
           "DataAccess": "1.0.0",
           "Domain": "1.0.0",
           "Exceptions": "1.0.0",
-          "Protocol": "1.0.0"
+          "FileLogic": "1.0.0",
+          "Protocol": "1.0.0",
+          "SocketLogic": "1.0.0"
         },
         "compile": {
           "bin/placeholder/Service.dll": {}
@@ -156,6 +172,7 @@
         "framework": ".NETCoreApp,Version=v5.0",
         "dependencies": {
           "Exceptions": "1.0.0",
+          "FileLogic": "1.0.0",
           "Protocol": "1.0.0"
         },
         "compile": {
@@ -406,6 +423,11 @@
       "type": "project",
       "path": "../Exceptions/Exceptions.csproj",
       "msbuildProject": "../Exceptions/Exceptions.csproj"
+    },
+    "FileLogic/1.0.0": {
+      "type": "project",
+      "path": "../FileLogic/FileLogic.csproj",
+      "msbuildProject": "../FileLogic/FileLogic.csproj"
     },
     "FunctionInterface/1.0.0": {
       "type": "project",

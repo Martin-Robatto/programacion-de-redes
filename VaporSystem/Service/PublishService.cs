@@ -1,11 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using DataAccess;
 using Domain;
 using Exceptions;
+using FileLogic;
+using Protocol;
+using SocketLogic;
 
 namespace Service
 {
@@ -61,6 +65,24 @@ namespace Service
             PublishRepository.Add(input);
             string purchaseLine = $"{user.Username}&{game.Title}";
             PurchaseService.Instance.Save(purchaseLine);
+        }
+        
+        public void DownloadPicture(NetworkStream stream, string publishLine)
+        {
+            string[] attributes = publishLine.Split("&");
+            _validator.CheckAttributesAreEmpty(attributes);
+            User user = UserService.Instance.Get(attributes[0]);
+            Game game = GameService.Instance.Get(attributes[1]);
+            
+            string[] fileAttributes = attributes[2].Split("#");
+            long fileSize = long.Parse(fileAttributes[2]);
+            string[] filePathAttributes = fileAttributes[1].Split(".");
+            string fileExtension = filePathAttributes[filePathAttributes.Length-1];
+            string fileName = $@"C:\VAPOR\SERVER\{game.Id}.{fileExtension}";
+            game.Picture = fileName;
+            game.FileSize = fileSize;
+            
+            NetworkStreamManager.DownloadFile(stream, fileSize, fileName);
         }
 
         public void Delete(string publishLine)
