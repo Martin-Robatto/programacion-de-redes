@@ -62,14 +62,5 @@ namespace DataAccess
                 Purchases.Remove(purchase);
             }
         }
-        
-        public static void Update(Purchase purchase)
-        {
-            lock (Purchases)
-            {
-                Purchase purchaseToUpdate = Purchases.FirstOrDefault(p => p.Equals(purchase));
-                purchaseToUpdate = purchase;
-            }
-        }
     }
 }

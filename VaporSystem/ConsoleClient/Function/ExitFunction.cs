@@ -4,30 +4,19 @@ using Protocol;
 
 namespace ConsoleClient.Function
 {
-    public class ExitFunction : FunctionTemplate
+    public class ExitFunction : IClientFunction
     {
         public const string NAME = "Salir";
 
-        public override DataPacket BuildRequest(string session)
+        public string Name { get; set; }
+        public void Execute(NetworkStream stream = null, string session = null)
         {
-            var message = string.Empty;
-            var header = new Header(HeaderConstants.REQUEST, FunctionConstants.EXIT, message.Length);
-            return new DataPacket()
-            {
-                Header = header,
-                Payload = message
-            };
-        }
-
-        public override void ProcessResponse(byte[] bufferData)
-        {
-            ClientDisplay.Closing();
             ClientHandler.Exit = true;
         }
-
+        
         public ExitFunction()
         {
-            base.Name = NAME;
+            Name = NAME;
         }
     }
 }

@@ -62,14 +62,5 @@ namespace DataAccess
                 Users.Remove(user);
             }
         }
-        
-        public static void Update(User user)
-        {
-            lock (Users)
-            {
-                User userToUpdate = Users.FirstOrDefault(u => u.Equals(user));
-                userToUpdate = user;
-            }
-        }
     }
 }

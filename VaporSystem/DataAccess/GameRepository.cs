@@ -63,15 +63,5 @@ namespace DataAccess
                 Games.Remove(game);
             }
         }
-        
-        public static void Update(Game game)
-        {
-            lock (Games)
-            {
-                Game gameToUpdate = Games.FirstOrDefault(g => g.Equals(game));
-                gameToUpdate.Genre = game.Genre;
-                gameToUpdate.Synopsis = game.Synopsis;
-            }
-        }
     }
 }

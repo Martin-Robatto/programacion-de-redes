@@ -25,15 +25,10 @@ namespace ConsoleClient.Function
         {
             try
             {
-                var bufferHeader = new byte[HeaderConstants.HEADER_LENGTH];
-                SocketManager.Receive(stream, HeaderConstants.HEADER_LENGTH, bufferHeader);
+                var bufferHeader = SocketManager.Receive(stream, HeaderConstants.HEADER_LENGTH);
                 var header = new Header(bufferHeader);
-                
-                var bufferData = new byte[header.DataLength];
-                SocketManager.Receive(stream, header.DataLength, bufferData);
-                
-                var bufferStatusCode = new byte[HeaderConstants.STATUS_CODE_LENGTH];
-                SocketManager.Receive(stream, HeaderConstants.STATUS_CODE_LENGTH, bufferStatusCode);
+                var bufferData = SocketManager.Receive(stream, header.DataLength);
+                var bufferStatusCode = SocketManager.Receive(stream, HeaderConstants.STATUS_CODE_LENGTH);
                 
                 var bufferToReturn = new byte[header.DataLength + HeaderConstants.STATUS_CODE_LENGTH];
                 Array.Copy(bufferStatusCode, 0, bufferToReturn, 0, HeaderConstants.STATUS_CODE_LENGTH);

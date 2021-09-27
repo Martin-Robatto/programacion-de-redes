@@ -146,12 +146,18 @@ namespace Service
 
         public void Update(string gameLine)
         {
-            string[] attributes = gameLine.Split("#");
+            string[] attributes = gameLine.Split("&");
             _validator.CheckAttributesAreEmpty(attributes);
-            var game = Get(attributes[0]);
-            game.Genre = attributes[1];
-            game.Synopsis = attributes[2];
-            GameRepository.Update(game);
+            string[] gameAttributes = attributes[2].Split("#");
+            _validator.CheckAttributesAreEmpty(gameAttributes);
+            var game = Get(attributes[1]);
+            if (!game.Title.Equals(gameAttributes[0]))
+            {
+                _validator.CheckGameAlreadyExists(game);
+            }
+            game.Title = gameAttributes[0];
+            game.Genre = gameAttributes[1];
+            game.Synopsis = gameAttributes[2];
             Console.WriteLine($"Juego modificado: {game.Title}");
         }
     }

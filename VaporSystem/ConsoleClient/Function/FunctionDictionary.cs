@@ -9,6 +9,13 @@ namespace ConsoleClient.Function
 {
     public class FunctionDictionary
     {
+        public static Dictionary<int, IClientFunction> NoConnection()
+        {
+            var commands = new Dictionary<int, IClientFunction>();
+            commands.Add(FunctionConstants.EXIT, new ExitFunction());
+            return commands;
+        }
+        
         public static Dictionary<int, IClientFunction> LogIn()
         {
             var commands = new Dictionary<int, IClientFunction>();

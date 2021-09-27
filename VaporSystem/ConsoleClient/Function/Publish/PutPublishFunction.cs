@@ -12,12 +12,14 @@ namespace ConsoleClient.Function
         {
             Console.WriteLine("Ingrese el titulo: ");
             var title = Console.ReadLine();
+            Console.WriteLine("Ingrese el nuevo titulo: ");
+            var newTitle = Console.ReadLine();
             Console.WriteLine("Ingrese el nuevo genero: ");
-            var genre = Console.ReadLine();
+            var newGenre = Console.ReadLine();
             Console.WriteLine("Ingrese la nueva sinopsis: ");
-            var synopsis = Console.ReadLine();
+            var newSynopsis = Console.ReadLine();
 
-            var message = $"{session}&{title}#{genre}#{synopsis}";
+            var message = $"{session}&{title}&{newTitle}#{newGenre}#{newSynopsis}";
             var header = new Header(HeaderConstants.REQUEST, FunctionConstants.PUT_PUBLISH, message.Length);
             return new DataPacket()
             {

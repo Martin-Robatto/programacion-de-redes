@@ -62,14 +62,5 @@ namespace DataAccess
                 Publishs.Remove(publish);
             }
         }
-        
-        public static void Update(Publish publish)
-        {
-            lock (Publishs)
-            {
-                Publish publishToUpdate = Publishs.FirstOrDefault(p => p.Equals(publish));
-                publishToUpdate = publish;
-            }
-        }
     }
 }

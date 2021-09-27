@@ -9,8 +9,7 @@ namespace ConsoleServer.Function
     {
         public void Execute(NetworkStream stream, Header header = null)
         {
-            var bufferData = new byte[header.DataLength];
-            SocketManager.Receive(stream, header.DataLength, bufferData);
+            var bufferData = SocketManager.Receive(stream, header.DataLength);
             var response = ProcessRequest(bufferData);
             var dataPacket = BuildResponse(response);
             SocketManager.Send(stream, dataPacket);

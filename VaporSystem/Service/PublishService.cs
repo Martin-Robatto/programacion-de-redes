@@ -97,9 +97,7 @@ namespace Service
 
         public void Update(string publishLine)
         {
-            string[] attributes = publishLine.Split("&");
-            _validator.CheckAttributesAreEmpty(attributes);
-            GameService.Instance.Update(attributes[1]);
+            GameService.Instance.Update(publishLine);
         }
     }
 }

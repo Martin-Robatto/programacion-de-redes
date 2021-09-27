@@ -24,8 +24,9 @@ namespace SocketLogic
             }
         }
 
-        public static void Receive(NetworkStream stream, int length, byte[] buffer)
+        public static byte[] Receive(NetworkStream stream, int length)
         {
+            byte[] buffer = new byte[length];
             var totalReceived = 0;
             while (totalReceived < length)
             {
@@ -36,6 +37,7 @@ namespace SocketLogic
                 }
                 totalReceived += received;
             }
+            return buffer;
         }
     }
 }

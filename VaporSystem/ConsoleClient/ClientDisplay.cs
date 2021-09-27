@@ -17,13 +17,17 @@ namespace ConsoleClient
         
         public static void Menu(Dictionary<int, IClientFunction> functions)
         {
-            ClearConsole();
+            Console.WriteLine();
             Console.WriteLine("VAPOR");
             Console.WriteLine("------------------------------");
             foreach (var function in functions)
             {
                 Console.WriteLine($"{function.Key}) {function.Value.Name}");
             }
+        }
+
+        public static void ChooseOption()
+        {
             Console.WriteLine();
             Console.WriteLine("Ingrese su opcion: ");
         }
@@ -42,12 +46,21 @@ namespace ConsoleClient
         {
             Console.WriteLine();
             Console.WriteLine("ENTER para continuar");
-            Console.ReadLine();
         }
         
         public static void Closing()
         {
             Console.WriteLine("El cliente se está cerrando ");
+        }
+        
+        public static void ConnectionInterrupted()
+        {
+            Console.WriteLine("El servidor está fuera de servicio");
+        }
+        
+        public static void Reconnecting()
+        {
+            Console.WriteLine("Intentando conectarse al servidor");
         }
     }
 }
