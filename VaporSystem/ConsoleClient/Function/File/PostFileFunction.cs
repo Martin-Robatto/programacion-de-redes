@@ -10,14 +10,12 @@ namespace ConsoleClient.Function.File
     public class PostFileFunction : FunctionTemplate
     {
         public const string NAME = "Publicar foto";
+        public string Title { get; set; }
         
-        public override DataPacket BuildRequest(string session)
+        public override DataPacket BuildRequest()
         {
-            Console.WriteLine("Ingrese el titulo: ");
-            var title = Console.ReadLine();
-
             var filePath = string.Empty;
-            while (!FileManager.FileExists(filePath))
+            while (!FileManager.FileExists(filePath) || !FileManager.IsValidExtension(filePath))
             {
                 Console.WriteLine("Ingrese la ruta de imagen: ");
                 filePath = Console.ReadLine();
@@ -25,7 +23,7 @@ namespace ConsoleClient.Function.File
             string fileName = FileManager.GetFileName(filePath);
             long fileSize = FileManager.GetFileSize(filePath);
             
-            var message = $"{session}&{title}&{fileName}#{filePath}#{fileSize}";
+            var message = $"{base.session}&{Title}&{fileName}#{filePath}#{fileSize}";
             var header = new Header(HeaderConstants.REQUEST, FunctionConstants.POST_FILE, message.Length);
 
             return new DataPacket()

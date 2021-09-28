@@ -8,7 +8,7 @@ namespace ConsoleClient.Function
     {
         public const string NAME = "Modificar juego";
         
-        public override DataPacket BuildRequest(string session)
+        public override DataPacket BuildRequest()
         {
             Console.WriteLine("Ingrese el titulo: ");
             var title = Console.ReadLine();
@@ -19,7 +19,7 @@ namespace ConsoleClient.Function
             Console.WriteLine("Ingrese la nueva sinopsis: ");
             var newSynopsis = Console.ReadLine();
 
-            var message = $"{session}&{title}&{newTitle}#{newGenre}#{newSynopsis}";
+            var message = $"{base.session}&{title}&{newTitle}#{newGenre}#{newSynopsis}";
             var header = new Header(HeaderConstants.REQUEST, FunctionConstants.PUT_PUBLISH, message.Length);
             return new DataPacket()
             {

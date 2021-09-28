@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using ConsoleClient.Function.File;
 using Protocol;
 using SocketLogic;
 
@@ -8,13 +9,14 @@ namespace ConsoleClient.Function
     public class GetGameByCategoryFunction : FunctionTemplate
     {
         public const string NAME = "Buscar Juegos por Genero";
+        private GetFileFunction _getFileFunction = new GetFileFunction();
 
-        public override DataPacket BuildRequest(string session)
+        public override DataPacket BuildRequest()
         {
             Console.WriteLine("Ingrese el genero: ");
             var genre = Console.ReadLine();
 
-            var message = $"{session}&{genre}";
+            var message = $"{base.session}&{genre}";
             var header = new Header(HeaderConstants.REQUEST, FunctionConstants.GET_GAME_BY_CATEGORY, message.Length);
             return new DataPacket()
             {
@@ -37,18 +39,12 @@ namespace ConsoleClient.Function
                 {
                     var attributes = game.Split("#");
                     Console.WriteLine();
-                    Console.WriteLine($"Titulo: {attributes[2]}");
-                    Console.WriteLine($"Genero: {attributes[3]}");
-                    Console.WriteLine($"Sinopsis: {attributes[4]}");
-                    Console.WriteLine($"Calificacion: {attributes[5]}");
-                    long fileSize = long.Parse(attributes[1]);
-                    if (fileSize > 0)
-                    {
-                        string[] filePathAttributes = attributes[0].Split(".");
-                        string fileExtension = filePathAttributes[filePathAttributes.Length-1];
-                        string fileName = $@"C:\VAPOR\CLIENT\{attributes[2]}.{fileExtension}";
-                        NetworkStreamManager.DownloadFile(base.networkStream, fileSize, fileName);
-                    }
+                    Console.WriteLine($"Titulo: {attributes[0]}");
+                    Console.WriteLine($"Genero: {attributes[1]}");
+                    Console.WriteLine($"Sinopsis: {attributes[2]}");
+                    Console.WriteLine($"Calificacion: {attributes[3]}");
+                    _getFileFunction.Title = attributes[0];
+                    _getFileFunction.Execute(base.networkStream, base.session);
                 }
             }
             else

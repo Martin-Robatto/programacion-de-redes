@@ -8,7 +8,7 @@ namespace ConsoleClient.Function
     {
         public const string NAME = "Publicaciones";
         
-        public override DataPacket BuildRequest(string session)
+        public override DataPacket BuildRequest()
         {
             var message = session;
             var header = new Header(HeaderConstants.REQUEST, FunctionConstants.GET_PUBLISHES_BY_USER, message.Length);

@@ -8,12 +8,12 @@ namespace ConsoleClient.Function.Review
     {
         public const string NAME = "Eliminar reseña";
         
-        public override DataPacket BuildRequest(string session)
+        public override DataPacket BuildRequest()
         {
             Console.WriteLine("Ingrese el titulo: ");
             var title = Console.ReadLine();
 
-            var message = $"{session}&{title}";
+            var message = $"{base.session}&{title}";
             var header = new Header(HeaderConstants.REQUEST, FunctionConstants.DELETE_REVIEW, message.Length);
             
             return new DataPacket()

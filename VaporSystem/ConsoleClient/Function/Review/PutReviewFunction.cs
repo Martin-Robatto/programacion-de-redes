@@ -8,7 +8,7 @@ namespace ConsoleClient.Function.Review
     {
         public const string NAME = "Modificar reseña";
         
-        public override DataPacket BuildRequest(string session)
+        public override DataPacket BuildRequest()
         {
             Console.WriteLine("Ingrese el titulo: ");
             var title = Console.ReadLine();
@@ -17,7 +17,7 @@ namespace ConsoleClient.Function.Review
             Console.WriteLine("Ingrese el nuevo comentario: ");
             var comment = Console.ReadLine();
 
-            var message = $"{session}&{title}&{rate}#{comment}";
+            var message = $"{base.session}&{title}&{rate}#{comment}";
             var header = new Header(HeaderConstants.REQUEST, FunctionConstants.PUT_REVIEW, message.Length);
             
             return new DataPacket()

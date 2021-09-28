@@ -13,7 +13,7 @@ namespace ConsoleServer.Function.File
         public override ResponseData ProcessRequest(byte[] bufferData)
         {
             ResponseData response = new ResponseData();
-            response.Function = FunctionConstants.POST_PUBLISH;
+            response.Function = FunctionConstants.POST_FILE;
             try
             {
                 var fileLine = Encoding.UTF8.GetString(bufferData);

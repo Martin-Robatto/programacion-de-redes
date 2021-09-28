@@ -11,17 +11,19 @@ namespace ConsoleClient.Function
     {
         public string Name { get; set; }
         protected NetworkStream networkStream;
+        protected string session;
 
         public void Execute(NetworkStream stream, string session = null)
         {
             networkStream = stream;
-            var dataPacket = BuildRequest(session);
+            this.session = session;
+            var dataPacket = BuildRequest();
             SendRequest(dataPacket);
             var bufferData = ReceiveResponse();
             ProcessResponse(bufferData);
         }
 
-        public abstract DataPacket BuildRequest(string session);
+        public abstract DataPacket BuildRequest();
         
         public virtual void SendRequest(DataPacket dataPacket)
         {

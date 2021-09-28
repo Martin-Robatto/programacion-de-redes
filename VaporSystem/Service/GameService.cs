@@ -3,8 +3,11 @@ using DataAccess;
 using Domain;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Sockets;
 using Exceptions;
+using FileLogic;
 using Protocol;
+using SocketLogic;
 
 namespace Service
 {
@@ -112,7 +115,7 @@ namespace Service
                 {
                     gamesLine += $"&";
                 }
-                gamesLine += $"{game.Picture}#{game.FileSize}#{game.Title}#{game.Genre}#{game.Synopsis}#{game.Rate}";
+                gamesLine += $"{game.Title}#{game.Genre}#{game.Synopsis}#{game.Rate}";
                 index++;
             }
             return gamesLine;
@@ -161,6 +164,17 @@ namespace Service
             game.Genre = gameAttributes[1];
             game.Synopsis = gameAttributes[2];
             Console.WriteLine($"Juego modificado: {game.Title}");
+        }
+
+        public string UploadPicture(string gameLine)
+        {
+            string[] attributes = gameLine.Split("&");
+            _validator.CheckAttributesAreEmpty(attributes);
+            Game game = Get(attributes[1]);
+            _validator.CheckGameWithoutPicture(game);
+            _validator.CheckGameWithInvalidPicture(game);
+            string fileLine = $"{game.Picture}#{game.FileSize}";
+            return fileLine;
         }
     }
 }

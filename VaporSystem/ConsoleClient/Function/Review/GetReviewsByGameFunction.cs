@@ -8,12 +8,12 @@ namespace ConsoleClient.Function.Review
     {
         public const string NAME = "Reseñas de juego";
         
-        public override DataPacket BuildRequest(string session)
+        public override DataPacket BuildRequest()
         {
             Console.WriteLine("Ingrese el titulo: ");
             var title = Console.ReadLine();
 
-            var message = $"{session}&{title}";
+            var message = $"{base.session}&{title}";
             var header = new Header(HeaderConstants.REQUEST, FunctionConstants.GET_REVIEWS_BY_GAME, message.Length);
             return new DataPacket()
             {

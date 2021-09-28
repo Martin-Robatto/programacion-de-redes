@@ -8,7 +8,7 @@ namespace ConsoleClient.Function
     {
         public const string NAME = "Iniciar sesion";
         
-        public override DataPacket BuildRequest(string session)
+        public override DataPacket BuildRequest()
         {
             Console.WriteLine("Ingrese el nombre: ");
             var username = Console.ReadLine();

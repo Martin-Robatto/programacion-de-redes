@@ -8,7 +8,7 @@ namespace ConsoleClient.Function.Review
     {
         public const string NAME = "Tus Reseñas";
         
-        public override DataPacket BuildRequest(string session)
+        public override DataPacket BuildRequest()
         {
             var message = session;
             var header = new Header(HeaderConstants.REQUEST, FunctionConstants.GET_REVIEWS_BY_USER, message.Length);

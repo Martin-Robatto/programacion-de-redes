@@ -29,6 +29,7 @@ namespace ConsoleServer.Function
             commands.Add(FunctionConstants.PUT_REVIEW, new PutReviewFunction());
             commands.Add(FunctionConstants.PUT_PUBLISH, new PutPublishFunction());
             commands.Add(FunctionConstants.POST_FILE, new PostFileFunction());
+            commands.Add(FunctionConstants.GET_FILE, new GetFileFunction());
             return commands;
         }
     }

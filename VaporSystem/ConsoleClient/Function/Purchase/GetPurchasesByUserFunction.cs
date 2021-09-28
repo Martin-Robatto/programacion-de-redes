@@ -8,7 +8,7 @@ namespace ConsoleClient.Function.Purchase
     {
         public const string NAME = "Biblioteca";
 
-        public override DataPacket BuildRequest(string session)
+        public override DataPacket BuildRequest()
         {
             var message = session;
             var header = new Header(HeaderConstants.REQUEST, FunctionConstants.GET_PURCHASES_BY_USER, message.Length);

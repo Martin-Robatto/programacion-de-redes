@@ -8,12 +8,12 @@ namespace ConsoleClient.Function
     {
         public const string NAME = "Eliminar juego";
         
-        public override DataPacket BuildRequest(string session)
+        public override DataPacket BuildRequest()
         {
             Console.WriteLine("Ingrese el titulo: ");
             var title = Console.ReadLine();
 
-            var message = $"{session}&{title}";
+            var message = $"{base.session}&{title}";
             var header = new Header(HeaderConstants.REQUEST, FunctionConstants.DELETE_PUBLISH, message.Length);
             
             return new DataPacket()

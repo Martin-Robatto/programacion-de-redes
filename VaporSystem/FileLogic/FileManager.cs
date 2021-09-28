@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using Exceptions;
 using Protocol;
@@ -10,6 +11,14 @@ namespace FileLogic
         public static bool FileExists(string path)
         {
             return File.Exists(path);
+        }
+        
+        public static bool IsValidExtension(string path)
+        {
+            IList<string> validExtensions = new List<string>() {"PNG", "JPG", "JPEG"};
+            string[] filePathAttributes = path.Split(".");
+            string fileExtension = filePathAttributes[filePathAttributes.Length-1];
+            return validExtensions.Contains(fileExtension.ToUpper());
         }
 
         public static string GetFileName(string path)

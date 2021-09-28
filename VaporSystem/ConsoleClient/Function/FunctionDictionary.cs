@@ -53,7 +53,6 @@ namespace ConsoleClient.Function
             var commands = new Dictionary<int, IClientFunction>();
             commands.Add(FunctionConstants.GET_PUBLISHES_BY_USER, new GetPublishesByUserFunction());
             commands.Add(FunctionConstants.POST_PUBLISH, new PostPublishFunction());
-            commands.Add(FunctionConstants.POST_FILE, new PostFileFunction());
             commands.Add(FunctionConstants.DELETE_PUBLISH, new DeletePublishFunction());
             commands.Add(FunctionConstants.PUT_PUBLISH, new PutPublishFunction());
             commands.Add(FunctionConstants.EXIT, new BackToMainMenuFunction());

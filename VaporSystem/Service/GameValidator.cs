@@ -3,6 +3,7 @@ using System.Linq;
 using DataAccess;
 using Domain;
 using Exceptions;
+using FileLogic;
 
 namespace Service
 {
@@ -43,6 +44,27 @@ namespace Service
             if (game is not null)
             {
                 throw new AlreadyExistsException("Game");
+            }
+        }
+        
+        public void CheckGameWithoutPicture(Game game)
+        {
+            if (game.FileSize == 0)
+            {
+                throw new NotReadableFileException();
+            }
+            
+            if (game.Picture.Equals(string.Empty))
+            {
+                throw new NotReadableFileException();
+            }
+        }
+        
+        public void CheckGameWithInvalidPicture(Game game)
+        {
+            if (!FileManager.FileExists(game.Picture) || !FileManager.IsValidExtension(game.Picture))
+            {
+                throw new NotReadableFileException();
             }
         }
     }

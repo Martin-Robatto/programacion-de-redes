@@ -8,12 +8,12 @@ namespace ConsoleClient.Function.Purchase
     {
         public const string NAME = "Adquirir juego";
         
-        public override DataPacket BuildRequest(string session)
+        public override DataPacket BuildRequest()
         {
             Console.WriteLine("Ingrese el titulo: ");
             var title = Console.ReadLine();
 
-            var message = $"{session}&{title}";
+            var message = $"{base.session}&{title}";
             var header = new Header(HeaderConstants.REQUEST, FunctionConstants.POST_PURCHASE, message.Length);
             
             return new DataPacket()
