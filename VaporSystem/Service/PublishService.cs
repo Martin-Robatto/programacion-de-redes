@@ -116,8 +116,7 @@ namespace Service
             string[] filePathAttributes = fileAttributes[1].Split(".");
             string fileExtension = filePathAttributes[filePathAttributes.Length-1];
             string fileName = $@"C:\VAPOR\SERVER\{game.Id}.{fileExtension}";
-            game.Picture = fileName;
-            game.FileSize = fileSize;
+            game.PicturePath = fileName;
             
             NetworkStreamManager.DownloadFile(stream, fileSize, fileName);
         }

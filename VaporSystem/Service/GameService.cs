@@ -132,8 +132,7 @@ namespace Service
                 Genre = attributes[1],
                 Synopsis = attributes[2],
                 Rate = 0,
-                Picture = string.Empty,
-                FileSize = 0
+                PicturePath = string.Empty
             };
             _validator.CheckGameAlreadyExists(input);
             GameRepository.Add(input);
@@ -171,9 +170,10 @@ namespace Service
             string[] attributes = gameLine.Split("&");
             _validator.CheckAttributesAreEmpty(attributes);
             Game game = Get(attributes[1]);
-            _validator.CheckGameWithoutPicture(game);
             _validator.CheckGameWithInvalidPicture(game);
-            string fileLine = $"{game.Picture}#{game.FileSize}";
+            long fileSize = FileManager.GetFileSize(game.PicturePath);
+            
+            string fileLine = $"{game.PicturePath}#{fileSize}";
             return fileLine;
         }
     }

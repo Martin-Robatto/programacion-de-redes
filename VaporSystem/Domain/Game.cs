@@ -10,8 +10,7 @@ namespace Domain
         public string Genre { get; set; }
         public float Rate { get; set; }
         public string Synopsis { get; set; }
-        public string Picture { get; set; }
-        public long FileSize { get; set; }
+        public string PicturePath { get; set; }
 
         public Game() { }
         
