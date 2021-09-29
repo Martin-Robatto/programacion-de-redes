@@ -1,7 +1,7 @@
-﻿using System;
+﻿using Domain;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using Domain;
 
 namespace DataAccess
 {
@@ -41,12 +41,12 @@ namespace DataAccess
             }
             return purchasesToReturn;
         }
-        
+
         public static Purchase Get(Func<Purchase, bool> filter = null)
         {
             return GetAll(filter).FirstOrDefault();
         }
-        
+
         public static void Add(Purchase purchase)
         {
             lock (Purchases)
@@ -54,7 +54,7 @@ namespace DataAccess
                 Purchases.Add(purchase);
             }
         }
-        
+
         public static void Remove(Purchase purchase)
         {
             lock (Purchases)

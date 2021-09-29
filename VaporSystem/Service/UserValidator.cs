@@ -15,7 +15,7 @@ namespace Service
                 throw new InvalidInputException("username or password");
             }
         }
-        
+
         public void CheckUserIsNull(User user)
         {
             if (user is null)
@@ -23,7 +23,7 @@ namespace Service
                 throw new NotFoundException("User");
             }
         }
-        
+
         public void CheckAttributesAreEmpty(string[] attributes)
         {
             foreach (var attribute in attributes)
@@ -34,7 +34,7 @@ namespace Service
                 }
             }
         }
-        
+
         public void CheckUserAlreadyExists(User input)
         {
             var user = UserRepository.Get(u => u.Equals(input));

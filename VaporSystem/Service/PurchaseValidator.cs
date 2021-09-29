@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using DataAccess;
+﻿using DataAccess;
 using Domain;
 using Exceptions;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Service
 {
@@ -15,7 +15,7 @@ namespace Service
                 throw new NotFoundException("Purchase");
             }
         }
-        
+
         public void CheckPurchasesAreEmpty(IEnumerable<Purchase> purchases)
         {
             if (!purchases.Any())
@@ -23,7 +23,7 @@ namespace Service
                 throw new NotFoundException("Purchases");
             }
         }
-        
+
         public void CheckAttributesAreEmpty(string[] attributes)
         {
             foreach (var attribute in attributes)
@@ -34,7 +34,7 @@ namespace Service
                 }
             }
         }
-        
+
         public void CheckPurchaseAlreadyExists(Purchase input)
         {
             var purchase = PurchaseRepository.Get(p => p.Equals(input));

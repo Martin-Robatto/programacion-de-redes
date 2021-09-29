@@ -1,8 +1,7 @@
-﻿using System;
-using System.Text;
-using FileLogic;
-using Protocol;
+﻿using Protocol;
 using SocketLogic;
+using System;
+using System.Text;
 
 namespace ConsoleClient.Function.File
 {
@@ -32,9 +31,9 @@ namespace ConsoleClient.Function.File
                 string[] fileAttributes = data.Split("#");
                 long fileSize = long.Parse(fileAttributes[1]);
                 string[] filePathAttributes = fileAttributes[0].Split(".");
-                string fileExtension = filePathAttributes[filePathAttributes.Length-1];
+                string fileExtension = filePathAttributes[filePathAttributes.Length - 1];
                 string fileName = $@"C:\VAPOR\CLIENT\{Title}.{fileExtension}";
-                
+
                 NetworkStreamManager.DownloadFile(base.networkStream, fileSize, fileName);
             }
             else
@@ -42,7 +41,7 @@ namespace ConsoleClient.Function.File
                 Console.WriteLine($"{statusCode}: {data}");
             }
         }
-        
+
         public GetFileFunction()
         {
             base.Name = NAME;

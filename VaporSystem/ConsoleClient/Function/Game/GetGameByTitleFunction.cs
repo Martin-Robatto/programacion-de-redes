@@ -1,9 +1,7 @@
-﻿using System;
-using System.Net.Sockets;
-using System.Text;
-using ConsoleClient.Function.File;
+﻿using ConsoleClient.Function.File;
 using Protocol;
-using SocketLogic;
+using System;
+using System.Text;
 
 namespace ConsoleClient.Function
 {

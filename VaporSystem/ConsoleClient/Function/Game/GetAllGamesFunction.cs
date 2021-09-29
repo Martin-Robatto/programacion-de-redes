@@ -1,16 +1,13 @@
 ﻿using Protocol;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace ConsoleClient.Function
 {
     public class GetAllGamesFunction : FunctionTemplate
     {
         public const string NAME = "Juegos";
-        
+
         public override DataPacket BuildRequest()
         {
             var message = string.Empty;
@@ -22,7 +19,7 @@ namespace ConsoleClient.Function
                 StatusCode = StatusCodeConstants.EMPTY
             };
         }
-        
+
         public override void ProcessResponse(byte[] bufferData)
         {
             var statusCode = Int32.Parse(Encoding.UTF8.GetString(bufferData, 0, HeaderConstants.STATUS_CODE_LENGTH));

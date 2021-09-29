@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DataAccess;
+﻿using DataAccess;
 using Domain;
-using Exceptions;
+using System;
 
 namespace Service
 {
@@ -13,12 +8,12 @@ namespace Service
     {
         private static UserService _instance;
         private UserValidator _validator;
-        
+
         public static UserService Instance
         {
             get { return GetInstance(); }
         }
-        
+
         private static UserService GetInstance()
         {
             if (_instance is null)

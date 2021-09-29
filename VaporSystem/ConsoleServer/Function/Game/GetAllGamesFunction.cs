@@ -1,8 +1,7 @@
-﻿using Protocol;
+﻿using Exceptions;
+using Protocol;
 using Service;
 using System;
-using System.Text;
-using Exceptions;
 
 namespace ConsoleServer.Function
 {

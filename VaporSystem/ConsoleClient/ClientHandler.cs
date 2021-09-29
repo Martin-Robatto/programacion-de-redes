@@ -1,13 +1,12 @@
+using ConsoleClient.Function;
+using FunctionInterface;
+using SettingsLogic;
+using SettingsLogic.Interface;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
-using ConsoleClient.Function;
-using FunctionInterface;
-using Protocol;
-using SettingsLogic;
-using SettingsLogic.Interface;
 
 namespace ConsoleClient
 {
@@ -68,7 +67,7 @@ namespace ConsoleClient
             var port = random.Next(20001, 30001);
             return port;
         }
-        
+
         private static void Connect()
         {
             ClientDisplay.Connecting();
@@ -79,7 +78,7 @@ namespace ConsoleClient
             _connected = true;
             ClientDisplay.Connected();
         }
-        
+
         private static void DisplayServerUpMenu(NetworkStream networkStream)
         {
             if (String.IsNullOrEmpty(_actualSession))
@@ -99,7 +98,7 @@ namespace ConsoleClient
             Console.ReadLine();
             ClientDisplay.ClearConsole();
         }
-        
+
         private static void DisplayServerDownMenu()
         {
             ClientDisplay.ConnectionInterrupted();
@@ -119,9 +118,9 @@ namespace ConsoleClient
         public static void SetActualSession(string user)
         {
             _actualSession = user;
-            SetActualFunctions(FunctionDictionary.Main()); 
+            SetActualFunctions(FunctionDictionary.Main());
         }
-        
+
         public static void SetActualFunctions(Dictionary<int, IClientFunction> functions)
         {
             _actualFunctions = functions;

@@ -1,6 +1,6 @@
-﻿using System;
+﻿using Protocol;
+using System;
 using System.Text;
-using Protocol;
 
 namespace ConsoleClient.Function.Purchase
 {

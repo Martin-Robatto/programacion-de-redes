@@ -1,15 +1,10 @@
-﻿using System;
+﻿using DataAccess;
+using Domain;
+using SocketLogic;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Sockets;
-using System.Text;
-using System.Threading.Tasks;
-using DataAccess;
-using Domain;
-using Exceptions;
-using FileLogic;
-using Protocol;
-using SocketLogic;
 
 namespace Service
 {
@@ -17,7 +12,7 @@ namespace Service
     {
         private static PublishService _instance;
         private PublishValidator _validator;
-        
+
         public static PublishService Instance
         {
             get { return GetInstance(); }
@@ -89,7 +84,7 @@ namespace Service
                 ReviewService.Instance.Delete(review);
             }
         }
-        
+
         private void DeletePurchases(Game game)
         {
             IList<Purchase> purchases = PurchaseService.Instance.GetAll(p => p.Game.Equals(game)).ToList();
@@ -103,21 +98,21 @@ namespace Service
         {
             GameService.Instance.Update(publishLine);
         }
-        
+
         public void DownloadPicture(NetworkStream stream, string publishLine)
         {
             string[] attributes = publishLine.Split("&");
             _validator.CheckAttributesAreEmpty(attributes);
             User user = UserService.Instance.Get(attributes[0]);
             Game game = GameService.Instance.Get(attributes[1]);
-            
+
             string[] fileAttributes = attributes[2].Split("#");
             long fileSize = long.Parse(fileAttributes[2]);
             string[] filePathAttributes = fileAttributes[1].Split(".");
-            string fileExtension = filePathAttributes[filePathAttributes.Length-1];
+            string fileExtension = filePathAttributes[filePathAttributes.Length - 1];
             string fileName = $@"C:\VAPOR\SERVER\{game.Id}.{fileExtension}";
             game.PicturePath = fileName;
-            
+
             NetworkStreamManager.DownloadFile(stream, fileSize, fileName);
         }
     }

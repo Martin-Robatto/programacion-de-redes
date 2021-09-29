@@ -6,12 +6,12 @@ namespace Domain
     {
         public Guid Id { get; set; }
         public DateTime Date { get; set; }
-        
+
         public Game Game { get; set; }
         public User User { get; set; }
-        
+
         public Purchase() { }
-        
+
         public override bool Equals(object obj)
         {
             bool result = false;

@@ -1,5 +1,5 @@
-﻿using System.Net.Sockets;
-using FunctionInterface;
+﻿using FunctionInterface;
+using System.Net.Sockets;
 
 namespace ConsoleClient.Function.Menu
 {

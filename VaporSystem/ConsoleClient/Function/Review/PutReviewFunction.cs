@@ -1,13 +1,13 @@
-﻿using System;
+﻿using Protocol;
+using System;
 using System.Text;
-using Protocol;
 
 namespace ConsoleClient.Function.Review
 {
     public class PutReviewFunction : FunctionTemplate
     {
         public const string NAME = "Modificar reseña";
-        
+
         public override DataPacket BuildRequest()
         {
             Console.WriteLine("Ingrese el titulo: ");
@@ -19,7 +19,7 @@ namespace ConsoleClient.Function.Review
 
             var message = $"{base.session}&{title}&{rate}#{comment}";
             var header = new Header(HeaderConstants.REQUEST, FunctionConstants.PUT_REVIEW, message.Length);
-            
+
             return new DataPacket()
             {
                 Header = header,

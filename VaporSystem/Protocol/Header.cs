@@ -8,11 +8,11 @@ namespace Protocol
         private byte[] _direction;
         private byte[] _command;
         private byte[] _dataLength;
-        
+
         public string Direction { get; set; }
         public int Command { get; set; }
         public int DataLength { get; set; }
-        
+
         public Header() { }
 
         public Header(byte[] buffer)
@@ -35,7 +35,7 @@ namespace Protocol
             Array.Copy(_dataLength, 0, header, HeaderConstants.DIRECTION_LENGTH + HeaderConstants.COMMAND_LENGTH, 4);
             return header;
         }
-        
+
         public void DecodeData(byte[] data)
         {
             Direction = Encoding.UTF8.GetString(data, 0, HeaderConstants.DIRECTION_LENGTH);

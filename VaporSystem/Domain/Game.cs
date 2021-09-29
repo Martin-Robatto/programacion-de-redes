@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace Domain
 {
@@ -13,7 +12,7 @@ namespace Domain
         public string PicturePath { get; set; }
 
         public Game() { }
-        
+
         public override bool Equals(object obj)
         {
             bool result = false;

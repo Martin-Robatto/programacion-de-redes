@@ -1,6 +1,6 @@
+using SettingsLogic.Interface;
 using System;
 using System.Configuration;
-using SettingsLogic.Interface;
 
 namespace SettingsLogic
 {

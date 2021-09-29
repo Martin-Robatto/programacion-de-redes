@@ -1,13 +1,13 @@
-﻿using System;
+﻿using Protocol;
+using System;
 using System.Text;
-using Protocol;
 
 namespace ConsoleClient.Function.Purchase
 {
     public class PostPurchaseFunction : FunctionTemplate
     {
         public const string NAME = "Adquirir juego";
-        
+
         public override DataPacket BuildRequest()
         {
             Console.WriteLine("Ingrese el titulo: ");
@@ -15,7 +15,7 @@ namespace ConsoleClient.Function.Purchase
 
             var message = $"{base.session}&{title}";
             var header = new Header(HeaderConstants.REQUEST, FunctionConstants.POST_PURCHASE, message.Length);
-            
+
             return new DataPacket()
             {
                 Header = header,

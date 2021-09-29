@@ -1,7 +1,6 @@
-﻿using System;
-using System.Net.Sockets;
-using Protocol;
+﻿using Protocol;
 using SocketLogic;
+using System.Net.Sockets;
 
 namespace ConsoleServer.Function
 {
@@ -23,7 +22,7 @@ namespace ConsoleServer.Function
         }
 
         public abstract ResponseData ProcessRequest(byte[] bufferData);
-        
+
         public virtual DataPacket BuildResponse(ResponseData responseData)
         {
             var message = responseData.Data;
@@ -35,7 +34,7 @@ namespace ConsoleServer.Function
                 StatusCode = responseData.StatusCode
             };
         }
-        
+
         public virtual void SendResponse(DataPacket dataPacket)
         {
             NetworkStreamManager.Send(networkStream, dataPacket);

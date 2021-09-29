@@ -1,9 +1,8 @@
-﻿using System;
-using System.Text;
-using Exceptions;
+﻿using Exceptions;
 using Protocol;
 using Service;
-using SocketLogic;
+using System;
+using System.Text;
 
 namespace ConsoleServer.Function
 {

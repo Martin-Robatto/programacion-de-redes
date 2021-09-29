@@ -1,6 +1,5 @@
-using System.Net.Sockets;
 using FunctionInterface;
-using Protocol;
+using System.Net.Sockets;
 
 namespace ConsoleClient.Function
 {
@@ -13,7 +12,7 @@ namespace ConsoleClient.Function
         {
             ClientHandler.ShutDown();
         }
-        
+
         public ExitFunction()
         {
             Name = NAME;

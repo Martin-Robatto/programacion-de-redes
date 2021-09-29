@@ -1,14 +1,14 @@
+using ConsoleServer.Function;
+using Protocol;
+using SettingsLogic;
+using SettingsLogic.Interface;
+using SocketLogic;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading;
-using ConsoleServer.Function;
-using Protocol;
-using SettingsLogic;
-using SettingsLogic.Interface;
-using SocketLogic;
 
 namespace ConsoleServer
 {
@@ -19,7 +19,7 @@ namespace ConsoleServer
         private static TcpListener _tcpListenerSocket;
         private static Dictionary<TcpClient, NetworkStream> _clientSockets;
         private static readonly ISettingsManager _settingsManager = new SettingsManager();
-        
+
         public static void Run()
         {
             _exit = false;

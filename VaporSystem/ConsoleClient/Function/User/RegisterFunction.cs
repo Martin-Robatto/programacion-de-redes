@@ -1,15 +1,13 @@
-﻿using System;
-using System.Net.Sockets;
+﻿using Protocol;
+using System;
 using System.Text;
-using Protocol;
-using SocketLogic;
 
 namespace ConsoleClient.Function
 {
     public class RegisterFunction : FunctionTemplate
     {
         public const string NAME = "Registrar";
-        
+
         public override DataPacket BuildRequest()
         {
             Console.WriteLine("Ingrese el nombre: ");
@@ -19,7 +17,7 @@ namespace ConsoleClient.Function
 
             var message = $"{username}#{password}";
             var header = new Header(HeaderConstants.REQUEST, FunctionConstants.REGISTER, message.Length);
-            
+
             return new DataPacket()
             {
                 Header = header,

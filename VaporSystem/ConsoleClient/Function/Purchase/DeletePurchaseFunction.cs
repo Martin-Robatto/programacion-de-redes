@@ -1,13 +1,13 @@
+using Protocol;
 using System;
 using System.Text;
-using Protocol;
 
 namespace ConsoleClient.Function.Purchase
 {
     public class DeletePurchaseFunction : FunctionTemplate
     {
         public const string NAME = "Desinstalar juego";
-        
+
         public override DataPacket BuildRequest()
         {
             Console.WriteLine("Ingrese el titulo: ");
@@ -15,7 +15,7 @@ namespace ConsoleClient.Function.Purchase
 
             var message = $"{base.session}&{title}";
             var header = new Header(HeaderConstants.REQUEST, FunctionConstants.DELETE_PURCHASE, message.Length);
-            
+
             return new DataPacket()
             {
                 Header = header,
@@ -41,6 +41,6 @@ namespace ConsoleClient.Function.Purchase
         {
             base.Name = NAME;
         }
-        
+
     }
 }

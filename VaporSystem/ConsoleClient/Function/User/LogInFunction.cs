@@ -1,13 +1,13 @@
-﻿using System;
+﻿using Protocol;
+using System;
 using System.Text;
-using Protocol;
 
 namespace ConsoleClient.Function
 {
     public class LogInFunction : FunctionTemplate
     {
         public const string NAME = "Iniciar sesion";
-        
+
         public override DataPacket BuildRequest()
         {
             Console.WriteLine("Ingrese el nombre: ");
@@ -17,7 +17,7 @@ namespace ConsoleClient.Function
 
             var message = $"{username}#{password}";
             var header = new Header(HeaderConstants.REQUEST, FunctionConstants.LOGIN, message.Length);
-            
+
             return new DataPacket()
             {
                 Header = header,
@@ -32,14 +32,14 @@ namespace ConsoleClient.Function
             if (statusCode == StatusCodeConstants.OK)
             {
                 Console.WriteLine("Usuario conectado exitosamente");
-                ClientHandler.SetActualSession(data);   
+                ClientHandler.SetActualSession(data);
             }
             else
             {
                 Console.WriteLine($"{statusCode}: {data}");
             }
         }
-        
+
         public LogInFunction()
         {
             base.Name = NAME;

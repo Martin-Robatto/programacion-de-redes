@@ -1,5 +1,5 @@
-﻿using System.Net.Sockets;
-using Protocol;
+﻿using Protocol;
+using System.Net.Sockets;
 
 namespace FunctionInterface
 {

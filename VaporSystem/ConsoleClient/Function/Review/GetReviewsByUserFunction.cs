@@ -1,13 +1,13 @@
-﻿using System;
+﻿using Protocol;
+using System;
 using System.Text;
-using Protocol;
 
 namespace ConsoleClient.Function.Review
 {
     public class GetReviewsByUserFunction : FunctionTemplate
     {
         public const string NAME = "Tus Reseñas";
-        
+
         public override DataPacket BuildRequest()
         {
             var message = session;
@@ -19,7 +19,7 @@ namespace ConsoleClient.Function.Review
                 StatusCode = StatusCodeConstants.EMPTY
             };
         }
-        
+
         public override void ProcessResponse(byte[] bufferData)
         {
             var statusCode = Int32.Parse(Encoding.UTF8.GetString(bufferData, 0, HeaderConstants.STATUS_CODE_LENGTH));

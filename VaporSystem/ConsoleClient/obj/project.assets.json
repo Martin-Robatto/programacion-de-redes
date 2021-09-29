@@ -412,44 +412,51 @@
     ]
   },
   "packageFolders": {
-    "/Users/nicosmac/.nuget/packages/": {}
+    "C:\\Users\\robak\\.nuget\\packages\\": {},
+    "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/ConsoleClient/ConsoleClient.csproj",
+      "projectUniqueName": "C:\\Users\\robak\\Source\\Repos\\programacion-de-redes\\VaporSystem\\ConsoleClient\\ConsoleClient.csproj",
       "projectName": "ConsoleClient",
-      "projectPath": "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/ConsoleClient/ConsoleClient.csproj",
-      "packagesPath": "/Users/nicosmac/.nuget/packages/",
-      "outputPath": "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/ConsoleClient/obj/",
+      "projectPath": "C:\\Users\\robak\\Source\\Repos\\programacion-de-redes\\VaporSystem\\ConsoleClient\\ConsoleClient.csproj",
+      "packagesPath": "C:\\Users\\robak\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\robak\\Source\\Repos\\programacion-de-redes\\VaporSystem\\ConsoleClient\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "/Users/nicosmac/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\robak\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net5.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/FileLogic/FileLogic.csproj": {
-              "projectPath": "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/FileLogic/FileLogic.csproj"
+            "C:\\Users\\robak\\Source\\Repos\\programacion-de-redes\\VaporSystem\\FileLogic\\FileLogic.csproj": {
+              "projectPath": "C:\\Users\\robak\\Source\\Repos\\programacion-de-redes\\VaporSystem\\FileLogic\\FileLogic.csproj"
             },
-            "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/FunctionInterface/FunctionInterface.csproj": {
-              "projectPath": "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/FunctionInterface/FunctionInterface.csproj"
+            "C:\\Users\\robak\\Source\\Repos\\programacion-de-redes\\VaporSystem\\FunctionInterface\\FunctionInterface.csproj": {
+              "projectPath": "C:\\Users\\robak\\Source\\Repos\\programacion-de-redes\\VaporSystem\\FunctionInterface\\FunctionInterface.csproj"
             },
-            "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/Protocol/Protocol.csproj": {
-              "projectPath": "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/Protocol/Protocol.csproj"
+            "C:\\Users\\robak\\Source\\Repos\\programacion-de-redes\\VaporSystem\\Protocol\\Protocol.csproj": {
+              "projectPath": "C:\\Users\\robak\\Source\\Repos\\programacion-de-redes\\VaporSystem\\Protocol\\Protocol.csproj"
             },
-            "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/SettingsLogic/SettingsLogic.csproj": {
-              "projectPath": "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/SettingsLogic/SettingsLogic.csproj"
+            "C:\\Users\\robak\\Source\\Repos\\programacion-de-redes\\VaporSystem\\SettingsLogic\\SettingsLogic.csproj": {
+              "projectPath": "C:\\Users\\robak\\Source\\Repos\\programacion-de-redes\\VaporSystem\\SettingsLogic\\SettingsLogic.csproj"
             },
-            "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/SocketLogic/SocketLogic.csproj": {
-              "projectPath": "/Users/nicosmac/Desktop/programacion-de-redes/VaporSystem/SocketLogic/SocketLogic.csproj"
+            "C:\\Users\\robak\\Source\\Repos\\programacion-de-redes\\VaporSystem\\SocketLogic\\SocketLogic.csproj": {
+              "projectPath": "C:\\Users\\robak\\Source\\Repos\\programacion-de-redes\\VaporSystem\\SocketLogic\\SocketLogic.csproj"
             }
           }
         }
@@ -478,7 +485,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.400/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
       }
     }
   }

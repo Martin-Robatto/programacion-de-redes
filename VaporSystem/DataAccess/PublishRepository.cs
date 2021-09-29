@@ -41,12 +41,12 @@ namespace DataAccess
             }
             return publishsToReturn;
         }
-        
+
         public static Publish Get(Func<Publish, bool> filter = null)
         {
             return GetAll(filter).FirstOrDefault();
         }
-        
+
         public static void Add(Publish publish)
         {
             lock (Publishs)
@@ -54,7 +54,7 @@ namespace DataAccess
                 Publishs.Add(publish);
             }
         }
-        
+
         public static void Remove(Publish publish)
         {
             lock (Publishs)

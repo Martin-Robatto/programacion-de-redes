@@ -1,11 +1,8 @@
-﻿using System;
+﻿using DataAccess;
+using Domain;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DataAccess;
-using Domain;
-using Exceptions;
 
 namespace Service
 {
@@ -13,7 +10,7 @@ namespace Service
     {
         private static ReviewService _instance;
         private ReviewValidator _validator;
-        
+
         public static ReviewService Instance
         {
             get { return GetInstance(); }
@@ -49,7 +46,7 @@ namespace Service
             }
             return reviewsLine;
         }
-        
+
         public string GetByGame(string gameLine)
         {
             string[] attributes = gameLine.Split("&");
@@ -98,7 +95,7 @@ namespace Service
             ReviewRepository.Remove(aReview);
             game.Rate = CalculateMediaRate(game);
         }
-        
+
         public void Delete(string reviewLine)
         {
             string[] attributes = reviewLine.Split("&");

@@ -1,8 +1,7 @@
-using System;
-using System.Net.Sockets;
-using System.Text;
 using FileLogic;
 using Protocol;
+using System.Net.Sockets;
+using System.Text;
 
 namespace SocketLogic
 {
@@ -63,7 +62,7 @@ namespace SocketLogic
                 currentPart++;
             }
         }
-        
+
         public static void DownloadFile(NetworkStream stream, long fileSize, string fileName)
         {
             long parts = FileManager.GetParts(fileSize);
@@ -75,7 +74,7 @@ namespace SocketLogic
                 byte[] data;
                 if (currentPart == parts)
                 {
-                    var lastPartSize = (int) (fileSize - offset);
+                    var lastPartSize = (int)(fileSize - offset);
                     data = Receive(stream, lastPartSize);
                     offset += lastPartSize;
                 }

@@ -1,9 +1,7 @@
-﻿using System;
-using System.Text;
-using ConsoleClient.Function.File;
-using FileLogic;
-using FunctionInterface;
+﻿using ConsoleClient.Function.File;
 using Protocol;
+using System;
+using System.Text;
 
 namespace ConsoleClient.Function
 {
@@ -21,10 +19,10 @@ namespace ConsoleClient.Function
             Console.WriteLine("Ingrese la sinopsis: ");
             var synopsis = Console.ReadLine();
             _postFileFunction.Title = title;
-                
+
             var message = $"{base.session}&{title}#{genre}#{synopsis}";
             var header = new Header(HeaderConstants.REQUEST, FunctionConstants.POST_PUBLISH, message.Length);
-            
+
             return new DataPacket()
             {
                 Header = header,

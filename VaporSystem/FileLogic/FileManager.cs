@@ -1,8 +1,7 @@
-﻿using System;
+﻿using Exceptions;
+using Protocol;
 using System.Collections.Generic;
 using System.IO;
-using Exceptions;
-using Protocol;
 
 namespace FileLogic
 {
@@ -12,12 +11,12 @@ namespace FileLogic
         {
             return File.Exists(path);
         }
-        
+
         public static bool IsValidExtension(string path)
         {
-            IList<string> validExtensions = new List<string>() {"PNG", "JPG", "JPEG"};
+            IList<string> validExtensions = new List<string>() { "PNG", "JPG", "JPEG" };
             string[] filePathAttributes = path.Split(".");
-            string fileExtension = filePathAttributes[filePathAttributes.Length-1];
+            string fileExtension = filePathAttributes[filePathAttributes.Length - 1];
             return validExtensions.Contains(fileExtension.ToUpper());
         }
 
@@ -38,7 +37,7 @@ namespace FileLogic
             }
             return new FileInfo(path).Length;
         }
-        
+
         public static long GetParts(long fileSize)
         {
             var parts = fileSize / HeaderConstants.MAX_PACKET_SIZE;

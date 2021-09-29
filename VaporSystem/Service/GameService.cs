@@ -1,13 +1,8 @@
-﻿using System;
-using DataAccess;
+﻿using DataAccess;
 using Domain;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Sockets;
-using Exceptions;
 using FileLogic;
-using Protocol;
-using SocketLogic;
+using System;
+using System.Collections.Generic;
 
 namespace Service
 {
@@ -15,7 +10,7 @@ namespace Service
     {
         private static GameService _instance;
         private GameValidator _validator;
-        
+
         public static GameService Instance
         {
             get { return GetInstance(); }
@@ -34,7 +29,7 @@ namespace Service
         {
             _validator = new GameValidator();
         }
-        
+
         public Game Get(string title)
         {
             Game game = GameRepository.Get(g => g.Title.Equals(title));
@@ -65,7 +60,7 @@ namespace Service
             gamesLine = FullFormat(games);
             return gamesLine;
         }
-        
+
         public string GetByCategory(string categoryLine)
         {
             IEnumerable<Game> games = new List<Game>();
@@ -76,7 +71,7 @@ namespace Service
             gamesLine = FullFormat(games);
             return gamesLine;
         }
-        
+
         public string GetByRate(string rateLine)
         {
             IEnumerable<Game> games = new List<Game>();
@@ -104,7 +99,7 @@ namespace Service
             }
             return gamesLine;
         }
-        
+
         private string FullFormat(IEnumerable<Game> games)
         {
             string gamesLine = string.Empty;
@@ -172,7 +167,7 @@ namespace Service
             Game game = Get(attributes[1]);
             _validator.CheckGameWithInvalidPicture(game);
             long fileSize = FileManager.GetFileSize(game.PicturePath);
-            
+
             string fileLine = $"{game.PicturePath}#{fileSize}";
             return fileLine;
         }

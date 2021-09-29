@@ -41,12 +41,12 @@ namespace DataAccess
             }
             return reviewsToReturn;
         }
-        
+
         public static Review Get(Func<Review, bool> filter = null)
         {
             return GetAll(filter).FirstOrDefault();
         }
-        
+
         public static void Add(Review review)
         {
             lock (Reviews)
@@ -54,7 +54,7 @@ namespace DataAccess
                 Reviews.Add(review);
             }
         }
-        
+
         public static void Remove(Review review)
         {
             lock (Reviews)
@@ -62,7 +62,7 @@ namespace DataAccess
                 Reviews.Remove(review);
             }
         }
-        
+
         public static void Update(Review review)
         {
             lock (Reviews)

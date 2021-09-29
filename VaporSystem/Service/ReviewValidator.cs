@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using DataAccess;
+﻿using DataAccess;
 using Domain;
 using Exceptions;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Service
 {
@@ -15,7 +15,7 @@ namespace Service
                 throw new NotFoundException("Review");
             }
         }
-        
+
         public void CheckReviewsAreEmpty(IEnumerable<Review> userReviews)
         {
             if (!userReviews.Any())
@@ -23,7 +23,7 @@ namespace Service
                 throw new NotFoundException("Reviews");
             }
         }
-        
+
         public void CheckAttributesAreEmpty(string[] attributes)
         {
             foreach (var attribute in attributes)
@@ -42,7 +42,7 @@ namespace Service
                 throw new InvalidInputException("rate");
             }
         }
-        
+
         public void CheckReviewAlreadyExists(Review input)
         {
             var review = ReviewRepository.Get(r => r.Equals(input));

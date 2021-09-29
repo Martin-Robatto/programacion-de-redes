@@ -1,5 +1,4 @@
 ﻿using System;
-using Protocol;
 
 namespace ConsoleClient
 {

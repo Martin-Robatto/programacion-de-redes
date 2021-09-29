@@ -1,6 +1,5 @@
-﻿using System;
+﻿using Exceptions;
 using System.IO;
-using Exceptions;
 
 namespace FileLogic
 {

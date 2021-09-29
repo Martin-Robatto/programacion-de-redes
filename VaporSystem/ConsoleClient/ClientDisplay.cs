@@ -1,7 +1,6 @@
+using FunctionInterface;
 using System;
 using System.Collections.Generic;
-using ConsoleClient.Function;
-using FunctionInterface;
 
 namespace ConsoleClient
 {
@@ -14,7 +13,7 @@ namespace ConsoleClient
                 Console.WriteLine();
             }
         }
-        
+
         public static void Menu(Dictionary<int, IClientFunction> functions)
         {
             Console.WriteLine();
@@ -25,7 +24,7 @@ namespace ConsoleClient
                 Console.WriteLine($"{function.Key}) {function.Value.Name}");
             }
         }
-        
+
         public static void Continue()
         {
             Console.WriteLine();
@@ -37,7 +36,7 @@ namespace ConsoleClient
             Console.WriteLine();
             Console.WriteLine("Ingrese su opcion: ");
         }
-        
+
         public static void Connecting()
         {
             Console.WriteLine("Intentando conectarse al servidor");
@@ -48,7 +47,7 @@ namespace ConsoleClient
             ClearConsole();
             Console.WriteLine("Conectado exitosamente al servidor");
         }
-        
+
         public static void ConnectionInterrupted()
         {
             ClearConsole();

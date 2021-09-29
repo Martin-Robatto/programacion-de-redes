@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using DataAccess;
+﻿using DataAccess;
 using Domain;
-using Exceptions;
+using System;
+using System.Collections.Generic;
 
 namespace Service
 {
@@ -11,7 +9,7 @@ namespace Service
     {
         private static PurchaseService _instance;
         private PurchaseValidator _validator;
-        
+
         public static PurchaseService Instance
         {
             get { return GetInstance(); }
@@ -35,7 +33,7 @@ namespace Service
         {
             return PurchaseRepository.GetAll(filter);
         }
-        
+
         public string Get(string userLine)
         {
             IEnumerable<Purchase> userPurchases = PurchaseRepository.GetAll(p => p.User.Username.Equals(userLine));

@@ -1,10 +1,9 @@
-﻿using System;
-using System.Text;
-using DataAccess;
-using Exceptions;
+﻿using Exceptions;
 using Protocol;
 using Service;
 using SocketLogic;
+using System;
+using System.Text;
 
 namespace ConsoleServer.Function.File
 {
@@ -41,7 +40,7 @@ namespace ConsoleServer.Function.File
                 string[] attributes = dataPacket.Payload.Split("#");
                 string filePath = attributes[0];
                 long fileSize = long.Parse(attributes[1]);
-            
+
                 NetworkStreamManager.UploadFile(networkStream, fileSize, filePath);
             }
         }

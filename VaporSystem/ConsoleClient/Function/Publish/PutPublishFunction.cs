@@ -1,13 +1,13 @@
-﻿using System;
+﻿using Protocol;
+using System;
 using System.Text;
-using Protocol;
 
 namespace ConsoleClient.Function
 {
     public class PutPublishFunction : FunctionTemplate
     {
         public const string NAME = "Modificar juego";
-        
+
         public override DataPacket BuildRequest()
         {
             Console.WriteLine("Ingrese el titulo: ");

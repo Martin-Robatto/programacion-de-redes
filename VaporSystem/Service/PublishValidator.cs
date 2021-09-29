@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Domain;
+﻿using Domain;
 using Exceptions;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Service
 {
@@ -14,7 +14,7 @@ namespace Service
                 throw new NotFoundException("Publishs");
             }
         }
-        
+
         public void CheckPublishesAreEmpty(IEnumerable<Publish> publishes)
         {
             if (!publishes.Any())
@@ -22,7 +22,7 @@ namespace Service
                 throw new NotFoundException("Publishs");
             }
         }
-        
+
         public void CheckAttributesAreEmpty(string[] attributes)
         {
             foreach (var attribute in attributes)

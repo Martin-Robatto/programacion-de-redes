@@ -12,6 +12,6 @@
         public const int FILE_NAME_LENGTH = 4;
         public const int FILE_SIZE_LENGTH = 8;
         public const int FILE_HEADER_LENGTH = FILE_NAME_LENGTH + FILE_SIZE_LENGTH;
-        public const int MAX_PACKET_SIZE = 32768; 
+        public const int MAX_PACKET_SIZE = 32768;
     }
 }

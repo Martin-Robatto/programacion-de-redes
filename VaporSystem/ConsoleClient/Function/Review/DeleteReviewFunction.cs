@@ -1,13 +1,13 @@
+using Protocol;
 using System;
 using System.Text;
-using Protocol;
 
 namespace ConsoleClient.Function.Review
 {
     public class DeleteReviewFunction : FunctionTemplate
     {
         public const string NAME = "Eliminar reseña";
-        
+
         public override DataPacket BuildRequest()
         {
             Console.WriteLine("Ingrese el titulo: ");
@@ -15,7 +15,7 @@ namespace ConsoleClient.Function.Review
 
             var message = $"{base.session}&{title}";
             var header = new Header(HeaderConstants.REQUEST, FunctionConstants.DELETE_REVIEW, message.Length);
-            
+
             return new DataPacket()
             {
                 Header = header,

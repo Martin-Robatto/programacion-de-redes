@@ -1,10 +1,9 @@
-﻿using System.Collections.Generic;
-using ConsoleClient.Function.File;
-using ConsoleClient.Function.Menu;
+﻿using ConsoleClient.Function.Menu;
 using ConsoleClient.Function.Purchase;
 using ConsoleClient.Function.Review;
 using FunctionInterface;
 using Protocol;
+using System.Collections.Generic;
 
 namespace ConsoleClient.Function
 {
@@ -16,7 +15,7 @@ namespace ConsoleClient.Function
             commands.Add(FunctionConstants.EXIT, new ExitFunction());
             return commands;
         }
-        
+
         public static Dictionary<int, IClientFunction> LogIn()
         {
             var commands = new Dictionary<int, IClientFunction>();
@@ -25,7 +24,7 @@ namespace ConsoleClient.Function
             commands.Add(FunctionConstants.EXIT, new ExitFunction());
             return commands;
         }
-        
+
         public static Dictionary<int, IClientFunction> Main()
         {
             var commands = new Dictionary<int, IClientFunction>();
@@ -36,7 +35,7 @@ namespace ConsoleClient.Function
             commands.Add(FunctionConstants.EXIT, new ExitFunction());
             return commands;
         }
-        
+
         public static Dictionary<int, IClientFunction> Games()
         {
             var commands = new Dictionary<int, IClientFunction>();
@@ -47,7 +46,7 @@ namespace ConsoleClient.Function
             commands.Add(FunctionConstants.EXIT, new BackToMainMenuFunction());
             return commands;
         }
-        
+
         public static Dictionary<int, IClientFunction> Publishes()
         {
             var commands = new Dictionary<int, IClientFunction>();
@@ -58,7 +57,7 @@ namespace ConsoleClient.Function
             commands.Add(FunctionConstants.EXIT, new BackToMainMenuFunction());
             return commands;
         }
-        
+
         public static Dictionary<int, IClientFunction> Purchases()
         {
             var commands = new Dictionary<int, IClientFunction>();
@@ -68,7 +67,7 @@ namespace ConsoleClient.Function
             commands.Add(FunctionConstants.EXIT, new BackToMainMenuFunction());
             return commands;
         }
-        
+
         public static Dictionary<int, IClientFunction> Reviews()
         {
             var commands = new Dictionary<int, IClientFunction>();

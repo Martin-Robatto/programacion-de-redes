@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 
 namespace DataAccess
 {
@@ -42,12 +41,12 @@ namespace DataAccess
             }
             return gamesToReturn;
         }
-        
+
         public static Game Get(Func<Game, bool> filter = null)
         {
             return GetAll(filter).FirstOrDefault();
         }
-        
+
         public static void Add(Game game)
         {
             lock (Games)
@@ -55,7 +54,7 @@ namespace DataAccess
                 Games.Add(game);
             }
         }
-        
+
         public static void Remove(Game game)
         {
             lock (Games)

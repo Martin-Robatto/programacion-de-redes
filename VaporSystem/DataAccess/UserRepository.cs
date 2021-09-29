@@ -41,12 +41,12 @@ namespace DataAccess
             }
             return usersToReturn;
         }
-        
+
         public static User Get(Func<User, bool> filter = null)
         {
             return GetAll(filter).FirstOrDefault();
         }
-        
+
         public static void Add(User user)
         {
             lock (Users)
@@ -54,7 +54,7 @@ namespace DataAccess
                 Users.Add(user);
             }
         }
-        
+
         public static void Remove(User user)
         {
             lock (Users)

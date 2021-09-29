@@ -1,12 +1,12 @@
-﻿using System;
-using System.Text;
-using Exceptions;
+﻿using Exceptions;
 using Protocol;
 using Service;
+using System;
+using System.Text;
 
 namespace ConsoleServer.Function
 {
-    public class GetPurchasesByUserFunction: FunctionTemplate
+    public class GetPurchasesByUserFunction : FunctionTemplate
     {
         public override ResponseData ProcessRequest(byte[] bufferData)
         {

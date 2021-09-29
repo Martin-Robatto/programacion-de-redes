@@ -1,13 +1,13 @@
-﻿using System;
+﻿using Protocol;
+using System;
 using System.Text;
-using Protocol;
 
 namespace ConsoleClient.Function
 {
     public class DeletePublishFunction : FunctionTemplate
     {
         public const string NAME = "Eliminar juego";
-        
+
         public override DataPacket BuildRequest()
         {
             Console.WriteLine("Ingrese el titulo: ");
@@ -15,7 +15,7 @@ namespace ConsoleClient.Function
 
             var message = $"{base.session}&{title}";
             var header = new Header(HeaderConstants.REQUEST, FunctionConstants.DELETE_PUBLISH, message.Length);
-            
+
             return new DataPacket()
             {
                 Header = header,
