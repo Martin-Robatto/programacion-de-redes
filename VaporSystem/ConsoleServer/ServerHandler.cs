@@ -9,14 +9,15 @@ using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading;
+using FunctionInterface;
 
 namespace ConsoleServer
 {
     public class ServerHandler
     {
         private static bool _exit;
-        private static Dictionary<int, FunctionTemplate> _functions;
         private static TcpListener _tcpListenerSocket;
+        private static Dictionary<int, IServerFunction> _functions;
         private static Dictionary<TcpClient, NetworkStream> _clientSockets;
         private static readonly ISettingsManager _settingsManager = new SettingsManager();
 
@@ -25,13 +26,13 @@ namespace ConsoleServer
             _exit = false;
             try
             {
-                _tcpListenerSocket = Initialize();
+                Initialize();
                 _clientSockets = new Dictionary<TcpClient, NetworkStream>();
                 var thread = new Thread(() => ListenForConnections());
                 thread.IsBackground = true;
                 thread.Start();
                 ServerDisplay.Listening();
-                ServerDisplay.MainMenu();
+                ServerDisplay.Menu();
                 while (!_exit)
                 {
                     var userInput = Console.ReadLine();
@@ -49,15 +50,14 @@ namespace ConsoleServer
             catch (Exception) { }
         }
 
-        private static TcpListener Initialize()
+        private static void Initialize()
         {
             var serverIpAddress = _settingsManager.ReadSetting(ServerConfig.ServerIpConfigKey);
             var serverPort = _settingsManager.ReadSetting(ServerConfig.ServerPortConfigKey);
             ServerDisplay.Starting(serverIpAddress, serverPort);
             var ipEndPoint = new IPEndPoint(IPAddress.Parse(serverIpAddress), int.Parse(serverPort));
-            var tcpListener = new TcpListener(ipEndPoint);
-            tcpListener.Start(100);
-            return tcpListener;
+            _tcpListenerSocket = new TcpListener(ipEndPoint);
+            _tcpListenerSocket.Start(100);
         }
 
         private static void ListenForConnections()

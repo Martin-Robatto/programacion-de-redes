@@ -12,7 +12,7 @@ namespace ConsoleServer
             }
         }
 
-        public static void MainMenu()
+        public static void Menu()
         {
             Console.WriteLine();
             Console.WriteLine("VAPOR");
@@ -21,15 +21,15 @@ namespace ConsoleServer
             Console.WriteLine();
             Console.WriteLine("Ingrese su opcion: ");
         }
+        
+        public static void InvalidOption()
+        {
+            Console.WriteLine("Opción inválida");
+        }
 
         public static void Starting(string serverIpAddress, string serverPort)
         {
             Console.WriteLine($"El servidor inicializó en IP {serverIpAddress} y puerto {serverPort}");
-        }
-
-        public static void Closing()
-        {
-            Console.WriteLine("El servidor se está cerrando ");
         }
 
         public static void Listening()
@@ -47,9 +47,9 @@ namespace ConsoleServer
             Console.WriteLine(" > Se cerró la conexión del cliente");
         }
 
-        public static void InvalidOption()
+        public static void Closing()
         {
-            Console.WriteLine("Opción inválida");
+            Console.WriteLine("El servidor se está cerrando ");
         }
     }
 }

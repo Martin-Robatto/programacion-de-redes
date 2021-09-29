@@ -15,7 +15,7 @@ namespace ConsoleClient
         private static bool _exit;
         private static bool _connected;
         private static TcpClient _tcpClient;
-        private static string _actualSession = string.Empty;
+        private static string _actualSession;
         private static Dictionary<int, IClientFunction> _actualFunctions;
         private static readonly ISettingsManager _settingsManager = new SettingsManager();
 
@@ -30,6 +30,7 @@ namespace ConsoleClient
                     ClientDisplay.ClearConsole();
                     Initialize();
                     Connect();
+                    _actualSession = string.Empty;
                     using (var networkStream = _tcpClient.GetStream())
                     {
                         while (!_exit)

@@ -1,10 +1,11 @@
 ﻿using Protocol;
 using SocketLogic;
 using System.Net.Sockets;
+using FunctionInterface;
 
 namespace ConsoleServer.Function
 {
-    public abstract class FunctionTemplate
+    public abstract class FunctionTemplate : IServerFunction
     {
         protected NetworkStream networkStream;
         public void Execute(NetworkStream stream, Header header = null)
