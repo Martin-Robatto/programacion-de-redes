@@ -155,7 +155,7 @@ namespace Service
             string[] gameAttributes = attributes[2].Split("#");
             _validator.CheckAttributesAreEmpty(gameAttributes);
             var game = Get(attributes[1]);
-            if (!game.Title.Equals(gameAttributes[0]))
+            if (game.Title.Equals(gameAttributes[0]))
             {
                 _validator.CheckGameAlreadyExists(game);
             }
