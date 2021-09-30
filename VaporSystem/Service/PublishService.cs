@@ -96,6 +96,12 @@ namespace Service
 
         public void Update(string publishLine)
         {
+            string[] attributes = publishLine.Split("&");
+            _validator.CheckAttributesAreEmpty(attributes);
+            User user = UserService.Instance.Get(attributes[0]);
+            Game game = GameService.Instance.Get(attributes[1]);
+            var publish = PublishRepository.Get(p => p.User.Equals(user) && p.Game.Equals(game));
+            _validator.CheckPublishIsNull(publish);
             GameService.Instance.Update(publishLine);
         }
 

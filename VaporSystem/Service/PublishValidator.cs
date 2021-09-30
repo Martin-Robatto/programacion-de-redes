@@ -2,6 +2,7 @@
 using Exceptions;
 using System.Collections.Generic;
 using System.Linq;
+using DataAccess;
 
 namespace Service
 {
@@ -31,6 +32,15 @@ namespace Service
                 {
                     throw new InvalidInputException("empty attribute");
                 }
+            }
+        }
+        
+        public void CheckPublishAlreadyExists(Publish input)
+        {
+            var publish = PublishRepository.Get(p => p.Equals(input));
+            if (publish is not null)
+            {
+                throw new AlreadyExistsException("Publish");
             }
         }
     }
