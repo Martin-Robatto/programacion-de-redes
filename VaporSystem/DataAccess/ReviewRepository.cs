@@ -34,12 +34,15 @@ namespace DataAccess
 
         public static IEnumerable<Review> GetAll(Func<Review, bool> filter = null)
         {
-            IEnumerable<Review> reviewsToReturn = Reviews;
-            if (filter is not null)
+            lock (Reviews)
             {
-                reviewsToReturn = reviewsToReturn.Where(filter);
+                IEnumerable<Review> reviewsToReturn = Reviews;
+                if (filter is not null)
+                {
+                    reviewsToReturn = reviewsToReturn.Where(filter);
+                }
+                return reviewsToReturn;
             }
-            return reviewsToReturn;
         }
 
         public static Review Get(Func<Review, bool> filter = null)

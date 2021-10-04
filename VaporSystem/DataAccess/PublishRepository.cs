@@ -34,12 +34,15 @@ namespace DataAccess
 
         public static IEnumerable<Publish> GetAll(Func<Publish, bool> filter = null)
         {
-            IEnumerable<Publish> publishsToReturn = Publishs;
-            if (filter is not null)
+            lock (Publishs)
             {
-                publishsToReturn = publishsToReturn.Where(filter);
+                IEnumerable<Publish> publishsToReturn = Publishs;
+                if (filter is not null)
+                {
+                    publishsToReturn = publishsToReturn.Where(filter);
+                }
+                return publishsToReturn;
             }
-            return publishsToReturn;
         }
 
         public static Publish Get(Func<Publish, bool> filter = null)

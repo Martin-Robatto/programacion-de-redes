@@ -34,12 +34,15 @@ namespace DataAccess
 
         public static IEnumerable<Purchase> GetAll(Func<Purchase, bool> filter = null)
         {
-            IEnumerable<Purchase> purchasesToReturn = Purchases;
-            if (filter is not null)
+            lock (Purchases)
             {
-                purchasesToReturn = purchasesToReturn.Where(filter);
+                IEnumerable<Purchase> purchasesToReturn = Purchases;
+                if (filter is not null)
+                {
+                    purchasesToReturn = purchasesToReturn.Where(filter);
+                }
+                return purchasesToReturn;
             }
-            return purchasesToReturn;
         }
 
         public static Purchase Get(Func<Purchase, bool> filter = null)

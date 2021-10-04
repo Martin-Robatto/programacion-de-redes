@@ -8,7 +8,7 @@ namespace ConsoleClient.Function.Menu
         public string Name { get; set; }
         public void Execute(NetworkStream stream, string session = null)
         {
-            ClientHandler.SetActualFunctions(FunctionDictionary.Publishes());
+            ClientHandler.Instance.SetActualFunctions(FunctionDictionary.Publishes());
         }
 
         public GoToPublishesMenuFunction()

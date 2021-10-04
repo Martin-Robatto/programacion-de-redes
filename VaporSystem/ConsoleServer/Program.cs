@@ -4,11 +4,13 @@ namespace ConsoleServer
 {
     class Program
     {
+        private static ServerHandler _serverHandler;
         static void Main(string[] args)
         {
             try
             {
-                ServerHandler.Run();
+                _serverHandler = new ServerHandler();
+                _serverHandler.Run();
             }
             catch (Exception exception)
             {

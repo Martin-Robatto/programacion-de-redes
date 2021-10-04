@@ -12,14 +12,34 @@ namespace ConsoleClient
 {
     public class ClientHandler
     {
-        private static bool _exit;
-        private static bool _connected;
-        private static TcpClient _tcpClient;
-        private static string _actualSession;
-        private static Dictionary<int, IClientFunction> _actualFunctions;
-        private static readonly ISettingsManager _settingsManager = new SettingsManager();
+        private bool _exit;
+        private bool _connected;
+        private TcpClient _tcpClient;
+        private string _actualSession;
+        private Dictionary<int, IClientFunction> _actualFunctions;
+        private readonly ISettingsManager _settingsManager = new SettingsManager();
+        private static ClientHandler _instance;
+        private static readonly object _lock = new object();
+        public static ClientHandler Instance
+        {
+            get { return GetInstance(); }
+        }
 
-        public static void Run()
+        private ClientHandler() { }
+        
+        private static ClientHandler GetInstance()
+        {
+            if (_instance is null)
+            {
+                lock (_lock)
+                {
+                    _instance = new ClientHandler();
+                }
+            }
+            return _instance;
+        }
+        
+        public void Run()
         {
             _exit = false;
             _connected = false;
@@ -54,7 +74,7 @@ namespace ConsoleClient
             }
         }
 
-        private static void Initialize()
+        private void Initialize()
         {
             var clientIpAddress = _settingsManager.ReadSetting(ClientConfig.ClientIpConfigKey);
             var clientPort = GetPort();
@@ -62,14 +82,14 @@ namespace ConsoleClient
             _tcpClient = new TcpClient(ipEndPoint);
         }
 
-        private static int GetPort()
+        private int GetPort()
         {
             var random = new Random();
             var port = random.Next(20001, 30001);
             return port;
         }
 
-        private static void Connect()
+        private void Connect()
         {
             ClientDisplay.Connecting();
             var serverIpAddress = _settingsManager.ReadSetting(ClientConfig.ServerIpConfigKey);
@@ -80,7 +100,7 @@ namespace ConsoleClient
             ClientDisplay.Connected();
         }
 
-        private static void DisplayServerUpMenu(NetworkStream networkStream)
+        private void DisplayServerUpMenu(NetworkStream networkStream)
         {
             if (String.IsNullOrEmpty(_actualSession))
             {
@@ -100,7 +120,7 @@ namespace ConsoleClient
             ClientDisplay.ClearConsole();
         }
 
-        private static void DisplayServerDownMenu()
+        private void DisplayServerDownMenu()
         {
             ClientDisplay.ConnectionInterrupted();
             ClientDisplay.Menu(_actualFunctions);
@@ -116,18 +136,18 @@ namespace ConsoleClient
             ClientDisplay.ClearConsole();
         }
 
-        public static void SetActualSession(string user)
+        public void SetActualSession(string user)
         {
             _actualSession = user;
             SetActualFunctions(FunctionDictionary.Main());
         }
 
-        public static void SetActualFunctions(Dictionary<int, IClientFunction> functions)
+        public void SetActualFunctions(Dictionary<int, IClientFunction> functions)
         {
             _actualFunctions = functions;
         }
 
-        public static void ShutDown()
+        public void ShutDown()
         {
             _tcpClient.Close();
             _exit = true;
