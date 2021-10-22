@@ -13,6 +13,8 @@ namespace Service
         private static PublishService _instance;
         private PublishValidator _validator;
 
+        private NetworkManager _networkManager = new NetworkManager();
+
         public static PublishService Instance
         {
             get { return GetInstance(); }
@@ -105,7 +107,7 @@ namespace Service
             GameService.Instance.Update(publishLine);
         }
 
-        public void DownloadPicture(NetworkStream stream, string publishLine)
+        public void DownloadPicture(Socket socket, string publishLine)
         {
             string[] attributes = publishLine.Split("&");
             _validator.CheckAttributesAreEmpty(attributes);
@@ -119,7 +121,7 @@ namespace Service
             string fileName = $@"C:\VAPOR\SERVER\{game.Id}.{fileExtension}";
             game.PicturePath = fileName;
 
-            NetworkStreamManager.DownloadFile(stream, fileSize, fileName);
+            _networkManager.DownloadFile(socket, fileSize, fileName);
         }
     }
 }

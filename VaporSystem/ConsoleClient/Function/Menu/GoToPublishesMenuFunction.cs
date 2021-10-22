@@ -6,7 +6,7 @@ namespace ConsoleClient.Function.Menu
     public class GoToPublishesMenuFunction : IClientFunction
     {
         public string Name { get; set; }
-        public void Execute(NetworkStream stream, string session = null)
+        public void Execute(Socket socket, string session = null)
         {
             ClientHandler.Instance.SetActualFunctions(FunctionDictionary.Publishes());
         }

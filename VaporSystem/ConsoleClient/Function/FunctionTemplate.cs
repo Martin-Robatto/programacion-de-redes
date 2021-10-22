@@ -10,12 +10,13 @@ namespace ConsoleClient.Function
     public abstract class FunctionTemplate : IClientFunction
     {
         public string Name { get; set; }
-        protected NetworkStream networkStream;
+        protected NetworkManager networkManager = new NetworkManager();
+        protected Socket socket;
         protected string session;
 
-        public void Execute(NetworkStream stream, string session = null)
+        public void Execute(Socket socket, string session = null)
         {
-            networkStream = stream;
+            this.socket = socket;
             this.session = session;
             var dataPacket = BuildRequest();
             SendRequest(dataPacket);
@@ -27,17 +28,17 @@ namespace ConsoleClient.Function
 
         public virtual void SendRequest(DataPacket dataPacket)
         {
-            NetworkStreamManager.Send(networkStream, dataPacket);
+            networkManager.Send(socket, dataPacket);
         }
 
         public virtual byte[] ReceiveResponse()
         {
             try
             {
-                var bufferHeader = NetworkStreamManager.Receive(networkStream, HeaderConstants.HEADER_LENGTH);
+                var bufferHeader = networkManager.Receive(socket, HeaderConstants.HEADER_LENGTH);
                 var header = new Header(bufferHeader);
-                var bufferData = NetworkStreamManager.Receive(networkStream, header.DataLength);
-                var bufferStatusCode = NetworkStreamManager.Receive(networkStream, HeaderConstants.STATUS_CODE_LENGTH);
+                var bufferData = networkManager.Receive(socket, header.DataLength);
+                var bufferStatusCode = networkManager.Receive(socket, HeaderConstants.STATUS_CODE_LENGTH);
 
                 var bufferToReturn = new byte[header.DataLength + HeaderConstants.STATUS_CODE_LENGTH];
                 Array.Copy(bufferStatusCode, 0, bufferToReturn, 0, HeaderConstants.STATUS_CODE_LENGTH);

@@ -5,51 +5,67 @@ using System.Text;
 
 namespace SocketLogic
 {
-    public class NetworkStreamManager
+    public class NetworkManager
     {
-        public static void Send(NetworkStream stream, DataPacket dataPacket)
+        public void Send(Socket socket, DataPacket dataPacket)
         {
             var header = dataPacket.Header.GetRequest();
-            stream.Write(header, 0, header.Length);
+            SendData(socket, header);
 
             var message = Encoding.UTF8.GetBytes(dataPacket.Payload);
-            stream.Write(message, 0, message.Length);
+            SendData(socket, message);
 
             if (dataPacket.StatusCode != StatusCodeConstants.EMPTY)
             {
                 var statusCode = Encoding.UTF8.GetBytes(dataPacket.StatusCode.ToString());
-                stream.Write(statusCode, 0, statusCode.Length);
+                SendData(socket, statusCode);
             }
         }
 
-        public static byte[] Receive(NetworkStream stream, int length)
+        private void SendData(Socket socket, byte[] data)
         {
-            byte[] buffer = new byte[length];
-            var totalReceived = 0;
-            while (totalReceived < length)
+            int offset = 0;
+            int size = data.Length;
+            while (offset < size)
             {
-                var received = stream.Read(buffer, totalReceived, length - totalReceived);
+                int sent = socket.Send(data, offset, size - offset, SocketFlags.None);
+                if (sent == 0)
+                {
+                    throw new SocketException();
+                }
+                offset += sent;
+            }
+        }
+
+        public byte[] Receive(Socket socket, int length)
+        {
+            var offset = 0;
+            byte[] buffer = new byte[length];
+            while (offset < length)
+            {
+                var received = socket.Receive(buffer, offset, length - offset, SocketFlags.None);
                 if (received == 0)
                 {
                     throw new SocketException();
                 }
-                totalReceived += received;
+                offset += received;
             }
             return buffer;
         }
 
-        public static void UploadFile(NetworkStream stream, long fileSize, string filePath)
+        public void UploadFile(Socket socket, long size, string filePath)
         {
-            long parts = FileManager.GetParts(fileSize);
             long offset = 0;
+
+            long parts = FileManager.GetParts(size);
             long currentPart = 1;
 
-            while (fileSize > offset)
+            while (offset < size)
             {
                 byte[] data;
                 if (currentPart == parts)
                 {
-                    var lastPartSize = (int)(fileSize - offset);
+                    var lastPartSize = (int)(size - offset);
                     data = FileStreamManager.Read(filePath, offset, lastPartSize);
                     offset += lastPartSize;
                 }
@@ -58,29 +74,30 @@ namespace SocketLogic
                     data = FileStreamManager.Read(filePath, offset, HeaderConstants.MAX_PACKET_SIZE);
                     offset += HeaderConstants.MAX_PACKET_SIZE;
                 }
-                stream.Write(data, 0, data.Length);
+                SendData(socket, data);
                 currentPart++;
             }
         }
 
-        public static void DownloadFile(NetworkStream stream, long fileSize, string fileName)
+        public void DownloadFile(Socket socket, long size, string fileName)
         {
-            long parts = FileManager.GetParts(fileSize);
             long offset = 0;
+
+            long parts = FileManager.GetParts(size);
             long currentPart = 1;
 
-            while (fileSize > offset)
+            while (offset < size)
             {
                 byte[] data;
                 if (currentPart == parts)
                 {
-                    var lastPartSize = (int)(fileSize - offset);
-                    data = Receive(stream, lastPartSize);
+                    var lastPartSize = (int)(size - offset);
+                    data = Receive(socket, lastPartSize);
                     offset += lastPartSize;
                 }
                 else
                 {
-                    data = Receive(stream, HeaderConstants.MAX_PACKET_SIZE);
+                    data = Receive(socket, HeaderConstants.MAX_PACKET_SIZE);
                     offset += HeaderConstants.MAX_PACKET_SIZE;
                 }
 

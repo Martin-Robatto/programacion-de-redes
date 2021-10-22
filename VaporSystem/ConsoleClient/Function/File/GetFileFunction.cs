@@ -34,7 +34,7 @@ namespace ConsoleClient.Function.File
                 string fileExtension = filePathAttributes[filePathAttributes.Length - 1];
                 string fileName = $@"C:\VAPOR\CLIENT\{Title}.{fileExtension}";
 
-                NetworkStreamManager.DownloadFile(base.networkStream, fileSize, fileName);
+                base.networkManager.DownloadFile(base.socket, fileSize, fileName);
             }
             else
             {

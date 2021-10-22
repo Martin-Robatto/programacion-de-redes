@@ -38,7 +38,7 @@ namespace ConsoleClient.Function
             {
                 Console.WriteLine("Juego publicado exitosamente");
                 Console.WriteLine();
-                _postFileFunction.Execute(base.networkStream, base.session);
+                _postFileFunction.Execute(base.socket, base.session);
             }
             else
             {

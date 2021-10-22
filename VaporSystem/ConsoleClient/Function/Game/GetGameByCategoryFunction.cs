@@ -43,7 +43,7 @@ namespace ConsoleClient.Function
                     Console.WriteLine($"Sinopsis: {attributes[2]}");
                     Console.WriteLine($"Calificacion: {attributes[3]}");
                     _getFileFunction.Title = attributes[0];
-                    _getFileFunction.Execute(base.networkStream, base.session);
+                    _getFileFunction.Execute(base.socket, base.session);
                 }
             }
             else

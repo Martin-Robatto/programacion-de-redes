@@ -7,26 +7,26 @@ namespace ConsoleServer.Function
 {
     public class GetAllGamesFunction : FunctionTemplate
     {
-        public override ResponseData ProcessRequest(byte[] bufferData)
+        public override void ProcessRequest(byte[] bufferData)
         {
-            ResponseData response = new ResponseData();
-            response.Function = FunctionConstants.GET_ALL_GAMES;
+            
+            base.function = FunctionConstants.GET_ALL_GAMES;
             try
             {
-                response.Data = GameService.Instance.GetGames();
-                response.StatusCode = StatusCodeConstants.OK;
+                base.data = GameService.Instance.GetGames();
+                base.statusCode = StatusCodeConstants.OK;
             }
             catch (AppException exception)
             {
-                response.Data = exception.Message;
-                response.StatusCode = exception.StatusCode;
+                base.data = exception.Message;
+                base.statusCode = exception.StatusCode;
             }
             catch (Exception exception)
             {
-                response.Data = "Error de servidor";
-                response.StatusCode = StatusCodeConstants.SERVER_ERROR;
+                base.data = "Error de servidor";
+                base.statusCode = StatusCodeConstants.SERVER_ERROR;
             }
-            return response;
+            
         }
     }
 }

@@ -34,7 +34,7 @@ namespace ConsoleClient.Function.File
 
         public override void SendRequest(DataPacket dataPacket)
         {
-            NetworkStreamManager.Send(base.networkStream, dataPacket);
+            base.networkManager.Send(base.socket, dataPacket);
 
             string[] attributes = dataPacket.Payload.Split("&");
             string[] fileAttributes = attributes[2].Split("#");
@@ -42,7 +42,7 @@ namespace ConsoleClient.Function.File
             string filePath = fileAttributes[1];
             long fileSize = long.Parse(fileAttributes[2]);
 
-            NetworkStreamManager.UploadFile(base.networkStream, fileSize, filePath);
+            base.networkManager.UploadFile(base.socket, fileSize, filePath);
         }
 
         public override void ProcessResponse(byte[] bufferData)

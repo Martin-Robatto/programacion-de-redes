@@ -8,27 +8,27 @@ namespace ConsoleServer.Function
 {
     public class PostPurchaseFunction : FunctionTemplate
     {
-        public override ResponseData ProcessRequest(byte[] bufferData)
+        public override void ProcessRequest(byte[] bufferData)
         {
-            ResponseData response = new ResponseData();
-            response.Function = FunctionConstants.POST_PURCHASE;
+            
+            base.function = FunctionConstants.POST_PURCHASE;
             try
             {
                 var purchaseLine = Encoding.UTF8.GetString(bufferData);
                 PurchaseService.Instance.Save(purchaseLine);
-                response.StatusCode = StatusCodeConstants.CREATED;
+                base.statusCode = StatusCodeConstants.CREATED;
             }
             catch (AppException exception)
             {
-                response.Data = exception.Message;
-                response.StatusCode = exception.StatusCode;
+                base.data = exception.Message;
+                base.statusCode = exception.StatusCode;
             }
             catch (Exception exception)
             {
-                response.Data = "Error de servidor";
-                response.StatusCode = StatusCodeConstants.SERVER_ERROR;
+                base.data = "Error de servidor";
+                base.statusCode = StatusCodeConstants.SERVER_ERROR;
             }
-            return response;
+            
         }
     }
 }

@@ -5,6 +5,6 @@ namespace FunctionInterface
     public interface IClientFunction
     {
         string Name { get; set; }
-        void Execute(NetworkStream stream = null, string session = null);
+        void Execute(Socket socket = null, string session = null);
     }
 }

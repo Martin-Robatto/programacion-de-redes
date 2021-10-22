@@ -8,7 +8,7 @@ namespace ConsoleClient.Function
         public const string NAME = "Salir";
 
         public string Name { get; set; }
-        public void Execute(NetworkStream stream = null, string session = null)
+        public void Execute(Socket socket = null, string session = null)
         {
             ClientHandler.Instance.ShutDown();
         }

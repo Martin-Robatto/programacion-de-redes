@@ -7,38 +7,44 @@ namespace ConsoleServer.Function
 {
     public abstract class FunctionTemplate : IServerFunction
     {
-        protected NetworkStream networkStream;
-        public void Execute(NetworkStream stream, Header header = null)
+        protected Socket socket;
+        protected NetworkManager networkManager = new NetworkManager();
+
+        protected string data = string.Empty;
+        protected int function;
+        protected int statusCode;
+        
+        public void Execute(Socket socket, Header header = null)
         {
-            networkStream = stream;
+            this.socket = socket;
             var bufferData = ReceiveRequest(header);
-            var response = ProcessRequest(bufferData);
-            var dataPacket = BuildResponse(response);
+            ProcessRequest(bufferData);
+            var dataPacket = BuildResponse();
             SendResponse(dataPacket);
         }
 
         public virtual byte[] ReceiveRequest(Header header)
         {
-            return NetworkStreamManager.Receive(networkStream, header.DataLength);
+            return networkManager.Receive(socket, header.DataLength);
         }
 
-        public abstract ResponseData ProcessRequest(byte[] bufferData);
+        public abstract void ProcessRequest(byte[] bufferData);
 
-        public virtual DataPacket BuildResponse(ResponseData responseData)
+        public virtual DataPacket BuildResponse()
         {
-            var message = responseData.Data;
-            var header = new Header(HeaderConstants.RESPONSE, responseData.Function, message.Length);
+            var message = data;
+            var header = new Header(HeaderConstants.RESPONSE, function, message.Length);
             return new DataPacket()
             {
                 Header = header,
                 Payload = message,
-                StatusCode = responseData.StatusCode
+                StatusCode = statusCode
             };
         }
 
         public virtual void SendResponse(DataPacket dataPacket)
         {
-            NetworkStreamManager.Send(networkStream, dataPacket);
+            networkManager.Send(socket, dataPacket);
         }
     }
 }

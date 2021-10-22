@@ -14,31 +14,31 @@ namespace ConsoleClient
     {
         private bool _exit;
         private bool _connected;
-        private TcpClient _tcpClient;
         private string _actualSession;
+
+        private Socket _clientSocket;
+
         private Dictionary<int, IClientFunction> _actualFunctions;
         private readonly ISettingsManager _settingsManager = new SettingsManager();
+
         private static ClientHandler _instance;
-        private static readonly object _lock = new object();
+
         public static ClientHandler Instance
         {
-            get { return GetInstance(); }
-        }
-
-        private ClientHandler() { }
-        
-        private static ClientHandler GetInstance()
-        {
-            if (_instance is null)
+            get
             {
-                lock (_lock)
+                if (_instance is null)
                 {
                     _instance = new ClientHandler();
                 }
+                return _instance;
             }
-            return _instance;
         }
-        
+
+        private ClientHandler()
+        {
+        }
+
         public void Run()
         {
             _exit = false;
@@ -51,12 +51,9 @@ namespace ConsoleClient
                     Initialize();
                     Connect();
                     _actualSession = string.Empty;
-                    using (var networkStream = _tcpClient.GetStream())
+                    while (!_exit)
                     {
-                        while (!_exit)
-                        {
-                            DisplayServerUpMenu(networkStream);
-                        }
+                        DisplayServerUpMenu();
                     }
                 }
                 catch (IOException)
@@ -76,10 +73,11 @@ namespace ConsoleClient
 
         private void Initialize()
         {
+            _clientSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);  
             var clientIpAddress = _settingsManager.ReadSetting(ClientConfig.ClientIpConfigKey);
             var clientPort = GetPort();
             var ipEndPoint = new IPEndPoint(IPAddress.Parse(clientIpAddress), clientPort);
-            _tcpClient = new TcpClient(ipEndPoint);
+            _clientSocket.Bind(ipEndPoint);
         }
 
         private int GetPort()
@@ -95,17 +93,18 @@ namespace ConsoleClient
             var serverIpAddress = _settingsManager.ReadSetting(ClientConfig.ServerIpConfigKey);
             var serverPort = _settingsManager.ReadSetting(ClientConfig.ServerPortConfigKey);
             var ipEndPoint = new IPEndPoint(IPAddress.Parse(serverIpAddress), int.Parse(serverPort));
-            _tcpClient.Connect(ipEndPoint);
+            _clientSocket.Connect(ipEndPoint);
             _connected = true;
             ClientDisplay.Connected();
         }
 
-        private void DisplayServerUpMenu(NetworkStream networkStream)
+        private void DisplayServerUpMenu()
         {
             if (String.IsNullOrEmpty(_actualSession))
             {
                 _actualFunctions = FunctionDictionary.LogIn();
             }
+
             ClientDisplay.Menu(_actualFunctions);
             ClientDisplay.ChooseOption();
             var userInput = Console.ReadLine();
@@ -113,8 +112,9 @@ namespace ConsoleClient
             if (_actualFunctions.ContainsKey(input))
             {
                 var command = _actualFunctions[input];
-                command.Execute(networkStream, session: _actualSession);
+                command.Execute(_clientSocket, session: _actualSession);
             }
+
             ClientDisplay.Continue();
             Console.ReadLine();
             ClientDisplay.ClearConsole();
@@ -133,6 +133,7 @@ namespace ConsoleClient
                 var command = _actualFunctions[input];
                 command.Execute();
             }
+
             ClientDisplay.ClearConsole();
         }
 
@@ -149,7 +150,8 @@ namespace ConsoleClient
 
         public void ShutDown()
         {
-            _tcpClient.Close();
+            _clientSocket.Shutdown(SocketShutdown.Both);
+            _clientSocket.Close();
             _exit = true;
         }
     }

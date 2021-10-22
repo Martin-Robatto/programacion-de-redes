@@ -8,27 +8,27 @@ namespace ConsoleServer.Function.File
 {
     public class PostFileFunction : FunctionTemplate
     {
-        public override ResponseData ProcessRequest(byte[] bufferData)
+        public override void ProcessRequest(byte[] bufferData)
         {
-            ResponseData response = new ResponseData();
-            response.Function = FunctionConstants.POST_FILE;
+            
+            base.function = FunctionConstants.POST_FILE;
             try
             {
                 var fileLine = Encoding.UTF8.GetString(bufferData);
-                PublishService.Instance.DownloadPicture(base.networkStream, fileLine);
-                response.StatusCode = StatusCodeConstants.CREATED;
+                PublishService.Instance.DownloadPicture(base.socket, fileLine);
+                base.statusCode = StatusCodeConstants.CREATED;
             }
             catch (AppException exception)
             {
-                response.Data = exception.Message;
-                response.StatusCode = exception.StatusCode;
+                base.data = exception.Message;
+                base.statusCode = exception.StatusCode;
             }
             catch (Exception exception)
             {
-                response.Data = "Error de servidor";
-                response.StatusCode = StatusCodeConstants.SERVER_ERROR;
+                base.data = "Error de servidor";
+                base.statusCode = StatusCodeConstants.SERVER_ERROR;
             }
-            return response;
+            
         }
     }
 }

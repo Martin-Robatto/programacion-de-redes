@@ -8,27 +8,27 @@ namespace ConsoleServer.Function
 {
     public class GetGameByTitleFunction : FunctionTemplate
     {
-        public override ResponseData ProcessRequest(byte[] bufferData)
+        public override void ProcessRequest(byte[] bufferData)
         {
-            ResponseData response = new ResponseData();
-            response.Function = FunctionConstants.GET_GAME_BY_TITLE;
+            
+            base.function = FunctionConstants.GET_GAME_BY_TITLE;
             try
             {
                 var gameLine = Encoding.UTF8.GetString(bufferData);
-                response.Data = GameService.Instance.GetByTitle(gameLine);
-                response.StatusCode = StatusCodeConstants.OK;
+                base.data = GameService.Instance.GetByTitle(gameLine);
+                base.statusCode = StatusCodeConstants.OK;
             }
             catch (AppException exception)
             {
-                response.Data = exception.Message;
-                response.StatusCode = exception.StatusCode;
+                base.data = exception.Message;
+                base.statusCode = exception.StatusCode;
             }
             catch (Exception exception)
             {
-                response.Data = "Error de servidor";
-                response.StatusCode = StatusCodeConstants.SERVER_ERROR;
+                base.data = "Error de servidor";
+                base.statusCode = StatusCodeConstants.SERVER_ERROR;
             }
-            return response;
+            
         }
     }
 }

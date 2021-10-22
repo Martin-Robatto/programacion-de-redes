@@ -5,6 +5,6 @@ namespace FunctionInterface
 {
     public interface IServerFunction
     {
-        void Execute(NetworkStream stream, Header header = null);
+        void Execute(Socket socket, Header header = null);
     }
 }

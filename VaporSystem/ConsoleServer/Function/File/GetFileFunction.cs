@@ -9,39 +9,39 @@ namespace ConsoleServer.Function.File
 {
     public class GetFileFunction : FunctionTemplate
     {
-        public override ResponseData ProcessRequest(byte[] bufferData)
+        public override void ProcessRequest(byte[] bufferData)
         {
-            ResponseData response = new ResponseData();
-            response.Function = FunctionConstants.GET_FILE;
+            
+            base.function = FunctionConstants.GET_FILE;
             try
             {
                 var gameLine = Encoding.UTF8.GetString(bufferData);
-                response.Data = GameService.Instance.UploadPicture(gameLine);
-                response.StatusCode = StatusCodeConstants.OK;
+                base.data = GameService.Instance.UploadPicture(gameLine);
+                base.statusCode = StatusCodeConstants.OK;
             }
             catch (AppException exception)
             {
-                response.Data = exception.Message;
-                response.StatusCode = exception.StatusCode;
+                base.data = exception.Message;
+                base.statusCode = exception.StatusCode;
             }
             catch (Exception exception)
             {
-                response.Data = "Error de servidor";
-                response.StatusCode = StatusCodeConstants.SERVER_ERROR;
+                base.data = "Error de servidor";
+                base.statusCode = StatusCodeConstants.SERVER_ERROR;
             }
-            return response;
+            
         }
 
         public override void SendResponse(DataPacket dataPacket)
         {
-            NetworkStreamManager.Send(networkStream, dataPacket);
+            base.networkManager.Send(socket, dataPacket);
             if (dataPacket.StatusCode == StatusCodeConstants.OK)
             {
                 string[] attributes = dataPacket.Payload.Split("#");
                 string filePath = attributes[0];
                 long fileSize = long.Parse(attributes[1]);
 
-                NetworkStreamManager.UploadFile(networkStream, fileSize, filePath);
+                base.networkManager.UploadFile(socket, fileSize, filePath);
             }
         }
     }
