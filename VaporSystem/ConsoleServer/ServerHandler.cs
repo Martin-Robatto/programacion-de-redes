@@ -15,13 +15,16 @@ namespace ConsoleServer
 {
     public class ServerHandler
     {
-        private static bool _exit;
-        private static TcpListener _tcpListenerSocket;
-        private static Dictionary<int, IServerFunction> _functions;
-        private static Dictionary<TcpClient, NetworkStream> _clientSockets;
-        private static readonly ISettingsManager _settingsManager = new SettingsManager();
+        private bool _exit;
+        private TcpListener _tcpListenerSocket;
+        private Dictionary<int, IServerFunction> _functions;
+        private Dictionary<TcpClient, NetworkStream> _clientSockets;
+        private readonly ISettingsManager _settingsManager = new SettingsManager();
+        private const string SHUTDOWN_SERVER = "0";
 
-        public static void Run()
+        public ServerHandler() { }
+
+        public void Run()
         {
             _exit = false;
             try
@@ -38,7 +41,7 @@ namespace ConsoleServer
                     var userInput = Console.ReadLine();
                     switch (userInput)
                     {
-                        case "0":
+                        case SHUTDOWN_SERVER:
                             ShutDown();
                             break;
                         default:
@@ -47,10 +50,13 @@ namespace ConsoleServer
                     }
                 }
             }
-            catch (Exception) { }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception.Message);
+            }
         }
 
-        private static void Initialize()
+        private void Initialize()
         {
             var serverIpAddress = _settingsManager.ReadSetting(ServerConfig.ServerIpConfigKey);
             var serverPort = _settingsManager.ReadSetting(ServerConfig.ServerPortConfigKey);
@@ -60,7 +66,7 @@ namespace ConsoleServer
             _tcpListenerSocket.Start(100);
         }
 
-        private static void ListenForConnections()
+        private void ListenForConnections()
         {
             while (!_exit)
             {
@@ -74,7 +80,7 @@ namespace ConsoleServer
             }
         }
 
-        private static void Handle(TcpClient tcpClientSocket, NetworkStream networkStream)
+        private void Handle(TcpClient tcpClientSocket, NetworkStream networkStream)
         {
             var isClientConnected = true;
             try
@@ -104,14 +110,14 @@ namespace ConsoleServer
             }
         }
 
-        private static void ExecuteFunction(NetworkStream networkStream, Header header)
+        private void ExecuteFunction(NetworkStream networkStream, Header header)
         {
             _functions = FunctionDictionary.Get();
             var command = _functions[header.Command];
             command.Execute(networkStream, header: header);
         }
 
-        private static void ShutDown()
+        private void ShutDown()
         {
             _tcpListenerSocket.Stop();
             foreach (var client in _clientSockets)

@@ -8,7 +8,7 @@ namespace ConsoleClient.Function.Menu
         public string Name { get; set; }
         public void Execute(NetworkStream stream, string session = null)
         {
-            ClientHandler.SetActualFunctions(FunctionDictionary.Reviews());
+            ClientHandler.Instance.SetActualFunctions(FunctionDictionary.Reviews());
         }
 
         public GoToReviewsMenuFunction()

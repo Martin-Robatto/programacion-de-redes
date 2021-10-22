@@ -8,7 +8,7 @@ namespace ConsoleClient.Function.Menu
         public string Name { get; set; }
         public void Execute(NetworkStream stream, string session = null)
         {
-            ClientHandler.SetActualFunctions(FunctionDictionary.Games());
+            ClientHandler.Instance.SetActualFunctions(FunctionDictionary.Games());
         }
 
         public GoToGamesMenuFunction()

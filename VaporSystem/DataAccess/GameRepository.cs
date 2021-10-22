@@ -34,12 +34,15 @@ namespace DataAccess
 
         public static IEnumerable<Game> GetAll(Func<Game, bool> filter = null)
         {
-            IEnumerable<Game> gamesToReturn = Games;
-            if (filter is not null)
+            lock (Games)
             {
-                gamesToReturn = gamesToReturn.Where(filter);
+                IEnumerable<Game> gamesToReturn = Games;
+                if (filter is not null)
+                {
+                    gamesToReturn = gamesToReturn.Where(filter);
+                }
+                return gamesToReturn;
             }
-            return gamesToReturn;
         }
 
         public static Game Get(Func<Game, bool> filter = null)

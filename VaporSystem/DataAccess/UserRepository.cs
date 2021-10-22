@@ -34,12 +34,15 @@ namespace DataAccess
 
         public static IEnumerable<User> GetAll(Func<User, bool> filter = null)
         {
-            IEnumerable<User> usersToReturn = Users;
-            if (filter is not null)
+            lock (Users)
             {
-                usersToReturn = usersToReturn.Where(filter);
+                IEnumerable<User> usersToReturn = Users;
+                if (filter is not null)
+                {
+                    usersToReturn = usersToReturn.Where(filter);
+                }
+                return usersToReturn;
             }
-            return usersToReturn;
         }
 
         public static User Get(Func<User, bool> filter = null)

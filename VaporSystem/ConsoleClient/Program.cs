@@ -8,7 +8,7 @@ namespace ConsoleClient
         {
             try
             {
-                ClientHandler.Run();
+                ClientHandler.Instance.Run();
             }
             catch (Exception exception)
             {

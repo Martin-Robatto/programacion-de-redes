@@ -10,7 +10,7 @@ namespace ConsoleClient.Function
         public string Name { get; set; }
         public void Execute(NetworkStream stream = null, string session = null)
         {
-            ClientHandler.ShutDown();
+            ClientHandler.Instance.ShutDown();
         }
 
         public ExitFunction()
