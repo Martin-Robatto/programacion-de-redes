@@ -148,4 +148,3 @@ C:\Users\robak\RiderProjects\programacion-de-redes\VaporSystem\ConsoleClient\obj
 C:\Users\robak\RiderProjects\programacion-de-redes\VaporSystem\ConsoleClient\obj\Debug\net5.0\ref\ConsoleClient.dll
 C:\Users\robak\RiderProjects\programacion-de-redes\VaporSystem\ConsoleClient\obj\Debug\net5.0\ConsoleClient.pdb
 C:\Users\robak\RiderProjects\programacion-de-redes\VaporSystem\ConsoleClient\obj\Debug\net5.0\ConsoleClient.genruntimeconfig.cache
-C:\Users\konop\Desktop\programacion-de-redes\VaporSystem\ConsoleClient\obj\Debug\net5.0\ConsoleClient.csproj.CopyComplete

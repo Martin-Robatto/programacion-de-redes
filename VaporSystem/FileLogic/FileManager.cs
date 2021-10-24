@@ -7,12 +7,15 @@ namespace FileLogic
 {
     public class FileManager
     {
-        public static bool FileExists(string path)
+
+        public FileManager() { }
+        
+        public bool FileExists(string path)
         {
             return File.Exists(path);
         }
 
-        public static bool IsValidExtension(string path)
+        public bool IsValidExtension(string path)
         {
             IList<string> validExtensions = new List<string>() { "PNG", "JPG", "JPEG" };
             string[] filePathAttributes = path.Split(".");
@@ -20,7 +23,7 @@ namespace FileLogic
             return validExtensions.Contains(fileExtension.ToUpper());
         }
 
-        public static string GetFileName(string path)
+        public string GetFileName(string path)
         {
             if (!FileExists(path))
             {
@@ -29,7 +32,7 @@ namespace FileLogic
             return new FileInfo(path).Name;
         }
 
-        public static long GetFileSize(string path)
+        public long GetFileSize(string path)
         {
             if (!FileExists(path))
             {
@@ -38,7 +41,7 @@ namespace FileLogic
             return new FileInfo(path).Length;
         }
 
-        public static long GetParts(long fileSize)
+        public long GetParts(long fileSize)
         {
             var parts = fileSize / HeaderConstants.MAX_PACKET_SIZE;
             return parts * HeaderConstants.MAX_PACKET_SIZE == fileSize ? parts : parts + 1;

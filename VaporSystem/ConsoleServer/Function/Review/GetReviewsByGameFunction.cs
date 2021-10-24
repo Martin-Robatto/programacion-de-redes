@@ -23,7 +23,7 @@ namespace ConsoleServer.Function.Review
                 base.data = exception.Message;
                 base.statusCode = exception.StatusCode;
             }
-            catch (Exception exception)
+            catch (Exception)
             {
                 base.data = "Error de servidor";
                 base.statusCode = StatusCodeConstants.SERVER_ERROR;

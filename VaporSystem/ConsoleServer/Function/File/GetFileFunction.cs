@@ -4,6 +4,7 @@ using Service;
 using SocketLogic;
 using System;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace ConsoleServer.Function.File
 {
@@ -24,7 +25,7 @@ namespace ConsoleServer.Function.File
                 base.data = exception.Message;
                 base.statusCode = exception.StatusCode;
             }
-            catch (Exception exception)
+            catch (Exception)
             {
                 base.data = "Error de servidor";
                 base.statusCode = StatusCodeConstants.SERVER_ERROR;
@@ -32,16 +33,16 @@ namespace ConsoleServer.Function.File
             
         }
 
-        public override void SendResponse(DataPacket dataPacket)
+        public override async Task SendResponseAsync(DataPacket dataPacket)
         {
-            base.networkManager.Send(socket, dataPacket);
+            await base.networkManager.SendAsync(socket, dataPacket);
             if (dataPacket.StatusCode == StatusCodeConstants.OK)
             {
                 string[] attributes = dataPacket.Payload.Split("#");
                 string filePath = attributes[0];
                 long fileSize = long.Parse(attributes[1]);
 
-                base.networkManager.UploadFile(socket, fileSize, filePath);
+                await base.networkManager.UploadFileAsync(socket, fileSize, filePath);
             }
         }
     }

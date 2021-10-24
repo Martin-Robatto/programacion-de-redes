@@ -1,39 +1,42 @@
 ﻿using Exceptions;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace FileLogic
 {
     public class FileStreamManager
     {
-        public static void Write(string fileName, byte[] data)
+        public FileStreamManager() { }
+        
+        public async Task WriteAsync(string fileName, byte[] data)
         {
             if (File.Exists(fileName))
             {
-                using (var fileStream = new FileStream(fileName, FileMode.Append))
+                await using (var fileStream = new FileStream(fileName, FileMode.Append))
                 {
-                    fileStream.Write(data, 0, data.Length);
+                    await fileStream.WriteAsync(data, 0, data.Length);
                 }
             }
             else
             {
-                using (var fileStream = new FileStream(fileName, FileMode.Create))
+                await using (var fileStream = new FileStream(fileName, FileMode.Create))
                 {
-                    fileStream.Write(data, 0, data.Length);
+                    await fileStream.WriteAsync(data, 0, data.Length);
                 }
             }
         }
 
-        public static byte[] Read(string path, long offset, int length)
+        public async Task<byte[]> ReadAsync(string path, long offset, int length)
         {
             var data = new byte[length];
 
-            using (var fileStream = new FileStream(path, FileMode.Open))
+            await using (var fileStream = new FileStream(path, FileMode.Open))
             {
                 fileStream.Position = offset;
                 var bytesRead = 0;
                 while (bytesRead < length)
                 {
-                    var read = fileStream.Read(data, bytesRead, length - bytesRead);
+                    var read = await fileStream.ReadAsync(data, bytesRead, length - bytesRead);
                     if (read == 0)
                     {
                         throw new NotReadableFileException();

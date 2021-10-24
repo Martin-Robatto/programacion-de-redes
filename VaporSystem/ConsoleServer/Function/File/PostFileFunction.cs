@@ -3,6 +3,7 @@ using Protocol;
 using Service;
 using System;
 using System.Text;
+using Domain;
 
 namespace ConsoleServer.Function.File
 {
@@ -15,7 +16,7 @@ namespace ConsoleServer.Function.File
             try
             {
                 var fileLine = Encoding.UTF8.GetString(bufferData);
-                PublishService.Instance.DownloadPicture(base.socket, fileLine);
+                Process(fileLine);
                 base.statusCode = StatusCodeConstants.CREATED;
             }
             catch (AppException exception)
@@ -23,12 +24,25 @@ namespace ConsoleServer.Function.File
                 base.data = exception.Message;
                 base.statusCode = exception.StatusCode;
             }
-            catch (Exception exception)
+            catch (Exception)
             {
                 base.data = "Error de servidor";
                 base.statusCode = StatusCodeConstants.SERVER_ERROR;
             }
             
+        }
+
+        private void Process(string fileLine)
+        {
+            PublishService.Instance.CheckInput(fileLine);
+            string[] attributes = fileLine.Split("&");
+            string[] fileAttributes = attributes[2].Split("#");
+            base.fileSize = long.Parse(fileAttributes[2]);
+            string[] filePathAttributes = fileAttributes[1].Split(".");
+            string fileExtension = filePathAttributes[filePathAttributes.Length - 1];
+            Game game = GameService.Instance.Get(attributes[1]);
+            base.fileName = $@"C:\VAPOR\SERVER\{game.Id}.{fileExtension}";
+            game.PicturePath = fileName;
         }
     }
 }

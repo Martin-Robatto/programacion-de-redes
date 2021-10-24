@@ -1,6 +1,7 @@
 ﻿using Protocol;
 using System;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace ConsoleClient.Function.Review
 {
@@ -29,12 +30,12 @@ namespace ConsoleClient.Function.Review
             var data = Encoding.UTF8.GetString(bufferData, HeaderConstants.STATUS_CODE_LENGTH, bufferData.Length - HeaderConstants.COMMAND_LENGTH - 1);
             if (statusCode == StatusCodeConstants.OK)
             {
-                var publishes = data.Split("#");
+                var reviews = data.Split("#");
                 Console.WriteLine("Reseñas: ");
-                foreach (String publish in publishes)
+                Parallel.ForEach(reviews, review =>
                 {
-                    Console.WriteLine(publish);
-                }
+                    Console.WriteLine(review);
+                });
             }
             else
             {

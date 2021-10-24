@@ -9,6 +9,7 @@ using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading;
+using System.Threading.Tasks;
 using FunctionInterface;
 
 namespace ConsoleServer
@@ -20,6 +21,7 @@ namespace ConsoleServer
         private Socket _serverSocket;
         private List<Socket> _clientSockets = new List<Socket>();
 
+        private FunctionDictionary _functionDictionary = new FunctionDictionary();
         private Dictionary<int, IServerFunction> _actualFunctions;
         private readonly ISettingsManager _settingsManager = new SettingsManager();
         private NetworkManager _networkManager = new NetworkManager();
@@ -33,9 +35,7 @@ namespace ConsoleServer
             try
             {
                 Initialize();
-                var thread = new Thread(() => ListenForConnections());
-                thread.IsBackground = true;
-                thread.Start();
+                var task = Task.Run(async () => await ListenForConnectionsAsync().ConfigureAwait(false));
                 ServerDisplay.Listening();
                 ServerDisplay.Menu();
                 while (!_exit)
@@ -66,30 +66,28 @@ namespace ConsoleServer
             var ipEndPoint = new IPEndPoint(IPAddress.Parse(serverIpAddress), int.Parse(serverPort));
             ServerDisplay.Starting(serverIpAddress, serverPort);
             _serverSocket.Bind(ipEndPoint);
+            _serverSocket.Listen(100);
         }
 
-        private void ListenForConnections()
+        private async Task ListenForConnectionsAsync()
         {
-            _serverSocket.Listen(100);
             while (!_exit)
             {
-                var clientSocket = _serverSocket.Accept();
+                var clientSocket = await _serverSocket.AcceptAsync().ConfigureAwait(false);
                 _clientSockets.Add(clientSocket);
                 ServerDisplay.NewConnection();
-                var thread = new Thread(() => Handle(clientSocket));
-                thread.IsBackground = true;
-                thread.Start();
+                var task = Task.Run(async () => await HandleAsync(clientSocket).ConfigureAwait(false));
             }
         }
 
-        private void Handle(Socket clientSocket)
+        private async Task HandleAsync(Socket clientSocket)
         {
             var isClientConnected = true;
             try
             {
                 while (isClientConnected && !_exit)
                 {
-                    var buffer = _networkManager.Receive(clientSocket, HeaderConstants.HEADER_LENGTH);
+                    var buffer = await _networkManager.ReceiveAsync(clientSocket, HeaderConstants.HEADER_LENGTH);
                     var header = new Header(buffer);
                     if (header.Command == FunctionConstants.EXIT)
                     {
@@ -97,7 +95,7 @@ namespace ConsoleServer
                         ServerDisplay.ConnectionInterrupted();
                         _clientSockets.Remove(clientSocket);
                     }
-                    ExecuteFunction(clientSocket, header);
+                    await ExecuteFunctionAsync(clientSocket, header);
                 }
             }
             catch (IOException)
@@ -112,22 +110,27 @@ namespace ConsoleServer
             }
         }
 
-        private void ExecuteFunction(Socket socket, Header header)
+        private async Task ExecuteFunctionAsync(Socket socket, Header header)
         {
-            _actualFunctions = FunctionDictionary.Get();
+            _actualFunctions = _functionDictionary.Get();
             var command = _actualFunctions[header.Command];
-            command.Execute(socket, header: header);
+            await command.ExecuteAsync(socket, header: header);
         }
 
         private void ShutDown()
         {
             ServerDisplay.Closing();
+            _serverSocket.Close(0);
             foreach (var client in _clientSockets)
             {
                 client.Shutdown(SocketShutdown.Both);
+                client.Close();
             }
-            _clientSockets.Clear();
-            _serverSocket.Close();
+            var fakeSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            var serverIpAddress = _settingsManager.ReadSetting(ServerConfig.ServerIpConfigKey);
+            var serverPort = _settingsManager.ReadSetting(ServerConfig.ServerPortConfigKey);
+            var ipEndPoint = new IPEndPoint(IPAddress.Parse(serverIpAddress), int.Parse(serverPort));
+            fakeSocket.Connect(ipEndPoint);
             _exit = true;
         }
     }

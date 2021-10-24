@@ -9,6 +9,9 @@ namespace Service
 {
     public class GameValidator
     {
+
+        private FileManager _fileManager = new FileManager();
+        
         public GameValidator() { }
 
         public void CheckGameIsNull(Game game)
@@ -49,7 +52,7 @@ namespace Service
 
         public void CheckGameWithInvalidPicture(Game game)
         {
-            if (!FileManager.FileExists(game.PicturePath) || !FileManager.IsValidExtension(game.PicturePath))
+            if (!_fileManager.FileExists(game.PicturePath) || !_fileManager.IsValidExtension(game.PicturePath))
             {
                 throw new NotReadableFileException();
             }

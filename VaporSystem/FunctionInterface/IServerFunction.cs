@@ -1,10 +1,11 @@
 ﻿using Protocol;
 using System.Net.Sockets;
+using System.Threading.Tasks;
 
 namespace FunctionInterface
 {
     public interface IServerFunction
     {
-        void Execute(Socket socket, Header header = null);
+        Task ExecuteAsync(Socket socket, Header header = null);
     }
 }

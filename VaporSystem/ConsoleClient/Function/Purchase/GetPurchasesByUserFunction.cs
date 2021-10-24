@@ -1,6 +1,7 @@
 ﻿using Protocol;
 using System;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace ConsoleClient.Function.Purchase
 {
@@ -27,12 +28,12 @@ namespace ConsoleClient.Function.Purchase
                 bufferData.Length - HeaderConstants.COMMAND_LENGTH - 1);
             if (statusCode == StatusCodeConstants.OK)
             {
-                var publishes = data.Split("#");
+                var purchases = data.Split("#");
                 Console.WriteLine("Biblioteca: ");
-                foreach (String publish in publishes)
+                Parallel.ForEach(purchases, purchase =>
                 {
-                    Console.WriteLine(publish);
-                }
+                    Console.WriteLine(purchase);
+                });
             }
             else
             {

@@ -1,14 +1,18 @@
 ﻿using FunctionInterface;
 using System.Net.Sockets;
+using System.Threading.Tasks;
 
 namespace ConsoleClient.Function.Menu
 {
     public class GoToPurchasesMenuFunction : IClientFunction
     {
         public string Name { get; set; }
-        public void Execute(Socket socket, string session = null)
+        private FunctionDictionary _functionDictionary = new FunctionDictionary();
+        
+        public Task ExecuteAsync(Socket socket, string session = null)
         {
-            ClientHandler.Instance.SetActualFunctions(FunctionDictionary.Purchases());
+            ClientHandler.Instance.SetActualFunctions(_functionDictionary.Purchases());
+            return Task.CompletedTask;
         }
 
         public GoToPurchasesMenuFunction()

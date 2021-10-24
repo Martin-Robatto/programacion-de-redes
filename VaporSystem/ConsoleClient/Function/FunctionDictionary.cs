@@ -4,79 +4,96 @@ using ConsoleClient.Function.Review;
 using FunctionInterface;
 using Protocol;
 using System.Collections.Generic;
+using ConsoleClient.Function.File;
 
 namespace ConsoleClient.Function
 {
     public class FunctionDictionary
     {
-        public static Dictionary<int, IClientFunction> NoConnection()
+
+        public FunctionDictionary() { }
+        
+        public Dictionary<int, IClientFunction> NoConnection()
         {
-            var commands = new Dictionary<int, IClientFunction>();
-            commands.Add(FunctionConstants.EXIT, new ExitFunction());
+            var commands = new Dictionary<int, IClientFunction> {{FunctionConstants.EXIT, new ExitFunction()}};
             return commands;
         }
 
-        public static Dictionary<int, IClientFunction> LogIn()
+        public Dictionary<int, IClientFunction> LogIn()
         {
-            var commands = new Dictionary<int, IClientFunction>();
-            commands.Add(FunctionConstants.REGISTER, new RegisterFunction());
-            commands.Add(FunctionConstants.LOGIN, new LogInFunction());
-            commands.Add(FunctionConstants.EXIT, new ExitFunction());
+            var commands = new Dictionary<int, IClientFunction>
+            {
+                {FunctionConstants.REGISTER, new RegisterFunction()},
+                {FunctionConstants.LOGIN, new LogInFunction()},
+                {FunctionConstants.EXIT, new ExitFunction()}
+            };
             return commands;
         }
 
-        public static Dictionary<int, IClientFunction> Main()
+        public Dictionary<int, IClientFunction> Main()
         {
-            var commands = new Dictionary<int, IClientFunction>();
-            commands.Add(1, new GoToGamesMenuFunction());
-            commands.Add(2, new GoToPublishesMenuFunction());
-            commands.Add(3, new GoToPurchasesMenuFunction());
-            commands.Add(4, new GoToReviewsMenuFunction());
-            commands.Add(FunctionConstants.EXIT, new ExitFunction());
+            var commands = new Dictionary<int, IClientFunction>
+            {
+                {1, new GoToGamesMenuFunction()},
+                {2, new GoToPublishesMenuFunction()},
+                {3, new GoToPurchasesMenuFunction()},
+                {4, new GoToReviewsMenuFunction()},
+                {FunctionConstants.EXIT, new ExitFunction()}
+            };
             return commands;
         }
 
-        public static Dictionary<int, IClientFunction> Games()
+        public Dictionary<int, IClientFunction> Games()
         {
-            var commands = new Dictionary<int, IClientFunction>();
-            commands.Add(FunctionConstants.GET_ALL_GAMES, new GetAllGamesFunction());
-            commands.Add(FunctionConstants.GET_GAME_BY_TITLE, new GetGameByTitleFunction());
-            commands.Add(FunctionConstants.GET_GAME_BY_CATEGORY, new GetGameByCategoryFunction());
-            commands.Add(FunctionConstants.GET_GAME_BY_RATE, new GetGameByRateFunction());
-            commands.Add(FunctionConstants.EXIT, new BackToMainMenuFunction());
+            var commands = new Dictionary<int, IClientFunction>
+            {
+                {FunctionConstants.GET_ALL_GAMES, new GetAllGamesFunction()},
+                {FunctionConstants.GET_GAME_BY_TITLE, new GetGameByTitleFunction()},
+                {FunctionConstants.GET_GAME_BY_CATEGORY, new GetGameByCategoryFunction()},
+                {FunctionConstants.GET_GAME_BY_RATE, new GetGameByRateFunction()},
+                {FunctionConstants.GET_FILE, new GetFileFunction()},
+                {FunctionConstants.EXIT, new BackToMainMenuFunction()}
+            };
             return commands;
         }
 
-        public static Dictionary<int, IClientFunction> Publishes()
+        public Dictionary<int, IClientFunction> Publishes()
         {
-            var commands = new Dictionary<int, IClientFunction>();
-            commands.Add(FunctionConstants.GET_PUBLISHES_BY_USER, new GetPublishesByUserFunction());
-            commands.Add(FunctionConstants.POST_PUBLISH, new PostPublishFunction());
-            commands.Add(FunctionConstants.DELETE_PUBLISH, new DeletePublishFunction());
-            commands.Add(FunctionConstants.PUT_PUBLISH, new PutPublishFunction());
-            commands.Add(FunctionConstants.EXIT, new BackToMainMenuFunction());
+            var commands = new Dictionary<int, IClientFunction>
+            {
+                {FunctionConstants.GET_PUBLISHES_BY_USER, new GetPublishesByUserFunction()},
+                {FunctionConstants.POST_PUBLISH, new PostPublishFunction()},
+                {FunctionConstants.POST_FILE, new PostFileFunction()},
+                {FunctionConstants.DELETE_PUBLISH, new DeletePublishFunction()},
+                {FunctionConstants.PUT_PUBLISH, new PutPublishFunction()},
+                {FunctionConstants.EXIT, new BackToMainMenuFunction()}
+            };
             return commands;
         }
 
-        public static Dictionary<int, IClientFunction> Purchases()
+        public Dictionary<int, IClientFunction> Purchases()
         {
-            var commands = new Dictionary<int, IClientFunction>();
-            commands.Add(FunctionConstants.GET_PURCHASES_BY_USER, new GetPurchasesByUserFunction());
-            commands.Add(FunctionConstants.POST_PURCHASE, new PostPurchaseFunction());
-            commands.Add(FunctionConstants.DELETE_PURCHASE, new DeletePurchaseFunction());
-            commands.Add(FunctionConstants.EXIT, new BackToMainMenuFunction());
+            var commands = new Dictionary<int, IClientFunction>
+            {
+                {FunctionConstants.GET_PURCHASES_BY_USER, new GetPurchasesByUserFunction()},
+                {FunctionConstants.POST_PURCHASE, new PostPurchaseFunction()},
+                {FunctionConstants.DELETE_PURCHASE, new DeletePurchaseFunction()},
+                {FunctionConstants.EXIT, new BackToMainMenuFunction()}
+            };
             return commands;
         }
 
-        public static Dictionary<int, IClientFunction> Reviews()
+        public Dictionary<int, IClientFunction> Reviews()
         {
-            var commands = new Dictionary<int, IClientFunction>();
-            commands.Add(FunctionConstants.GET_REVIEWS_BY_USER, new GetReviewsByUserFunction());
-            commands.Add(FunctionConstants.GET_REVIEWS_BY_GAME, new GetReviewsByGameFunction());
-            commands.Add(FunctionConstants.POST_REVIEW, new PostReviewFunction());
-            commands.Add(FunctionConstants.DELETE_REVIEW, new DeleteReviewFunction());
-            commands.Add(FunctionConstants.PUT_REVIEW, new PutReviewFunction());
-            commands.Add(FunctionConstants.EXIT, new BackToMainMenuFunction());
+            var commands = new Dictionary<int, IClientFunction>
+            {
+                {FunctionConstants.GET_REVIEWS_BY_USER, new GetReviewsByUserFunction()},
+                {FunctionConstants.GET_REVIEWS_BY_GAME, new GetReviewsByGameFunction()},
+                {FunctionConstants.POST_REVIEW, new PostReviewFunction()},
+                {FunctionConstants.DELETE_REVIEW, new DeleteReviewFunction()},
+                {FunctionConstants.PUT_REVIEW, new PutReviewFunction()},
+                {FunctionConstants.EXIT, new BackToMainMenuFunction()}
+            };
             return commands;
         }
     }

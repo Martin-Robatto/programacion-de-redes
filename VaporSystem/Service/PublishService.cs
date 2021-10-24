@@ -66,12 +66,11 @@ namespace Service
 
         public void Delete(string publishLine)
         {
+            CheckInput(publishLine);
             string[] attributes = publishLine.Split("&");
-            _validator.CheckAttributesAreEmpty(attributes);
             User user = UserService.Instance.Get(attributes[0]);
             Game game = GameService.Instance.Get(attributes[1]);
-            var publish = PublishRepository.Get(p => p.Game.Equals(game) && p.User.Equals(user));
-            _validator.CheckPublishIsNull(publish);
+            var publish = PublishRepository.Get(p => p.User.Equals(user) && p.Game.Equals(game));
             DeleteReviews(game);
             DeletePurchases(game);
             GameService.Instance.Delete(game);
@@ -98,30 +97,18 @@ namespace Service
 
         public void Update(string publishLine)
         {
+            CheckInput(publishLine);
+            GameService.Instance.Update(publishLine);
+        }
+
+        public void CheckInput(string publishLine)
+        {
             string[] attributes = publishLine.Split("&");
             _validator.CheckAttributesAreEmpty(attributes);
             User user = UserService.Instance.Get(attributes[0]);
             Game game = GameService.Instance.Get(attributes[1]);
             var publish = PublishRepository.Get(p => p.User.Equals(user) && p.Game.Equals(game));
             _validator.CheckPublishIsNull(publish);
-            GameService.Instance.Update(publishLine);
-        }
-
-        public void DownloadPicture(Socket socket, string publishLine)
-        {
-            string[] attributes = publishLine.Split("&");
-            _validator.CheckAttributesAreEmpty(attributes);
-            User user = UserService.Instance.Get(attributes[0]);
-            Game game = GameService.Instance.Get(attributes[1]);
-
-            string[] fileAttributes = attributes[2].Split("#");
-            long fileSize = long.Parse(fileAttributes[2]);
-            string[] filePathAttributes = fileAttributes[1].Split(".");
-            string fileExtension = filePathAttributes[filePathAttributes.Length - 1];
-            string fileName = $@"C:\VAPOR\SERVER\{game.Id}.{fileExtension}";
-            game.PicturePath = fileName;
-
-            _networkManager.DownloadFile(socket, fileSize, fileName);
         }
     }
 }

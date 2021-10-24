@@ -8,7 +8,6 @@ namespace ConsoleClient.Function
     public class PostPublishFunction : FunctionTemplate
     {
         public const string NAME = "Publicar juego";
-        private PostFileFunction _postFileFunction = new PostFileFunction();
 
         public override DataPacket BuildRequest()
         {
@@ -18,7 +17,6 @@ namespace ConsoleClient.Function
             var genre = Console.ReadLine();
             Console.WriteLine("Ingrese la sinopsis: ");
             var synopsis = Console.ReadLine();
-            _postFileFunction.Title = title;
 
             var message = $"{base.session}&{title}#{genre}#{synopsis}";
             var header = new Header(HeaderConstants.REQUEST, FunctionConstants.POST_PUBLISH, message.Length);
@@ -37,8 +35,6 @@ namespace ConsoleClient.Function
             if (statusCode == StatusCodeConstants.CREATED)
             {
                 Console.WriteLine("Juego publicado exitosamente");
-                Console.WriteLine();
-                _postFileFunction.Execute(base.socket, base.session);
             }
             else
             {
