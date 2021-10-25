@@ -126,11 +126,6 @@ namespace ConsoleServer
                 client.Shutdown(SocketShutdown.Both);
                 client.Close();
             }
-            var fakeSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            var serverIpAddress = _settingsManager.ReadSetting(ServerConfig.ServerIpConfigKey);
-            var serverPort = _settingsManager.ReadSetting(ServerConfig.ServerPortConfigKey);
-            var ipEndPoint = new IPEndPoint(IPAddress.Parse(serverIpAddress), int.Parse(serverPort));
-            fakeSocket.Connect(ipEndPoint);
             _exit = true;
         }
     }

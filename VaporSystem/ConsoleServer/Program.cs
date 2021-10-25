@@ -6,6 +6,7 @@ namespace ConsoleServer
     class Program
     {
         private static ServerHandler _serverHandler;
+        
         static void Main(string[] args)
         {
             try
