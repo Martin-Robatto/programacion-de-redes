@@ -3,26 +3,31 @@ using Protocol;
 using SocketLogic;
 using System;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace ConsoleClient.Function.File
 {
     public class PostFileFunction : FunctionTemplate
     {
-        public const string NAME = "Publicar foto";
-        public string Title { get; set; }
+        public const string NAME = "Publicar Caratula de Juego";
+        public string _gameTitle { get; set; }
+        private readonly FileManager _fileManager = new FileManager();
 
         public override DataPacket BuildRequest()
         {
+            Console.WriteLine("Ingrese el titulo: ");
+            _gameTitle = Console.ReadLine();
+            
             var filePath = string.Empty;
-            while (!FileManager.FileExists(filePath) || !FileManager.IsValidExtension(filePath))
+            while (!_fileManager.FileExists(filePath) || !_fileManager.IsValidExtension(filePath))
             {
                 Console.WriteLine("Ingrese la ruta de imagen: ");
                 filePath = Console.ReadLine();
             }
-            string fileName = FileManager.GetFileName(filePath);
-            long fileSize = FileManager.GetFileSize(filePath);
+            string fileName = _fileManager.GetFileName(filePath);
+            long fileSize = _fileManager.GetFileSize(filePath);
 
-            var message = $"{base.session}&{Title}&{fileName}#{filePath}#{fileSize}";
+            var message = $"{base.session}&{_gameTitle}&{fileName}#{filePath}#{fileSize}";
             var header = new Header(HeaderConstants.REQUEST, FunctionConstants.POST_FILE, message.Length);
 
             return new DataPacket()
@@ -32,9 +37,9 @@ namespace ConsoleClient.Function.File
             };
         }
 
-        public override void SendRequest(DataPacket dataPacket)
+        public override async Task SendRequestAsync(DataPacket dataPacket)
         {
-            NetworkStreamManager.Send(base.networkStream, dataPacket);
+            await base.networkManager.SendAsync(base.socket, dataPacket);
 
             string[] attributes = dataPacket.Payload.Split("&");
             string[] fileAttributes = attributes[2].Split("#");
@@ -42,7 +47,7 @@ namespace ConsoleClient.Function.File
             string filePath = fileAttributes[1];
             long fileSize = long.Parse(fileAttributes[2]);
 
-            NetworkStreamManager.UploadFile(base.networkStream, fileSize, filePath);
+            await base.networkManager.UploadFileAsync(base.socket, fileSize, filePath);
         }
 
         public override void ProcessResponse(byte[] bufferData)

@@ -8,27 +8,27 @@ namespace ConsoleServer.Function
 {
     public class PostPublishFunction : FunctionTemplate
     {
-        public override ResponseData ProcessRequest(byte[] bufferData)
+        public override void ProcessRequest(byte[] bufferData)
         {
-            ResponseData response = new ResponseData();
-            response.Function = FunctionConstants.POST_PUBLISH;
+            
+            base.function = FunctionConstants.POST_PUBLISH;
             try
             {
                 var gameLine = Encoding.UTF8.GetString(bufferData);
                 PublishService.Instance.Save(gameLine);
-                response.StatusCode = StatusCodeConstants.CREATED;
+                base.statusCode = StatusCodeConstants.CREATED;
             }
             catch (AppException exception)
             {
-                response.Data = exception.Message;
-                response.StatusCode = exception.StatusCode;
+                base.data = exception.Message;
+                base.statusCode = exception.StatusCode;
             }
-            catch (Exception exception)
+            catch (Exception)
             {
-                response.Data = "Error de servidor";
-                response.StatusCode = StatusCodeConstants.SERVER_ERROR;
+                base.data = "Error de servidor";
+                base.statusCode = StatusCodeConstants.SERVER_ERROR;
             }
-            return response;
+            
         }
     }
 }

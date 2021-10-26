@@ -2,13 +2,13 @@
 using Protocol;
 using System;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace ConsoleClient.Function
 {
     public class GetGameByRateFunction : FunctionTemplate
     {
         public const string NAME = "Buscar Juegos por Calificacion";
-        private GetFileFunction _getFileFunction = new GetFileFunction();
 
         public override DataPacket BuildRequest()
         {
@@ -34,7 +34,7 @@ namespace ConsoleClient.Function
             {
                 var games = data.Split("&");
                 Console.WriteLine("Juegos: ");
-                foreach (String game in games)
+                Parallel.ForEach(games, game =>
                 {
                     var attributes = game.Split("#");
                     Console.WriteLine();
@@ -42,9 +42,7 @@ namespace ConsoleClient.Function
                     Console.WriteLine($"Genero: {attributes[1]}");
                     Console.WriteLine($"Sinopsis: {attributes[2]}");
                     Console.WriteLine($"Calificacion: {attributes[3]}");
-                    _getFileFunction.Title = attributes[0];
-                    _getFileFunction.Execute(base.networkStream, base.session);
-                }
+                });
             }
             else
             {

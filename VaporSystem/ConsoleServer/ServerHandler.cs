@@ -9,6 +9,7 @@ using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading;
+using System.Threading.Tasks;
 using FunctionInterface;
 
 namespace ConsoleServer
@@ -16,10 +17,14 @@ namespace ConsoleServer
     public class ServerHandler
     {
         private bool _exit;
-        private TcpListener _tcpListenerSocket;
-        private Dictionary<int, IServerFunction> _functions;
-        private Dictionary<TcpClient, NetworkStream> _clientSockets;
+        
+        private Socket _serverSocket;
+        private List<Socket> _clientSockets = new List<Socket>();
+
+        private FunctionDictionary _functionDictionary = new FunctionDictionary();
+        private Dictionary<int, IServerFunction> _actualFunctions;
         private readonly ISettingsManager _settingsManager = new SettingsManager();
+        private NetworkManager _networkManager = new NetworkManager();
         private const string SHUTDOWN_SERVER = "0";
 
         public ServerHandler() { }
@@ -30,10 +35,7 @@ namespace ConsoleServer
             try
             {
                 Initialize();
-                _clientSockets = new Dictionary<TcpClient, NetworkStream>();
-                var thread = new Thread(() => ListenForConnections());
-                thread.IsBackground = true;
-                thread.Start();
+                var task = Task.Run(async () => await ListenForConnectionsAsync().ConfigureAwait(false));
                 ServerDisplay.Listening();
                 ServerDisplay.Menu();
                 while (!_exit)
@@ -58,75 +60,72 @@ namespace ConsoleServer
 
         private void Initialize()
         {
+            _serverSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             var serverIpAddress = _settingsManager.ReadSetting(ServerConfig.ServerIpConfigKey);
             var serverPort = _settingsManager.ReadSetting(ServerConfig.ServerPortConfigKey);
-            ServerDisplay.Starting(serverIpAddress, serverPort);
             var ipEndPoint = new IPEndPoint(IPAddress.Parse(serverIpAddress), int.Parse(serverPort));
-            _tcpListenerSocket = new TcpListener(ipEndPoint);
-            _tcpListenerSocket.Start(100);
+            ServerDisplay.Starting(serverIpAddress, serverPort);
+            _serverSocket.Bind(ipEndPoint);
+            _serverSocket.Listen(100);
         }
 
-        private void ListenForConnections()
+        private async Task ListenForConnectionsAsync()
         {
             while (!_exit)
             {
-                var tcpClientSocket = _tcpListenerSocket.AcceptTcpClient();
-                var networkStream = tcpClientSocket.GetStream();
-                _clientSockets.Add(tcpClientSocket, networkStream);
+                var clientSocket = await _serverSocket.AcceptAsync().ConfigureAwait(false);
+                _clientSockets.Add(clientSocket);
                 ServerDisplay.NewConnection();
-                var thread = new Thread(() => Handle(tcpClientSocket, networkStream));
-                thread.IsBackground = true;
-                thread.Start();
+                var task = Task.Run(async () => await HandleAsync(clientSocket).ConfigureAwait(false));
             }
         }
 
-        private void Handle(TcpClient tcpClientSocket, NetworkStream networkStream)
+        private async Task HandleAsync(Socket clientSocket)
         {
             var isClientConnected = true;
             try
             {
                 while (isClientConnected && !_exit)
                 {
-                    var buffer = NetworkStreamManager.Receive(networkStream, HeaderConstants.HEADER_LENGTH);
+                    var buffer = await _networkManager.ReceiveAsync(clientSocket, HeaderConstants.HEADER_LENGTH);
                     var header = new Header(buffer);
                     if (header.Command == FunctionConstants.EXIT)
                     {
                         isClientConnected = false;
                         ServerDisplay.ConnectionInterrupted();
-                        _clientSockets.Remove(tcpClientSocket);
+                        _clientSockets.Remove(clientSocket);
                     }
-                    ExecuteFunction(networkStream, header);
+                    await ExecuteFunctionAsync(clientSocket, header);
                 }
             }
             catch (IOException)
             {
                 ServerDisplay.ConnectionInterrupted();
-                _clientSockets.Remove(tcpClientSocket);
+                _clientSockets.Remove(clientSocket);
             }
             catch (SocketException)
             {
                 ServerDisplay.ConnectionInterrupted();
-                _clientSockets.Remove(tcpClientSocket);
+                _clientSockets.Remove(clientSocket);
             }
         }
 
-        private void ExecuteFunction(NetworkStream networkStream, Header header)
+        private async Task ExecuteFunctionAsync(Socket socket, Header header)
         {
-            _functions = FunctionDictionary.Get();
-            var command = _functions[header.Command];
-            command.Execute(networkStream, header: header);
+            _actualFunctions = _functionDictionary.Get();
+            var command = _actualFunctions[header.Command];
+            await command.ExecuteAsync(socket, header: header);
         }
 
         private void ShutDown()
         {
-            _tcpListenerSocket.Stop();
+            ServerDisplay.Closing();
+            _serverSocket.Close(0);
             foreach (var client in _clientSockets)
             {
-                client.Value.Close();
-                client.Key.Close();
+                client.Shutdown(SocketShutdown.Both);
+                client.Close();
             }
-            _clientSockets.Clear();
-            ServerDisplay.Closing();
             _exit = true;
         }
     }

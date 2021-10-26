@@ -8,27 +8,25 @@ namespace ConsoleServer.Function
 {
     public class RegisterFunction : FunctionTemplate
     {
-        public override ResponseData ProcessRequest(byte[] bufferData)
+        public override void ProcessRequest(byte[] bufferData)
         {
-            ResponseData response = new ResponseData();
-            response.Function = FunctionConstants.REGISTER;
+            base.function = FunctionConstants.REGISTER;
             try
             {
                 var userLine = Encoding.UTF8.GetString(bufferData);
                 UserService.Instance.Register(userLine);
-                response.StatusCode = StatusCodeConstants.CREATED;
+                base.statusCode = StatusCodeConstants.CREATED;
             }
             catch (AppException exception)
             {
-                response.Data = exception.Message;
-                response.StatusCode = exception.StatusCode;
+                base.data = exception.Message;
+                base.statusCode = exception.StatusCode;
             }
-            catch (Exception exception)
+            catch (Exception)
             {
-                response.Data = "Error de servidor";
-                response.StatusCode = StatusCodeConstants.SERVER_ERROR;
+                base.data = "Error de servidor";
+                base.statusCode = StatusCodeConstants.SERVER_ERROR;
             }
-            return response;
         }
     }
 }

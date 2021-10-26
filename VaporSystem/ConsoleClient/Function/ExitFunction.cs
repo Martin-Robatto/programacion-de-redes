@@ -1,5 +1,6 @@
 using FunctionInterface;
 using System.Net.Sockets;
+using System.Threading.Tasks;
 
 namespace ConsoleClient.Function
 {
@@ -8,9 +9,11 @@ namespace ConsoleClient.Function
         public const string NAME = "Salir";
 
         public string Name { get; set; }
-        public void Execute(NetworkStream stream = null, string session = null)
+
+        public Task ExecuteAsync(Socket socket = null, string session = null)
         {
             ClientHandler.Instance.ShutDown();
+            return Task.CompletedTask;
         }
 
         public ExitFunction()

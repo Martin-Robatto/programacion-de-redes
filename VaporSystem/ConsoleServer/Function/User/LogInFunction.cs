@@ -8,27 +8,27 @@ namespace ConsoleServer.Function
 {
     public class LogInFunction : FunctionTemplate
     {
-        public override ResponseData ProcessRequest(byte[] bufferData)
+        public override void ProcessRequest(byte[] bufferData)
         {
-            ResponseData response = new ResponseData();
-            response.Function = FunctionConstants.LOGIN;
+            
+            base.function = FunctionConstants.LOGIN;
             try
             {
                 var userLine = Encoding.UTF8.GetString(bufferData);
-                response.Data = UserService.Instance.LogIn(userLine);
-                response.StatusCode = StatusCodeConstants.OK;
+                base.data = UserService.Instance.LogIn(userLine);
+                base.statusCode = StatusCodeConstants.OK;
             }
             catch (AppException exception)
             {
-                response.Data = exception.Message;
-                response.StatusCode = exception.StatusCode;
+                base.data = exception.Message;
+                base.statusCode = exception.StatusCode;
             }
-            catch (Exception exception)
+            catch (Exception)
             {
-                response.Data = "Error de servidor";
-                response.StatusCode = StatusCodeConstants.SERVER_ERROR;
+                base.data = "Error de servidor";
+                base.statusCode = StatusCodeConstants.SERVER_ERROR;
             }
-            return response;
+            
         }
     }
 }

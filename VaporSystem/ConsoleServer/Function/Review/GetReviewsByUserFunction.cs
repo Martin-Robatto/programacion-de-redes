@@ -8,27 +8,27 @@ namespace ConsoleServer.Function.Review
 {
     public class GetReviewsByUserFunction : FunctionTemplate
     {
-        public override ResponseData ProcessRequest(byte[] bufferData)
+        public override void ProcessRequest(byte[] bufferData)
         {
-            ResponseData response = new ResponseData();
-            response.Function = FunctionConstants.GET_REVIEWS_BY_USER;
+            
+            base.function = FunctionConstants.GET_REVIEWS_BY_USER;
             try
             {
                 var userLine = Encoding.UTF8.GetString(bufferData);
-                response.Data = ReviewService.Instance.GetByUser(userLine);
-                response.StatusCode = StatusCodeConstants.OK;
+                base.data = ReviewService.Instance.GetByUser(userLine);
+                base.statusCode = StatusCodeConstants.OK;
             }
             catch (AppException exception)
             {
-                response.Data = exception.Message;
-                response.StatusCode = exception.StatusCode;
+                base.data = exception.Message;
+                base.statusCode = exception.StatusCode;
             }
-            catch (Exception exception)
+            catch (Exception)
             {
-                response.Data = "Error de servidor";
-                response.StatusCode = StatusCodeConstants.SERVER_ERROR;
+                base.data = "Error de servidor";
+                base.statusCode = StatusCodeConstants.SERVER_ERROR;
             }
-            return response;
+            
         }
     }
 }

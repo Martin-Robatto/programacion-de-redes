@@ -1,6 +1,7 @@
 ﻿using Protocol;
 using System;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace ConsoleClient.Function
 {
@@ -28,10 +29,10 @@ namespace ConsoleClient.Function
             {
                 var publishes = data.Split("#");
                 Console.WriteLine("Publicaciones: ");
-                foreach (String publish in publishes)
+                Parallel.ForEach(publishes, publish =>
                 {
                     Console.WriteLine(publish);
-                }
+                });
             }
             else
             {

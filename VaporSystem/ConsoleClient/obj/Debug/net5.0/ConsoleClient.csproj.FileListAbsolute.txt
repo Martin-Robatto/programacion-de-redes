@@ -110,7 +110,6 @@ C:\Users\konop\Desktop\programacion-de-redes\VaporSystem\ConsoleClient\obj\Debug
 C:\Users\konop\Desktop\programacion-de-redes\VaporSystem\ConsoleClient\obj\Debug\net5.0\ConsoleClient.AssemblyInfoInputs.cache
 C:\Users\konop\Desktop\programacion-de-redes\VaporSystem\ConsoleClient\obj\Debug\net5.0\ConsoleClient.AssemblyInfo.cs
 C:\Users\konop\Desktop\programacion-de-redes\VaporSystem\ConsoleClient\obj\Debug\net5.0\ConsoleClient.csproj.CoreCompileInputs.cache
-C:\Users\konop\Desktop\programacion-de-redes\VaporSystem\ConsoleClient\obj\Debug\net5.0\ConsoleClient.csproj.CopyComplete
 C:\Users\konop\Desktop\programacion-de-redes\VaporSystem\ConsoleClient\obj\Debug\net5.0\ConsoleClient.dll
 C:\Users\konop\Desktop\programacion-de-redes\VaporSystem\ConsoleClient\obj\Debug\net5.0\ref\ConsoleClient.dll
 C:\Users\konop\Desktop\programacion-de-redes\VaporSystem\ConsoleClient\obj\Debug\net5.0\ConsoleClient.pdb

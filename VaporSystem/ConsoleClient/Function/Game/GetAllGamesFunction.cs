@@ -1,6 +1,7 @@
 ﻿using Protocol;
 using System;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace ConsoleClient.Function
 {
@@ -10,7 +11,7 @@ namespace ConsoleClient.Function
 
         public override DataPacket BuildRequest()
         {
-            var message = string.Empty;
+            var message = session;
             var header = new Header(HeaderConstants.REQUEST, FunctionConstants.GET_ALL_GAMES, message.Length);
             return new DataPacket()
             {
@@ -29,10 +30,10 @@ namespace ConsoleClient.Function
                 var games = data.Split("#");
                 Console.WriteLine("Juegos: ");
                 Console.WriteLine();
-                foreach (String game in games)
+                Parallel.ForEach(games, game =>
                 {
                     Console.WriteLine(game);
-                }
+                });
             }
             else
             {

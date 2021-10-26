@@ -8,27 +8,27 @@ namespace ConsoleServer.Function.Review
 {
     public class DeleteReviewFunction : FunctionTemplate
     {
-        public override ResponseData ProcessRequest(byte[] bufferData)
+        public override void ProcessRequest(byte[] bufferData)
         {
-            ResponseData response = new ResponseData();
-            response.Function = FunctionConstants.DELETE_REVIEW;
+            
+            base.function = FunctionConstants.DELETE_REVIEW;
             try
             {
                 var reviewLine = Encoding.UTF8.GetString(bufferData);
                 ReviewService.Instance.Delete(reviewLine);
-                response.StatusCode = StatusCodeConstants.OK;
+                base.statusCode = StatusCodeConstants.OK;
             }
             catch (AppException exception)
             {
-                response.Data = exception.Message;
-                response.StatusCode = exception.StatusCode;
+                base.data = exception.Message;
+                base.statusCode = exception.StatusCode;
             }
-            catch (Exception exception)
+            catch (Exception)
             {
-                response.Data = "Error de servidor";
-                response.StatusCode = StatusCodeConstants.SERVER_ERROR;
+                base.data = "Error de servidor";
+                base.statusCode = StatusCodeConstants.SERVER_ERROR;
             }
-            return response;
+            
         }
     }
 }

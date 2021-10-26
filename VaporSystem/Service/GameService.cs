@@ -10,6 +10,7 @@ namespace Service
     {
         private static GameService _instance;
         private GameValidator _validator;
+        private FileManager _fileManager;
 
         public static GameService Instance
         {
@@ -28,6 +29,7 @@ namespace Service
         private GameService()
         {
             _validator = new GameValidator();
+            _fileManager = new FileManager();
         }
 
         public Game Get(string title)
@@ -170,7 +172,7 @@ namespace Service
             _validator.CheckAttributesAreEmpty(attributes);
             Game game = Get(attributes[1]);
             _validator.CheckGameWithInvalidPicture(game);
-            long fileSize = FileManager.GetFileSize(game.PicturePath);
+            long fileSize = _fileManager.GetFileSize(game.PicturePath);
 
             string fileLine = $"{game.PicturePath}#{fileSize}";
             return fileLine;

@@ -1,14 +1,15 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 namespace ConsoleClient
 {
     class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
             try
             {
-                ClientHandler.Instance.Run();
+                await ClientHandler.Instance.RunAsync();
             }
             catch (Exception exception)
             {

@@ -7,12 +7,15 @@ namespace ConsoleClient.Function.File
 {
     public class GetFileFunction : FunctionTemplate
     {
-        public const string NAME = "Obtener foto";
-        public string Title { get; set; }
+        public const string NAME = "Descargar Caratula de Juego";
+        private string _gameTitle { get; set; }
 
         public override DataPacket BuildRequest()
         {
-            var message = $"{base.session}&{Title}";
+            Console.WriteLine("Ingrese el titulo: ");
+            _gameTitle = Console.ReadLine();
+            
+            var message = $"{base.session}&{_gameTitle}";
             var header = new Header(HeaderConstants.REQUEST, FunctionConstants.GET_FILE, message.Length);
 
             return new DataPacket()
@@ -29,12 +32,10 @@ namespace ConsoleClient.Function.File
             if (statusCode == StatusCodeConstants.OK)
             {
                 string[] fileAttributes = data.Split("#");
-                long fileSize = long.Parse(fileAttributes[1]);
+                base.fileSize = long.Parse(fileAttributes[1]);
                 string[] filePathAttributes = fileAttributes[0].Split(".");
                 string fileExtension = filePathAttributes[filePathAttributes.Length - 1];
-                string fileName = $@"C:\VAPOR\CLIENT\{Title}.{fileExtension}";
-
-                NetworkStreamManager.DownloadFile(base.networkStream, fileSize, fileName);
+                base.fileName = $@"C:\VAPOR\CLIENT\{_gameTitle}.{fileExtension}";
             }
             else
             {
