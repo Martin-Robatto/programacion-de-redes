@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\ConsoleServer\\ConsoleServer.csproj": {}
+    "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\ConsoleServer\\ConsoleServer.csproj": {}
   },
   "projects": {
-    "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\ConsoleServer\\ConsoleServer.csproj": {
+    "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\ConsoleServer\\ConsoleServer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\ConsoleServer\\ConsoleServer.csproj",
+        "projectUniqueName": "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\ConsoleServer\\ConsoleServer.csproj",
         "projectName": "ConsoleServer",
-        "projectPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\ConsoleServer\\ConsoleServer.csproj",
-        "packagesPath": "C:\\Users\\konop\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\ConsoleServer\\obj\\",
+        "projectPath": "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\ConsoleServer\\ConsoleServer.csproj",
+        "packagesPath": "C:\\Users\\robak\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\ConsoleServer\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\konop\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\robak\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -28,20 +32,23 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\FunctionInterface\\FunctionInterface.csproj": {
-                "projectPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\FunctionInterface\\FunctionInterface.csproj"
+              "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\FunctionInterface\\FunctionInterface.csproj": {
+                "projectPath": "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\FunctionInterface\\FunctionInterface.csproj"
               },
-              "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\Protocol\\Protocol.csproj": {
-                "projectPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\Protocol\\Protocol.csproj"
+              "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\LogLogic\\LogLogic.csproj": {
+                "projectPath": "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\LogLogic\\LogLogic.csproj"
               },
-              "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\Service\\Service.csproj": {
-                "projectPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\Service\\Service.csproj"
+              "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\Protocol\\Protocol.csproj": {
+                "projectPath": "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\Protocol\\Protocol.csproj"
               },
-              "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\SettingsLogic\\SettingsLogic.csproj": {
-                "projectPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\SettingsLogic\\SettingsLogic.csproj"
+              "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\Service\\Service.csproj": {
+                "projectPath": "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\Service\\Service.csproj"
               },
-              "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\SocketLogic\\SocketLogic.csproj": {
-                "projectPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\SocketLogic\\SocketLogic.csproj"
+              "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\SettingsLogic\\SettingsLogic.csproj": {
+                "projectPath": "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\SettingsLogic\\SettingsLogic.csproj"
+              },
+              "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\SocketLogic\\SocketLogic.csproj": {
+                "projectPath": "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\SocketLogic\\SocketLogic.csproj"
               }
             }
           }
@@ -55,6 +62,12 @@
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
+          "dependencies": {
+            "RabbitMQ.Client": {
+              "target": "Package",
+              "version": "[6.2.2, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -70,21 +83,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\DataAccess\\DataAccess.csproj": {
+    "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\DataAccess\\DataAccess.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\DataAccess\\DataAccess.csproj",
+        "projectUniqueName": "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\DataAccess\\DataAccess.csproj",
         "projectName": "DataAccess",
-        "projectPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\DataAccess\\DataAccess.csproj",
-        "packagesPath": "C:\\Users\\konop\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\DataAccess\\obj\\",
+        "projectPath": "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\DataAccess\\DataAccess.csproj",
+        "packagesPath": "C:\\Users\\robak\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\DataAccess\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\konop\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\robak\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -98,8 +115,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\Domain\\Domain.csproj": {
-                "projectPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\Domain\\Domain.csproj"
+              "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\Domain\\Domain.csproj"
               }
             }
           }
@@ -128,21 +145,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\Domain\\Domain.csproj": {
+    "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\Domain\\Domain.csproj",
+        "projectUniqueName": "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\Domain\\Domain.csproj",
-        "packagesPath": "C:\\Users\\konop\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\Domain\\obj\\",
+        "projectPath": "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\Domain\\Domain.csproj",
+        "packagesPath": "C:\\Users\\robak\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\Domain\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\konop\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\robak\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -182,21 +203,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\Exceptions\\Exceptions.csproj": {
+    "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\Exceptions\\Exceptions.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\Exceptions\\Exceptions.csproj",
+        "projectUniqueName": "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\Exceptions\\Exceptions.csproj",
         "projectName": "Exceptions",
-        "projectPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\Exceptions\\Exceptions.csproj",
-        "packagesPath": "C:\\Users\\konop\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\Exceptions\\obj\\",
+        "projectPath": "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\Exceptions\\Exceptions.csproj",
+        "packagesPath": "C:\\Users\\robak\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\Exceptions\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\konop\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\robak\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -210,8 +235,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\Protocol\\Protocol.csproj": {
-                "projectPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\Protocol\\Protocol.csproj"
+              "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\Protocol\\Protocol.csproj": {
+                "projectPath": "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\Protocol\\Protocol.csproj"
               }
             }
           }
@@ -240,21 +265,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\FileLogic\\FileLogic.csproj": {
+    "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\FileLogic\\FileLogic.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\FileLogic\\FileLogic.csproj",
+        "projectUniqueName": "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\FileLogic\\FileLogic.csproj",
         "projectName": "FileLogic",
-        "projectPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\FileLogic\\FileLogic.csproj",
-        "packagesPath": "C:\\Users\\konop\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\FileLogic\\obj\\",
+        "projectPath": "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\FileLogic\\FileLogic.csproj",
+        "packagesPath": "C:\\Users\\robak\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\FileLogic\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\konop\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\robak\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -268,11 +297,11 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\Exceptions\\Exceptions.csproj": {
-                "projectPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\Exceptions\\Exceptions.csproj"
+              "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\Exceptions\\Exceptions.csproj": {
+                "projectPath": "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\Exceptions\\Exceptions.csproj"
               },
-              "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\Protocol\\Protocol.csproj": {
-                "projectPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\Protocol\\Protocol.csproj"
+              "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\Protocol\\Protocol.csproj": {
+                "projectPath": "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\Protocol\\Protocol.csproj"
               }
             }
           }
@@ -301,21 +330,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\FunctionInterface\\FunctionInterface.csproj": {
+    "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\FunctionInterface\\FunctionInterface.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\FunctionInterface\\FunctionInterface.csproj",
+        "projectUniqueName": "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\FunctionInterface\\FunctionInterface.csproj",
         "projectName": "FunctionInterface",
-        "projectPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\FunctionInterface\\FunctionInterface.csproj",
-        "packagesPath": "C:\\Users\\konop\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\FunctionInterface\\obj\\",
+        "projectPath": "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\FunctionInterface\\FunctionInterface.csproj",
+        "packagesPath": "C:\\Users\\robak\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\FunctionInterface\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\konop\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\robak\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -329,8 +362,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\Protocol\\Protocol.csproj": {
-                "projectPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\Protocol\\Protocol.csproj"
+              "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\Protocol\\Protocol.csproj": {
+                "projectPath": "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\Protocol\\Protocol.csproj"
               }
             }
           }
@@ -359,21 +392,93 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\Protocol\\Protocol.csproj": {
+    "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\LogLogic\\LogLogic.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\Protocol\\Protocol.csproj",
-        "projectName": "Protocol",
-        "projectPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\Protocol\\Protocol.csproj",
-        "packagesPath": "C:\\Users\\konop\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\Protocol\\obj\\",
+        "projectUniqueName": "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\LogLogic\\LogLogic.csproj",
+        "projectName": "LogLogic",
+        "projectPath": "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\LogLogic\\LogLogic.csproj",
+        "packagesPath": "C:\\Users\\robak\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\LogLogic\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\konop\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\robak\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\Domain\\Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "RabbitMQ.Client": {
+              "target": "Package",
+              "version": "[6.2.2, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\Protocol\\Protocol.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\Protocol\\Protocol.csproj",
+        "projectName": "Protocol",
+        "projectPath": "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\Protocol\\Protocol.csproj",
+        "packagesPath": "C:\\Users\\robak\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\Protocol\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\robak\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -413,21 +518,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\Service\\Service.csproj": {
+    "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\Service\\Service.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\Service\\Service.csproj",
+        "projectUniqueName": "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\Service\\Service.csproj",
         "projectName": "Service",
-        "projectPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\Service\\Service.csproj",
-        "packagesPath": "C:\\Users\\konop\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\Service\\obj\\",
+        "projectPath": "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\Service\\Service.csproj",
+        "packagesPath": "C:\\Users\\robak\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\Service\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\konop\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\robak\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -441,23 +550,26 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\DataAccess\\DataAccess.csproj": {
-                "projectPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\DataAccess\\DataAccess.csproj"
+              "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\DataAccess\\DataAccess.csproj": {
+                "projectPath": "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\DataAccess\\DataAccess.csproj"
               },
-              "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\Domain\\Domain.csproj": {
-                "projectPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\Domain\\Domain.csproj"
+              "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\Domain\\Domain.csproj"
               },
-              "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\Exceptions\\Exceptions.csproj": {
-                "projectPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\Exceptions\\Exceptions.csproj"
+              "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\Exceptions\\Exceptions.csproj": {
+                "projectPath": "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\Exceptions\\Exceptions.csproj"
               },
-              "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\FileLogic\\FileLogic.csproj": {
-                "projectPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\FileLogic\\FileLogic.csproj"
+              "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\FileLogic\\FileLogic.csproj": {
+                "projectPath": "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\FileLogic\\FileLogic.csproj"
               },
-              "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\Protocol\\Protocol.csproj": {
-                "projectPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\Protocol\\Protocol.csproj"
+              "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\LogLogic\\LogLogic.csproj": {
+                "projectPath": "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\LogLogic\\LogLogic.csproj"
               },
-              "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\SocketLogic\\SocketLogic.csproj": {
-                "projectPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\SocketLogic\\SocketLogic.csproj"
+              "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\Protocol\\Protocol.csproj": {
+                "projectPath": "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\Protocol\\Protocol.csproj"
+              },
+              "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\SocketLogic\\SocketLogic.csproj": {
+                "projectPath": "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\SocketLogic\\SocketLogic.csproj"
               }
             }
           }
@@ -486,21 +598,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\SettingsLogic\\SettingsLogic.csproj": {
+    "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\SettingsLogic\\SettingsLogic.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\SettingsLogic\\SettingsLogic.csproj",
+        "projectUniqueName": "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\SettingsLogic\\SettingsLogic.csproj",
         "projectName": "SettingsLogic",
-        "projectPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\SettingsLogic\\SettingsLogic.csproj",
-        "packagesPath": "C:\\Users\\konop\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\SettingsLogic\\obj\\",
+        "projectPath": "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\SettingsLogic\\SettingsLogic.csproj",
+        "packagesPath": "C:\\Users\\robak\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\SettingsLogic\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\konop\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\robak\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -546,21 +662,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\SocketLogic\\SocketLogic.csproj": {
+    "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\SocketLogic\\SocketLogic.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\SocketLogic\\SocketLogic.csproj",
+        "projectUniqueName": "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\SocketLogic\\SocketLogic.csproj",
         "projectName": "SocketLogic",
-        "projectPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\SocketLogic\\SocketLogic.csproj",
-        "packagesPath": "C:\\Users\\konop\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\SocketLogic\\obj\\",
+        "projectPath": "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\SocketLogic\\SocketLogic.csproj",
+        "packagesPath": "C:\\Users\\robak\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\SocketLogic\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\konop\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\robak\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -574,14 +694,14 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\Exceptions\\Exceptions.csproj": {
-                "projectPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\Exceptions\\Exceptions.csproj"
+              "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\Exceptions\\Exceptions.csproj": {
+                "projectPath": "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\Exceptions\\Exceptions.csproj"
               },
-              "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\FileLogic\\FileLogic.csproj": {
-                "projectPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\FileLogic\\FileLogic.csproj"
+              "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\FileLogic\\FileLogic.csproj": {
+                "projectPath": "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\FileLogic\\FileLogic.csproj"
               },
-              "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\Protocol\\Protocol.csproj": {
-                "projectPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\Protocol\\Protocol.csproj"
+              "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\Protocol\\Protocol.csproj": {
+                "projectPath": "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\Protocol\\Protocol.csproj"
               }
             }
           }
@@ -610,7 +730,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }

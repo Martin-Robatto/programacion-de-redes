@@ -55,6 +55,7 @@ namespace Service
             };
             _validator.CheckCredentials(input);
             Console.WriteLine($"Usuario conectado: {input.Username}");
+
             return input.Username;
         }
 

@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Sockets;
+using ConsoleServer;
 
 namespace Service
 {
@@ -59,6 +60,13 @@ namespace Service
                 Game = game,
                 Date = DateTime.Now
             };
+            Log newLog = new Log()
+            {
+                User = user,
+                Date = DateTime.Now,
+                Game = game
+            };
+            LogSender.Instance.SendLog(newLog);
             PublishRepository.Add(input);
             string purchaseLine = $"{user.Username}&{game.Title}";
             PurchaseService.Instance.Save(purchaseLine);

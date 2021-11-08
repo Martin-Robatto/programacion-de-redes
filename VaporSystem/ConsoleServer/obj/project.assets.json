@@ -26,6 +26,19 @@
           "build/netstandard2.0/_._": {}
         }
       },
+      "RabbitMQ.Client/6.2.2": {
+        "type": "package",
+        "dependencies": {
+          "System.Memory": "4.5.4",
+          "System.Threading.Channels": "4.7.1"
+        },
+        "compile": {
+          "lib/netstandard2.0/RabbitMQ.Client.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/RabbitMQ.Client.dll": {}
+        }
+      },
       "System.Configuration.Abstractions/2.0.2.45": {
         "type": "package",
         "dependencies": {
@@ -51,6 +64,15 @@
           "lib/netstandard2.0/System.Configuration.ConfigurationManager.dll": {}
         }
       },
+      "System.Memory/4.5.4": {
+        "type": "package",
+        "compile": {
+          "ref/netcoreapp2.1/_._": {}
+        },
+        "runtime": {
+          "lib/netcoreapp2.1/_._": {}
+        }
+      },
       "System.Security.Cryptography.ProtectedData/4.4.0": {
         "type": "package",
         "compile": {
@@ -64,6 +86,15 @@
             "assetType": "runtime",
             "rid": "win"
           }
+        }
+      },
+      "System.Threading.Channels/4.7.1": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp3.0/System.Threading.Channels.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/System.Threading.Channels.dll": {}
         }
       },
       "DataAccess/1.0.0": {
@@ -129,6 +160,20 @@
           "bin/placeholder/FunctionInterface.dll": {}
         }
       },
+      "LogLogic/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "Domain": "1.0.0",
+          "RabbitMQ.Client": "6.2.2"
+        },
+        "compile": {
+          "bin/placeholder/LogLogic.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LogLogic.dll": {}
+        }
+      },
       "Protocol/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
@@ -147,6 +192,7 @@
           "Domain": "1.0.0",
           "Exceptions": "1.0.0",
           "FileLogic": "1.0.0",
+          "LogLogic": "1.0.0",
           "Protocol": "1.0.0",
           "SocketLogic": "1.0.0"
         },
@@ -333,6 +379,25 @@
         "netstandard.library.nuspec"
       ]
     },
+    "RabbitMQ.Client/6.2.2": {
+      "sha512": "+tJSgE+rQXgLvOxWvOxdZ0+No1EMa86+puZuNlCb4cNryHw2PY2Xiw/y2dz/WWdeJQp74Y2UnNXPkuLiYpvn+A==",
+      "type": "package",
+      "path": "rabbitmq.client/6.2.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE",
+        "icon.png",
+        "lib/net461/RabbitMQ.Client.dll",
+        "lib/net461/RabbitMQ.Client.pdb",
+        "lib/net461/RabbitMQ.Client.xml",
+        "lib/netstandard2.0/RabbitMQ.Client.dll",
+        "lib/netstandard2.0/RabbitMQ.Client.pdb",
+        "lib/netstandard2.0/RabbitMQ.Client.xml",
+        "rabbitmq.client.6.2.2.nupkg.sha512",
+        "rabbitmq.client.nuspec"
+      ]
+    },
     "System.Configuration.Abstractions/2.0.2.45": {
       "sha512": "IceU4tA/HFSqwV4m4AnBbY25llZqQ17QIEsTaW6d76E4oe3Hx4gjBSuyDVrZ6kS2RxyR4liSxqIw/jRJXHbr6A==",
       "type": "package",
@@ -367,6 +432,29 @@
         "ref/netstandard2.0/System.Configuration.ConfigurationManager.xml",
         "system.configuration.configurationmanager.4.4.1.nupkg.sha512",
         "system.configuration.configurationmanager.nuspec",
+        "useSharedDesignerContext.txt",
+        "version.txt"
+      ]
+    },
+    "System.Memory/4.5.4": {
+      "sha512": "1MbJTHS1lZ4bS4FmsJjnuGJOu88ZzTT2rLvrhW7Ygic+pC0NWA+3hgAen0HRdsocuQXCkUTdFn9yHJJhsijDXw==",
+      "type": "package",
+      "path": "system.memory/4.5.4",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net461/System.Memory.dll",
+        "lib/net461/System.Memory.xml",
+        "lib/netcoreapp2.1/_._",
+        "lib/netstandard1.1/System.Memory.dll",
+        "lib/netstandard1.1/System.Memory.xml",
+        "lib/netstandard2.0/System.Memory.dll",
+        "lib/netstandard2.0/System.Memory.xml",
+        "ref/netcoreapp2.1/_._",
+        "system.memory.4.5.4.nupkg.sha512",
+        "system.memory.nuspec",
         "useSharedDesignerContext.txt",
         "version.txt"
       ]
@@ -412,6 +500,30 @@
         "version.txt"
       ]
     },
+    "System.Threading.Channels/4.7.1": {
+      "sha512": "6akRtHK/wab3246t4p5v3HQrtQk8LboOt5T4dtpNgsp3zvDeM4/Gx8V12t0h+c/W9/enUrilk8n6EQqdQorZAA==",
+      "type": "package",
+      "path": "system.threading.channels/4.7.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net461/System.Threading.Channels.dll",
+        "lib/net461/System.Threading.Channels.xml",
+        "lib/netcoreapp3.0/System.Threading.Channels.dll",
+        "lib/netcoreapp3.0/System.Threading.Channels.xml",
+        "lib/netstandard1.3/System.Threading.Channels.dll",
+        "lib/netstandard1.3/System.Threading.Channels.xml",
+        "lib/netstandard2.0/System.Threading.Channels.dll",
+        "lib/netstandard2.0/System.Threading.Channels.xml",
+        "system.threading.channels.4.7.1.nupkg.sha512",
+        "system.threading.channels.nuspec",
+        "useSharedDesignerContext.txt",
+        "version.txt"
+      ]
+    },
     "DataAccess/1.0.0": {
       "type": "project",
       "path": "../DataAccess/DataAccess.csproj",
@@ -437,6 +549,11 @@
       "path": "../FunctionInterface/FunctionInterface.csproj",
       "msbuildProject": "../FunctionInterface/FunctionInterface.csproj"
     },
+    "LogLogic/1.0.0": {
+      "type": "project",
+      "path": "../LogLogic/LogLogic.csproj",
+      "msbuildProject": "../LogLogic/LogLogic.csproj"
+    },
     "Protocol/1.0.0": {
       "type": "project",
       "path": "../Protocol/Protocol.csproj",
@@ -461,26 +578,33 @@
   "projectFileDependencyGroups": {
     "net5.0": [
       "FunctionInterface >= 1.0.0",
+      "LogLogic >= 1.0.0",
       "Protocol >= 1.0.0",
+      "RabbitMQ.Client >= 6.2.2",
       "Service >= 1.0.0",
       "SettingsLogic >= 1.0.0",
       "SocketLogic >= 1.0.0"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\konop\\.nuget\\packages\\": {}
+    "C:\\Users\\robak\\.nuget\\packages\\": {},
+    "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\ConsoleServer\\ConsoleServer.csproj",
+      "projectUniqueName": "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\ConsoleServer\\ConsoleServer.csproj",
       "projectName": "ConsoleServer",
-      "projectPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\ConsoleServer\\ConsoleServer.csproj",
-      "packagesPath": "C:\\Users\\konop\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\ConsoleServer\\obj\\",
+      "projectPath": "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\ConsoleServer\\ConsoleServer.csproj",
+      "packagesPath": "C:\\Users\\robak\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\ConsoleServer\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\konop\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\robak\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -494,20 +618,23 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\FunctionInterface\\FunctionInterface.csproj": {
-              "projectPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\FunctionInterface\\FunctionInterface.csproj"
+            "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\FunctionInterface\\FunctionInterface.csproj": {
+              "projectPath": "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\FunctionInterface\\FunctionInterface.csproj"
             },
-            "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\Protocol\\Protocol.csproj": {
-              "projectPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\Protocol\\Protocol.csproj"
+            "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\LogLogic\\LogLogic.csproj": {
+              "projectPath": "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\LogLogic\\LogLogic.csproj"
             },
-            "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\Service\\Service.csproj": {
-              "projectPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\Service\\Service.csproj"
+            "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\Protocol\\Protocol.csproj": {
+              "projectPath": "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\Protocol\\Protocol.csproj"
             },
-            "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\SettingsLogic\\SettingsLogic.csproj": {
-              "projectPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\SettingsLogic\\SettingsLogic.csproj"
+            "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\Service\\Service.csproj": {
+              "projectPath": "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\Service\\Service.csproj"
             },
-            "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\SocketLogic\\SocketLogic.csproj": {
-              "projectPath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\SocketLogic\\SocketLogic.csproj"
+            "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\SettingsLogic\\SettingsLogic.csproj": {
+              "projectPath": "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\SettingsLogic\\SettingsLogic.csproj"
+            },
+            "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\SocketLogic\\SocketLogic.csproj": {
+              "projectPath": "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\SocketLogic\\SocketLogic.csproj"
             }
           }
         }
@@ -521,6 +648,12 @@
     "frameworks": {
       "net5.0": {
         "targetAlias": "net5.0",
+        "dependencies": {
+          "RabbitMQ.Client": {
+            "target": "Package",
+            "version": "[6.2.2, )"
+          }
+        },
         "imports": [
           "net461",
           "net462",
@@ -536,7 +669,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
       }
     }
   }

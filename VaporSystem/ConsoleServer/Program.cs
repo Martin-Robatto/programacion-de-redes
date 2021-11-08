@@ -7,7 +7,7 @@ namespace ConsoleServer
     {
         private static ServerHandler _serverHandler;
         
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
             try
             {

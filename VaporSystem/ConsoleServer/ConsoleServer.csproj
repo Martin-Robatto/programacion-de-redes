@@ -7,10 +7,15 @@
 
     <ItemGroup>
       <ProjectReference Include="..\FunctionInterface\FunctionInterface.csproj" />
+      <ProjectReference Include="..\LogLogic\LogLogic.csproj" />
       <ProjectReference Include="..\Protocol\Protocol.csproj" />
       <ProjectReference Include="..\Service\Service.csproj" />
       <ProjectReference Include="..\SettingsLogic\SettingsLogic.csproj" />
       <ProjectReference Include="..\SocketLogic\SocketLogic.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="RabbitMQ.Client" Version="6.2.2" />
     </ItemGroup>
 
 </Project>

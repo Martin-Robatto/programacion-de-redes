@@ -1,14 +1,17 @@
 {
   "version": 2,
-  "dgSpecHash": "bRMj3BFq6Ec4h23476ARi9mv9sVEwG21k7EEKiQ3/b+f2nTagpFanqIYDex11ztkO6DhcLl0H6J1cSrR/QgUog==",
+  "dgSpecHash": "WrNHKKpyUlN4wn+ABBU0DZuJv9yNdHca5Xr1UlnYvY6bSZMQzjtlTncK6lBPBViFTeiUgUe1FWzKPGsJJ5sZZQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\ConsoleServer\\ConsoleServer.csproj",
+  "projectFilePath": "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\ConsoleServer\\ConsoleServer.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\konop\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
-    "C:\\Users\\konop\\.nuget\\packages\\netstandard.library\\2.0.0\\netstandard.library.2.0.0.nupkg.sha512",
-    "C:\\Users\\konop\\.nuget\\packages\\system.configuration.abstractions\\2.0.2.45\\system.configuration.abstractions.2.0.2.45.nupkg.sha512",
-    "C:\\Users\\konop\\.nuget\\packages\\system.configuration.configurationmanager\\4.4.1\\system.configuration.configurationmanager.4.4.1.nupkg.sha512",
-    "C:\\Users\\konop\\.nuget\\packages\\system.security.cryptography.protecteddata\\4.4.0\\system.security.cryptography.protecteddata.4.4.0.nupkg.sha512"
+    "C:\\Users\\robak\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\robak\\.nuget\\packages\\netstandard.library\\2.0.0\\netstandard.library.2.0.0.nupkg.sha512",
+    "C:\\Users\\robak\\.nuget\\packages\\rabbitmq.client\\6.2.2\\rabbitmq.client.6.2.2.nupkg.sha512",
+    "C:\\Users\\robak\\.nuget\\packages\\system.configuration.abstractions\\2.0.2.45\\system.configuration.abstractions.2.0.2.45.nupkg.sha512",
+    "C:\\Users\\robak\\.nuget\\packages\\system.configuration.configurationmanager\\4.4.1\\system.configuration.configurationmanager.4.4.1.nupkg.sha512",
+    "C:\\Users\\robak\\.nuget\\packages\\system.memory\\4.5.4\\system.memory.4.5.4.nupkg.sha512",
+    "C:\\Users\\robak\\.nuget\\packages\\system.security.cryptography.protecteddata\\4.4.0\\system.security.cryptography.protecteddata.4.4.0.nupkg.sha512",
+    "C:\\Users\\robak\\.nuget\\packages\\system.threading.channels\\4.7.1\\system.threading.channels.4.7.1.nupkg.sha512"
   ],
   "logs": []
 }

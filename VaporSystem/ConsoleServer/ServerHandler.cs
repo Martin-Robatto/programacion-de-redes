@@ -8,9 +8,13 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
+using System.Text;
+using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
+using Domain;
 using FunctionInterface;
+using RabbitMQ.Client;
 
 namespace ConsoleServer
 {
@@ -29,8 +33,9 @@ namespace ConsoleServer
 
         public ServerHandler() { }
 
-        public void Run()
+        public async Task Run()
         {
+            await LogSender.Instance.StartLogsRecord().ConfigureAwait(false);
             _exit = false;
             try
             {
@@ -68,7 +73,7 @@ namespace ConsoleServer
             _serverSocket.Bind(ipEndPoint);
             _serverSocket.Listen(100);
         }
-
+        
         private async Task ListenForConnectionsAsync()
         {
             while (!_exit)

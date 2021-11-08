@@ -9,6 +9,7 @@
     <ProjectReference Include="..\Domain\Domain.csproj" />
     <ProjectReference Include="..\Exceptions\Exceptions.csproj" />
     <ProjectReference Include="..\FileLogic\FileLogic.csproj" />
+    <ProjectReference Include="..\LogLogic\LogLogic.csproj" />
     <ProjectReference Include="..\Protocol\Protocol.csproj" />
     <ProjectReference Include="..\SocketLogic\SocketLogic.csproj" />
   </ItemGroup>
