@@ -39,7 +39,7 @@ namespace ConsoleServer.Function
                 Date = DateTime.Now.ToShortDateString(),
                 Hour = DateTime.Now.ToString("HH:mm"),
                 User = gameLine,
-                Game = null,
+                Game = string.Empty,
                 Action = "Get All Games",
                 StatusCode = base.statusCode.ToString()
             };

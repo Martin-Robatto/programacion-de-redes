@@ -40,7 +40,7 @@ namespace ConsoleServer.Function.Review
                 Date = DateTime.Now.ToShortDateString(),
                 Hour = DateTime.Now.ToString("HH:mm"),
                 User = reviewLine,
-                Game = null,
+                Game = string.Empty,
                 Action = "Get Reviews By User",
                 StatusCode = base.statusCode.ToString()
             };

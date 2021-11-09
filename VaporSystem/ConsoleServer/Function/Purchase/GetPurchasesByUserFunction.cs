@@ -40,7 +40,7 @@ namespace ConsoleServer.Function
                 Date = DateTime.Now.ToShortDateString(),
                 Hour = DateTime.Now.ToString("HH:mm"),
                 User = purchaseLine,
-                Game = null,
+                Game = string.Empty,
                 Action = "Get Purchases By User",
                 StatusCode = base.statusCode.ToString()
             };
