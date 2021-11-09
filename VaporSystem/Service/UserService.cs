@@ -1,6 +1,7 @@
 ﻿using DataAccess;
 using Domain;
 using System;
+using ConsoleServer;
 
 namespace Service
 {
@@ -41,6 +42,15 @@ namespace Service
             _validator.CheckUserAlreadyExists(input);
             UserRepository.Add(input);
             Console.WriteLine($"Usuario nuevo: {input.Username}");
+            Log newLog = new Log()
+            {
+                User = attributes[0],
+                Date = DateTime.Now.ToShortDateString(),
+                Hour = DateTime.Now.ToString("HH:mm"),
+                Game = null,
+                Action = "User registered"
+            };
+            LogSender.Instance.SendLog(newLog);
             return input.Username;
         }
 
@@ -55,7 +65,15 @@ namespace Service
             };
             _validator.CheckCredentials(input);
             Console.WriteLine($"Usuario conectado: {input.Username}");
-
+            Log newLog = new Log()
+            {
+                User = attributes[0],
+                Date = DateTime.Now.ToShortDateString(),
+                Hour = DateTime.Now.ToString("HH:mm"),
+                Game = null,
+                Action = "User logged"
+            };
+            LogSender.Instance.SendLog(newLog);
             return input.Username;
         }
 

@@ -4,9 +4,11 @@ namespace Domain
 {
     public class Log
     {
-        public DateTime Date { get; set; }
-        public User User { get; set; }
-        public Game Game { get; set; }
+        public string Date { get; set; }
+        public string Hour { get; set; }
+        public string User { get; set; }
+        public string Game { get; set; }
+        public string Action { get; set; }
 
         public Log()
         { }

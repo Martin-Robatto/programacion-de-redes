@@ -2,6 +2,7 @@
 using Domain;
 using System;
 using System.Collections.Generic;
+using ConsoleServer;
 
 namespace Service
 {
@@ -62,6 +63,15 @@ namespace Service
             _validator.CheckPurchaseAlreadyExists(input);
             PurchaseRepository.Add(input);
             Console.WriteLine($"{user.Username} compro: {game.Title}");
+            Log newLog = new Log()
+            {
+                User = user.Username,
+                Date = DateTime.Now.ToShortDateString(),
+                Hour = DateTime.Now.ToString("HH:mm"),
+                Game = game.Title,
+                Action = "Made a purchase"
+            };
+            LogSender.Instance.SendLog(newLog);
         }
 
         public void Delete(Purchase purchase)
@@ -83,6 +93,15 @@ namespace Service
             _validator.CheckPurchaseIsNull(purchase);
             PurchaseRepository.Remove(purchase);
             Console.WriteLine($"{user.Username} desinstalo: {game.Title}");
+            Log newLog = new Log()
+            {
+                User = user.Username,
+                Date = DateTime.Now.ToShortDateString(),
+                Hour = DateTime.Now.ToString("HH:mm"),
+                Game = game.Title,
+                Action = "Deleted a purchase"
+            };
+            LogSender.Instance.SendLog(newLog);
         }
     }
 }

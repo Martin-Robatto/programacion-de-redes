@@ -3,6 +3,7 @@ using Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using ConsoleServer;
 
 namespace Service
 {
@@ -84,6 +85,15 @@ namespace Service
             ReviewRepository.Add(input);
             Console.WriteLine($"{user.Username} califico: {game.Title}");
             game.Rate = CalculateMediaRate(game);
+            Log newLog = new Log()
+            {
+                User = user.Username,
+                Date = DateTime.Now.ToShortDateString(),
+                Hour = DateTime.Now.ToString("HH:mm"),
+                Game = game.Title,
+                Action = "Saved a review"
+            };
+            LogSender.Instance.SendLog(newLog);
         }
 
         public void Delete(Review review)
@@ -107,6 +117,15 @@ namespace Service
             ReviewRepository.Remove(review);
             Console.WriteLine($"{user.Username} descalifico: {game.Title}");
             game.Rate = CalculateMediaRate(game);
+            Log newLog = new Log()
+            {
+                User = user.Username,
+                Date = DateTime.Now.ToShortDateString(),
+                Hour = DateTime.Now.ToString("HH:mm"),
+                Game = game.Title,
+                Action = "Deleted a review"
+            };
+            LogSender.Instance.SendLog(newLog);
         }
 
         private float CalculateMediaRate(Game game)
@@ -148,6 +167,15 @@ namespace Service
             ReviewRepository.Update(input);
             Console.WriteLine($"{user.Username} califico: {game.Title}");
             game.Rate = CalculateMediaRate(game);
+            Log newLog = new Log()
+            {
+                User = user.Username,
+                Date = DateTime.Now.ToShortDateString(),
+                Hour = DateTime.Now.ToString("HH:mm"),
+                Game = game.Title,
+                Action = "Updated a review"
+            };
+            LogSender.Instance.SendLog(newLog);
         }
     }
 }

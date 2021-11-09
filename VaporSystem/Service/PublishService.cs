@@ -62,9 +62,10 @@ namespace Service
             };
             Log newLog = new Log()
             {
-                User = user,
-                Date = DateTime.Now,
-                Game = game
+                User = user.Username,
+                Date = DateTime.Today.ToShortDateString(),
+                Game = game.Title,
+                Action = "Saved a publish"
             };
             LogSender.Instance.SendLog(newLog);
             PublishRepository.Add(input);
@@ -83,6 +84,15 @@ namespace Service
             DeletePurchases(game);
             GameService.Instance.Delete(game);
             PublishRepository.Remove(publish);
+            Log newLog = new Log()
+            {
+                User = user.Username,
+                Date = DateTime.Now.ToShortDateString(),
+                Hour = DateTime.Now.ToString("HH:mm"),
+                Game = game.Title,
+                Action = "Deleted a publish"
+            };
+            LogSender.Instance.SendLog(newLog);
         }
 
         private void DeleteReviews(Game game)
