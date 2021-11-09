@@ -29,6 +29,7 @@ namespace ConsoleServer.Function
             }
             var dataPacket = BuildResponse();
             await SendResponseAsync(dataPacket);
+            SendLog(bufferData);
         }
 
         public virtual async Task<byte[]> ReceiveRequestAsync(Header header)
@@ -59,5 +60,7 @@ namespace ConsoleServer.Function
         {
             await networkManager.DownloadFileAsync(socket, fileSize, fileName);
         }
+        
+        public abstract void SendLog(byte[] bufferData);
     }
 }

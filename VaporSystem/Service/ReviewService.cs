@@ -83,17 +83,8 @@ namespace Service
             };
             _validator.CheckReviewAlreadyExists(input);
             ReviewRepository.Add(input);
-            Console.WriteLine($"{user.Username} califico: {game.Title}");
             game.Rate = CalculateMediaRate(game);
-            Log newLog = new Log()
-            {
-                User = user.Username,
-                Date = DateTime.Now.ToShortDateString(),
-                Hour = DateTime.Now.ToString("HH:mm"),
-                Game = game.Title,
-                Action = "Saved a review"
-            };
-            LogSender.Instance.SendLog(newLog);
+            Console.WriteLine($"{user.Username} califico: {game.Title}");
         }
 
         public void Delete(Review review)
@@ -115,17 +106,8 @@ namespace Service
             var review = ReviewRepository.Get(r => r.Game.Equals(game) && r.User.Equals(user));
             _validator.CheckReviewIsNull(review);
             ReviewRepository.Remove(review);
-            Console.WriteLine($"{user.Username} descalifico: {game.Title}");
             game.Rate = CalculateMediaRate(game);
-            Log newLog = new Log()
-            {
-                User = user.Username,
-                Date = DateTime.Now.ToShortDateString(),
-                Hour = DateTime.Now.ToString("HH:mm"),
-                Game = game.Title,
-                Action = "Deleted a review"
-            };
-            LogSender.Instance.SendLog(newLog);
+            Console.WriteLine($"{user.Username} descalifico: {game.Title}");
         }
 
         private float CalculateMediaRate(Game game)
@@ -165,17 +147,8 @@ namespace Service
             var review = ReviewRepository.Get(r => r.Equals(input));
             _validator.CheckReviewIsNull(review);
             ReviewRepository.Update(input);
-            Console.WriteLine($"{user.Username} califico: {game.Title}");
             game.Rate = CalculateMediaRate(game);
-            Log newLog = new Log()
-            {
-                User = user.Username,
-                Date = DateTime.Now.ToShortDateString(),
-                Hour = DateTime.Now.ToString("HH:mm"),
-                Game = game.Title,
-                Action = "Updated a review"
-            };
-            LogSender.Instance.SendLog(newLog);
+            Console.WriteLine($"{user.Username} califico: {game.Title}");
         }
     }
 }
