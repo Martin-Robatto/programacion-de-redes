@@ -13,9 +13,9 @@ namespace LogsServer
     {
         private static readonly LogReceiver _logReceiver = new LogReceiver();
         
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
-            _logReceiver.Receive();
+            await _logReceiver.Receive();
             CreateHostBuilder(args).Build().Run();
         }
 

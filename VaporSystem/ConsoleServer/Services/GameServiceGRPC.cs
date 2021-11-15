@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Domain;
 using Exceptions;
 using Grpc.Core;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
+using Protocol;
 using Service;
 
 namespace ConsoleServer
@@ -17,14 +19,14 @@ namespace ConsoleServer
             _logger = logger;
         }
 
-        public override Task<GameReply> CreateGame(GameAttributes request, ServerCallContext context)
+        public override Task<GameReply> PostGame(GameParam request, ServerCallContext context)
         {
             try
             {
-                GameService.Instance.Save(request.Title + "#" + request.Genre + "#" + request.Synopisis);
+                PublishService.Instance.Save(request.Line);
                 return Task.FromResult(new GameReply()
                 {
-                    StatusCode = 201
+                    StatusCode = StatusCodeConstants.CREATED
                 });
             }
             catch (AppException exception)
@@ -34,24 +36,23 @@ namespace ConsoleServer
                     StatusCode = exception.StatusCode
                 });
             }
-            catch (Exception exception)
+            catch (Exception)
             {
                 return Task.FromResult(new GameReply()
                 {
-                    StatusCode = 500
+                    StatusCode = StatusCodeConstants.SERVER_ERROR
                 });
             }
         }
 
-        public override Task<GameReply> DeleteGame(GameIdentifier request, ServerCallContext context)
+        public override Task<GameReply> DeleteGame(GameParam request, ServerCallContext context)
         {
             try
             {
-                var game_to_delete = GameService.Instance.Get(request.GameTitle);
-                GameService.Instance.Delete(game_to_delete);
+                PublishService.Instance.Delete(request.Line);
                 return Task.FromResult(new GameReply()
                 {
-                    StatusCode = 200
+                    StatusCode = StatusCodeConstants.OK
                 });
             }
             catch (AppException exception)
@@ -61,25 +62,23 @@ namespace ConsoleServer
                     StatusCode = exception.StatusCode
                 });
             }
-            catch (Exception exception)
+            catch (Exception)
             {
                 return Task.FromResult(new GameReply()
                 {
-                    StatusCode = 500
+                    StatusCode = StatusCodeConstants.SERVER_ERROR
                 });
             }
         }
         
-        public override Task<GameReply> UpdateGame(UpdateAttributes request, ServerCallContext context)
+        public override Task<GameReply> PutGame(GameParam request, ServerCallContext context)
         {
             try
             {
-                var game_to_update = GameService.Instance.Get(request.Title);
-                GameService.Instance.Update(request.Session + "&" + request.Title + "&" 
-                                            + request.NewTitle + "#" + request.NewGenre + "#" + request.NewSynopisis);
+                PublishService.Instance.Update(request.Line);
                 return Task.FromResult(new GameReply()
                 {
-                    StatusCode = 200
+                    StatusCode = StatusCodeConstants.OK
                 });
             }
             catch (AppException exception)
@@ -89,11 +88,11 @@ namespace ConsoleServer
                     StatusCode = exception.StatusCode
                 });
             }
-            catch (Exception exception)
+            catch (Exception)
             {
                 return Task.FromResult(new GameReply()
                 {
-                    StatusCode = 500
+                    StatusCode = StatusCodeConstants.SERVER_ERROR
                 });
             }
         }

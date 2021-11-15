@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Exceptions;
 using Grpc.Core;
 using Microsoft.Extensions.Logging;
+using Protocol;
 using Service;
 
 namespace ConsoleServer
@@ -15,15 +16,15 @@ namespace ConsoleServer
         {
             _logger = logger;
         }
-        
-        public override Task<UserReply> CreateUser(UserAttributes request, ServerCallContext context)
+
+        public override Task<UserReply> PostUser(UserParam request, ServerCallContext context)
         {
             try
             {
-                UserService.Instance.Register(request.UserName + "#" + request.UserPassword);
+                UserService.Instance.Register(request.Line);
                 return Task.FromResult(new UserReply()
                 {
-                    StatusCode = 201
+                    StatusCode = StatusCodeConstants.CREATED
                 });
             }
             catch (AppException exception)
@@ -33,11 +34,63 @@ namespace ConsoleServer
                     StatusCode = exception.StatusCode
                 });
             }
-            catch (Exception exception)
+            catch (Exception)
             {
                 return Task.FromResult(new UserReply()
                 {
-                    StatusCode = 500
+                    StatusCode = StatusCodeConstants.SERVER_ERROR
+                });
+            }
+        }
+
+        public override Task<UserReply> DeleteUser(UserParam request, ServerCallContext context)
+        {
+            try
+            {
+                UserService.Instance.Delete(request.Line);
+                return Task.FromResult(new UserReply()
+                {
+                    StatusCode = StatusCodeConstants.OK
+                });
+            }
+            catch (AppException exception)
+            {
+                return Task.FromResult(new UserReply()
+                {
+                    StatusCode = exception.StatusCode
+                });
+            }
+            catch (Exception)
+            {
+                return Task.FromResult(new UserReply()
+                {
+                    StatusCode = StatusCodeConstants.SERVER_ERROR
+                });
+            }
+        }
+        
+        public override Task<UserReply> PutUser(UserParam request, ServerCallContext context)
+        {
+            try
+            {
+                UserService.Instance.Update(request.Line);
+                return Task.FromResult(new UserReply()
+                {
+                    StatusCode = StatusCodeConstants.OK
+                });
+            }
+            catch (AppException exception)
+            {
+                return Task.FromResult(new UserReply()
+                {
+                    StatusCode = exception.StatusCode
+                });
+            }
+            catch (Exception)
+            {
+                return Task.FromResult(new UserReply()
+                {
+                    StatusCode = StatusCodeConstants.SERVER_ERROR
                 });
             }
         }

@@ -1,4 +1,5 @@
-﻿using Grpc.Net.Client;
+﻿using System;
+using Grpc.Net.Client;
 using Microsoft.AspNetCore.Mvc;
 using ServerAdmin.Models;
 
@@ -8,34 +9,42 @@ namespace ServerAdmin.Controllers
     [Route("games")]
     public class GameController : ControllerBase
     {
-        private readonly GrpcChannel channel;
-        private readonly GameManager.GameManagerClient client;
+        private readonly GrpcChannel _channel;
         
         public GameController()
         {
-            channel = GrpcChannel.ForAddress("https://localhost:5001");
-            client = new GameManager.GameManagerClient(channel);
+            _channel = GrpcChannel.ForAddress("http://localhost:9000", new GrpcChannelOptions() {
+                HttpClient = new System.Net.Http.HttpClient() {
+                    DefaultRequestVersion = new Version(2, 0)
+                }
+            });
         }
         
         [HttpPost]
         public IActionResult Post([FromBody] GameModelIn model)
         {
-            var user = Parser.Parser.GameModelInToGameAttributes(model);
-            var reply = client.CreateGameAsync(user);
-            var model_out = Parser.Parser.GameAttributesToGameModelOut(user);
-            return Ok(model_out);
+            var client = new GameManager.GameManagerClient(_channel);
+            var gameLine = new GameParam() {Line = model.ParseToPostFormat()};
+            var response = client.PostGame(gameLine);
+            return StatusCode(response.StatusCode);
         }
         
         [HttpDelete]
-        public IActionResult Delete([FromRoute] string username)
+        public IActionResult Delete([FromBody] GameModelIn model)
         {
-            return Ok(null);
+            var client = new GameManager.GameManagerClient(_channel);
+            var gameLine = new GameParam() {Line = model.ParseToDeleteFormat()};
+            var response = client.DeleteGame(gameLine);
+            return StatusCode(response.StatusCode);
         }
         
         [HttpPut]
-        public IActionResult Update([FromRoute] string username, [FromBody] GameModelIn model)
+        public IActionResult Update([FromRoute] string title, [FromBody] GameModelIn model)
         {
-            return Ok(null);
+            var client = new GameManager.GameManagerClient(_channel);
+            var gameLine = new GameParam() {Line = model.ParseToPutFormat(title)};
+            var response = client.PutGame(gameLine);
+            return StatusCode(response.StatusCode);
         }
     }
 }

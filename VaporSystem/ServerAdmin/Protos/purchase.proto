@@ -5,20 +5,14 @@ option csharp_namespace = "ServerAdmin";
 package purchase;
 
 service PurchaseManager {
-  rpc CreatePurchase (PurchaseAttributes) returns (PurchaseReply);
-  rpc DeletePurchase (PurchaseToDelete) returns (PurchaseReply);
-}
-
-message PurchaseAttributes {
-  string purchase_user = 1;
-  string purchase_game = 2;
-}
-
-message PurchaseToDelete {
-  string purchase_user = 1;
+  rpc PostPurchase (PurchaseParam) returns (PurchaseReply);
+  rpc DeletePurchase (PurchaseParam) returns (PurchaseReply);
 }
 
 message PurchaseReply {
   int32 status_code = 1;
 }
 
+message PurchaseParam {
+  string line = 1;
+}

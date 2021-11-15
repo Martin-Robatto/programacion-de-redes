@@ -4,6 +4,7 @@ using Domain;
 using Exceptions;
 using Grpc.Core;
 using Microsoft.Extensions.Logging;
+using Protocol;
 using Service;
 
 namespace ConsoleServer
@@ -17,14 +18,14 @@ namespace ConsoleServer
             _logger = logger;
         }
 
-        public override Task<PurchaseReply> CreatePurchase(PurchaseAttributes request, ServerCallContext context)
+        public override Task<PurchaseReply> PostPurchase(PurchaseParam request, ServerCallContext context)
         {
             try
             {
-                PurchaseService.Instance.Save(request.PurchaseGame + "&" + request.PurchaseUser);
+                PurchaseService.Instance.Save(request.Line);
                 return Task.FromResult(new PurchaseReply()
                 {
-                    StatusCode = 201
+                    StatusCode = StatusCodeConstants.CREATED
                 });
             }
             catch (AppException exception)
@@ -34,24 +35,23 @@ namespace ConsoleServer
                     StatusCode = exception.StatusCode
                 });
             }
-            catch (Exception exception)
+            catch (Exception)
             {
                 return Task.FromResult(new PurchaseReply()
                 {
-                    StatusCode = 500
+                    StatusCode = StatusCodeConstants.SERVER_ERROR
                 });
             }
         }
 
-        public override Task<PurchaseReply> DeletePurchase(PurchaseToDelete request, ServerCallContext context)
+        public override Task<PurchaseReply> DeletePurchase(PurchaseParam request, ServerCallContext context)
         {
             try
             {
-                var purchase_to_delete = PurchaseService.Instance.Get(request.PurchaseUser);
-                PurchaseService.Instance.Delete(purchase_to_delete);
+                PurchaseService.Instance.Delete(request.Line);
                 return Task.FromResult(new PurchaseReply()
                 {
-                    StatusCode = 200
+                    StatusCode = StatusCodeConstants.OK
                 });
             }
             catch (AppException exception)
@@ -61,11 +61,11 @@ namespace ConsoleServer
                     StatusCode = exception.StatusCode
                 });
             }
-            catch (Exception exception)
+            catch (Exception)
             {
                 return Task.FromResult(new PurchaseReply()
                 {
-                    StatusCode = 500
+                    StatusCode = StatusCodeConstants.SERVER_ERROR
                 });
             }
         }

@@ -5,29 +5,15 @@ option csharp_namespace = "ConsoleServer";
 package game;
 
 service GameManager {
-  rpc CreateGame (GameAttributes) returns (GameReply);
-  rpc DeleteGame (GameIdentifier) returns (GameReply);
-  rpc UpdateGame (UpdateAttributes) returns (GameReply);
-}
-
-message GameAttributes {
-  string title = 1;
-  string genre = 2;
-  string synopisis = 3;
-}
-
-message GameIdentifier {
-  string game_title = 1;
+  rpc PostGame (GameParam) returns (GameReply);
+  rpc DeleteGame (GameParam) returns (GameReply);
+  rpc PutGame (GameParam) returns (GameReply);
 }
 
 message GameReply {
   int32 status_code = 1;
 }
 
-message UpdateAttributes {
-  string session = 1;
-  string title = 2;
-  string new_title = 3;
-  string new_genre = 4;
-  string new_synopisis = 5;
+message GameParam {
+  string line = 1;
 }
