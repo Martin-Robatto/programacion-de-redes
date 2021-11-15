@@ -1,14 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "o+USV0+r7c6BxjgmNadDzvksOxalV91Q3nUx8GIyT80pupK/+gxbG5dosUJ7Q4mxbxJBDbWo1uYrhcaT8mSGnw==",
+  "dgSpecHash": "gDd6cTPmYTvMX3mRg88HxiZRAGQuW3d9YTtAacqR8zWcauPihLIYhKMuhWwoqZoRBTJUq4NkPbUavFjgtGHAkQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\konop\\Desktop\\programacion-de-redes\\VaporSystem\\ConsoleClient\\ConsoleClient.csproj",
+  "projectFilePath": "C:\\Users\\robak\\RiderProjects\\programacion-de-redes\\VaporSystem\\ConsoleClient\\ConsoleClient.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\konop\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
-    "C:\\Users\\konop\\.nuget\\packages\\netstandard.library\\2.0.0\\netstandard.library.2.0.0.nupkg.sha512",
-    "C:\\Users\\konop\\.nuget\\packages\\system.configuration.abstractions\\2.0.2.45\\system.configuration.abstractions.2.0.2.45.nupkg.sha512",
-    "C:\\Users\\konop\\.nuget\\packages\\system.configuration.configurationmanager\\4.4.1\\system.configuration.configurationmanager.4.4.1.nupkg.sha512",
-    "C:\\Users\\konop\\.nuget\\packages\\system.security.cryptography.protecteddata\\4.4.0\\system.security.cryptography.protecteddata.4.4.0.nupkg.sha512"
+    "C:\\Users\\robak\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\robak\\.nuget\\packages\\netstandard.library\\2.0.0\\netstandard.library.2.0.0.nupkg.sha512",
+    "C:\\Users\\robak\\.nuget\\packages\\system.configuration.abstractions\\2.0.2.45\\system.configuration.abstractions.2.0.2.45.nupkg.sha512",
+    "C:\\Users\\robak\\.nuget\\packages\\system.configuration.configurationmanager\\4.4.1\\system.configuration.configurationmanager.4.4.1.nupkg.sha512",
+    "C:\\Users\\robak\\.nuget\\packages\\system.security.cryptography.protecteddata\\4.4.0\\system.security.cryptography.protecteddata.4.4.0.nupkg.sha512"
   ],
   "logs": []
 }

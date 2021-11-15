@@ -14,6 +14,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using Domain;
 using FunctionInterface;
+using Grpc.Net.Client;
+using GrpcServer;
 using RabbitMQ.Client;
 
 namespace ConsoleServer
