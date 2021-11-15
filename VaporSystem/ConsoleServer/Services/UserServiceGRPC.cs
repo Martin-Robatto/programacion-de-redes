@@ -9,9 +9,9 @@ namespace ConsoleServer
 {
     public class UserServiceGRPC : UserManager.UserManagerBase
     {
-        private readonly ILogger<GreeterService> _logger;
+        private readonly ILogger<UserServiceGRPC> _logger;
 
-        public UserServiceGRPC(ILogger<GreeterService> logger)
+        public UserServiceGRPC(ILogger<UserServiceGRPC> logger)
         {
             _logger = logger;
         }

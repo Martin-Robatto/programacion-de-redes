@@ -15,7 +15,6 @@
       <ProjectReference Include="..\SocketLogic\SocketLogic.csproj" />
     </ItemGroup>
     <ItemGroup>
-        <Protobuf Include="Protos\greet.proto" GrpcServices="Server" />
         <Protobuf Include="Protos\user.proto" GrpcServices="Server" />
         <Protobuf Include="Protos\game.proto" GrpcServices="Server" />
         <Protobuf Include="Protos\purchase.proto" GrpcServices="Server" />

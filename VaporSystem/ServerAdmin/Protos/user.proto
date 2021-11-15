@@ -1,0 +1,18 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "ServerAdmin";
+
+package user;
+
+service UserManager {
+  rpc CreateUser (UserAttributes) returns (UserReply);
+}
+
+message UserAttributes {
+  string user_name = 1;
+  string user_password = 2;
+}
+
+message UserReply {
+  int32 status_code = 1;
+}

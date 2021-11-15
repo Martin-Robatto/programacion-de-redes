@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Grpc.Net.Client;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.VisualBasic;
+using Protocol;
 using ServerAdmin.Models;
 
 namespace ServerAdmin.Controllers
@@ -7,22 +10,22 @@ namespace ServerAdmin.Controllers
     [Route("users")]
     public class UserController : ControllerBase
     {
+        private readonly GrpcChannel channel;
+        private readonly UserManager.UserManagerClient client;
+        
+        public UserController()
+        {
+            channel = GrpcChannel.ForAddress("https://localhost:5001");
+            client = new UserManager.UserManagerClient(channel);
+        }
+        
         [HttpPost]
         public IActionResult Post([FromBody] UserModelIn model)
         {
-            return Ok(null);
-        }
-        
-        [HttpDelete]
-        public IActionResult Delete([FromRoute] string username)
-        {
-            return Ok(null);
-        }
-        
-        [HttpPut]
-        public IActionResult Delete([FromRoute] string username, [FromBody] UserModelIn model)
-        {
-            return Ok(null);
+            var user = Parser.Parser.UserModelToUserAttributes(model);
+            var reply = client.CreateUser(user);
+            var model_out = Parser.Parser.UserAttributesToUserModelOut(user);
+            return Ok(model_out);
         }
     }
 }

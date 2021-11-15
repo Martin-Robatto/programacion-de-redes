@@ -10,9 +10,9 @@ namespace ConsoleServer
 {
     public class GameServiceGRPC : GameManager.GameManagerBase
     {
-        private readonly ILogger<GreeterService> _logger;
+        private readonly ILogger<GameServiceGRPC> _logger;
 
-        public GameServiceGRPC(ILogger<GreeterService> logger)
+        public GameServiceGRPC(ILogger<GameServiceGRPC> logger)
         {
             _logger = logger;
         }

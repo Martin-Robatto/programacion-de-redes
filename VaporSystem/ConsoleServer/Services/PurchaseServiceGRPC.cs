@@ -10,9 +10,9 @@ namespace ConsoleServer
 {
     public class PurchaseServiceGRPC : PurchaseManager.PurchaseManagerBase
     {
-        private readonly ILogger<GreeterService> _logger;
+        private readonly ILogger<PurchaseServiceGRPC> _logger;
 
-        public PurchaseServiceGRPC(ILogger<GreeterService> logger)
+        public PurchaseServiceGRPC(ILogger<PurchaseServiceGRPC> logger)
         {
             _logger = logger;
         }
