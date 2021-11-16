@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Text;
 using System.Threading.Tasks;
+using ConsoleServer.Function;
+using Domain;
 using Exceptions;
 using Grpc.Core;
 using Microsoft.Extensions.Logging;
@@ -19,80 +22,38 @@ namespace ConsoleServer
 
         public override Task<UserReply> PostUser(UserParam request, ServerCallContext context)
         {
-            try
+            byte[] data = Encoding.UTF8.GetBytes(request.Line);
+            FunctionTemplate function = new PostUserFunction();
+            function.ProcessRequest(data);
+            function.SendLog(data);
+            return Task.FromResult(new UserReply()
             {
-                UserService.Instance.Register(request.Line);
-                return Task.FromResult(new UserReply()
-                {
-                    StatusCode = StatusCodeConstants.CREATED
-                });
-            }
-            catch (AppException exception)
-            {
-                return Task.FromResult(new UserReply()
-                {
-                    StatusCode = exception.StatusCode
-                });
-            }
-            catch (Exception)
-            {
-                return Task.FromResult(new UserReply()
-                {
-                    StatusCode = StatusCodeConstants.SERVER_ERROR
-                });
-            }
+                StatusCode = function.statusCode
+            });
         }
 
         public override Task<UserReply> DeleteUser(UserParam request, ServerCallContext context)
         {
-            try
+            byte[] data = Encoding.UTF8.GetBytes(request.Line);
+            FunctionTemplate function = new DeleteUserFunction();
+            function.ProcessRequest(data);
+            function.SendLog(data);
+            return Task.FromResult(new UserReply()
             {
-                UserService.Instance.Delete(request.Line);
-                return Task.FromResult(new UserReply()
-                {
-                    StatusCode = StatusCodeConstants.OK
-                });
-            }
-            catch (AppException exception)
-            {
-                return Task.FromResult(new UserReply()
-                {
-                    StatusCode = exception.StatusCode
-                });
-            }
-            catch (Exception)
-            {
-                return Task.FromResult(new UserReply()
-                {
-                    StatusCode = StatusCodeConstants.SERVER_ERROR
-                });
-            }
+                StatusCode = function.statusCode
+            });
         }
         
         public override Task<UserReply> PutUser(UserParam request, ServerCallContext context)
         {
-            try
+            byte[] data = Encoding.UTF8.GetBytes(request.Line);
+            FunctionTemplate function = new PutUserFunction();
+            function.ProcessRequest(data);
+            function.SendLog(data);
+            return Task.FromResult(new UserReply()
             {
-                UserService.Instance.Update(request.Line);
-                return Task.FromResult(new UserReply()
-                {
-                    StatusCode = StatusCodeConstants.OK
-                });
-            }
-            catch (AppException exception)
-            {
-                return Task.FromResult(new UserReply()
-                {
-                    StatusCode = exception.StatusCode
-                });
-            }
-            catch (Exception)
-            {
-                return Task.FromResult(new UserReply()
-                {
-                    StatusCode = StatusCodeConstants.SERVER_ERROR
-                });
-            }
+                StatusCode = function.statusCode
+            });
         }
     }
 }

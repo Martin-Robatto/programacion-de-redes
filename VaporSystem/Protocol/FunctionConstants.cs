@@ -3,9 +3,10 @@
     public class FunctionConstants
     {
         public const int EXIT = 0;
-        public const int REGISTER = 1;
-        public const int LOGIN = 2;
-        public const int MESSAGE = 3;
+        public const int POST_USER = 1;
+        public const int DELETE_USER = 2;
+        public const int PUT_USER = 3;
+        public const int LOGIN = 4;
 
         public const int GET_ALL_GAMES = 5;
         public const int GET_GAME_BY_TITLE = 6;

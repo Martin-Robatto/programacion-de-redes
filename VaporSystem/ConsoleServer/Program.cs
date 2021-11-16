@@ -14,9 +14,10 @@ namespace ConsoleServer
         {
             try
             {
+                var task = Task.Run(() => CreateHostBuilder(args).Build().Run());
                 ServerHandler serverHandler = new ServerHandler();
-                serverHandler.Run();
-                CreateHostBuilder(args).Build().Run();
+                await serverHandler.Run().ConfigureAwait(false);
+                task.Dispose();
             }
             catch (Exception exception)
             {

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Grpc.Net.Client;
 using Microsoft.AspNetCore.Mvc;
 using ServerAdmin.Models;
@@ -19,31 +20,31 @@ namespace ServerAdmin.Controllers
                 }
             });
         }
-        
+
         [HttpPost]
-        public IActionResult Post([FromBody] GameModelIn model)
+        public async Task<IActionResult> Post([FromBody] GameModelIn model)
         {
             var client = new GameManager.GameManagerClient(_channel);
             var gameLine = new GameParam() {Line = model.ParseToPostFormat()};
-            var response = client.PostGame(gameLine);
+            var response = await client.PostGameAsync(gameLine);
             return StatusCode(response.StatusCode);
         }
         
         [HttpDelete]
-        public IActionResult Delete([FromBody] GameModelIn model)
+        public async Task<IActionResult> Delete([FromBody] GameModelIn model)
         {
             var client = new GameManager.GameManagerClient(_channel);
             var gameLine = new GameParam() {Line = model.ParseToDeleteFormat()};
-            var response = client.DeleteGame(gameLine);
+            var response = await client.DeleteGameAsync(gameLine);
             return StatusCode(response.StatusCode);
         }
         
         [HttpPut]
-        public IActionResult Update([FromRoute] string title, [FromBody] GameModelIn model)
+        public async Task<IActionResult> Update(string title, [FromBody] GameModelIn model)
         {
             var client = new GameManager.GameManagerClient(_channel);
             var gameLine = new GameParam() {Line = model.ParseToPutFormat(title)};
-            var response = client.PutGame(gameLine);
+            var response = await client.PutGameAsync(gameLine);
             return StatusCode(response.StatusCode);
         }
     }

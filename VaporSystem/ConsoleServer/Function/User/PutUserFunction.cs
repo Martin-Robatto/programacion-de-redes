@@ -1,22 +1,22 @@
-﻿using Exceptions;
-using Protocol;
-using Service;
-using System;
+﻿using System;
 using System.Text;
 using Domain;
+using Exceptions;
+using Protocol;
+using Service;
 
 namespace ConsoleServer.Function
 {
-    public class RegisterFunction : FunctionTemplate
+    public class PutUserFunction: FunctionTemplate
     {
         public override void ProcessRequest(byte[] bufferData)
         {
-            base.function = FunctionConstants.REGISTER;
+            base.function = FunctionConstants.PUT_USER;
             try
             {
                 var userLine = Encoding.UTF8.GetString(bufferData);
-                UserService.Instance.Register(userLine);
-                base.statusCode = StatusCodeConstants.CREATED;
+                UserService.Instance.Update(userLine);
+                base.statusCode = StatusCodeConstants.OK;
             }
             catch (AppException exception)
             {
@@ -33,14 +33,15 @@ namespace ConsoleServer.Function
         public override void SendLog(byte[] bufferData)
         {
             var userLine = Encoding.UTF8.GetString(bufferData);
-            string[] attributes = userLine.Split("#");
+            string[] attributes = userLine.Split("&");
+            string[] userAttributes = attributes[1].Split("#");
             Log newLog = new Log()
             {
                 Date = DateTime.Now.ToShortDateString(),
                 Hour = DateTime.Now.ToString("HH:mm"),
-                User = attributes[0],
+                User = $"{attributes[0]} --> {userAttributes[0]}",
                 Game = string.Empty,
-                Action = "Register",
+                Action = "Put User",
                 StatusCode = base.statusCode.ToString()
             };
             LogSender.Instance.SendLog(newLog);

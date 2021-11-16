@@ -13,7 +13,7 @@ namespace ConsoleServer.Function
 
         protected string data = string.Empty;
         protected int function;
-        protected int statusCode;
+        public int statusCode { get; set; }
         
         protected string fileName = string.Empty;
         protected long fileSize = 0;

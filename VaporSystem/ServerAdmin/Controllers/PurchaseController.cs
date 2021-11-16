@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Grpc.Net.Client;
 using Microsoft.AspNetCore.Mvc;
 using ServerAdmin.Models;
@@ -21,20 +22,20 @@ namespace ServerAdmin.Controllers
         }
         
         [HttpPost]
-        public IActionResult Post([FromBody] PurchaseModelIn model)
+        public async Task<IActionResult> Post([FromBody] PurchaseModelIn model)
         {
             var client = new PurchaseManager.PurchaseManagerClient(_channel);
             var purchaseLine = new PurchaseParam() {Line = model.Parse()};
-            var response = client.PostPurchase(purchaseLine);
+            var response = await client.PostPurchaseAsync(purchaseLine);
             return StatusCode(response.StatusCode);
         }
         
         [HttpDelete]
-        public IActionResult Delete([FromBody] PurchaseModelIn model)
+        public async Task<IActionResult> Delete([FromBody] PurchaseModelIn model)
         {
             var client = new PurchaseManager.PurchaseManagerClient(_channel);
             var purchaseLine = new PurchaseParam() {Line = model.Parse()};
-            var response = client.DeletePurchase(purchaseLine);
+            var response = await client.DeletePurchaseAsync(purchaseLine);
             return StatusCode(response.StatusCode);
         }
     }

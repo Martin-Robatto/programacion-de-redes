@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Text;
 using System.Threading.Tasks;
+using ConsoleServer.Function;
 using Domain;
 using Exceptions;
 using Grpc.Core;
@@ -21,80 +23,38 @@ namespace ConsoleServer
 
         public override Task<GameReply> PostGame(GameParam request, ServerCallContext context)
         {
-            try
+            byte[] data = Encoding.UTF8.GetBytes(request.Line);
+            FunctionTemplate function = new PostPublishFunction();
+            function.ProcessRequest(data);
+            function.SendLog(data);
+            return Task.FromResult(new GameReply()
             {
-                PublishService.Instance.Save(request.Line);
-                return Task.FromResult(new GameReply()
-                {
-                    StatusCode = StatusCodeConstants.CREATED
-                });
-            }
-            catch (AppException exception)
-            {
-                return Task.FromResult(new GameReply()
-                {
-                    StatusCode = exception.StatusCode
-                });
-            }
-            catch (Exception)
-            {
-                return Task.FromResult(new GameReply()
-                {
-                    StatusCode = StatusCodeConstants.SERVER_ERROR
-                });
-            }
+                StatusCode = function.statusCode
+            });
         }
 
         public override Task<GameReply> DeleteGame(GameParam request, ServerCallContext context)
         {
-            try
+            byte[] data = Encoding.UTF8.GetBytes(request.Line);
+            FunctionTemplate function = new DeletePublishFunction();
+            function.ProcessRequest(data);
+            function.SendLog(data);
+            return Task.FromResult(new GameReply()
             {
-                PublishService.Instance.Delete(request.Line);
-                return Task.FromResult(new GameReply()
-                {
-                    StatusCode = StatusCodeConstants.OK
-                });
-            }
-            catch (AppException exception)
-            {
-                return Task.FromResult(new GameReply()
-                {
-                    StatusCode = exception.StatusCode
-                });
-            }
-            catch (Exception)
-            {
-                return Task.FromResult(new GameReply()
-                {
-                    StatusCode = StatusCodeConstants.SERVER_ERROR
-                });
-            }
+                StatusCode = function.statusCode
+            });
         }
         
         public override Task<GameReply> PutGame(GameParam request, ServerCallContext context)
         {
-            try
+            byte[] data = Encoding.UTF8.GetBytes(request.Line);
+            FunctionTemplate function = new PutPublishFunction();
+            function.ProcessRequest(data);
+            function.SendLog(data);
+            return Task.FromResult(new GameReply()
             {
-                PublishService.Instance.Update(request.Line);
-                return Task.FromResult(new GameReply()
-                {
-                    StatusCode = StatusCodeConstants.OK
-                });
-            }
-            catch (AppException exception)
-            {
-                return Task.FromResult(new GameReply()
-                {
-                    StatusCode = exception.StatusCode
-                });
-            }
-            catch (Exception)
-            {
-                return Task.FromResult(new GameReply()
-                {
-                    StatusCode = StatusCodeConstants.SERVER_ERROR
-                });
-            }
+                StatusCode = function.statusCode
+            });
         }
     }
 }

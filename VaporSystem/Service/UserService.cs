@@ -100,7 +100,7 @@ namespace Service
         {
             string[] attributes = userLine.Split("&");
             _validator.CheckAttributesAreEmpty(attributes);
-            string[] userAttributes = userLine.Split("#");
+            string[] userAttributes = attributes[1].Split("#");
             _validator.CheckAttributesAreEmpty(userAttributes);
             User user = Get(attributes[0]);
             if (!user.Username.Equals(userAttributes[0]))

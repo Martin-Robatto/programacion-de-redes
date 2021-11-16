@@ -7,17 +7,16 @@ using Domain;
 
 namespace ConsoleServer.Function
 {
-    public class PutPublishFunction : FunctionTemplate
+    public class PostUserFunction : FunctionTemplate
     {
         public override void ProcessRequest(byte[] bufferData)
         {
-            
-            base.function = FunctionConstants.PUT_PUBLISH;
+            base.function = FunctionConstants.POST_USER;
             try
             {
-                var gameLine = Encoding.UTF8.GetString(bufferData);
-                PublishService.Instance.Update(gameLine);
-                base.statusCode = StatusCodeConstants.OK;
+                var userLine = Encoding.UTF8.GetString(bufferData);
+                UserService.Instance.Register(userLine);
+                base.statusCode = StatusCodeConstants.CREATED;
             }
             catch (AppException exception)
             {
@@ -29,21 +28,19 @@ namespace ConsoleServer.Function
                 base.data = "Error de servidor";
                 base.statusCode = StatusCodeConstants.SERVER_ERROR;
             }
-            
         }
 
         public override void SendLog(byte[] bufferData)
         {
-            var gameLine = Encoding.UTF8.GetString(bufferData);
-            string[] attributes = gameLine.Split("&");
-            string[] gameAttributes = attributes[2].Split("#");
+            var userLine = Encoding.UTF8.GetString(bufferData);
+            string[] attributes = userLine.Split("#");
             Log newLog = new Log()
             {
                 Date = DateTime.Now.ToShortDateString(),
                 Hour = DateTime.Now.ToString("HH:mm"),
                 User = attributes[0],
-                Game = $"{attributes[1]} --> {gameAttributes[0]}",
-                Action = "Put Publish",
+                Game = string.Empty,
+                Action = "Post User",
                 StatusCode = base.statusCode.ToString()
             };
             LogSender.Instance.SendLog(newLog);

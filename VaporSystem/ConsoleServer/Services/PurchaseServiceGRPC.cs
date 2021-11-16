@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Text;
 using System.Threading.Tasks;
+using ConsoleServer.Function;
 using Domain;
 using Exceptions;
 using Grpc.Core;
@@ -20,54 +22,26 @@ namespace ConsoleServer
 
         public override Task<PurchaseReply> PostPurchase(PurchaseParam request, ServerCallContext context)
         {
-            try
+            byte[] data = Encoding.UTF8.GetBytes(request.Line);
+            FunctionTemplate function = new PostPurchaseFunction();
+            function.ProcessRequest(data);
+            function.SendLog(data);
+            return Task.FromResult(new PurchaseReply()
             {
-                PurchaseService.Instance.Save(request.Line);
-                return Task.FromResult(new PurchaseReply()
-                {
-                    StatusCode = StatusCodeConstants.CREATED
-                });
-            }
-            catch (AppException exception)
-            {
-                return Task.FromResult(new PurchaseReply()
-                {
-                    StatusCode = exception.StatusCode
-                });
-            }
-            catch (Exception)
-            {
-                return Task.FromResult(new PurchaseReply()
-                {
-                    StatusCode = StatusCodeConstants.SERVER_ERROR
-                });
-            }
+                StatusCode = function.statusCode
+            });
         }
 
         public override Task<PurchaseReply> DeletePurchase(PurchaseParam request, ServerCallContext context)
         {
-            try
+            byte[] data = Encoding.UTF8.GetBytes(request.Line);
+            FunctionTemplate function = new DeletePurchaseFunction();
+            function.ProcessRequest(data);
+            function.SendLog(data);
+            return Task.FromResult(new PurchaseReply()
             {
-                PurchaseService.Instance.Delete(request.Line);
-                return Task.FromResult(new PurchaseReply()
-                {
-                    StatusCode = StatusCodeConstants.OK
-                });
-            }
-            catch (AppException exception)
-            {
-                return Task.FromResult(new PurchaseReply()
-                {
-                    StatusCode = exception.StatusCode
-                });
-            }
-            catch (Exception)
-            {
-                return Task.FromResult(new PurchaseReply()
-                {
-                    StatusCode = StatusCodeConstants.SERVER_ERROR
-                });
-            }
+                StatusCode = function.statusCode
+            });
         }
     }
 }

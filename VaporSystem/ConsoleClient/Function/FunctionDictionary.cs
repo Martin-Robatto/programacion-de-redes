@@ -23,7 +23,7 @@ namespace ConsoleClient.Function
         {
             var commands = new Dictionary<int, IClientFunction>
             {
-                {FunctionConstants.REGISTER, new RegisterFunction()},
+                {FunctionConstants.POST_USER, new RegisterFunction()},
                 {FunctionConstants.LOGIN, new LogInFunction()},
                 {FunctionConstants.EXIT, new ExitFunction()}
             };

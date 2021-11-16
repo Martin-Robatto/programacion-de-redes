@@ -14,7 +14,7 @@ namespace ConsoleServer.Function
         {
             var commands = new Dictionary<int, IServerFunction>
             {
-                {FunctionConstants.REGISTER, new RegisterFunction()},
+                {FunctionConstants.POST_USER, new PostUserFunction()},
                 {FunctionConstants.LOGIN, new LogInFunction()},
                 {FunctionConstants.GET_ALL_GAMES, new GetAllGamesFunction()},
                 {FunctionConstants.POST_PUBLISH, new PostPublishFunction()},
