@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Threading.Tasks;
-using GrpcServer;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.Extensions.Hosting;
+using SettingsLogic;
+using SettingsLogic.Interface;
 
 namespace ConsoleServer
 {
     class Program
     {
-        
         static async Task Main(string[] args)
         {
             try
@@ -33,8 +33,10 @@ namespace ConsoleServer
                 {
                     webBuilder.ConfigureKestrel(options =>
                     {
+                        ISettingsManager settingsManager = new SettingsManager();
+                        var grpcPort = int.Parse(settingsManager.ReadSetting(ServerConfig.GRPCPortConfigKey));
                         // Setup a HTTP/2 endpoint without TLS.
-                        options.ListenLocalhost(9000, o => o.Protocols = HttpProtocols.Http2);
+                        options.ListenLocalhost(grpcPort, o => o.Protocols = HttpProtocols.Http2);
                     });
                     webBuilder.UseStartup<Startup>();
                 });

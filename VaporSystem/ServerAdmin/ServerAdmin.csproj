@@ -23,6 +23,7 @@
     
     <ItemGroup>
       <ProjectReference Include="..\Protocol\Protocol.csproj" />
+      <ProjectReference Include="..\SettingsLogic\SettingsLogic.csproj" />
     </ItemGroup>
 
 </Project>

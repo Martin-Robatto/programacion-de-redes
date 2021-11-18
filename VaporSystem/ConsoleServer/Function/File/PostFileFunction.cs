@@ -3,6 +3,7 @@ using Protocol;
 using Service;
 using System;
 using System.Text;
+using ConsoleServer.Logs;
 using Domain;
 
 namespace ConsoleServer.Function.File

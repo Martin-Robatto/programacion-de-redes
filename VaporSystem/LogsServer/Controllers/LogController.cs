@@ -23,7 +23,7 @@ namespace LogsServer.Controllers
             FilterBy(hour, log => log.Hour.Equals(hour));
             FilterBy(user, log => log.User.Equals(user));
             FilterBy(game, log => log.Game.Equals(game));
-            return Ok(_logs);
+            return _logs.Any() ? Ok(_logs) : NoContent();
         }
 
         private void FilterBy(string feature, Func<Log, bool> filter)

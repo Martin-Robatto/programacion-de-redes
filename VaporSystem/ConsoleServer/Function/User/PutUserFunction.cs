@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using ConsoleServer.Logs;
 using Domain;
 using Exceptions;
 using Protocol;

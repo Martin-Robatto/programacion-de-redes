@@ -27,8 +27,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileLogic", "FileLogic\File
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogsServer", "LogsServer\LogsServer.csproj", "{7F84663B-84C3-481E-8864-E044698402C8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogLogic", "LogLogic\LogLogic.csproj", "{1C09E10C-D630-4E74-A8F9-F3C8B2994449}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServerAdmin", "ServerAdmin\ServerAdmin.csproj", "{416EF5EE-6DE6-4BCA-B668-06BAD2AE2C0F}"
 EndProject
 Global
@@ -85,10 +83,6 @@ Global
 		{7F84663B-84C3-481E-8864-E044698402C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7F84663B-84C3-481E-8864-E044698402C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7F84663B-84C3-481E-8864-E044698402C8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1C09E10C-D630-4E74-A8F9-F3C8B2994449}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1C09E10C-D630-4E74-A8F9-F3C8B2994449}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1C09E10C-D630-4E74-A8F9-F3C8B2994449}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1C09E10C-D630-4E74-A8F9-F3C8B2994449}.Release|Any CPU.Build.0 = Release|Any CPU
 		{416EF5EE-6DE6-4BCA-B668-06BAD2AE2C0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{416EF5EE-6DE6-4BCA-B668-06BAD2AE2C0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{416EF5EE-6DE6-4BCA-B668-06BAD2AE2C0F}.Release|Any CPU.ActiveCfg = Release|Any CPU

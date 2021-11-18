@@ -9,6 +9,7 @@ using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading.Tasks;
+using ConsoleServer.Logs;
 using FunctionInterface;
 
 namespace ConsoleServer
@@ -30,12 +31,12 @@ namespace ConsoleServer
 
         public async Task Run()
         {
-            await LogSender.Instance.StartLogsRecord().ConfigureAwait(false);
             _exit = false;
+            var startLogTask = Task.Run(async () => await LogSender.Instance.Connect().ConfigureAwait(false));
             try
             {
                 Initialize();
-                var task = Task.Run(async () => await ListenForConnectionsAsync().ConfigureAwait(false));
+                var startListenTask = Task.Run(async () => await ListenForConnectionsAsync().ConfigureAwait(false));
                 ServerDisplay.Listening();
                 ServerDisplay.Menu();
                 while (!_exit)

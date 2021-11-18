@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using LogsServer.Logs;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
@@ -11,11 +12,10 @@ namespace LogsServer
 {
     public class Program
     {
-        private static readonly LogReceiver _logReceiver = new LogReceiver();
-        
         public static async Task Main(string[] args)
         {
-            await _logReceiver.Receive();
+            await LogReceiver.Instance.Connect();
+            await LogReceiver.Instance.ReceiveLogs();
             CreateHostBuilder(args).Build().Run();
         }
 

@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualBasic;
 using Protocol;
 using ServerAdmin.Models;
+using SettingsLogic;
+using SettingsLogic.Interface;
 
 namespace ServerAdmin.Controllers
 {
@@ -12,11 +14,15 @@ namespace ServerAdmin.Controllers
     [Route("users")]
     public class UserController : ControllerBase
     {
+        private readonly ISettingsManager _settingsManager = new SettingsManager();
         private readonly GrpcChannel _channel;
         
         public UserController()
         {
-            _channel = GrpcChannel.ForAddress("http://localhost:9000", new GrpcChannelOptions() {
+            var protocol = _settingsManager.ReadSetting(ServerConfig.ProtocolConfigKey);
+            var ip = _settingsManager.ReadSetting(ServerConfig.IPAddressConfigKey);
+            var port = _settingsManager.ReadSetting(ServerConfig.GRPCPortConfigKey);
+            _channel = GrpcChannel.ForAddress($"{protocol}://{ip}:{port}", new GrpcChannelOptions() {
                 HttpClient = new System.Net.Http.HttpClient() {
                     DefaultRequestVersion = new Version(2, 0)
                 }
@@ -29,7 +35,11 @@ namespace ServerAdmin.Controllers
             var client = new UserManager.UserManagerClient(_channel);
             var userLine = new UserParam() {Line = model.Parse()};
             var response = await client.PostUserAsync(userLine);
-            return StatusCode(response.StatusCode);
+            UserModelOut modelOut = new UserModelOut()
+            {
+                Username = model.Username
+            };
+            return response.StatusCode == StatusCodeConstants.CREATED ? Created(string.Empty, modelOut) : StatusCode(response.StatusCode);
         }
         
         [HttpDelete]
@@ -38,7 +48,7 @@ namespace ServerAdmin.Controllers
             var client = new UserManager.UserManagerClient(_channel);
             var userLine = new UserParam() {Line = model.Parse()};
             var response = await client.DeleteUserAsync(userLine);
-            return StatusCode(response.StatusCode);
+            return response.StatusCode == StatusCodeConstants.OK ? NoContent() : StatusCode(response.StatusCode);
         }
         
         [HttpPut]
@@ -47,7 +57,7 @@ namespace ServerAdmin.Controllers
             var client = new UserManager.UserManagerClient(_channel);
             var userLine = new UserParam() {Line = model.ParseToPutFormat(username)};
             var response = await client.PutUserAsync(userLine);
-            return StatusCode(response.StatusCode);
+            return response.StatusCode == StatusCodeConstants.OK ? NoContent() : StatusCode(response.StatusCode);
         }
     }
 }

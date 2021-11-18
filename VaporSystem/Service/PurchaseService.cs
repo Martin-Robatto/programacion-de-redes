@@ -2,7 +2,6 @@
 using Domain;
 using System;
 using System.Collections.Generic;
-using ConsoleServer;
 
 namespace Service
 {

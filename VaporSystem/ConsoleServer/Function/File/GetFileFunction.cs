@@ -5,6 +5,7 @@ using SocketLogic;
 using System;
 using System.Text;
 using System.Threading.Tasks;
+using ConsoleServer.Logs;
 using Domain;
 
 namespace ConsoleServer.Function.File
