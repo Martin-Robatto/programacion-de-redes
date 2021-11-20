@@ -9,7 +9,7 @@ using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading.Tasks;
-using ConsoleServer.Logs;
+using ConsoleServer.LogsLogic;
 using FunctionInterface;
 
 namespace ConsoleServer
