@@ -18,7 +18,7 @@ namespace LogsServer.Controllers
         [HttpGet]
         public IActionResult Get(string date, string hour, string user, string game)
         {
-            _logs = LogRepository.Logs;
+            _logs = LogRepository.Instance.GetAll();
             FilterBy(date, log => log.Date.Equals(date));
             FilterBy(hour, log => log.Hour.Equals(hour));
             FilterBy(user, log => log.User.Equals(user));

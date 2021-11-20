@@ -8,7 +8,6 @@
 
     <ItemGroup>
       <ProjectReference Include="..\FunctionInterface\FunctionInterface.csproj" />
-      <ProjectReference Include="..\LogLogic\LogLogic.csproj" />
       <ProjectReference Include="..\Protocol\Protocol.csproj" />
       <ProjectReference Include="..\Service\Service.csproj" />
       <ProjectReference Include="..\SettingsLogic\SettingsLogic.csproj" />

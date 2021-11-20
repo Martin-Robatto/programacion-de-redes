@@ -8,12 +8,13 @@ namespace DataAccess
     public class GameRepository
     {
         private static GameRepository _instance;
-        private static readonly object _lock = new object();
-        private IList<Game> _games;
-        public static IList<Game> Games
+        public static GameRepository Instance
         {
-            get { return GetInstance()._games; }
+            get { return GetInstance(); }
         }
+        
+        private static readonly object _lock = new object();
+        private static IList<Game> _games;
 
         private GameRepository()
         {
@@ -32,11 +33,11 @@ namespace DataAccess
             return _instance;
         }
 
-        public static IEnumerable<Game> GetAll(Func<Game, bool> filter = null)
+        public IEnumerable<Game> GetAll(Func<Game, bool> filter = null)
         {
-            lock (Games)
+            lock (_games)
             {
-                IEnumerable<Game> gamesToReturn = Games;
+                IEnumerable<Game> gamesToReturn = _games;
                 if (filter is not null)
                 {
                     gamesToReturn = gamesToReturn.Where(filter);
@@ -45,24 +46,24 @@ namespace DataAccess
             }
         }
 
-        public static Game Get(Func<Game, bool> filter = null)
+        public Game Get(Func<Game, bool> filter = null)
         {
             return GetAll(filter).FirstOrDefault();
         }
 
-        public static void Add(Game game)
+        public void Add(Game game)
         {
-            lock (Games)
+            lock (_games)
             {
-                Games.Add(game);
+                _games.Add(game);
             }
         }
 
-        public static void Remove(Game game)
+        public void Remove(Game game)
         {
-            lock (Games)
+            lock (_games)
             {
-                Games.Remove(game);
+                _games.Remove(game);
             }
         }
     }

@@ -48,7 +48,7 @@ namespace ServerAdmin.Controllers
             var client = new PurchaseManager.PurchaseManagerClient(_channel);
             var purchaseLine = new PurchaseParam() {Line = model.Parse()};
             var response = await client.DeletePurchaseAsync(purchaseLine);
-            return response.StatusCode == StatusCodeConstants.OK ? NoContent() : StatusCode(response.StatusCode);
+            return StatusCode(response.StatusCode);
         }
     }
 }

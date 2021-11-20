@@ -45,7 +45,7 @@ namespace Service
 
         public void CheckReviewAlreadyExists(Review input)
         {
-            var review = ReviewRepository.Get(r => r.Equals(input));
+            var review = ReviewRepository.Instance.Get(r => r.Equals(input));
             if (review is not null)
             {
                 throw new AlreadyExistsException("Review");

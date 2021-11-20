@@ -12,10 +12,10 @@ namespace LogsServer
 {
     public class Program
     {
-        public static async Task Main(string[] args)
+        public static void Main(string[] args)
         {
-            await LogReceiver.Instance.Connect();
-            await LogReceiver.Instance.ReceiveLogs();
+            LogReceiver.Instance.Connect();
+            LogReceiver.Instance.ReceiveLogs();
             CreateHostBuilder(args).Build().Run();
         }
 

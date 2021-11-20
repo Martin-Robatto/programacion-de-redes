@@ -8,7 +8,7 @@ namespace Service
     {
         public void CheckCredentials(User input)
         {
-            var user = UserRepository.Get(u => u.Username.Equals(input.Username)
+            var user = UserRepository.Instance.Get(u => u.Username.Equals(input.Username)
                                                && u.Password.Equals(input.Password));
             if (user is null)
             {
@@ -37,7 +37,7 @@ namespace Service
 
         public void CheckUserAlreadyExists(User input)
         {
-            var user = UserRepository.Get(u => u.Equals(input));
+            var user = UserRepository.Instance.Get(u => u.Equals(input));
             if (user is not null)
             {
                 throw new AlreadyExistsException("User");

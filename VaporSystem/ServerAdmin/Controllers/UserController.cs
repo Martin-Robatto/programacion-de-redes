@@ -35,10 +35,7 @@ namespace ServerAdmin.Controllers
             var client = new UserManager.UserManagerClient(_channel);
             var userLine = new UserParam() {Line = model.Parse()};
             var response = await client.PostUserAsync(userLine);
-            UserModelOut modelOut = new UserModelOut()
-            {
-                Username = model.Username
-            };
+            UserModelOut modelOut = new UserModelOut() {Username = model.Username};
             return response.StatusCode == StatusCodeConstants.CREATED ? Created(string.Empty, modelOut) : StatusCode(response.StatusCode);
         }
         
@@ -48,7 +45,7 @@ namespace ServerAdmin.Controllers
             var client = new UserManager.UserManagerClient(_channel);
             var userLine = new UserParam() {Line = model.Parse()};
             var response = await client.DeleteUserAsync(userLine);
-            return response.StatusCode == StatusCodeConstants.OK ? NoContent() : StatusCode(response.StatusCode);
+            return StatusCode(response.StatusCode);
         }
         
         [HttpPut]
@@ -57,7 +54,8 @@ namespace ServerAdmin.Controllers
             var client = new UserManager.UserManagerClient(_channel);
             var userLine = new UserParam() {Line = model.ParseToPutFormat(username)};
             var response = await client.PutUserAsync(userLine);
-            return response.StatusCode == StatusCodeConstants.OK ? NoContent() : StatusCode(response.StatusCode);
+            UserModelOut modelOut = new UserModelOut() {Username = model.Username};
+            return response.StatusCode == StatusCodeConstants.OK ? Created(string.Empty, modelOut) : StatusCode(response.StatusCode);
         }
     }
 }

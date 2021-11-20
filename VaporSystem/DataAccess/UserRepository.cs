@@ -8,12 +8,13 @@ namespace DataAccess
     public class UserRepository
     {
         private static UserRepository _instance;
-        private static readonly object _lock = new object();
-        private IList<User> _users;
-        public static IList<User> Users
+        public static UserRepository Instance
         {
-            get { return GetInstance()._users; }
+            get { return GetInstance(); }
         }
+        
+        private static readonly object _lock = new object();
+        private static IList<User> _users;
 
         private UserRepository()
         {
@@ -32,11 +33,11 @@ namespace DataAccess
             return _instance;
         }
 
-        public static IEnumerable<User> GetAll(Func<User, bool> filter = null)
+        public IEnumerable<User> GetAll(Func<User, bool> filter = null)
         {
-            lock (Users)
+            lock (_users)
             {
-                IEnumerable<User> usersToReturn = Users;
+                IEnumerable<User> usersToReturn = _users;
                 if (filter is not null)
                 {
                     usersToReturn = usersToReturn.Where(filter);
@@ -45,24 +46,24 @@ namespace DataAccess
             }
         }
 
-        public static User Get(Func<User, bool> filter = null)
+        public User Get(Func<User, bool> filter = null)
         {
             return GetAll(filter).FirstOrDefault();
         }
 
-        public static void Add(User user)
+        public void Add(User user)
         {
-            lock (Users)
+            lock (_users)
             {
-                Users.Add(user);
+                _users.Add(user);
             }
         }
 
-        public static void Remove(User user)
+        public void Remove(User user)
         {
-            lock (Users)
+            lock (_users)
             {
-                Users.Remove(user);
+                _users.Remove(user);
             }
         }
     }

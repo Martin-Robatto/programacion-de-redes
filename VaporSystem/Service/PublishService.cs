@@ -35,7 +35,7 @@ namespace Service
 
         public string Get(string userLine)
         {
-            IEnumerable<Publish> userPublishes = PublishRepository.GetAll(p => p.User.Username.Equals(userLine));
+            IEnumerable<Publish> userPublishes = PublishRepository.Instance.GetAll(p => p.User.Username.Equals(userLine));
             _validator.CheckPublishesAreEmpty(userPublishes);
             string publishsLine = string.Empty;
             foreach (Publish publish in userPublishes)
@@ -58,7 +58,7 @@ namespace Service
                 Game = game,
                 Date = DateTime.Now
             };
-            PublishRepository.Add(input);
+            PublishRepository.Instance.Add(input);
             string purchaseLine = $"{user.Username}&{game.Title}";
             PurchaseService.Instance.Save(purchaseLine);
         }
@@ -69,11 +69,11 @@ namespace Service
             string[] attributes = publishLine.Split("&");
             User user = UserService.Instance.Get(attributes[0]);
             Game game = GameService.Instance.Get(attributes[1]);
-            var publish = PublishRepository.Get(p => p.User.Equals(user) && p.Game.Equals(game));
+            var publish = PublishRepository.Instance.Get(p => p.User.Equals(user) && p.Game.Equals(game));
             DeleteReviews(game);
             DeletePurchases(game);
             GameService.Instance.Delete(game);
-            PublishRepository.Remove(publish);
+            PublishRepository.Instance.Remove(publish);
         }
 
         private void DeleteReviews(Game game)
@@ -106,7 +106,7 @@ namespace Service
             _validator.CheckAttributesAreEmpty(attributes);
             User user = UserService.Instance.Get(attributes[0]);
             Game game = GameService.Instance.Get(attributes[1]);
-            var publish = PublishRepository.Get(p => p.User.Equals(user) && p.Game.Equals(game));
+            var publish = PublishRepository.Instance.Get(p => p.User.Equals(user) && p.Game.Equals(game));
             _validator.CheckPublishIsNull(publish);
         }
     }

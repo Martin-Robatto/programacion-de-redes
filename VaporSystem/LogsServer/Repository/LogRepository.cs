@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Domain;
 
 namespace DataAccess
@@ -6,13 +8,13 @@ namespace DataAccess
     public class LogRepository
     {
         private static LogRepository _instance;
-        private static readonly object _lock = new object();
-        private IList<Log> _logs;
-
-        public static IList<Log> Logs
+        public static LogRepository Instance
         {
-            get { return GetInstance()._logs; }
+            get { return GetInstance(); }
         }
+        
+        private static readonly object _lock = new object();
+        private static IList<Log> _logs;
 
         private LogRepository()
         {
@@ -32,11 +34,24 @@ namespace DataAccess
             return _instance;
         }
         
-        public static void Add(Log log)
+        public IEnumerable<Log> GetAll(Func<Log, bool> filter = null)
         {
-            lock (Logs)
+            lock (_logs)
             {
-                Logs.Add(log);
+                IEnumerable<Log> logsToReturn = _logs;
+                if (filter is not null)
+                {
+                    logsToReturn = logsToReturn.Where(filter);
+                }
+                return logsToReturn;
+            }
+        }
+        
+        public void Add(Log log)
+        {
+            lock (_logs)
+            {
+                _logs.Add(log);
             }
         }
     }

@@ -34,14 +34,14 @@ namespace Service
 
         public Game Get(string title)
         {
-            Game game = GameRepository.Get(g => g.Title.Equals(title));
+            Game game = GameRepository.Instance.Get(g => g.Title.Equals(title));
             _validator.CheckGameIsNull(game);
             return game;
         }
 
         public IEnumerable<Game> GetAll(Func<Game, bool> filter = null)
         {
-            IEnumerable<Game> games = GameRepository.GetAll(filter);
+            IEnumerable<Game> games = GameRepository.Instance.GetAll(filter);
             _validator.CheckGamesAreEmpty(games);
             return games;
         }
@@ -132,16 +132,16 @@ namespace Service
                 PicturePath = string.Empty
             };
             _validator.CheckGameAlreadyExists(input);
-            GameRepository.Add(input);
+            GameRepository.Instance.Add(input);
             Console.WriteLine($"Juego nuevo: {input.Title}");
             return input;
         }
 
         public void Delete(Game game)
         {
-            var aGame = GameRepository.Get(g => g.Equals(game));
+            var aGame = GameRepository.Instance.Get(g => g.Equals(game));
             _validator.CheckGameIsNull(aGame);
-            GameRepository.Remove(aGame);
+            GameRepository.Instance.Remove(aGame);
             Console.WriteLine($"Juego eliminado: {game.Title}");
         }
 

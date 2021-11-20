@@ -10,13 +10,13 @@ namespace ConsoleServer
 {
     class Program
     {
-        static async Task Main(string[] args)
+        static void Main(string[] args)
         {
             try
             {
                 var task = Task.Run(() => CreateHostBuilder(args).Build().Run());
                 ServerHandler serverHandler = new ServerHandler();
-                await serverHandler.Run().ConfigureAwait(false);
+                serverHandler.Run();
                 task.Dispose();
             }
             catch (Exception exception)

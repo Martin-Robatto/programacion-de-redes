@@ -44,7 +44,7 @@ namespace ServerAdmin.Controllers
             var client = new GameManager.GameManagerClient(_channel);
             var gameLine = new GameParam() {Line = model.ParseToDeleteFormat()};
             var response = await client.DeleteGameAsync(gameLine);
-            return response.StatusCode == StatusCodeConstants.OK ? NoContent() : StatusCode(response.StatusCode);
+            return StatusCode(response.StatusCode);
         }
         
         [HttpPut]
@@ -53,7 +53,8 @@ namespace ServerAdmin.Controllers
             var client = new GameManager.GameManagerClient(_channel);
             var gameLine = new GameParam() {Line = model.ParseToPutFormat(title)};
             var response = await client.PutGameAsync(gameLine);
-            return response.StatusCode == StatusCodeConstants.OK ? NoContent() : StatusCode(response.StatusCode);
+            GameModelOut modelOut = new GameModelOut() {Title = model.Title};
+            return response.StatusCode == StatusCodeConstants.OK ? Created(string.Empty, modelOut) : StatusCode(response.StatusCode);
         }
     }
 }

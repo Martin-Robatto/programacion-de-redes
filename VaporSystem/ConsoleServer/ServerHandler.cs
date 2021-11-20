@@ -29,10 +29,10 @@ namespace ConsoleServer
 
         public ServerHandler() { }
 
-        public async Task Run()
+        public void Run()
         {
             _exit = false;
-            var startLogTask = Task.Run(async () => await LogSender.Instance.Connect().ConfigureAwait(false));
+            var startLogTask = Task.Run(() => LogSender.Instance.Connect());
             try
             {
                 Initialize();

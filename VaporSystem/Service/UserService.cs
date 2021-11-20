@@ -41,7 +41,7 @@ namespace Service
                 Password = attributes[1]
             };
             _validator.CheckUserAlreadyExists(input);
-            UserRepository.Add(input);
+            UserRepository.Instance.Add(input);
             Console.WriteLine($"Usuario nuevo: {input.Username}");
             return input.Username;
         }
@@ -62,7 +62,7 @@ namespace Service
 
         public User Get(string username)
         {
-            User user = UserRepository.Get(u => u.Username.Equals(username));
+            User user = UserRepository.Instance.Get(u => u.Username.Equals(username));
             _validator.CheckUserIsNull(user);
             return user;
         }
@@ -74,7 +74,7 @@ namespace Service
             User user = Get(attributes[0]);
             DeleteReviews(user);
             DeletePurchases(user);
-            UserRepository.Remove(user);
+            UserRepository.Instance.Remove(user);
         }
         
         private void DeleteReviews(User user)
