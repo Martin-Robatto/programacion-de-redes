@@ -8,12 +8,13 @@ namespace DataAccess
     public class PublishRepository
     {
         private static PublishRepository _instance;
-        private static readonly object _lock = new object();
-        private IList<Publish> _publishs;
-        public static IList<Publish> Publishs
+        public static PublishRepository Instance
         {
-            get { return GetInstance()._publishs; }
+            get { return GetInstance(); }
         }
+        
+        private static readonly object _lock = new object();
+        private static IList<Publish> _publishs;
 
         private PublishRepository()
         {
@@ -32,11 +33,11 @@ namespace DataAccess
             return _instance;
         }
 
-        public static IEnumerable<Publish> GetAll(Func<Publish, bool> filter = null)
+        public IEnumerable<Publish> GetAll(Func<Publish, bool> filter = null)
         {
-            lock (Publishs)
+            lock (_publishs)
             {
-                IEnumerable<Publish> publishsToReturn = Publishs;
+                IEnumerable<Publish> publishsToReturn = _publishs;
                 if (filter is not null)
                 {
                     publishsToReturn = publishsToReturn.Where(filter);
@@ -45,24 +46,24 @@ namespace DataAccess
             }
         }
 
-        public static Publish Get(Func<Publish, bool> filter = null)
+        public Publish Get(Func<Publish, bool> filter = null)
         {
             return GetAll(filter).FirstOrDefault();
         }
 
-        public static void Add(Publish publish)
+        public void Add(Publish publish)
         {
-            lock (Publishs)
+            lock (_publishs)
             {
-                Publishs.Add(publish);
+                _publishs.Add(publish);
             }
         }
 
-        public static void Remove(Publish publish)
+        public void Remove(Publish publish)
         {
-            lock (Publishs)
+            lock (_publishs)
             {
-                Publishs.Remove(publish);
+                _publishs.Remove(publish);
             }
         }
     }

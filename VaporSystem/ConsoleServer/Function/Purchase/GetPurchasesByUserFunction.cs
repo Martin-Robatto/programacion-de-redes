@@ -3,6 +3,8 @@ using Protocol;
 using Service;
 using System;
 using System.Text;
+using ConsoleServer.LogsLogic;
+using Domain;
 
 namespace ConsoleServer.Function
 {
@@ -14,8 +16,8 @@ namespace ConsoleServer.Function
             base.function = FunctionConstants.GET_PURCHASES_BY_USER;
             try
             {
-                var userLine = Encoding.UTF8.GetString(bufferData);
-                base.data = PurchaseService.Instance.Get(userLine);
+                var purchaseLine = Encoding.UTF8.GetString(bufferData);
+                base.data = PurchaseService.Instance.Get(purchaseLine);
                 base.statusCode = StatusCodeConstants.OK;
             }
             catch (AppException exception)
@@ -29,6 +31,21 @@ namespace ConsoleServer.Function
                 base.statusCode = StatusCodeConstants.SERVER_ERROR;
             }
             
+        }
+
+        public override void SendLog(byte[] bufferData)
+        {
+            var purchaseLine = Encoding.UTF8.GetString(bufferData);
+            Log newLog = new Log()
+            {
+                Date = DateTime.Now.ToShortDateString(),
+                Hour = DateTime.Now.ToString("HH:mm"),
+                User = purchaseLine,
+                Game = string.Empty,
+                Action = "Get Purchases By User",
+                StatusCode = base.statusCode.ToString()
+            };
+            LogSender.Instance.SendLog(newLog);
         }
     }
 }

@@ -1,0 +1,19 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "ServerAdmin";
+
+package user;
+
+service UserManager {
+  rpc PostUser (UserParam) returns (UserReply);
+  rpc DeleteUser (UserParam) returns (UserReply);
+  rpc PutUser (UserParam) returns (UserReply);
+}
+
+message UserReply {
+  int32 status_code = 1;
+}
+
+message UserParam {
+  string line = 1;
+}

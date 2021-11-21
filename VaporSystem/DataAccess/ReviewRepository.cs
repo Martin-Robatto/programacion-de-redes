@@ -8,12 +8,13 @@ namespace DataAccess
     public class ReviewRepository
     {
         private static ReviewRepository _instance;
-        private static readonly object _lock = new object();
-        private IList<Review> _reviews;
-        public static IList<Review> Reviews
+        public static ReviewRepository Instance
         {
-            get { return GetInstance()._reviews; }
+            get { return GetInstance(); }
         }
+        
+        private static readonly object _lock = new object();
+        private static IList<Review> _reviews;
 
         private ReviewRepository()
         {
@@ -32,11 +33,11 @@ namespace DataAccess
             return _instance;
         }
 
-        public static IEnumerable<Review> GetAll(Func<Review, bool> filter = null)
+        public IEnumerable<Review> GetAll(Func<Review, bool> filter = null)
         {
-            lock (Reviews)
+            lock (_reviews)
             {
-                IEnumerable<Review> reviewsToReturn = Reviews;
+                IEnumerable<Review> reviewsToReturn = _reviews;
                 if (filter is not null)
                 {
                     reviewsToReturn = reviewsToReturn.Where(filter);
@@ -45,32 +46,32 @@ namespace DataAccess
             }
         }
 
-        public static Review Get(Func<Review, bool> filter = null)
+        public Review Get(Func<Review, bool> filter = null)
         {
             return GetAll(filter).FirstOrDefault();
         }
 
-        public static void Add(Review review)
+        public void Add(Review review)
         {
-            lock (Reviews)
+            lock (_reviews)
             {
-                Reviews.Add(review);
+                _reviews.Add(review);
             }
         }
 
-        public static void Remove(Review review)
+        public void Remove(Review review)
         {
-            lock (Reviews)
+            lock (_reviews)
             {
-                Reviews.Remove(review);
+                _reviews.Remove(review);
             }
         }
-
-        public static void Update(Review review)
+        
+        public void Update(Review review)
         {
-            lock (Reviews)
+            lock (_reviews)
             {
-                Review reviewToUpdate = Reviews.FirstOrDefault(r => r.Equals(review));
+                Review reviewToUpdate = _reviews.FirstOrDefault(r => r.Equals(review));
                 reviewToUpdate.Date = review.Date;
                 reviewToUpdate.Rate = review.Rate;
                 reviewToUpdate.Comment = review.Comment;

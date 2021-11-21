@@ -3,6 +3,8 @@ using Protocol;
 using Service;
 using System;
 using System.Text;
+using ConsoleServer.LogsLogic;
+using Domain;
 
 namespace ConsoleServer.Function
 {
@@ -10,7 +12,6 @@ namespace ConsoleServer.Function
     {
         public override void ProcessRequest(byte[] bufferData)
         {
-            
             base.function = FunctionConstants.LOGIN;
             try
             {
@@ -28,7 +29,22 @@ namespace ConsoleServer.Function
                 base.data = "Error de servidor";
                 base.statusCode = StatusCodeConstants.SERVER_ERROR;
             }
-            
+        }
+
+        public override void SendLog(byte[] bufferData)
+        {
+            var userLine = Encoding.UTF8.GetString(bufferData);
+            string[] attributes = userLine.Split("#");
+            Log newLog = new Log()
+            {
+                Date = DateTime.Now.ToShortDateString(),
+                Hour = DateTime.Now.ToString("HH:mm"),
+                User = attributes[0],
+                Game = string.Empty,
+                Action = "Log In",
+                StatusCode = base.statusCode.ToString()
+            };
+            LogSender.Instance.SendLog(newLog);
         }
     }
 }

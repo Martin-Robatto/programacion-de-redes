@@ -8,12 +8,13 @@ namespace DataAccess
     public class PurchaseRepository
     {
         private static PurchaseRepository _instance;
-        private static readonly object _lock = new object();
-        private IList<Purchase> _purchases;
-        public static IList<Purchase> Purchases
+        public static PurchaseRepository Instance
         {
-            get { return GetInstance()._purchases; }
+            get { return GetInstance(); }
         }
+        
+        private static readonly object _lock = new object();
+        private static IList<Purchase> _purchases;
 
         private PurchaseRepository()
         {
@@ -32,11 +33,11 @@ namespace DataAccess
             return _instance;
         }
 
-        public static IEnumerable<Purchase> GetAll(Func<Purchase, bool> filter = null)
+        public IEnumerable<Purchase> GetAll(Func<Purchase, bool> filter = null)
         {
-            lock (Purchases)
+            lock (_purchases)
             {
-                IEnumerable<Purchase> purchasesToReturn = Purchases;
+                IEnumerable<Purchase> purchasesToReturn = _purchases;
                 if (filter is not null)
                 {
                     purchasesToReturn = purchasesToReturn.Where(filter);
@@ -45,24 +46,24 @@ namespace DataAccess
             }
         }
 
-        public static Purchase Get(Func<Purchase, bool> filter = null)
+        public Purchase Get(Func<Purchase, bool> filter = null)
         {
             return GetAll(filter).FirstOrDefault();
         }
 
-        public static void Add(Purchase purchase)
+        public void Add(Purchase purchase)
         {
-            lock (Purchases)
+            lock (_purchases)
             {
-                Purchases.Add(purchase);
+                _purchases.Add(purchase);
             }
         }
 
-        public static void Remove(Purchase purchase)
+        public void Remove(Purchase purchase)
         {
-            lock (Purchases)
+            lock (_purchases)
             {
-                Purchases.Remove(purchase);
+                _purchases.Remove(purchase);
             }
         }
     }

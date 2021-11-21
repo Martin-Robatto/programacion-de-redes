@@ -1,0 +1,19 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "ConsoleServer";
+
+package purchase;
+
+service PurchaseManager {
+  rpc PostPurchase (PurchaseParam) returns (PurchaseReply);
+  rpc DeletePurchase (PurchaseParam) returns (PurchaseReply);
+}
+
+message PurchaseReply {
+  int32 status_code = 1;
+}
+
+message PurchaseParam {
+  string line = 1;
+}
+

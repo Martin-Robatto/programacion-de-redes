@@ -8,8 +8,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
-using System.Threading;
 using System.Threading.Tasks;
+using ConsoleServer.LogsLogic;
 using FunctionInterface;
 
 namespace ConsoleServer
@@ -32,10 +32,11 @@ namespace ConsoleServer
         public void Run()
         {
             _exit = false;
+            var startLogTask = Task.Run(() => LogSender.Instance.Connect());
             try
             {
                 Initialize();
-                var task = Task.Run(async () => await ListenForConnectionsAsync().ConfigureAwait(false));
+                var startListenTask = Task.Run(async () => await ListenForConnectionsAsync().ConfigureAwait(false));
                 ServerDisplay.Listening();
                 ServerDisplay.Menu();
                 while (!_exit)
@@ -68,7 +69,7 @@ namespace ConsoleServer
             _serverSocket.Bind(ipEndPoint);
             _serverSocket.Listen(100);
         }
-
+        
         private async Task ListenForConnectionsAsync()
         {
             while (!_exit)

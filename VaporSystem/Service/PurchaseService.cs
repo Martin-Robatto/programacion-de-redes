@@ -31,12 +31,12 @@ namespace Service
 
         public IEnumerable<Purchase> GetAll(Func<Purchase, bool> filter = null)
         {
-            return PurchaseRepository.GetAll(filter);
+            return PurchaseRepository.Instance.GetAll(filter);
         }
 
         public string Get(string userLine)
         {
-            IEnumerable<Purchase> userPurchases = PurchaseRepository.GetAll(p => p.User.Username.Equals(userLine));
+            IEnumerable<Purchase> userPurchases = PurchaseRepository.Instance.GetAll(p => p.User.Username.Equals(userLine));
             _validator.CheckPurchasesAreEmpty(userPurchases);
             string purchasesLine = string.Empty;
             foreach (Purchase purchase in userPurchases)
@@ -60,7 +60,7 @@ namespace Service
                 Date = DateTime.Now
             };
             _validator.CheckPurchaseAlreadyExists(input);
-            PurchaseRepository.Add(input);
+            PurchaseRepository.Instance.Add(input);
             Console.WriteLine($"{user.Username} compro: {game.Title}");
         }
 
@@ -68,9 +68,9 @@ namespace Service
         {
             User user = purchase.User;
             Game game = purchase.Game;
-            var aPurchase = PurchaseRepository.Get(p => p.Equals(purchase));
+            var aPurchase = PurchaseRepository.Instance.Get(p => p.Equals(purchase));
             _validator.CheckPurchaseIsNull(aPurchase);
-            PurchaseRepository.Remove(aPurchase);
+            PurchaseRepository.Instance.Remove(aPurchase);
         }
 
         public void Delete(string purchaseLine)
@@ -79,9 +79,9 @@ namespace Service
             _validator.CheckAttributesAreEmpty(attributes);
             User user = UserService.Instance.Get(attributes[0]);
             Game game = GameService.Instance.Get(attributes[1]);
-            var purchase = PurchaseRepository.Get(p => p.Game.Equals(game) && p.User.Equals(user));
+            var purchase = PurchaseRepository.Instance.Get(p => p.Game.Equals(game) && p.User.Equals(user));
             _validator.CheckPurchaseIsNull(purchase);
-            PurchaseRepository.Remove(purchase);
+            PurchaseRepository.Instance.Remove(purchase);
             Console.WriteLine($"{user.Username} desinstalo: {game.Title}");
         }
     }

@@ -37,7 +37,7 @@ namespace Service
 
         public void CheckPurchaseAlreadyExists(Purchase input)
         {
-            var purchase = PurchaseRepository.Get(p => p.Equals(input));
+            var purchase = PurchaseRepository.Instance.Get(p => p.Equals(input));
             if (purchase is not null)
             {
                 throw new AlreadyExistsException("Purchase");

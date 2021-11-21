@@ -1,0 +1,19 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "ConsoleServer";
+
+package game;
+
+service GameManager {
+  rpc PostGame (GameParam) returns (GameReply);
+  rpc DeleteGame (GameParam) returns (GameReply);
+  rpc PutGame (GameParam) returns (GameReply);
+}
+
+message GameReply {
+  int32 status_code = 1;
+}
+
+message GameParam {
+  string line = 1;
+}

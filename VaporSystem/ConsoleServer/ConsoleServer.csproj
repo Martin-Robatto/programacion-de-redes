@@ -2,7 +2,8 @@
 
     <PropertyGroup>
         <OutputType>Exe</OutputType>
-        <TargetFramework>net5.0</TargetFramework>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <LangVersion>9</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>
@@ -11,6 +12,25 @@
       <ProjectReference Include="..\Service\Service.csproj" />
       <ProjectReference Include="..\SettingsLogic\SettingsLogic.csproj" />
       <ProjectReference Include="..\SocketLogic\SocketLogic.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+        <Protobuf Include="Protos\user.proto" GrpcServices="Server" />
+        <Protobuf Include="Protos\game.proto" GrpcServices="Server" />
+        <Protobuf Include="Protos\purchase.proto" GrpcServices="Server" />
+    </ItemGroup>
+    <ItemGroup>
+      <PackageReference Include="Google.Protobuf" Version="3.19.1" />
+      <PackageReference Include="Grpc.AspNetCore.Server" Version="2.41.0-pre1" />
+      <PackageReference Include="Grpc.AspNetCore.Server.ClientFactory" Version="2.41.0-pre1" />
+      <PackageReference Include="Grpc.Core.Api" Version="2.42.0-pre1" />
+      <PackageReference Include="Grpc.Net.Client" Version="2.41.0-pre1" />
+      <PackageReference Include="Grpc.Net.ClientFactory" Version="2.41.0-pre1" />
+      <PackageReference Include="Grpc.Net.Common" Version="2.41.0-pre1" />
+      <PackageReference Include="Grpc.Tools" Version="2.42.0-pre1">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
+      <PackageReference Include="RabbitMQ.Client" Version="6.2.2" />
     </ItemGroup>
 
 </Project>

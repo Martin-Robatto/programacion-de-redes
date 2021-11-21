@@ -16,7 +16,7 @@ namespace ConsoleClient.Function
             var password = Console.ReadLine();
 
             var message = $"{username}#{password}";
-            var header = new Header(HeaderConstants.REQUEST, FunctionConstants.REGISTER, message.Length);
+            var header = new Header(HeaderConstants.REQUEST, FunctionConstants.POST_USER, message.Length);
 
             return new DataPacket()
             {

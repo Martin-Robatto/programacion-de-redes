@@ -32,12 +32,12 @@ namespace Service
 
         public IEnumerable<Review> GetAll(Func<Review, bool> filter = null)
         {
-            return ReviewRepository.GetAll(filter);
+            return ReviewRepository.Instance.GetAll(filter);
         }
 
         public string GetByUser(string userLine)
         {
-            IEnumerable<Review> userReviews = ReviewRepository.GetAll(r => r.User.Username.Equals(userLine));
+            IEnumerable<Review> userReviews = ReviewRepository.Instance.GetAll(r => r.User.Username.Equals(userLine));
             _validator.CheckReviewsAreEmpty(userReviews);
             string reviewsLine = string.Empty;
             foreach (Review review in userReviews)
@@ -51,7 +51,7 @@ namespace Service
         {
             string[] attributes = gameLine.Split("&");
             _validator.CheckAttributesAreEmpty(attributes);
-            IEnumerable<Review> userReviews = ReviewRepository.GetAll(r => r.Game.Title.Equals(attributes[1]));
+            IEnumerable<Review> userReviews = ReviewRepository.Instance.GetAll(r => r.Game.Title.Equals(attributes[1]));
             _validator.CheckReviewsAreEmpty(userReviews);
             string reviewsLine = string.Empty;
             foreach (Review review in userReviews)
@@ -81,18 +81,18 @@ namespace Service
                 Comment = reviewAttributes[1]
             };
             _validator.CheckReviewAlreadyExists(input);
-            ReviewRepository.Add(input);
-            Console.WriteLine($"{user.Username} califico: {game.Title}");
+            ReviewRepository.Instance.Add(input);
             game.Rate = CalculateMediaRate(game);
+            Console.WriteLine($"{user.Username} califico: {game.Title}");
         }
 
         public void Delete(Review review)
         {
             User user = review.User;
             Game game = review.Game;
-            var aReview = ReviewRepository.Get(r => r.Equals(review));
+            var aReview = ReviewRepository.Instance.Get(r => r.Equals(review));
             _validator.CheckReviewIsNull(aReview);
-            ReviewRepository.Remove(aReview);
+            ReviewRepository.Instance.Remove(aReview);
             game.Rate = CalculateMediaRate(game);
         }
 
@@ -102,16 +102,16 @@ namespace Service
             _validator.CheckAttributesAreEmpty(attributes);
             User user = UserService.Instance.Get(attributes[0]);
             Game game = GameService.Instance.Get(attributes[1]);
-            var review = ReviewRepository.Get(r => r.Game.Equals(game) && r.User.Equals(user));
+            var review = ReviewRepository.Instance.Get(r => r.Game.Equals(game) && r.User.Equals(user));
             _validator.CheckReviewIsNull(review);
-            ReviewRepository.Remove(review);
-            Console.WriteLine($"{user.Username} descalifico: {game.Title}");
+            ReviewRepository.Instance.Remove(review);
             game.Rate = CalculateMediaRate(game);
+            Console.WriteLine($"{user.Username} descalifico: {game.Title}");
         }
 
         private float CalculateMediaRate(Game game)
         {
-            var reviews = ReviewRepository.GetAll(r => r.Game.Equals(game));
+            var reviews = ReviewRepository.Instance.GetAll(r => r.Game.Equals(game));
             float mediaRate = 0;
             if (reviews.Any())
             {
@@ -143,11 +143,11 @@ namespace Service
                 Rate = rate,
                 Comment = comment
             };
-            var review = ReviewRepository.Get(r => r.Equals(input));
+            var review = ReviewRepository.Instance.Get(r => r.Equals(input));
             _validator.CheckReviewIsNull(review);
-            ReviewRepository.Update(input);
-            Console.WriteLine($"{user.Username} califico: {game.Title}");
+            ReviewRepository.Instance.Update(input);
             game.Rate = CalculateMediaRate(game);
+            Console.WriteLine($"{user.Username} califico: {game.Title}");
         }
     }
 }

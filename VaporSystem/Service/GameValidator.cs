@@ -43,7 +43,7 @@ namespace Service
 
         public void CheckGameAlreadyExists(Game input)
         {
-            var game = GameRepository.Get(g => g.Equals(input));
+            var game = GameRepository.Instance.Get(g => g.Equals(input));
             if (game is not null)
             {
                 throw new AlreadyExistsException("Game");
