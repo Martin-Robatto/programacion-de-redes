@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
-using DataAccess;
 using Domain;
+using LogsServer.Repository;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using SettingsLogic;
