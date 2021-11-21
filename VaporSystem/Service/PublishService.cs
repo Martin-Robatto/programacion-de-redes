@@ -11,9 +11,6 @@ namespace Service
     {
         private static PublishService _instance;
         private PublishValidator _validator;
-
-        private NetworkManager _networkManager = new NetworkManager();
-
         public static PublishService Instance
         {
             get { return GetInstance(); }
